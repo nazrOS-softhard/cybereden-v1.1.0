@@ -1,9 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Trophy, Github, Twitch, Globe, ShoppingBag, Upload, BookOpen, Calendar, Zap } from "lucide-react";
+import {
+  Trophy,
+  Github,
+  Twitch,
+  Globe,
+  ShoppingBag,
+  Upload,
+  BookOpen,
+  Calendar,
+  Zap,
+  Database,
+} from "lucide-react";
 import { useState } from "react";
 import { PageShell } from "@/components/PageShell";
 import { useI18n } from "@/lib/i18n";
+import { DatacenterModal } from "@/components/DatacenterModal";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({
@@ -18,8 +30,8 @@ export const Route = createFileRoute("/profile")({
 });
 
 const accounts = [
-  { name: "GitHub", handle: "@nazr-os", icon: Github, connected: true },
-  { name: "Twitch", handle: "@nazr.os", icon: Twitch, connected: true },
+  { name: "GitHub", handle: "@nazr-os", icon: Github, connected: true, url: "https://github.com/oauth" },
+  { name: "Twitch", handle: "@nazr.os", icon: Twitch, connected: true, url: "https://twitch.tv/oauth" },
   { name: "Darknet", handle: "node://4a82…", icon: Globe, connected: false },
 ];
 
@@ -54,13 +66,13 @@ function ProfilePage() {
   const { t } = useI18n();
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [uploadedAssets, setUploadedAssets] = useState(assets);
+  const [datacenterOpen, setDatacenterOpen] = useState(false);
 
   const handleAvatarUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        // Simulate 16-bit conversion
         setAvatarPreview(event.target?.result as string);
       };
       reader.readAsDataURL(file);
@@ -82,6 +94,12 @@ function ProfilePage() {
     }
   };
 
+  const handleOAuthClick = (account: typeof accounts[0]) => {
+    if (account.url && account.connected) {
+      alert(`OAuth подключён к ${account.name}`);
+    }
+  };
+
   return (
     <PageShell
       eyebrow={t("profile.eyebrow")}
@@ -96,6 +114,18 @@ function ProfilePage() {
           className="hud-corners p-6 border border-border bg-surface/50 backdrop-blur"
         >
           <div className="relative aspect-square neon-border-cyan overflow-hidden">
+            {/* Rank Badge - Yellow Triangle with 3 */}
+            <div
+              className="absolute -top-3 -right-3 w-12 h-12 flex items-center justify-center text-black font-bold text-xl z-10"
+              style={{
+                background: "linear-gradient(135deg, #FFD700 0%, #FFA500 100%)",
+                clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)",
+                filter: "drop-shadow(0 0 8px rgba(255, 215, 0, 0.8))",
+              }}
+            >
+              3
+            </div>
+
             <div
               className="absolute inset-0"
               style={{
@@ -146,7 +176,7 @@ function ProfilePage() {
         </motion.div>
 
         <div className="space-y-6">
-          {/* Accounts */}
+          {/* Accounts - Interactive OAuth */}
           <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
             <div className="font-display text-sm tracking-widest neon-text-violet mb-4">
               {t("profile.accounts")}
@@ -157,13 +187,17 @@ function ProfilePage() {
                 return (
                   <button
                     key={a.name}
+                    onClick={() => handleOAuthClick(a)}
                     className={`flex items-center gap-3 p-3 border transition ${
                       a.connected
-                        ? "border-border bg-background/40 hover:neon-border-acid"
+                        ? "border-border bg-background/40 hover:neon-border-acid cursor-pointer"
                         : "border-border bg-background/20 hover:border-neon-cyan cursor-pointer"
                     }`}
                   >
-                    <Icon size={18} className={a.connected ? "neon-text-cyan" : "text-muted-foreground"} />
+                    <Icon
+                      size={18}
+                      className={a.connected ? "neon-text-cyan" : "text-muted-foreground"}
+                    />
                     <div className="text-left">
                       <div className="font-display text-xs uppercase tracking-widest">
                         {a.name}
@@ -172,6 +206,9 @@ function ProfilePage() {
                         {a.connected ? a.handle : "Не подключен"}
                       </div>
                     </div>
+                    {a.connected && (
+                      <div className="w-2 h-2 rounded-full bg-neon-acid animate-pulse ml-auto" />
+                    )}
                   </button>
                 );
               })}
@@ -237,16 +274,27 @@ function ProfilePage() {
             </section>
           </div>
 
-          {/* Assets - File Upload */}
-          <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
-            <div className="flex items-center gap-2 mb-4">
-              <Zap size={14} className="neon-text-cyan" />
-              <div className="font-display text-sm tracking-widest neon-text-violet">
-                АКТИВЫ
+          {/* Assets - File Upload with Datacenter */}
+          <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur hover:neon-border-cyan transition">
+            <div className="flex items-center gap-2 mb-4 justify-between">
+              <div
+                className="flex items-center gap-2 cursor-pointer group flex-1"
+                onClick={() => setDatacenterOpen(true)}
+                title="Открыть DATACENTER"
+              >
+                <Zap size={14} className="neon-text-cyan group-hover:neon-text-acid transition" />
+                <div className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">
+                  АКТИВЫ
+                </div>
               </div>
-              <div className="text-[10px] text-muted-foreground ml-auto">
-                (анализируются нейросетью, начисляют XP)
-              </div>
+              <button
+                onClick={() => setDatacenterOpen(true)}
+                className="flex items-center gap-1 text-[10px] neon-text-acid hover:neon-text-cyan transition uppercase tracking-widest"
+                title="Открыть DATACENTER"
+              >
+                <Database size={12} />
+                DATACENTER
+              </button>
             </div>
             <div className="space-y-3">
               {uploadedAssets.map((asset) => (
@@ -275,17 +323,18 @@ function ProfilePage() {
             </div>
           </section>
 
-          {/* Knowledge - Learning Progress */}
+          {/* Knowledge - Learning Progress with link to journal */}
           <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
-            <div className="flex items-center gap-2 mb-4">
-              <BookOpen size={14} className="neon-text-cyan" />
-              <div className="font-display text-sm tracking-widest neon-text-violet">
+            <Link
+              to="/journal"
+              className="flex items-center gap-2 mb-4 cursor-pointer group"
+            >
+              <BookOpen size={14} className="neon-text-cyan group-hover:neon-text-acid transition" />
+              <div className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">
                 ЗНАНИЯ
               </div>
-              <div className="text-[10px] text-muted-foreground ml-auto">
-                (прогресс чтения и просмотра)
-              </div>
-            </div>
+              <span className="ml-auto text-[10px] neon-text-acid group-hover:underline">Перейти →</span>
+            </Link>
             <div className="space-y-4">
               {knowledge.map((item) => (
                 <div key={item.title} className="space-y-2">
@@ -309,6 +358,9 @@ function ProfilePage() {
           </section>
         </div>
       </div>
+
+      {/* DATACENTER Modal */}
+      <DatacenterModal open={datacenterOpen} onClose={() => setDatacenterOpen(false)} />
     </PageShell>
   );
 }
