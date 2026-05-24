@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 interface PageShellProps {
   title: string;
-  subtitle?: string;
+  subtitle?: ReactNode; // [!] ИЗМЕНЕНО: теперь принимает элементы, а не только строку
   eyebrow?: string;
   children: ReactNode;
 }
@@ -26,7 +26,10 @@ export function PageShell({ title, subtitle, eyebrow, children }: PageShellProps
         )}
         <h1 className="font-display text-3xl md:text-5xl neon-text-violet">{title}</h1>
         {subtitle && (
-          <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-2xl">{subtitle}</p>
+          /* [!] ИЗМЕНЕНО: заменено с <p> на <div> для валидности HTML */
+          <div className="mt-3 text-sm md:text-base text-muted-foreground max-w-2xl">
+            {subtitle}
+          </div>
         )}
       </header>
       {children}
