@@ -99,61 +99,69 @@ function ProfilePage() {
     }
   };
 
-  return (
+   return (
     <PageShell
       eyebrow={t("profile.eyebrow")}
       title="@f00rtime"
       subtitle={t("profile.subtitle")}
     >
-      {/* ДЕСКТОПНЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК (Абсолютное наложение относительно контентной сетки) */}
-      <div className="absolute -top-[102px] left-[355px] hidden lg:block z-50">
-        <div className="relative flex items-center justify-center w-5 h-5">
-          <svg 
-            viewBox="0 0 100 100" 
-            className="absolute top-0 left-0 w-full h-full fill-none"
-            style={{
-              stroke: '#FFD700',
-              strokeWidth: '14px',
-              filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)'
-            }}
-          >
-            <polygon points="50,12 93,85 7,85" />
-          </svg>
-          <span 
-            className="z-10 font-mono text-[10px] font-black text-black translate-y-[1px]"
-            style={{ 
-              textShadow: '0 0 2px rgba(255, 255, 255, 0.6)' 
-            }}
-          >
-            7
-          </span>
+      {/* РОДИТЕЛЬСКАЙ СЕТКА С КЛАССОМ RELATIVE — ТЕПЕРЬ КООРДИНАТЫ СЧИТАЮТСЯ ОТ НЕЁ */}
+      <div className="relative grid lg:grid-cols-[280px_1fr] gap-6">
+        
+        {/* ДЕСКТОПНЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК (Позиционируется строго от левого верхнего угла сетки) */}
+        <div className="absolute -top-[52px] left-[354px] hidden lg:block z-50 pointer-events-none">
+          <div className="relative flex items-center justify-center w-5 h-5">
+            <svg 
+              viewBox="0 0 100 100" 
+              className="absolute top-0 left-0 w-full h-full fill-none"
+              style={{
+                stroke: '#FFD700',
+                strokeWidth: '14px',
+                filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)'
+              }}
+            >
+              <polygon points="50,12 93,85 7,85" />
+            </svg>
+            <span 
+              className="z-10 font-mono text-[10px] font-black text-black translate-y-[1px]"
+              style={{ 
+                textShadow: '0 0 2px rgba(255, 255, 255, 0.6)' 
+              }}
+            >
+              7
+            </span>
+          </div>
         </div>
-      </div>
-      
-      {/* МОБИЛЬНЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК */}
-      <div className="flex lg:hidden items-center justify-start mb-6 pl-1">
-        <div className="relative flex items-center justify-center w-6 h-6">
-          <svg 
-            viewBox="0 0 100 100" 
-            className="absolute top-0 left-0 w-full h-full fill-none"
-            style={{
-              stroke: '#FFD700',
-              strokeWidth: '14px',
-              filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)'
-            }}
-          >
-            <polygon points="50,12 93,85 7,85" />
-          </svg>
-          <span 
-            className="z-10 font-mono text-[11px] font-black text-black translate-y-[1px]"
-            style={{ 
-              textShadow: '0 0 2px rgba(255, 255, 255, 0.6)' 
-            }}
-          >
-            7
-          </span>
+        
+        {/* МОБИЛЬНЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК (для маленьких экранов) */}
+        <div className="absolute -top-[44px] left-[315px] block lg:hidden z-50 pointer-events-none">
+          <div className="relative flex items-center justify-center w-4 h-4">
+            <svg 
+              viewBox="0 0 100 100" 
+              className="absolute top-0 left-0 w-full h-full fill-none"
+              style={{
+                stroke: '#FFD700',
+                strokeWidth: '14px',
+                filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)'
+              }}
+            >
+              <polygon points="50,12 93,85 7,85" />
+            </svg>
+            <span 
+              className="z-10 font-mono text-[9px] font-black text-black translate-y-[1px]"
+            >
+              7
+            </span>
+          </div>
         </div>
-      </div>
+
+        {/* Avatar card */}
+        <motion.div
+          initial={{ opacity: 0, x: -12 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="hud-corners p-6 border border-border bg-surface/50 backdrop-blur"
+        >
+
 
 
       <div className="grid lg:grid-cols-[280px_1fr] gap-6">
