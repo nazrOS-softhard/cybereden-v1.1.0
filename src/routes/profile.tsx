@@ -105,57 +105,40 @@ function ProfilePage() {
       title="@f00rtime"
       subtitle={t("profile.subtitle")}
     >
-      <div className="relative grid lg:grid-cols-[280px_1fr] gap-6">
+      {/* --- ВЕРХНИЙ БЛОК (ЗАГОЛОВОК) --- */}
+      {/* Добавляем relative сюда, чтобы позиционировать треугольник внутри этого блока */}
+      <div className="relative mb-6 p-6 bg-[#0a0a14]/50 border border-[#2a2a4a] rounded-lg">
         
-        {/* НЕОНОВЫЙ ТРЕУГОЛЬНИК В ЗЕЛЕНОЙ ЗОНЕ */}
-        <div className="absolute top-[188px] left-[250px] z-50 pointer-events-none scale-150 lg:scale-[2.0]">
-          {/* Десктопная версия (скрыта на мобильных) */}
-          <div className="hidden lg:flex items-center justify-center w-5 h-5">
-            <div className="relative flex items-center justify-center">
-              <svg
-                viewBox="0 0 100 100"
-                className="w-full h-full fill-none"
-                style={{
-                  stroke: '#FFD700',
-                  strokeWidth: '14px',
-                  filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)'
-                }}
-              >
-                <polygon points="50,12 93,85 7,85" />
-              </svg>
-              <span
-                className="absolute font-mono text-[10px] font-black text-[#8b5cf6] translate-y-[1px]"
-                style={{
-                  textShadow: '0 0 4px rgba(139, 92, 246, 0.8)'
-                }}
-              >
-                7
-              </span>
-            </div>
-          </div>
+        {/* Здесь ваши заголовки и текст */}
+        {/* ... код заголовков ... */}
 
-          {/* Мобильная версия (скрыта на десктопе) */}
-          <div className="block lg:hidden flex items-center justify-center w-4 h-4">
-            <div className="relative flex items-center justify-center">
-              <svg
-                viewBox="0 0 100 100"
-                className="w-full h-full fill-none"
-                style={{
-                  stroke: '#FFD700',
-                  strokeWidth: '14px',
-                  filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)'
-                }}
-              >
-                <polygon points="50,12 93,85 7,85" />
-              </svg>
-              <span
-                className="absolute font-mono text-[9px] font-black text-[#8b5cf6] translate-y-[1px]"
-              >
-                7
-              </span>
-            </div>
+        {/* --- ТРЕУГОЛЬНИК В ЗЕЛЕНОЙ ОБЛАСТИ --- */}
+        {/* Координаты: правый нижний угол заголовка, чуть выше подзаголовка */}
+        <div className="absolute bottom-3 right-40 z-50 pointer-events-none scale-[2.0]">
+          <div className="relative flex items-center justify-center w-5 h-5">
+            <svg
+              viewBox="0 0 100 100"
+              className="w-full h-full fill-none"
+              style={{
+                stroke: '#FFD700',
+                strokeWidth: '14px',
+                filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)'
+              }}
+            >
+              <polygon points="50,12 93,85 7,85" />
+            </svg>
+            <span
+              className="absolute z-10 font-mono text-[10px] font-black text-[#8b5cf6] translate-y-[1px]"
+              style={{
+                textShadow: '0 0 4px rgba(139, 92, 246, 0.8)'
+              }}
+            >
+              7
+            </span>
           </div>
         </div>
+
+      </div>
 
 
         {/* Avatar card */}
