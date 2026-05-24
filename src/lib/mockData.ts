@@ -2,8 +2,17 @@ import rostn from "@/assets/rostn.jpg";
 import drone from "@/assets/item-drone.jpg";
 import visor from "@/assets/item-visor.jpg";
 import arm from "@/assets/item-arm.jpg";
-import rostnFull from "@/assets/rostn-full.png"; 
+import rostnFull from "@/assets/rostn-full.png";
 
+// ДОБАВЛЕННЫЕ НОВЫЕ КАРТИНКИ (с маленькими n)
+import biohn from "@/assets/biohn.png";
+import biohnfull from "@/assets/biohnfull.png";
+import blan from "@/assets/blan.png";
+import blanfull from "@/assets/blanfull.png";
+import clon from "@/assets/clon.png";
+import clonfull from "@/assets/clonfull.png";
+import pin from "@/assets/pin.png";
+import pinfull from "@/assets/pinfull.png";
 
 export type Sensor = { label: string; unit: string; value: number; min: number; max: number };
 export type Slider = { label: string; value: number; min: number; max: number; unit: string };
@@ -15,6 +24,7 @@ export type Item = {
   price: number;
   status: "in_stock" | "low" | "preorder";
   image: string;
+  expandedImage?: string;
   short: string;
   description: string;
   sensors: Sensor[];
@@ -22,21 +32,22 @@ export type Item = {
 };
 
 export const items: Item[] = [
+  // --- biohN ---
   {
-    id: "neurochip-x9",
-    name: "growthN",
-    category: "Биотехнологии",
+    id: "biohn",
+    name: "biohN",
+    category: "БИОХАКИНГ",
     price: 248000,
     status: "in_stock",
-    image: rostn,
-    expandedImage: rostnFull,
-    short: "интеллектуальная система контролируемого культивирования",
+    image: biohn,
+    expandedImage: biohnfull,
+    short: "Интеллектуальный биотехнологический модуль для автономных биоэкспериментов",
     description:
-      "growthN — урбанистическая интеллектуальная система контролируемого культивирования, разработанная внутри экосистемы nazrOS для автономного выращивания растительных культур в условиях цифровой городской среды. Обеспечивает поддержание биобаланса, автоматический контроль климата и автономное производство ресурсов.",
+      "Интеллектуальный биотехнологический модуль nazrOS для создания автономных экспериментальных биосред внутри цифровой инфраструктуры КиберэдэН.\n\nbiohN объединяет: климатический контроль, систему мониторинга среды, нейроаналитику параметров, модульную биоинженерию, цифровую синхронизацию с HUD-системой.\n\nКомплекс предназначен для исследований замкнутых экосистем, культивирования биосред, анализа микроклимата, автономных bio-pipeline процессов, интеграции биотехнологий в цифровую инфраструктуру.\n\nОсобенности: бесшумная архитектура, сенсорная система нового поколения, неоновая HUD-индикация, автономные режимы контроля, интеграция с AI-модулями nazrOS.",
     sensors: [
-      { label: "Зелень. ядра", unit: "°C", value: 38, min: 20, max: 80 },
-      { label: "Микрозелень", unit: "%", value: 42, min: 0, max: 100 },
-      { label: "Грибы", unit: "dBm", value: -52, min: -100, max: 0 },
+      { label: "Температура среды", unit: "°C", value: 38, min: 20, max: 80 },
+      { label: "Влажность", unit: "%", value: 42, min: 0, max: 100 },
+      { label: "Сигнал био-нейро", unit: "dBm", value: -52, min: -100, max: 0 },
     ],
     sliders: [
       { label: "Тактовая частота", value: 3.4, min: 1, max: 6, unit: "ГГц" },
@@ -44,6 +55,74 @@ export const items: Item[] = [
       { label: "Охлаждение", value: 50, min: 0, max: 100, unit: "%" },
     ],
   },
+  // --- cloN ---
+  {
+    id: "clon",
+    name: "cloN",
+    category: "ЦИФРОВЫЕ СУЩНОСТИ",
+    price: 6400,
+    status: "in_stock",
+    image: clon,
+    expandedImage: clonfull,
+    short: "Цифровая сущность-аватар для присутствия в сетевой среде",
+    description:
+      "Цифровая сущность-аватар внутри экосистемы КиберэдэН, предназначенная для визуального присутствия пользователя в сетевой среде nazrOS.\n\ncloN — это гибрид цифровой личности, HUD-профиля и игровой сигнатуры активности.\n\nСистема включает: кастомизацию внешности, 16-bit / cyber визуализацию, сигнатуры активности, систему XP, интеграцию с трансляциями и событиями.\n\nВнутри cloN отображаются: инженерный уровень, медиа-активность, инфраструктурный статус, достижения, цифровые артефакты пользователя.\n\nОсобенности: поддержка анимированных аватаров, HUD-паспорт пользователя, LIVE-индикаторы, системные статусы, редкость профиля.",
+    sensors: [
+      { label: "Яркость аватара", unit: "нт", value: 1200, min: 100, max: 3000 },
+      { label: "Температура ядра", unit: "°C", value: 34, min: 20, max: 60 },
+      { label: "Заряд цифровой сущности", unit: "%", value: 73, min: 0, max: 100 },
+    ],
+    sliders: [
+      { label: "Прозрачность HUD", value: 60, min: 0, max: 100, unit: "%" },
+      { label: "Контраст", value: 75, min: 0, max: 100, unit: "%" },
+      { label: "Частота обновления", value: 240, min: 60, max: 360, unit: "Гц" },
+    ],
+  },
+  // --- blaN ---
+  {
+    id: "blan",
+    name: "blaN",
+    category: "ИНЖЕНЕРНЫЕ СИСТЕМЫ",
+    price: 8900,
+    status: "in_stock",
+    image: blan,
+    expandedImage: blanfull,
+    short: "Мобильная инженерная станция для управления цифровой инфраструктурой",
+    description:
+      "Мобильная инженерная станция nazrOS для разработки, диагностики и управления цифровой инфраструктурой КиберэдэН.\n\nblaN создан как портативное ядро разработчика цифровой среды.\n\nУстройство сочетает: высокопроизводительную вычислительную систему, модульную архитектуру, инструменты инженерного обслуживания, бесшумную работу, интеграцию с HUD-средой.\n\nПредназначение: разработка frontend/backend систем, работа с Unreal Engine, управление репозиториями, деплой цифровой среды, обслуживание серверной инфраструктуры.\n\nОсобенности: встроенные инженерные инструменты, модульный корпус, cyber-интерфейс, автономная рабочая станция, поддержка LIVE-разработки.",
+    sensors: [
+      { label: "Мощность", unit: "дБм", value: 28, min: 0, max: 40 },
+      { label: "Полоса пропускания", unit: "МГц", value: 40, min: 1, max: 100 },
+      { label: "КСВ", unit: "дБ", value: 1.2, min: 1, max: 3 },
+    ],
+    sliders: [
+      { label: "Усиление", value: 78, min: 0, max: 100, unit: "%" },
+    ],
+  },
+  // --- piN ---
+  {
+    id: "pin",
+    name: "piN",
+    category: "ПРОИЗВОДСТВО",
+    price: 12800,
+    status: "in_stock",
+    image: pin,
+    expandedImage: pinfull,
+    short: "Гибридный производственный модуль для цифрового моделирования и прототипирования",
+    description:
+      "Гибридный бесшумный производственный модуль nazrOS, совмещающий цифровое моделирование и физическое прототипирование.\n\npiN разработан как инженерный мост между цифровой средой и физическим производством.\n\nСистема объединяет: 3D-печать, модульную сборку, цифровое управление, мониторинг процессов, интеграцию с cybereden pipeline.\n\nПредназначение: создание корпусов устройств, производство инженерных компонентов, сборка прототипов, изготовление деталей инфраструктуры, работа с модульными системами.\n\nОсобенности: бесшумный режим работы, двойная производственная система, HUD-мониторинг, AI-контроль процессов, интеграция с инженерной экосистемой nazrOS.",
+    sensors: [
+      { label: "Температура печати", unit: "°C", value: 220, min: 0, max: 400 },
+      { label: "Скорость печати", unit: "мм/с", value: 80, min: 0, max: 200 },
+      { label: "Калибровка", unit: "%", value: 96, min: 0, max: 100 },
+    ],
+    sliders: [
+      { label: "Сила хвата", value: 55, min: 0, max: 100, unit: "%" },
+      { label: "Скорость отклика", value: 80, min: 0, max: 100, unit: "%" },
+      { label: "Чувствительность", value: 65, min: 0, max: 100, unit: "%" },
+    ],
+  },
+  // --- СТАРЫЕ КАРТОЧКИ (остальные, без изменений) ---
   {
     id: "drone-vex",
     name: "Дрон-разведчик VEX-02",
@@ -116,7 +195,7 @@ export const items: Item[] = [
     image: visor,
     short: "Инструмент взлома защитных систем нового поколения.",
     description:
-      "Портативная утилита для обхода ICE-защиты. Совместима с большинством систем назrOS. Требует верификации уровня доступа.",
+      "Портативная утилита для обхода ICE-защиты. Совместима с большинством систем nazrOS. Требует верификации уровня доступа.",
     sensors: [
       { label: "Эффективность", unit: "%", value: 92, min: 0, max: 100 },
       { label: "Темп.", unit: "°C", value: 28, min: 20, max: 55 },
