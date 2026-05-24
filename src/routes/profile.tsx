@@ -124,7 +124,7 @@ function ProfilePage() {
       className="absolute z-10 font-mono text-[10px] font-black text-[#8b5cf6] translate-y-[1px]"
       style={{
         textShadow: '0 0 4px rgba(139, 92, 246, 0.8)',
-        WebkitTextStroke: '1px white', /* Белая обводка */
+        WebkitTextStroke: '0.3px white', /* Белая обводка */
         textStroke: '1px white'        /* Для совместимости */
       }}
     >
