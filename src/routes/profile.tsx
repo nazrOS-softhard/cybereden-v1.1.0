@@ -120,16 +120,14 @@ function ProfilePage() {
     >
       <polygon points="50,12 93,85 7,85" />
     </svg>
-    <span
-      className="absolute z-10 font-mono text-[10px] font-black text-[#8b5cf6] translate-y-[1px]"
-      style={{
-        textShadow: '0 0 4px rgba(139, 92, 246, 0.8)',
-        WebkitTextStroke: '0.1px white', /* Белая обводка */
-        textStroke: '1px white'        /* Для совместимости */
-      }}
-    >
-      7
-    </span>
+  <span
+  className="absolute z-10 font-mono text-[10px] font-black text-[#8b5cf6] translate-y-[1px]"
+  style={{
+    textShadow: '0 0 2px rgba(255,255,255,0.3), 0 0 4px rgba(139, 92, 246, 0.8)'
+  }}
+>
+  7
+</span>
   </div>
 </div>
 
