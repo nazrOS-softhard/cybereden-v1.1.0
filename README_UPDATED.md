@@ -160,11 +160,174 @@
 
 ## Цвета сигнатур
 
-```txt
-○ → magenta
-△ → cyan
-□ → orange
-```
+🎨 СИСТЕМА ЦВЕТОВ nazrOS
+◉ MAGENTA / ФИОЛЕТОВЫЙ
+#ff00ff
+Значение
+
+SIGNAL / MEDIA / COMMUNICATION
+
+Используется для
+стримеров
+медиа
+signal activity
+событий
+коммуникации
+live систем
+Символы
+○
+
+━━━━━━━━━━━━━━━━━━
+
+◉ CYAN / BLUE
+#00e1ff
+Значение
+
+ENGINEERING / CORE DEVELOPMENT
+
+Используется для
+frontend
+backend
+Unreal Engine
+HUD
+архитектуры
+системных модулей
+Символы
+△
+
+━━━━━━━━━━━━━━━━━━
+
+◉ RED / ORANGE
+#ff4d2d
+Значение
+
+INFRASTRUCTURE / HARDWARE / SYSTEM
+
+Используется для
+серверов
+железа
+pipeline
+деплоев
+устройств
+CXEMA
+Символы
+□
+
+━━━━━━━━━━━━━━━━━━
+
+◉ GREEN / NEON GREEN
+#00ff9c
+Значение
+
+BIO / AI / ACTIVE SYSTEM
+
+Используется для
+growthN
+биосистем
+AI
+neural systems
+активности ядра
+Доп. символ
+⬢
+
+━━━━━━━━━━━━━━━━━━
+
+◉ YELLOW / GOLD
+#ffd500
+Значение
+
+EVENT / REWARD / LEGENDARY
+
+Используется для
+наград
+турниров
+топ игроков
+легендарных предметов
+featured контента
+
+━━━━━━━━━━━━━━━━━━
+
+◉ WHITE
+#ffffff
+Значение
+
+BASE / DEFAULT / CIVIL
+
+Используется для
+новых пользователей
+обычных файлов
+нейтральных статусов
+
+━━━━━━━━━━━━━━━━━━
+
+◉ BLACK
+#000000
+Значение
+
+GHOST / HIDDEN / NULL
+
+Используется для
+ghost mode
+скрытых профилей
+системных сущностей
+закрытых департаментов
+
+━━━━━━━━━━━━━━━━━━
+
+◉ SYSTEM NEON
+gradient / animated
+Значение
+
+CORE ENTITY
+
+Используется для
+администраторов ядра
+CORE статусов
+системных пользователей
+закрытых уровней
+
+━━━━━━━━━━━━━━━━━━
+
+📊 СКОЛЬКО ЦВЕТОВ ВСЕГО?
+
+Сейчас логично сделать:
+
+8 основных цветов
+Базовые:
+Magenta
+Cyan
+Orange
+Green
+Yellow
+White
+Black
+System Neon
+
+━━━━━━━━━━━━━━━━━━
+
+🧬 МОЖНО СДЕЛАТЬ РЕДКОСТЬ ЦВЕТА
+STATIC
+ANIMATED
+GLITCH
+PULSE
+GRADIENT
+HOLOGRAPHIC
+
+━━━━━━━━━━━━━━━━━━
+
+🎮 ПРИМЕР ПРОФИЛЯ
+△8  cyan
+○6  magenta
+□4  orange
+⬢7  green
+
+Это уже выглядит как:
+
+цифровой ID пользователя внутри nazrOS.
+
+━━━━━━━━━━━━━━━━━━
+
+nazrOS // chroma protocol
 
 ---
 
