@@ -139,7 +139,7 @@ function ProfilePage() {
         </div>
 
       </div>
-     </div>
+   
 
 
         {/* Avatar card */}
