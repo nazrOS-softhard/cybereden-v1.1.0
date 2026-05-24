@@ -114,17 +114,7 @@ function ProfilePage() {
           className="hud-corners p-6 border border-border bg-surface/50 backdrop-blur"
         >
           <div className="relative aspect-square neon-border-cyan overflow-hidden">
-            {/* Rank Badge - Yellow Triangle with 3 */}
-            <div
-              className="absolute -top-3 -right-3 w-12 h-12 flex items-center justify-center text-black font-bold text-xl z-10"
-              style={{
-                background: "linear-gradient(135deg, #FFD700 0%, #FFA500 100%)",
-                clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)",
-                filter: "drop-shadow(0 0 8px rgba(255, 215, 0, 0.8))",
-              }}
-            >
-              3
-            </div>
+            {/* СТАРЫЙ БЕЙДЖ ТРЕУГОЛЬНИКА С ЦИФРОЙ 3 УДАЛЕН ОТСЮДА */}
 
             <div
               className="absolute inset-0"
@@ -164,9 +154,32 @@ function ProfilePage() {
               <span className="text-muted-foreground">XP</span>
               <span className="neon-text-cyan">482 300</span>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center">
               <span className="text-muted-foreground">Rank</span>
-              <span className="neon-text-violet">Архитектор</span>
+              <div className="flex items-center gap-2">
+                <span className="neon-text-violet">Архитектор</span>
+                
+                {/* НОВЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК С ЦИФРОЙ 7 */}
+                <div className="relative flex items-center justify-center w-5 h-5">
+                  <svg 
+                    viewBox="0 0 100 100" 
+                    className="absolute top-0 left-0 w-full h-full fill-none"
+                    style={{
+                      stroke: '#ffcc00',
+                      strokeWidth: '10px',
+                      filter: 'drop-shadow(0 0 3px #ffcc00) drop-shadow(0 0 8px #ffcc00)'
+                    }}
+                  >
+                    <polygon points="50,15 92,85 8,85" />
+                  </svg>
+                  <span 
+                    className="z-10 font-mono text-[10px] font-bold text-[#ffcc00] translate-y-[1px]"
+                    style={{ textShadow: '0 0 4px #ffcc00' }}
+                  >
+                    7
+                  </span>
+                </div>
+              </div>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Joined</span>
@@ -174,6 +187,7 @@ function ProfilePage() {
             </div>
           </div>
         </motion.div>
+
 
         <div className="space-y-6">
           {/* Accounts - Interactive OAuth */}
