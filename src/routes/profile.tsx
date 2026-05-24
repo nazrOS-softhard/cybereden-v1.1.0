@@ -107,7 +107,7 @@ function ProfilePage() {
       subtitle={t("profile.subtitle")}
     >
       {/* --- ТРЕУГОЛЬНИК В ЗЕЛЕНОЙ ОБЛАСТИ --- */}
-      <div className="absolute top-[300px] right-[1000px] z-50 pointer-events-none scale-[2.0]">
+      <div className="absolute top-[155px] right-[600px] z-50 pointer-events-none scale-[2.0]">
         <div className="relative flex items-center justify-center w-5 h-5">
           <svg
             viewBox="0 0 100 100"
