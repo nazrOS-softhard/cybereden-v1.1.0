@@ -106,8 +106,8 @@ function ProfilePage() {
       subtitle={t("profile.subtitle")}
     >
       {/* ДЕСКТОПНЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК (наложен поверх PageShell) */}
-      <div className="relative w-full -mt-[38px] mb-[14px] hidden lg:block" style={{ left: "415px" }}>
-        <div className="absolute flex items-center justify-center w-7 h-7">
+     <div className="relative w-full -mt-[40px] mb-[16px] hidden lg:block" style={{ left: "365px" }}>
+        <div className="absolute flex items-center justify-center w-6 h-6">
           <svg 
             viewBox="0 0 100 100" 
             className="absolute top-0 left-0 w-full h-full fill-none"
@@ -120,7 +120,7 @@ function ProfilePage() {
             <polygon points="50,12 93,85 7,85" />
           </svg>
           <span 
-            className="z-10 font-mono text-[13px] font-black text-black translate-y-[2px]"
+            className="z-10 font-mono text-[11px] font-black text-black translate-y-[2px]"
             style={{ 
               textShadow: '0 0 2px rgba(255, 255, 255, 0.6)' 
             }}
@@ -129,7 +129,7 @@ function ProfilePage() {
           </span>
         </div>
       </div>
-
+      
       {/* МОБИЛЬНЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК */}
       <div className="flex lg:hidden items-center justify-start mb-6 pl-1">
         <div className="relative flex items-center justify-center w-7 h-7">
