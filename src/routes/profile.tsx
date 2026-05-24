@@ -8,7 +8,6 @@ import {
   ShoppingBag,
   Upload,
   BookOpen,
-  Calendar,
   Zap,
   Database,
 } from "lucide-react";
@@ -30,8 +29,8 @@ export const Route = createFileRoute("/profile")({
 });
 
 const accounts = [
-  { name: "GitHub", handle: "@nazr-os", icon: Github, connected: true, url: "https://github.com/oauth" },
-  { name: "Twitch", handle: "@nazr.os", icon: Twitch, connected: true, url: "https://twitch.tv/oauth" },
+  { name: "GitHub", handle: "@nazr-os", icon: Github, connected: true, url: "https://github.com" },
+  { name: "Twitch", handle: "@nazr.os", icon: Twitch, connected: true, url: "https://twitch.tv" },
   { name: "Darknet", handle: "node://4a82…", icon: Globe, connected: false },
 ];
 
@@ -106,6 +105,56 @@ function ProfilePage() {
       title="@f00rtime"
       subtitle={t("profile.subtitle")}
     >
+      {/* ДЕСКТОПНЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК (наложен поверх PageShell) */}
+      <div className="relative w-full -mt-[38px] mb-[14px] hidden lg:block" style={{ left: "415px" }}>
+        <div className="absolute flex items-center justify-center w-7 h-7">
+          <svg 
+            viewBox="0 0 100 100" 
+            className="absolute top-0 left-0 w-full h-full fill-none"
+            style={{
+              stroke: '#FFD700',
+              strokeWidth: '12px',
+              filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 12px #FFA500)'
+            }}
+          >
+            <polygon points="50,12 93,85 7,85" />
+          </svg>
+          <span 
+            className="z-10 font-mono text-[13px] font-black text-black translate-y-[2px]"
+            style={{ 
+              textShadow: '0 0 2px rgba(255, 255, 255, 0.6)' 
+            }}
+          >
+            7
+          </span>
+        </div>
+      </div>
+
+      {/* МОБИЛЬНЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК */}
+      <div className="flex lg:hidden items-center justify-start mb-6 pl-1">
+        <div className="relative flex items-center justify-center w-7 h-7">
+          <svg 
+            viewBox="0 0 100 100" 
+            className="absolute top-0 left-0 w-full h-full fill-none"
+            style={{
+              stroke: '#FFD700',
+              strokeWidth: '12px',
+              filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 12px #FFA500)'
+            }}
+          >
+            <polygon points="50,12 93,85 7,85" />
+          </svg>
+          <span 
+            className="z-10 font-mono text-[13px] font-black text-black translate-y-[2px]"
+            style={{ 
+              textShadow: '0 0 2px rgba(255, 255, 255, 0.6)' 
+            }}
+          >
+            7
+          </span>
+        </div>
+      </div>
+
       <div className="grid lg:grid-cols-[280px_1fr] gap-6">
         {/* Avatar card */}
         <motion.div
@@ -114,8 +163,6 @@ function ProfilePage() {
           className="hud-corners p-6 border border-border bg-surface/50 backdrop-blur"
         >
           <div className="relative aspect-square neon-border-cyan overflow-hidden">
-            {/* СТАРЫЙ БЕЙДЖ ТРЕУГОЛЬНИКА С ЦИФРОЙ 3 УДАЛЕН ОТСЮДА */}
-
             <div
               className="absolute inset-0"
               style={{
@@ -154,32 +201,9 @@ function ProfilePage() {
               <span className="text-muted-foreground">XP</span>
               <span className="neon-text-cyan">482 300</span>
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between">
               <span className="text-muted-foreground">Rank</span>
-              <div className="flex items-center gap-2">
-                <span className="neon-text-violet">Архитектор</span>
-                
-                {/* НОВЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК С ЦИФРОЙ 7 */}
-                <div className="relative flex items-center justify-center w-5 h-5">
-                  <svg 
-                    viewBox="0 0 100 100" 
-                    className="absolute top-0 left-0 w-full h-full fill-none"
-                    style={{
-                      stroke: '#ffcc00',
-                      strokeWidth: '10px',
-                      filter: 'drop-shadow(0 0 3px #ffcc00) drop-shadow(0 0 8px #ffcc00)'
-                    }}
-                  >
-                    <polygon points="50,15 92,85 8,85" />
-                  </svg>
-                  <span 
-                    className="z-10 font-mono text-[10px] font-bold text-[#ffcc00] translate-y-[1px]"
-                    style={{ textShadow: '0 0 4px #ffcc00' }}
-                  >
-                    7
-                  </span>
-                </div>
-              </div>
+              <span className="neon-text-violet">Архитектор</span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Joined</span>
@@ -188,9 +212,8 @@ function ProfilePage() {
           </div>
         </motion.div>
 
-
         <div className="space-y-6">
-          {/* Accounts - Interactive OAuth */}
+          {/* Accounts */}
           <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
             <div className="font-display text-sm tracking-widest neon-text-violet mb-4">
               {t("profile.accounts")}
@@ -230,7 +253,7 @@ function ProfilePage() {
           </section>
 
           <div className="grid lg:grid-cols-2 gap-6">
-            {/* Inventory with link to market */}
+            {/* Inventory */}
             <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
               <div className="flex items-center gap-2 mb-4 justify-between">
                 <div className="flex items-center gap-2">
@@ -261,7 +284,7 @@ function ProfilePage() {
               </div>
             </section>
 
-            {/* Achievements with link to events */}
+            {/* Achievements */}
             <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
               <div className="flex items-center gap-2 mb-4 justify-between">
                 <div className="flex items-center gap-2">
@@ -288,8 +311,8 @@ function ProfilePage() {
             </section>
           </div>
 
-          {/* Assets - File Upload with Datacenter */}
-          <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur hover:neon-border-cyan transition">
+          {/* Assets */}
+          <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
             <div className="flex items-center gap-2 mb-4 justify-between">
               <div
                 className="flex items-center gap-2 cursor-pointer group flex-1"
@@ -337,7 +360,7 @@ function ProfilePage() {
             </div>
           </section>
 
-          {/* Knowledge - Learning Progress with link to journal */}
+          {/* Knowledge */}
           <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
             <Link
               to="/journal"
@@ -373,7 +396,6 @@ function ProfilePage() {
         </div>
       </div>
 
-      {/* DATACENTER Modal */}
       <DatacenterModal open={datacenterOpen} onClose={() => setDatacenterOpen(false)} />
     </PageShell>
   );
