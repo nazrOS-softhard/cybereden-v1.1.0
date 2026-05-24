@@ -84,7 +84,9 @@ const dict: Dict = {
 
   // Profile
   "profile.eyebrow": { ru: "/ кибла кибера", en: "/ cyberqibla" },
-  "profile.subtitle": { ru: "Исследователь цифровых аномалий · Black! Factory · <span class='text-yellow-400'>△</span> · 3 ", en: "Digital Anomaly Researcher · Black! Factory · <span class='text-yellow-400'>△</span> · 3" },
+ profile.subtitle": { 
+  ru: "Исследователь цифровых аномалий · Black! Factory · △ · 3", en: "Digital Anomaly Researcher · Black! Factory · △ · 3" 
+},
   "profile.accounts": { ru: "ПОДКЛЮЧЁННЫЕ АККАУНТЫ", en: "CONNECTED ACCOUNTS" },
   "profile.inventory": { ru: "ИНВЕНТАРЬ", en: "INVENTORY" },
   "profile.achievements": { ru: "ДОСТИЖЕНИЯ", en: "ACHIEVEMENTS" },
