@@ -380,7 +380,7 @@ function ProfilePage() {
             </div>
           </section>
         </div>
-      </div>
+  
 
       <DatacenterModal open={datacenterOpen} onClose={() => setDatacenterOpen(false)} />
     </PageShell>
