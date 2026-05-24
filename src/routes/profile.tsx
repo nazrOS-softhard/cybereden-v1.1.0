@@ -105,22 +105,22 @@ function ProfilePage() {
       title="@f00rtime"
       subtitle={t("profile.subtitle")}
     >
-      {/* ДЕСКТОПНЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК (наложен поверх PageShell) */}
-     <div className="relative w-full -mt-[40px] mb-[16px] hidden lg:block" style={{ left: "365px" }}>
-        <div className="absolute flex items-center justify-center w-6 h-6">
+      {/* ДЕСКТОПНЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК (Абсолютное наложение относительно контентной сетки) */}
+      <div className="absolute -top-[102px] left-[355px] hidden lg:block z-50">
+        <div className="relative flex items-center justify-center w-5 h-5">
           <svg 
             viewBox="0 0 100 100" 
             className="absolute top-0 left-0 w-full h-full fill-none"
             style={{
               stroke: '#FFD700',
-              strokeWidth: '12px',
-              filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 12px #FFA500)'
+              strokeWidth: '14px',
+              filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)'
             }}
           >
             <polygon points="50,12 93,85 7,85" />
           </svg>
           <span 
-            className="z-10 font-mono text-[11px] font-black text-black translate-y-[2px]"
+            className="z-10 font-mono text-[10px] font-black text-black translate-y-[1px]"
             style={{ 
               textShadow: '0 0 2px rgba(255, 255, 255, 0.6)' 
             }}
@@ -132,20 +132,20 @@ function ProfilePage() {
       
       {/* МОБИЛЬНЫЙ НЕОНОВЫЙ ТРЕУГОЛЬНИК */}
       <div className="flex lg:hidden items-center justify-start mb-6 pl-1">
-        <div className="relative flex items-center justify-center w-7 h-7">
+        <div className="relative flex items-center justify-center w-6 h-6">
           <svg 
             viewBox="0 0 100 100" 
             className="absolute top-0 left-0 w-full h-full fill-none"
             style={{
               stroke: '#FFD700',
-              strokeWidth: '12px',
-              filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 12px #FFA500)'
+              strokeWidth: '14px',
+              filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)'
             }}
           >
             <polygon points="50,12 93,85 7,85" />
           </svg>
           <span 
-            className="z-10 font-mono text-[13px] font-black text-black translate-y-[2px]"
+            className="z-10 font-mono text-[11px] font-black text-black translate-y-[1px]"
             style={{ 
               textShadow: '0 0 2px rgba(255, 255, 255, 0.6)' 
             }}
@@ -154,6 +154,7 @@ function ProfilePage() {
           </span>
         </div>
       </div>
+
 
       <div className="grid lg:grid-cols-[280px_1fr] gap-6">
         {/* Avatar card */}
