@@ -288,3 +288,35 @@ export const cybers: Cyber[] = [
   { id: "c11", handle: "@signal_echo", rank: "НАБЛЮДАТЕЛЬ", xp: 45320, status: "offline" },
   { id: "c12", handle: "@core_rush", rank: "ОПЕРАТОР", xp: 156890, status: "online", streaming: false },
 ];
+
+// DATACENTER Assets
+export type Asset = {
+  id: string;
+  name: string;
+  category: string;
+  format: string;
+  size: string;
+  xp: number;
+  badge?: "LIVE" | "NEW" | "CORE" | "SYSTEM" | "FEATURED" | "RESTRICTED" | "EXPERIMENTAL" | "ALPHA" | "BETA" | "CLASSIFIED";
+};
+
+export const assetCategories = [
+  "Цифровые артефакты",
+  "Системные модули",
+  "3D/Device Files",
+  "Медиа модули",
+  "Цифровые протоколы",
+  "Цифровые сущности",
+  "КиберэдэН Stream Files",
+  "Unreal Engine Assets",
+  "Game Design Files",
+  "AI/NPC Modules",
+  "World Files",
+  "Cinematic Files"
+];
+
+export const datacenterAssets: Asset[] = [
+  // Цифровые артефакты
+  { id: "a1", name: "HUD_MainInterface_v3", category: "Цифровые артефакты", format: "PSB", size: "245 MB", xp: 1500, badge: "CORE" },
+  // ... [добавьте остальные 23 файла из примера]
+];
