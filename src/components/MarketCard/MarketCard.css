@@ -1,0 +1,111 @@
+
+.sector-card {
+  width: 400px;
+  background: rgba(10, 6, 22, 0.6);
+  border: 1px solid rgba(0, 242, 254, 0.15);
+  box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.05);
+  padding: 16px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-family: 'Play', sans-serif;
+  user-select: none;
+}
+
+/* Эффект свечения при наведении на мини-карточку */
+.sector-card:hover {
+  border-color: rgba(0, 242, 254, 0.5);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.15), inset 0 0 10px rgba(0, 242, 254, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Декоративные углы рамок nazrOS */
+.corner-decor {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+}
+.corner-decor.top-left {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid #00f2fe;
+  border-left: 2px solid #00f2fe;
+}
+.corner-decor.bottom-right {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid #00f2fe;
+  border-right: 2px solid #00f2fe;
+}
+
+/* Контейнер картинки */
+.card-image-wrapper {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.sector-card:hover .card-main-image {
+  opacity: 1;
+}
+
+/* Блок текстовой информации */
+.card-info-block {
+  padding-top: 14px;
+}
+
+.card-tag {
+  display: block;
+  font-size: 11px;
+  color: #00f2fe;
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.card-name {
+  margin: 0 0 8px 0;
+  font-size: 22px;
+  color: #ffffff;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.card-short-text {
+  margin: 0 0 16px 0;
+  font-size: 13px;
+  color: #8c8896;
+  line-height: 1.5;
+}
+
+/* Цена в валюте XP */
+.card-price-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.price-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #00ff66; /* Зеленый цвет для валюты */
+  text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+}
+
+.currency-label {
+  font-size: 13px;
+  color: #00ff66;
+  opacity: 0.8;
+}
