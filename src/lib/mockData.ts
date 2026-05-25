@@ -545,9 +545,9 @@ export const articles: Article[] = [
 
   {
   id: "a4",
-  title: "Team Yandex — как корпорации заходят в цифровой спорт",
+  title: "TEAM YANDEX",
   topic: "Киберспорт",
-  excerpt: "Как IT-гиганты меняют киберспортивную сцену.",
+  excerpt: "как корпорации заходят в цифровой спорт",
   body: `
 <div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
 
