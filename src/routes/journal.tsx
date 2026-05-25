@@ -93,16 +93,21 @@ function JournalPage() {
       className="text-gray-300 leading-relaxed" 
       dangerouslySetInnerHTML={{ __html: active.body }}
     />
- <p className="text-muted-foreground leading-relaxed">
+<p className="text-muted-foreground leading-relaxed flex items-center gap-2 flex-wrap">
   Доступ предоставлен в режиме ознакомительного протокола.
-  Вы подключены к открытому архиву{" "}
+  Вы подключены к открытому архиву
 
-  <span className="inline-flex items-center gap-1 text-white">
+  <span className="flex items-center gap-1 text-white">
+    <img
+      src={nazrosLogo}
+      alt="nazrOS"
+      className="h-6 w-auto opacity-90"
+    />
     nazrOS
     <img
       src={nazrosLogo}
       alt="nazrOS"
-      className="h-3.5 w-auto opacity-90"
+      className="h-6 w-auto opacity-90"
     />
   </span>
 </p>
