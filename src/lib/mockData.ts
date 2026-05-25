@@ -293,12 +293,243 @@ export type Article = {
 };
 
 export const articles: Article[] = [
-  { id: "a1", title: "Архитектура нулевого доверия в 2090", topic: "Кибербезопасность", excerpt: "Почему периметр умер и что пришло на смену.", body: "Zero Trust как практика, а не маркетинг. Сегментация на уровне нейронных запросов, политики на основе поведения и непрерывная аттестация контекстов. Разбираем кейсы корпораций Aoyama и SynLine.", readTime: 7 },
-  { id: "a2", title: "Гайд по эксплойтам нейро-API", topic: "Хакинг", excerpt: "Чёрный рынок патчей: где грань.", body: "Реверс-инжиниринг прошивок Neurochip X-9 и анализ цепочки CVE-2090-1337. Этические границы и правовые риски.", readTime: 12 },
-  { id: "a3", title: "Сделано в подвале: инди-игры с нейро-контролем", topic: "Геймдев", excerpt: "Шесть команд, изменивших индустрию.", body: "От прототипа в Unity до релиза с BCI-контроллером за 4 месяца. Истории, бюджеты, фейлы.", readTime: 9 },
-  { id: "a4", title: "Лига Nexus Pro: разбор финала", topic: "Киберспорт", excerpt: "Как «Чёрный сурикен» обыграл фаворитов.", body: "Покадровый анализ решающего матча, метрики реакции и неожиданная тактика капитана.", readTime: 6 },
-  { id: "a5", title: "Кто владеет твоими снами?", topic: "Цифровая этика", excerpt: "Сны как данные — правовой вакуум.", body: "После анонса DreamCache корпорации получили доступ к слоям REM-памяти. Что говорят регуляторы Сектора 4.", readTime: 10 },
-  { id: "a6", title: "ICE-машины 2090: что под капотом", topic: "Кибербезопасность", excerpt: "Активная защита: от ловушек до контратак.", body: "Технический разбор современных Intrusion Countermeasures Electronics и их слабых мест.", readTime: 8 },
+  { id: "a1",
+     title: "Архитектура нулевого доверия в 2090",
+      topic: "Кибербезопасность",
+       excerpt: "Почему периметр умер и что пришло на смену.",
+        body: "Zero Trust как практика, а не маркетинг. Сегментация на уровне нейронных запросов, политики на основе поведения и непрерывная аттестация контекстов. Разбираем кейсы корпораций Aoyama и SynLine.",
+         readTime: 7 },
+
+  { id: "a2",
+     title: "Гайд по эксплойтам нейро-API",
+      topic: "Хакинг",
+       excerpt: "Чёрный рынок патчей: где грань.",
+        body: "Реверс-инжиниринг прошивок Neurochip X-9 и анализ цепочки CVE-2090-1337. Этические границы и правовые риски.",
+         readTime: 12 },
+
+  {
+  id: "a3",
+  title: "UNIGINE",
+  topic: "Геймдев",
+  excerpt: "Российский движок для серьёзных сТимуляций",
+  body: `
+<div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
+
+  <h2 style="font-size: 28px; color: #a855f7; border-left: 4px solid #a855f7; padding-left: 16px; margin-top: 0;">
+    UNIGINE — российский движок для серьёзных симуляций
+  </h2>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Когда говорят про игровые движки, большинство сразу вспоминают Unity или Unreal Engine. Но внутри русскоязычного тех-сообщества уже много лет существует собственная технологическая платформа — <strong style="color: #06b6d4;">UNIGINE</strong>.
+  </p>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Это не просто «ещё один движок». UNIGINE изначально создавался как высокоточная система визуализации для: промышленных симуляторов, цифровых двойников, военных и инженерных тренажёров, научных комплексов, VR/AR-сред, масштабных 3D-сцен. И только потом вокруг него начал формироваться полноценный gamedev-слой.
+  </p>
+
+  <blockquote style="border-left: 4px solid #06b6d4; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
+    «UNIGINE — это не просто движок. Это инженерная философия визуализации»
+    <br />
+    <span style="font-style: normal; color: #888;">— разработчик UNIGINE</span>
+  </blockquote>
+
+  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+    Чем UNIGINE отличается от массовых движков
+  </h3>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    В отличие от большинства игровых движков, UNIGINE ориентирован не на мобильные гиперказуалки, а на:
+  </p>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;">огромные пространства без потери точности</li>
+    <li style="margin-bottom: 6px;">стабильный FPS в тяжёлых сценах</li>
+    <li style="margin-bottom: 6px;">физически корректный рендер</li>
+    <li style="margin-bottom: 6px;">инженерную визуализацию</li>
+    <li style="margin-bottom: 6px;">работу с GIS и реальными картами</li>
+    <li style="margin-bottom: 6px;">корпоративные и государственные проекты</li>
+  </ul>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Именно поэтому движок часто используют там, где ошибка визуализации может стоить слишком дорого.
+  </p>
+
+  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+    Почему о нём снова начали говорить
+  </h3>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    После изменений мирового рынка ПО и проблем с зарубежными сервисами интерес к локальным технологиям резко вырос. В русскоязычном комьюнити начались обсуждения: возможно ли создавать собственные игровые экосистемы, как строить независимый gamedev-стек, чем заменить иностранные middleware-системы, какие движки можно развивать внутри СНГ.
+  </p>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    На этом фоне UNIGINE снова оказался в центре внимания.
+  </p>
+
+  <blockquote style="border-left: 4px solid #a855f7; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
+    «Русскоязычный геймдев — это не просто индустрия. Это культурный код»
+    <br />
+    <span style="font-style: normal; color: #888;">— разработчик UNIGINE</span>
+  </blockquote>
+
+  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+    Российские студии и инди-сцена
+  </h3>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Внутри СНГ gamedev давно существует особая эстетика: постсоветский sci-fi, индустриальные пространства, мрачный киберпанк, техно-нуар, заброшенные научные комплексы, цифровая дистопия.
+  </p>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Многие инди-разработчики вдохновляются: S.T.A.L.K.E.R., Escape From Tarkov, Atomic Heart, Pathologic, российскими мод-сценами. Из-за этого русскоязычный геймдев часто ощущается более «грязным», тяжёлым и атмосферным, чем западный.
+  </p>
+
+  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+    Моддинг как основа комьюнити
+  </h3>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Отдельная часть русскоязычного gamedev-комьюнити выросла не из студий, а из моддинга. Именно мод-сцена научила тысячи людей: работать с картами, писать игровые скрипты, создавать интерфейсы, заниматься реверсом игровых файлов, строить собственные игровые механики.
+  </p>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Многие будущие разработчики начинали именно с: модов для GTA, Source Engine, Minecraft-сборок, SAMP, STALKER SDK, Garry's Mod.
+  </p>
+
+  <blockquote style="border-left: 4px solid #a855f7; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
+    «Моддинг — это школа, где учатся создавать миры»
+    <br />
+    <span style="font-style: normal; color: #888;">— разработчик UNIGINE</span>
+  </blockquote>
+
+</div>
+`,
+  readTime: 9
+},
+
+  { id: "a4",
+     title: "TEAM YANDEX ",
+      topic: "Киберспорт",
+       excerpt: "Как корпорации заходят в цифровой спорт",
+       body: `
+<div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
+
+  <!-- ВИДЕО-ИНТЕРВЬЮ (RUTUBE) -->
+  <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #333;">
+    <iframe 
+      width="100%" 
+      height="400" 
+      src="https://rutube.ru/embed/VIDEO_ID" 
+      title="Интервью с капитаном Team Yandex" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen
+      style="width: 100%; height: 400px; display: block;"
+    ></iframe>
+  </div>
+
+  <h2 style="font-size: 28px; color: #a855f7; border-left: 4px solid #a855f7; padding-left: 16px; margin-top: 0;">
+    Как корпорации заходят в цифровой спорт
+  </h2>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    В последние годы русскоязычная киберспортивная сцена начала постепенно менять свой внешний вид. Если раньше экосистема строилась вокруг независимых организаций, энтузиастов и локальных клубов, то сейчас в цифровой спорт начинают заходить крупные технологические компании.
+  </p>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Одним из наиболее заметных примеров стала команда <strong style="color: #06b6d4;">Team Yandex</strong>. Появление Team Yandex — это не просто запуск очередного состава по дисциплинам. Это сигнал о том, что IT-корпорации начинают воспринимать киберспорт как часть цифровой инфраструктуры будущего.
+  </p>
+
+  <blockquote style="border-left: 4px solid #06b6d4; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
+    «Мы не просто играем — мы строим цифровую культуру»
+    <br />
+    <span style="font-style: normal; color: #888;">— капитан Team Yandex</span>
+  </blockquote>
+
+  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+    Что такое Team Yandex
+  </h3>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Team Yandex — киберспортивное направление экосистемы Яндекса, созданное как медийная и технологическая площадка вокруг игровых дисциплин, стриминга и цифровых соревнований.
+  </p>
+
+  <p style="font-size: 16px; margin-bottom: 12px;">Проект начал активно появляться в медиа через:</p>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;">турниры</li>
+    <li style="margin-bottom: 6px;">стриминговые интеграции</li>
+    <li style="margin-bottom: 6px;">участие игроков и контент-мейкеров</li>
+    <li style="margin-bottom: 6px;">собственные цифровые активности</li>
+  </ul>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Главная особенность Team Yandex заключается не только в бренде. Команда использует инфраструктурный подход: аналитика, цифровые сервисы, облачные технологии, AI-инструменты, рекомендательные алгоритмы, интеграция с медиасредой. Фактически это попытка соединить: IT + медиа + киберспорт + цифровое комьюнити.
+  </p>
+
+  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+    Почему это важно для русскоязычного комьюнити
+  </h3>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Российская киберспортивная сцена долгое время существовала как отдельная субкультура. Но сейчас начинается новая эпоха:
+  </p>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;">киберспорт становится частью цифровой экономики</li>
+    <li style="margin-bottom: 6px;">команды превращаются в медиаэкосистемы</li>
+    <li style="margin-bottom: 6px;">турниры становятся технологическими платформами</li>
+    <li style="margin-bottom: 6px;">стриминг становится полноценной инфраструктурой</li>
+  </ul>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Team Yandex показывает, что большие IT-компании готовы инвестировать не только в сервисы, но и в цифровую культуру.
+  </p>
+
+  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+    Как меняется киберспорт
+  </h3>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Раньше команда = игроки. Теперь команда это:
+  </p>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;">бренд</li>
+    <li style="margin-bottom: 6px;">визуальный стиль</li>
+    <li style="margin-bottom: 6px;">цифровая идентичность</li>
+    <li style="margin-bottom: 6px;">HUD-интерфейсы</li>
+    <li style="margin-bottom: 6px;">live production</li>
+    <li style="margin-bottom: 6px;">AI-анализ матчей</li>
+  </ul>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Киберспорт начинает выглядеть как операционная система. Именно поэтому современные команды всё чаще используют: motion design, интерфейсные HUD-элементы, анимированные панели, digital-айдентику, футуристические UI.
+  </p>
+
+  <blockquote style="border-left: 4px solid #a855f7; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
+    «Киберспорт — это не игра. Это инфраструктура цифрового будущего»
+    <br />
+    <span style="font-style: normal; color: #888;">— Team Yandex</span>
+  </blockquote>
+
+</div>
+`,
+         readTime: 6 },
+
+  { id: "a5",
+     title: "Кто владеет твоими снами?",
+      topic: "Цифровая этика",
+       excerpt: "Сны как данные — правовой вакуум.",
+        body: "После анонса DreamCache корпорации получили доступ к слоям REM-памяти. Что говорят регуляторы Сектора 4.",
+         readTime: 10 },
+
+  { id: "a6",
+     title: "ICE-машины 2090: что под капотом",
+      topic: "Кибербезопасность",
+       excerpt: "Активная защита: от ловушек до контратак.",
+        body: "Технический разбор современных Intrusion Countermeasures Electronics и их слабых мест.",
+         readTime: 8 },
 ];
 
 export type Event = {

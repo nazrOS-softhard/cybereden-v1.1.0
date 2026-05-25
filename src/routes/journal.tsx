@@ -5,6 +5,7 @@ import { NeonCard } from "@/components/NeonCard";
 import { ExpandedCardModal } from "@/components/ExpandedCardModal";
 import { articles } from "@/lib/mockData";
 import { useI18n } from "@/lib/i18n";
+import nazrosLogo from "@/assets/nazros-logo.png";
 
 export const Route = createFileRoute("/journal")({
   head: () => ({
@@ -86,15 +87,27 @@ function JournalPage() {
         }
       >
         {active && (
-          <>
-            <p className="text-base font-display neon-text-cyan">{active.excerpt}</p>
-            <p>{active.body}</p>
-            <p className="text-muted-foreground">
-              Полный текст материала доступен подписчикам nazrOS Premium. Подключите канал в
-              профиле для немедленного доступа.
-            </p>
-          </>
-        )}
+  <>
+    <p className="text-base font-display neon-text-cyan">{active.excerpt}</p>
+    <div 
+      className="text-gray-300 leading-relaxed" 
+      dangerouslySetInnerHTML={{ __html: active.body }}
+    />
+ <p className="text-muted-foreground leading-relaxed">
+  Доступ предоставлен в режиме ознакомительного протокола.
+  Вы подключены к открытому архиву{" "}
+
+  <span className="inline-flex items-center gap-1 text-white">
+    nazrOS
+    <img
+      src={nazrosLogo}
+      alt="nazrOS"
+      className="h-3.5 w-auto opacity-90"
+    />
+  </span>
+</p>
+  </>
+)}
       </ExpandedCardModal>
     </PageShell>
   );
