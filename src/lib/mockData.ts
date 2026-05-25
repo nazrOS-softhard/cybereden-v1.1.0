@@ -300,40 +300,176 @@ export const articles: Article[] = [
         body: "Zero Trust как практика, а не маркетинг. Сегментация на уровне нейронных запросов, политики на основе поведения и непрерывная аттестация контекстов. Разбираем кейсы корпораций Aoyama и SynLine.",
          readTime: 7 },
 
-  { id: "a2",
-     title: "Гайд по эксплойтам нейро-API",
-      topic: "Хакинг",
-       excerpt: "Чёрный рынок патчей: где грань.",
-        body: "Реверс-инжиниринг прошивок Neurochip X-9 и анализ цепочки CVE-2090-1337. Этические границы и правовые риски.",
-         readTime: 12 },
+{
+  id: "a2",
+  title: "KILLNET",
+  topic: "Хакинг",
+  excerpt: "Как хакерские группировки стали частью цифровой геополитики",
+  body: `
+<div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
+
+  <!-- ВИДЕО -->
+  <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #333;">
+    <iframe 
+      width="100%" 
+      height="400" 
+      src="https://rutube.ru/embed/ЗАМЕНИТЕ_НА_РЕАЛЬНЫЙ_ID" 
+      title="Документальный материал о Killnet" 
+      frameborder="0" 
+      allowfullscreen
+      style="width: 100%; height: 400px; display: block;"
+    ></iframe>
+  </div>
+
+  <h2 style="font-size: 28px; color: #f97316; border-left: 4px solid #f97316; padding-left: 16px; margin-top: 0;">
+    Как хакерские группировки стали частью цифровой геополитики
+  </h2>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    За последние годы термин «хакерская группировка» перестал ассоциироваться исключительно с подпольными форумами и анонимными чатами. Современные цифровые объединения всё чаще становятся полноценными участниками глобального информационного пространства.
+  </p>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Одним из наиболее обсуждаемых русскоязычных объединений стала группа 
+    <strong style="color: #fb923c;">Killnet</strong>.
+  </p>
+
+  <blockquote style="border-left: 4px solid #f97316; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
+    «Цифровое пространство стало новым полем противостояния»
+  </blockquote>
+
+  <h3 style="font-size: 22px; color: #fb923c; margin-top: 32px;">
+    Что такое Killnet
+  </h3>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Killnet — известное русскоязычное хактивистское объединение, получившее широкую медийную известность благодаря сериям DDoS-атак и информационным операциям против зарубежных цифровых платформ, инфраструктур и организаций.
+  </p>
+
+  <p style="font-size: 16px; margin-bottom: 12px;">
+    В медиа Killnet чаще всего связывали с:
+  </p>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;">DDoS-атаками</li>
+    <li style="margin-bottom: 6px;">информационными операциями</li>
+    <li style="margin-bottom: 6px;">медиа-активностью</li>
+    <li style="margin-bottom: 6px;">координацией через Telegram</li>
+    <li style="margin-bottom: 6px;">цифровым активизмом</li>
+  </ul>
+
+  <h3 style="font-size: 22px; color: #fb923c; margin-top: 32px;">
+    Почему это стало феноменом
+  </h3>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Ранее хакерские сообщества существовали преимущественно в закрытых пространствах: форумах, IRC-сетях, darknet-площадках.
+  </p>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Но новые цифровые объединения начали работать иначе:
+  </p>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;">использование публичных медиа</li>
+    <li style="margin-bottom: 6px;">формирование визуальной айдентики</li>
+    <li style="margin-bottom: 6px;">создание цифрового бренда</li>
+    <li style="margin-bottom: 6px;">активность в соцсетях</li>
+    <li style="margin-bottom: 6px;">работа с информационными потоками</li>
+  </ul>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Фактически современные хактивистские группы стали частью цифровой медиасреды.
+  </p>
+
+  <h3 style="font-size: 22px; color: #fb923c; margin-top: 32px;">
+    Как изменился образ хакера
+  </h3>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Образ хакера давно вышел за пределы фильмов 90-х. Сегодня это:
+  </p>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;">аналитики</li>
+    <li style="margin-bottom: 6px;">сетевые исследователи</li>
+    <li style="margin-bottom: 6px;">специалисты по инфраструктуре</li>
+    <li style="margin-bottom: 6px;">OSINT-комьюнити</li>
+    <li style="margin-bottom: 6px;">специалисты по цифровой безопасности</li>
+  </ul>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Вместе с этим вырос интерес и к самой культуре кибербезопасности:
+  </p>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;">сетевой анонимности</li>
+    <li style="margin-bottom: 6px;">шифрованию данных</li>
+    <li style="margin-bottom: 6px;">цифровой приватности</li>
+    <li style="margin-bottom: 6px;">OSINT-инструментам</li>
+    <li style="margin-bottom: 6px;">инфраструктурной защите</li>
+  </ul>
+
+  <blockquote style="border-left: 4px solid #a855f7; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
+    «Информация стала новой инфраструктурой современного мира»
+  </blockquote>
+
+  <h3 style="font-size: 22px; color: #fb923c; margin-top: 32px;">
+    Почему тема важна для Киберэдэн
+  </h3>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Киберэдэн изучает цифровую среду не только как интерфейс, но и как экосистему.
+  </p>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Именно поэтому темы:
+  </p>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;">кибербезопасности</li>
+    <li style="margin-bottom: 6px;">цифровой этики</li>
+    <li style="margin-bottom: 6px;">сетевой архитектуры</li>
+    <li style="margin-bottom: 6px;">OSINT</li>
+    <li style="margin-bottom: 6px;">цифровой идентичности</li>
+  </ul>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    становятся частью новой цифровой культуры.
+  </p>
+
+</div>
+`,
+  readTime: 7
+},
 
   {
   id: "a3",
   title: "UNIGINE",
   topic: "Геймдев",
-  excerpt: "Российский движок для серьёзных сТимуляций",
+  excerpt: "Российский движок для серьёзных симуляций",
   body: `
 <div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
 
-  <h2 style="font-size: 28px; color: #a855f7; border-left: 4px solid #a855f7; padding-left: 16px; margin-top: 0;">
+  <h2 style="font-size: 28px; color: #ec4899; border-left: 4px solid #ec4899; padding-left: 16px; margin-top: 0;">
     UNIGINE — российский движок для серьёзных симуляций
   </h2>
 
   <p style="font-size: 16px; margin-bottom: 20px;">
-    Когда говорят про игровые движки, большинство сразу вспоминают Unity или Unreal Engine. Но внутри русскоязычного тех-сообщества уже много лет существует собственная технологическая платформа — <strong style="color: #06b6d4;">UNIGINE</strong>.
+    Когда говорят про игровые движки, большинство сразу вспоминают Unity или Unreal Engine. Но внутри русскоязычного тех-сообщества уже много лет существует собственная технологическая платформа — <strong style="color: #f472b6;">UNIGINE</strong>.
   </p>
 
   <p style="font-size: 16px; margin-bottom: 20px;">
     Это не просто «ещё один движок». UNIGINE изначально создавался как высокоточная система визуализации для: промышленных симуляторов, цифровых двойников, военных и инженерных тренажёров, научных комплексов, VR/AR-сред, масштабных 3D-сцен. И только потом вокруг него начал формироваться полноценный gamedev-слой.
   </p>
 
-  <blockquote style="border-left: 4px solid #06b6d4; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
+  <blockquote style="border-left: 4px solid #ec4899; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
     «UNIGINE — это не просто движок. Это инженерная философия визуализации»
     <br />
     <span style="font-style: normal; color: #888;">— разработчик UNIGINE</span>
   </blockquote>
 
-  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+  <h3 style="font-size: 22px; color: #f472b6; margin-top: 32px;">
     Чем UNIGINE отличается от массовых движков
   </h3>
 
@@ -354,7 +490,7 @@ export const articles: Article[] = [
     Именно поэтому движок часто используют там, где ошибка визуализации может стоить слишком дорого.
   </p>
 
-  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+  <h3 style="font-size: 22px; color: #f472b6; margin-top: 32px;">
     Почему о нём снова начали говорить
   </h3>
 
@@ -366,13 +502,13 @@ export const articles: Article[] = [
     На этом фоне UNIGINE снова оказался в центре внимания.
   </p>
 
-  <blockquote style="border-left: 4px solid #a855f7; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
+  <blockquote style="border-left: 4px solid #ec4899; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
     «Русскоязычный геймдев — это не просто индустрия. Это культурный код»
     <br />
     <span style="font-style: normal; color: #888;">— разработчик UNIGINE</span>
   </blockquote>
 
-  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+  <h3 style="font-size: 22px; color: #f472b6; margin-top: 32px;">
     Российские студии и инди-сцена
   </h3>
 
@@ -384,7 +520,7 @@ export const articles: Article[] = [
     Многие инди-разработчики вдохновляются: S.T.A.L.K.E.R., Escape From Tarkov, Atomic Heart, Pathologic, российскими мод-сценами. Из-за этого русскоязычный геймдев часто ощущается более «грязным», тяжёлым и атмосферным, чем западный.
   </p>
 
-  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+  <h3 style="font-size: 22px; color: #f472b6; margin-top: 32px;">
     Моддинг как основа комьюнити
   </h3>
 
@@ -396,7 +532,7 @@ export const articles: Article[] = [
     Многие будущие разработчики начинали именно с: модов для GTA, Source Engine, Minecraft-сборок, SAMP, STALKER SDK, Garry's Mod.
   </p>
 
-  <blockquote style="border-left: 4px solid #a855f7; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
+  <blockquote style="border-left: 4px solid #ec4899; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
     «Моддинг — это школа, где учатся создавать миры»
     <br />
     <span style="font-style: normal; color: #888;">— разработчик UNIGINE</span>
@@ -407,14 +543,15 @@ export const articles: Article[] = [
   readTime: 9
 },
 
-  { id: "a4",
-     title: "TEAM YANDEX ",
-      topic: "Киберспорт",
-       excerpt: "Как корпорации заходят в цифровой спорт",
-       body: `
+  {
+  id: "a4",
+  title: "Team Yandex — как корпорации заходят в цифровой спорт",
+  topic: "Киберспорт",
+  excerpt: "Как IT-гиганты меняют киберспортивную сцену.",
+  body: `
 <div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
 
-  <!-- ВИДЕО-ИНТЕРВЬЮ (RUTUBE) -->
+  <!-- ВИДЕО -->
   <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #333;">
     <iframe 
       width="100%" 
@@ -422,13 +559,12 @@ export const articles: Article[] = [
       src="https://rutube.ru/embed/VIDEO_ID" 
       title="Интервью с капитаном Team Yandex" 
       frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
       allowfullscreen
       style="width: 100%; height: 400px; display: block;"
     ></iframe>
   </div>
 
-  <h2 style="font-size: 28px; color: #a855f7; border-left: 4px solid #a855f7; padding-left: 16px; margin-top: 0;">
+  <h2 style="font-size: 28px; color: #06b6d4; border-left: 4px solid #06b6d4; padding-left: 16px; margin-top: 0;">
     Как корпорации заходят в цифровой спорт
   </h2>
 
@@ -437,7 +573,7 @@ export const articles: Article[] = [
   </p>
 
   <p style="font-size: 16px; margin-bottom: 20px;">
-    Одним из наиболее заметных примеров стала команда <strong style="color: #06b6d4;">Team Yandex</strong>. Появление Team Yandex — это не просто запуск очередного состава по дисциплинам. Это сигнал о том, что IT-корпорации начинают воспринимать киберспорт как часть цифровой инфраструктуры будущего.
+    Одним из наиболее заметных примеров стала команда <strong style="color: #22d3ee;">Team Yandex</strong>. Появление Team Yandex — это не просто запуск очередного состава по дисциплинам. Это сигнал о том, что IT-корпорации начинают воспринимать киберспорт как часть цифровой инфраструктуры будущего.
   </p>
 
   <blockquote style="border-left: 4px solid #06b6d4; padding-left: 16px; margin: 20px 0; font-style: italic; color: #a1a1aa;">
@@ -446,7 +582,7 @@ export const articles: Article[] = [
     <span style="font-style: normal; color: #888;">— капитан Team Yandex</span>
   </blockquote>
 
-  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+  <h3 style="font-size: 22px; color: #22d3ee; margin-top: 32px;">
     Что такое Team Yandex
   </h3>
 
@@ -467,7 +603,7 @@ export const articles: Article[] = [
     Главная особенность Team Yandex заключается не только в бренде. Команда использует инфраструктурный подход: аналитика, цифровые сервисы, облачные технологии, AI-инструменты, рекомендательные алгоритмы, интеграция с медиасредой. Фактически это попытка соединить: IT + медиа + киберспорт + цифровое комьюнити.
   </p>
 
-  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+  <h3 style="font-size: 22px; color: #22d3ee; margin-top: 32px;">
     Почему это важно для русскоязычного комьюнити
   </h3>
 
@@ -486,7 +622,7 @@ export const articles: Article[] = [
     Team Yandex показывает, что большие IT-компании готовы инвестировать не только в сервисы, но и в цифровую культуру.
   </p>
 
-  <h3 style="font-size: 22px; color: #06b6d4; margin-top: 32px;">
+  <h3 style="font-size: 22px; color: #22d3ee; margin-top: 32px;">
     Как меняется киберспорт
   </h3>
 
@@ -515,7 +651,7 @@ export const articles: Article[] = [
 
 </div>
 `,
-         readTime: 6 },
+  readTime: 6},
 
   { id: "a5",
      title: "Кто владеет твоими снами?",
