@@ -585,18 +585,18 @@ export type Cyber = {
 };
 
 export const cybers: Cyber[] = [
-  { id: "c1", handle: "@nazr.os", rank: "АРХИТЕКТОР ЯДРА", xp: 482300, status: "online", streaming: true },
-  { id: "c2", handle: "@ghost_in_static", rank: "ГЛАВНЫЙ РАЗРАБОТЧИК", xp: 318940, status: "ghost" },
-  { id: "c3", handle: "@vex.pilot", rank: "ОПЕРАТОР", xp: 204400, status: "online", streaming: false },
-  { id: "c4", handle: "@aurora.eye", rank: "АРХИТЕКТОР ЯДРА", xp: 152780, status: "offline" },
-  { id: "c5", handle: "@solaris.kid", rank: "ОПЕРАТОР", xp: 98220, status: "online" },
-  { id: "c6", handle: "@spike.rin", rank: "НАБЛЮДАТЕЛЬ", xp: 64110, status: "ghost" },
-  { id: "c7", handle: "@cipher_dev", rank: "ГЛАВНЫЙ РАЗРАБОТЧИК", xp: 391200, status: "online" },
-  { id: "c8", handle: "@phantom_eye", rank: "АРХИТЕКТОР ЯДРА", xp: 278540, status: "online", streaming: true },
-  { id: "c9", handle: "@neon_surge", rank: "ОПЕРАТОР", xp: 145670, status: "offline" },
-  { id: "c10", handle: "@void_walker", rank: "ГЛАВНЫЙ РАЗРАБОТЧИК", xp: 289450, status: "online" },
-  { id: "c11", handle: "@signal_echo", rank: "НАБЛЮДАТЕЛЬ", xp: 45320, status: "offline" },
-  { id: "c12", handle: "@core_rush", rank: "ОПЕРАТОР", xp: 156890, status: "online", streaming: false },
+  { id: "c1", handle: "@f00rtime", rank: "ОПЕРАТОР", xp: 482300, status: "online", streaming: true },
+  { id: "c2", handle: "@TBA", rank: "НАБЛЮДАТЕЛЬ", xp: 0, status: "ghost", streaming: false },
+  { id: "c3", handle: "@TBA", rank: "НАБЛЮДАТЕЛЬ", xp: 0, status: "offline" },
+  { id: "c4", handle: "@TBA", rank: "НАБЛЮДАТЕЛЬ", xp: 0, status: "offline" },
+  { id: "c5", handle: "@TBA", rank: "НАБЛЮДАТЕЛЬ", xp: 0, status: "offline" },
+  { id: "c6", handle: "@TBA", rank: "НАБЛЮДАТЕЛЬ", xp: 0, status: "offline" },
+  { id: "c7", handle: "@TBA", rank: "НАБЛЮДАТЕЛЬ", xp: 0, status: "offline" },
+  { id: "c8", handle: "@TBA", rank: "НАБЛЮДАТЕЛЬ", xp: 0, status: "offline" },
+  { id: "c9", handle: "@TBA", rank: "НАБЛЮДАТЕЛЬ", xp: 0, status: "offline" },
+  { id: "c10", handle: "@TBA", rank: "НАБЛЮДАТЕЛЬ", xp: 0, status: "offline" },
+  { id: "c11", handle: "@TBA", rank: "НАБЛЮДАТЕЛЬ", xp: 0, status: "offline" },
+  { id: "c12", handle: "@TBA", rank: "НАБЛЮДАТЕЛЬ", xp: 0, status: "offline" },
 ];
 
 // DATACENTER Assets
