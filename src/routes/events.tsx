@@ -54,35 +54,35 @@ function EventsPage() {
         ))}
       </div>
 
-      <AnimatePresence mode="wait"> {/* <--- ОБЁРТКА */}
-        <motion.div
-          key={type}
-          layout={false}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
-        >
-          {filtered.map((e) => (
-            <NeonCard
-              key={e.id}
-              layoutId={`event-${e.id}`}
-              onClick={() => setOpenId(e.id)}
-              eyebrow={e.type}
-              title={e.title}
-              meta={`${e.date ? e.date + " · " : ""}${e.location}`}
-            >
-              {e.description
-                .replace(/<[^>]*>/g, '')
-                .replace(/\s+/g, ' ')
-                .trim()
-                .split(' ')
-                .slice(0, 10)
-                .join(' ') + '…'}
-            </NeonCard>
-          ))}
-        </motion.div>
-      </AnimatePresence>
+      <AnimatePresence mode="wait">
+  <motion.div
+    key={type}
+    className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.15 }}
+  >
+    {filtered.map((e) => (
+      <NeonCard
+        key={e.id}
+        layoutId={`event-${e.id}`}
+        onClick={() => setOpenId(e.id)}
+        eyebrow={e.type}
+        title={e.title}
+        meta={`${e.date ? e.date + " · " : ""}${e.location}`}
+      >
+        {e.description
+          .replace(/<[^>]*>/g, '')
+          .replace(/\s+/g, ' ')
+          .trim()
+          .split(' ')
+          .slice(0, 10)
+          .join(' ') + '…'}
+      </NeonCard>
+    ))}
+  </motion.div>
+</AnimatePresence>
 
       <ExpandedCardModal
         open={!!active}
