@@ -5,8 +5,6 @@ import { NeonCard } from "@/components/NeonCard";
 import { ExpandedCardModal } from "@/components/ExpandedCardModal";
 import { events } from "@/lib/mockData";
 import { useI18n } from "@/lib/i18n";
-import { AnimatePresence } from "framer-motion";
-
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -55,28 +53,26 @@ function EventsPage() {
         ))}
       </div>
 
-<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-  {filtered.map((e) => (
-    <NeonCard
-      key={e.id}
-      layoutId={`event-${e.id}`}
-      onClick={() => setOpenId(e.id)}
-      eyebrow={e.type}
-      title={e.title}
-      meta={`${e.date ? e.date + " · " : ""}${e.location}`}
-    >
-      {e.description
-        .replace(/<[^>]*>/g, '')
-        .replace(/\s+/g, ' ')
-        .trim()
-        .split(' ')
-        .slice(0, 10)
-        .join(' ') + '…'}
-    </NeonCard>
-  ))}
-</div>
-  </motion.div>
-</AnimatePresence>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {filtered.map((e) => (
+          <NeonCard
+            key={e.id}
+            layoutId={`event-${e.id}`}
+            onClick={() => setOpenId(e.id)}
+            eyebrow={e.type}
+            title={e.title}
+            meta={`${e.date ? e.date + " · " : ""}${e.location}`}
+          >
+            {e.description
+              .replace(/<[^>]*>/g, '')
+              .replace(/\s+/g, ' ')
+              .trim()
+              .split(' ')
+              .slice(0, 10)
+              .join(' ') + '…'}
+          </NeonCard>
+        ))}
+      </div>
 
       <ExpandedCardModal
         open={!!active}
@@ -95,17 +91,17 @@ function EventsPage() {
             : []
         }
       >
-       {active && (
-  <>
-    <div dangerouslySetInnerHTML={{ __html: active.description }} />
-    {active.type !== "ДЕПЫ" && (
-      <p className="text-muted-foreground">
-        Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
-        +500 XP за участие.
-      </p>
-    )}
-  </>
-)}
+        {active && (
+          <>
+            <div dangerouslySetInnerHTML={{ __html: active.description }} />
+            {active.type !== "ДЕПЫ" && (
+              <p className="text-muted-foreground">
+                Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
+                +500 XP за участие.
+              </p>
+            )}
+          </>
+        )}
       </ExpandedCardModal>
     </PageShell>
   );
