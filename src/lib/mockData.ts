@@ -10,8 +10,8 @@ import clon from "@/assets/clon.png";
 import clonfull from "@/assets/clonfull.png";
 import pin from "@/assets/pin.png";
 import pinfull from "@/assets/pinfull.png";
-import vision from "@/assets/visionN.png";
-import visionfull from "@/assets/visionNfull.png";
+import vision from "@/assets/vision.png";
+import visionfull from "@/assets/visionfull.png";
 
 
 // КАРТЫ  СОФТА
