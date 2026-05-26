@@ -667,20 +667,20 @@ export type Asset = {
 export const assetCategories = [
   "Цифровые артефакты",
   "Системные модули",
-  "3D/Device Files",
+  "Объёмные модели",
   "Медиа модули",
   "Цифровые протоколы",
   "Цифровые сущности",
-  "КиберэдэН Stream Files",
-  "Unreal Engine Assets",
-  "Game Design Files",
-  "AI/NPC Modules",
-  "World Files",
-  "Cinematic Files"
+  "Стрим-файлы КиберэдэН",
+  "Модели игровых движоков",
+  "Файлы разработчиков игр",
+  "ИИ-боты",
+  "Пространства и уровни",
+  "Кинематографические файлы"
 ];
 
 export const datacenterAssets: Asset[] = [
   // Цифровые артефакты
-  { id: "a1", name: "HUD_MainInterface_v3", category: "Цифровые артефакты", format: "PSB", size: "245 MB", xp: 1500, badge: "CORE" },
+  { id: "a1", name: "Интерфейс Спутникого терминал Сфера", category: "Цифровые артефакты", format: "SVG", size: "245 MB", xp: 1500, badge: "ALPHA      " },
   // ... [добавьте остальные 23 файла из примера]
 ];
