@@ -63,7 +63,13 @@ function EventsPage() {
             title={e.title}
             meta={`${e.date ? e.date + " · " : ""}${e.location}`}
           >
-          {e.description.trim().replace(/<[^>]*>/g, '').split(' ').slice(0, 10).join(' ') + '…'}
+          {e.description
+  .replace(/<[^>]*>/g, '')
+  .replace(/\s+/g, ' ')
+  .trim()
+  .split(' ')
+  .slice(0, 10)
+  .join(' ') + '…'}
           </NeonCard>
         ))}
       </div>
