@@ -682,21 +682,16 @@ export type Event = {
 
 export const events: Event[] = [
   // ТРАНСЛЯЦИИ
-  { id: "e1", title: "BLAST Slam VII", type: "ТРАНСЛЯЦИИ", date: "Live", location: "Live · Channel ZERO", description: "Прямая инженерная сессия Portal и Pirate Station. Создание интерфейсов HUD-системы КиберэдэН в реальном времени." },
-  { id: "e2", title: "PHANTOM BUILD", type: "ТРАНСЛЯЦИИ", date: "12.08.2090", location: "Live · Channel ZERO", description: "Разработка экспериментального концепта устройства nazrOS. Генеративный дизайн и нестандартная архитектура." },
-  { id: "e3", title: "SYSTEM TEST", type: "ТРАНСЛЯЦИИ", date: "19.08.2090", location: "Live · Black Factory", description: "Тестирование цифровой среды, стресс-тест HUD и проверка стабильности модулей nazrOS." },
-  { id: "e4", title: "DEVICE ASSEMBLY", type: "ТРАНСЛЯЦИИ", date: "26.08.2090", location: "Live · CXEMA", description: "Сборка серверного модуля и пайка инженерных компонентов для инфраструктуры КиберэдэН." },
-  { id: "e5", title: "LIVE DEBUG SESSION", type: "ТРАНСЛЯЦИИ", date: "02.09.2090", location: "Live · Darknet", description: "Ночной дебагинг среды. Исправление визуальных багов и оптимизация интерфейсной системы." },
-  { id: "e6", title: "MOTION STREAM", type: "ТРАНСЛЯЦИИ", date: "09.09.2090", location: "Live · Portal Studio", description: "Создание анимаций Framer Motion и интерфейсных переходов для операционной среды nazrOS." },
+  { id: "e1", title: "ТЭСТ", type: "ТРАНСЛЯЦИИ", date: "Live", location: "Live · Channel ZERO", description: "Прямая инженерная сессия Portal и Pirate Station. Создание интерфейсов HUD-системы КиберэдэН в реальном времени." },
+  { id: "e2", title: "ТЭСТ", type: "ТРАНСЛЯЦИИ", date: "...", location: "Live · Channel ZERO", description: "Разработка экспериментального концепта устройства nazrOS. Генеративный дизайн и нестандартная архитектура." },
+  { id: "e3", title: "ТЭСТ", type: "ТРАНСЛЯЦИИ", date: "...", location: "Live · Black Factory", description: "Тестирование цифровой среды, стресс-тест HUD и проверка стабильности модулей nazrOS." },
+  { id: "e4", title: "ТЭСТ", type: "ТРАНСЛЯЦИИ", date: "...", location: "Live · CXEMA", description: "Сборка серверного модуля и пайка инженерных компонентов для инфраструктуры КиберэдэН." },
+  { id: "e5", title: "ТЭСТ", type: "ТРАНСЛЯЦИИ", date: "...", location: "Live · Darknet", description: "Ночной дебагинг среды. Исправление визуальных багов и оптимизация интерфейсной системы." },
+  { id: "e6", title: "ТЭСТ", type: "ТРАНСЛЯЦИИ", date: "...", location: "Live · Portal Studio", description: "Создание анимаций Framer Motion и интерфейсных переходов для операционной среды nazrOS." },
   
   // ТУРНИРЫ
-  { id: "e7", title: "CORE WAR // SEASON 01", type: "ТУРНИРЫ", date: "15.08.2090", location: "Арена Сектор-7", description: "Командное инженерное соревнование департаментов nazrOS. Победитель получает контроль над сезонным ядром." },
-  { id: "e8", title: "NEXUS GRID CUP", type: "ТУРНИРЫ", date: "22.08.2090", location: "Online · Nexus Arena", description: "Киберспортивный турнир по симуляционным системам и цифровым сценариям." },
-  { id: "e9", title: "SIGNAL BROADCAST LEAGUE", type: "ТУРНИРЫ", date: "29.08.2090", location: "Live · Signal Studio", description: "Соревнование стримеров и медиа-операторов за лучший live-контент среды." },
-  { id: "e10", title: "INTERFACE CLASH", type: "ТУРНИРЫ", date: "05.09.2090", location: "Portal Campus", description: "Турнир UI/UX архитекторов. Участники создают интерфейс за ограниченное время." },
-  { id: "e11", title: "CODE RUSH", type: "ТУРНИРЫ", date: "12.09.2090", location: "Pirate Station HQ", description: "Скоростная разработка системных модулей и backend-логики nazrOS." },
-  { id: "e12", title: "BLACK PROTOCOL ARENA", type: "ТУРНИРЫ", date: "19.09.2090", location: "Black Factory", description: "Закрытый турнир экспериментальных цифровых сценариев. Только приглашённые." },
-  
+  { id: "e7", title: "BLAST Slam VII", type: "ТУРНИРЫ", date: "26.05.2026 - 05.06.2026", location: "BLAST Studio · Копенгагене", description: "Арена высшего киберспортивного мастерства активирует протоколы. Холодный расчёт аналитиков, жар бескомпромиссных сражений, ритмы, заставляющие прожимать кнопки на грани рефлексов —всё это станет частью глобального цифрового противостояния." },
+ 
   // ХАКАТОНЫ
   { id: "e13", title: "КиберХак 2027: БЕЗОПАСНОСТЬ БУДУЩЕГО", type: "ХАКАТОНЫ", date: "20.08.2027", location: "Эрарта · Санкт-Петербург", description: "Главный хакатон киберсистемы nazrOS. 48 часов непрерывного кодинга, менторство от топ-специалистов и призовой фонд." },
   { id: "e14", title: "назрОС РазрабКонф 2027", type: "ХАКАТОНЫ", date: "08.09.2027", location: "ЦДП · Москва", description: "Конференция разработчиков киберсистемы nazrOS. Доклады, открытые мастерские, нетворкинг." },
