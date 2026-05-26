@@ -682,13 +682,10 @@ export type Event = {
 
 export const events: Event[] = [
   // ТРАНСЛЯЦИИ
-  { id: "e1", title: "ТЭСТ", type: "ТРАНСЛЯЦИИ", date: "Live", location: "Live · Channel ZERO", description: "Прямая инженерная сессия Portal и Pirate Station. Создание интерфейсов HUD-системы КиберэдэН в реальном времени." },
-  { id: "e2", title: "ТЭСТ", type: "ТРАНСЛЯЦИИ", date: "...", location: "Live · Channel ZERO", description: "Разработка экспериментального концепта устройства nazrOS. Генеративный дизайн и нестандартная архитектура." },
-  { id: "e3", title: "ТЭСТ", type: "ТРАНСЛЯЦИИ", date: "...", location: "Live · Black Factory", description: "Тестирование цифровой среды, стресс-тест HUD и проверка стабильности модулей nazrOS." },
-  { id: "e4", title: "ТЭСТ", type: "ТРАНСЛЯЦИИ", date: "...", location: "Live · CXEMA", description: "Сборка серверного модуля и пайка инженерных компонентов для инфраструктуры КиберэдэН." },
-  { id: "e5", title: "ТЭСТ", type: "ТРАНСЛЯЦИИ", date: "...", location: "Live · Darknet", description: "Ночной дебагинг среды. Исправление визуальных багов и оптимизация интерфейсной системы." },
-  { id: "e6", title: "ТЭСТ", type: "ТРАНСЛЯЦИИ", date: "...", location: "Live · Portal Studio", description: "Создание анимаций Framer Motion и интерфейсных переходов для операционной среды nazrOS." },
-  
+ { id: "e1", title: "This is GameDev", type: "ТРАНСЛЯЦИИ", date: "Everyday", location: "Twitch", description: "Тени неонового кода, ритмы компиляции, холодный расчёт производительности — всё это геймдев. Разбираем архитектуру, создаём HUD-интерфейсы и строим цифровые миры.",
+ streamUrl: "https://www.twitch.tv/lana_lux" // <--- ДОБАВЛЕНО 
+   },
+
   // ТУРНИРЫ
   { 
   id: "e7", 
