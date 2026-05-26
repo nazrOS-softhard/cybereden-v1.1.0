@@ -14,8 +14,8 @@ vars = { ENVIRONMENT = "production", API_URL = "https://api.cybereden.com" }
 [[d1_databases]]
 binding = "DB"
 database_name = "cybereden-db"
-database_id = "YOUR_DATABASE_ID"
-preview_database_id = "YOUR_PREVIEW_DATABASE_ID"
+database_id = "1e1c153e-9c2e-41cd-96e2-8d57fa835957"
+preview_database_id = "1e1c153e-9c2e-41cd-96e2-8d57fa835957"
 
 # ==================== R2 BUCKET ====================
 [[r2_buckets]]
