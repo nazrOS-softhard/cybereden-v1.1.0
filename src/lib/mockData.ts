@@ -732,7 +732,7 @@ export const events: Event[] = [
 
   <!-- ИЗОБРАЖЕНИЕ -->
   <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #333;">
-    <img src="/north-event-poster.jpg" alt="Север зовёт" style="width: 100%; height: auto; display: block;" />
+    <img src="/north-event-poster.png" alt="Север зовёт" style="width: 100%; height: auto; display: block;" />
   </div>
 
   <div style="text-align: center; margin-bottom: 30px;">
