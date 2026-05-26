@@ -682,7 +682,7 @@ export type Event = {
 
 export const events: Event[] = [
   // ТРАНСЛЯЦИИ
-  { id: "e1", title: "HUD CORE LIVE", type: "ТРАНСЛЯЦИИ", date: "05.08.2090", location: "Live · Channel ZERO", description: "Прямая инженерная сессия Portal и Pirate Station. Создание интерфейсов HUD-системы КиберэдэН в реальном времени." },
+  { id: "e1", title: "BLAST Slam VII", type: "ТРАНСЛЯЦИИ", date: "Live", location: "Live · Channel ZERO", description: "Прямая инженерная сессия Portal и Pirate Station. Создание интерфейсов HUD-системы КиберэдэН в реальном времени." },
   { id: "e2", title: "PHANTOM BUILD", type: "ТРАНСЛЯЦИИ", date: "12.08.2090", location: "Live · Channel ZERO", description: "Разработка экспериментального концепта устройства nazrOS. Генеративный дизайн и нестандартная архитектура." },
   { id: "e3", title: "SYSTEM TEST", type: "ТРАНСЛЯЦИИ", date: "19.08.2090", location: "Live · Black Factory", description: "Тестирование цифровой среды, стресс-тест HUD и проверка стабильности модулей nazrOS." },
   { id: "e4", title: "DEVICE ASSEMBLY", type: "ТРАНСЛЯЦИИ", date: "26.08.2090", location: "Live · CXEMA", description: "Сборка серверного модуля и пайка инженерных компонентов для инфраструктуры КиберэдэН." },
