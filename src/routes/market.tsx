@@ -45,7 +45,7 @@ function MarketPage() {
             image={it.image}
             eyebrow={it.category}
             title={it.name}
-            meta={`${it.price.toLocaleString("ru-RU")} XP`}
+            meta={`${it.price.toLocaleString("ru-RU")} ПХ`}
           >
             {it.short}
           </NeonCard>
