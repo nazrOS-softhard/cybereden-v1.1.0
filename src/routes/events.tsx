@@ -5,6 +5,7 @@ import { NeonCard } from "@/components/NeonCard";
 import { ExpandedCardModal } from "@/components/ExpandedCardModal";
 import { events } from "@/lib/mockData";
 import { useI18n } from "@/lib/i18n";
+import { AnimatePresence, motion } from "framer-motion"; // <--- ДОБАВЛЕН ИМПОРТ
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -53,26 +54,35 @@ function EventsPage() {
         ))}
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {filtered.map((e) => (
-          <NeonCard
-            key={e.id}
-            layoutId={`event-${e.id}`}
-            onClick={() => setOpenId(e.id)}
-            eyebrow={e.type}
-            title={e.title}
-            meta={`${e.date ? e.date + " · " : ""}${e.location}`}
-          >
-            {e.description
-              .replace(/<[^>]*>/g, '')
-              .replace(/\s+/g, ' ')
-              .trim()
-              .split(' ')
-              .slice(0, 10)
-              .join(' ') + '…'}
-          </NeonCard>
-        ))}
-      </div>
+      <AnimatePresence mode="wait"> {/* <--- ОБЁРТКА */}
+        <motion.div
+          key={type}
+          layout={false}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
+          {filtered.map((e) => (
+            <NeonCard
+              key={e.id}
+              layoutId={`event-${e.id}`}
+              onClick={() => setOpenId(e.id)}
+              eyebrow={e.type}
+              title={e.title}
+              meta={`${e.date ? e.date + " · " : ""}${e.location}`}
+            >
+              {e.description
+                .replace(/<[^>]*>/g, '')
+                .replace(/\s+/g, ' ')
+                .trim()
+                .split(' ')
+                .slice(0, 10)
+                .join(' ') + '…'}
+            </NeonCard>
+          ))}
+        </motion.div>
+      </AnimatePresence>
 
       <ExpandedCardModal
         open={!!active}
