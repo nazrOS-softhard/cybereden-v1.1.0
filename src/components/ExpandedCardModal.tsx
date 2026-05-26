@@ -13,6 +13,7 @@ interface Props {
   image?: string;
   cta: string;
   children?: ReactNode;
+  streamUrl?: string; // <--- ДОБАВЛЕНО
 }
 
 export function ExpandedCardModal({
@@ -25,6 +26,7 @@ export function ExpandedCardModal({
   image,
   cta,
   children,
+  streamUrl, // <--- ДОБАВЛЕНО
 }: Props) {
   useEffect(() => {
     if (!open) return;
@@ -107,7 +109,20 @@ export function ExpandedCardModal({
                   )}
 
                   <div className="mt-6 space-y-6 text-sm leading-relaxed text-foreground/90">
-                    {children}
+                    {/* Если есть streamUrl, показываем Twitch-плеер */}
+                    {streamUrl ? (
+                      <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4">
+                        <iframe
+                          src={`https://player.twitch.tv/?channel=${streamUrl.split('/').pop()}&parent=localhost&parent=cybereden.vercel.app`}
+                          width="100%"
+                          height="100%"
+                          allowfullscreen
+                          className="w-full h-full"
+                        />
+                      </div>
+                    ) : (
+                      children
+                    )}
                   </div>
 
                   <div className="mt-8 sticky bottom-0">
