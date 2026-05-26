@@ -89,83 +89,57 @@ export function ExpandedCardModal({
               <ArrowLeft size={14} /> Back
             </button>
 
-      <div className="relative flex-1 overflow-y-auto">
-  <div className="grid md:grid-cols-[1.1fr_1fr] gap-0 min-h-full">
-    {image && (
-      <div className="relative bg-background hud-corners">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-64 md:h-full object-cover"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background/80 via-transparent to-transparent" />
-      </div>
-    )}
-    <motion.div
-      animate={{
-        x: isPanelVisible ? 0 : 500,
-        opacity: isPanelVisible ? 1 : 0.1,
-      }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
-      className="p-6 md:p-10 lg:p-12"
-    >
-      {eyebrow && (
-        <div className="font-mono text-[10px] uppercase tracking-[0.4em] neon-text-cyan mb-3">
-          {eyebrow}
-        </div>
-      )}
-      <motion.h2
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15 }}
-        className="font-display text-3xl md:text-5xl neon-text-violet leading-tight"
-      >
-        {title}
-      </motion.h2>
+            <div className="relative flex-1 overflow-y-auto">
+              <div className="grid md:grid-cols-[1.1fr_1fr] gap-0 min-h-full">
+                {image && (
+                  <div className="relative bg-background hud-corners">
+                    <img
+                      src={image}
+                      alt={title}
+                      className="w-full h-64 md:h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background/80 via-transparent to-transparent" />
+                  </div>
+                )}
+                <motion.div
+                  animate={{
+                    x: isPanelVisible ? 0 : 500,
+                    opacity: isPanelVisible ? 1 : 0.1,
+                  }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className="p-6 md:p-10 lg:p-12"
+                >
+                  {eyebrow && (
+                    <div className="font-mono text-[10px] uppercase tracking-[0.4em] neon-text-cyan mb-3">
+                      {eyebrow}
+                    </div>
+                  )}
+                  <motion.h2
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15 }}
+                    className="font-display text-3xl md:text-5xl neon-text-violet leading-tight"
+                  >
+                    {title}
+                  </motion.h2>
 
-      {meta && meta.length > 0 && (
-        <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {meta.map((m) => (
-            <div key={m.label} className="border border-border p-3 bg-background/40">
-              <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                {m.label}
-              </div>
-              <div className="font-display text-base neon-text-cyan mt-1">
-                {m.value}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+                  {meta && meta.length > 0 && (
+                    <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                      {meta.map((m) => (
+                        <div key={m.label} className="border border-border p-3 bg-background/40">
+                          <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                            {m.label}
+                          </div>
+                          <div className="font-display text-base neon-text-cyan mt-1">
+                            {m.value}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
-      {/* Остальное содержимое (children, streamUrl, кнопка cta) — должно быть внутри motion.div */}
-      <div className="mt-6 space-y-6 text-sm leading-relaxed text-foreground/90">
-        {streamUrl ? (
-          <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4">
-            <iframe
-              src={`https://player.twitch.tv/?channel=${streamUrl.split('/').pop()}&parent=localhost&parent=cybereden.vercel.app`}
-              width="100%"
-              height="100%"
-              allowfullscreen
-              className="w-full h-full"
-            />
-          </div>
-        ) : (
-          children
-        )}
-      </div>
-
-      <div className="mt-8 sticky bottom-0">
-        <button className="w-full md:w-auto inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-display tracking-[0.25em] uppercase text-sm pulse-glow hover:brightness-110 transition">
-          {cta}
-        </button>
-      </div>
-    </motion.div>
-  </div>
-</div>
                   <div className="mt-6 space-y-6 text-sm leading-relaxed text-foreground/90">
-                    {/* Если есть streamUrl, показываем Twitch-плеер */}
                     {streamUrl ? (
                       <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4">
                         <iframe
@@ -186,7 +160,7 @@ export function ExpandedCardModal({
                       {cta}
                     </button>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
