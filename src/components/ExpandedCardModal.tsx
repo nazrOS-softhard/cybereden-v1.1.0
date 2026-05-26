@@ -28,30 +28,6 @@ export function ExpandedCardModal({
   children,
   streamUrl,
 }: Props) {
-  const [isPanelVisible, setIsPanelVisible] = useState(true);
-  const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
-
-  const resetHideTimer = () => {
-    setIsPanelVisible(true);
-    if (hideTimeout) clearTimeout(hideTimeout);
-    const newTimeout = setTimeout(() => {
-      setIsPanelVisible(false);
-    }, 5000);
-    setHideTimeout(newTimeout);
-  };
-
-  useEffect(() => {
-    if (!open) return;
-    resetHideTimer();
-    window.addEventListener("mousemove", resetHideTimer);
-    window.addEventListener("keydown", resetHideTimer);
-    return () => {
-      if (hideTimeout) clearTimeout(hideTimeout);
-      window.removeEventListener("mousemove", resetHideTimer);
-      window.removeEventListener("keydown", resetHideTimer);
-    };
-  }, [open]);
-
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -102,14 +78,7 @@ export function ExpandedCardModal({
                     <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background/80 via-transparent to-transparent" />
                   </div>
                 )}
-                <motion.div
-                  animate={{
-                    x: isPanelVisible ? 0 : 500,
-                    opacity: isPanelVisible ? 1 : 0.1,
-                  }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="p-6 md:p-10 lg:p-12"
-                >
+                <div className="p-6 md:p-10 lg:p-12">
                   {eyebrow && (
                     <div className="font-mono text-[10px] uppercase tracking-[0.4em] neon-text-cyan mb-3">
                       {eyebrow}
@@ -140,6 +109,7 @@ export function ExpandedCardModal({
                   )}
 
                   <div className="mt-6 space-y-6 text-sm leading-relaxed text-foreground/90">
+                    {/* Если есть streamUrl, показываем Twitch-плеер */}
                     {streamUrl ? (
                       <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4">
                         <iframe
@@ -160,7 +130,7 @@ export function ExpandedCardModal({
                       {cta}
                     </button>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </motion.div>
