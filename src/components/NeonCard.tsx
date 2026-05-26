@@ -40,7 +40,7 @@ export function NeonCard({ layoutId, onClick, image, eyebrow, title, meta, child
           <div className="font-display text-base leading-tight group-hover:neon-text-violet transition-colors">
             {title}
           </div>
-          {children && <div className="mt-2 text-xs text-muted-foreground">{children}</div>}
+          {children && <div className="mt-2 text-xs text-muted-foreground"><span>{children}</span></div>}
           {meta && (
             <div className="mt-3 font-mono text-xs neon-text-acid">{meta}</div>
           )}
