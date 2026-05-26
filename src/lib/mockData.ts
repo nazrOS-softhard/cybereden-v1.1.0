@@ -14,6 +14,9 @@ import clonfull from "@/assets/clonfull.png";
 import pin from "@/assets/pin.png";
 import pinfull from "@/assets/pinfull.png";
 
+// МЕРОПРИЯТИЯ ДЕПЫ
+import northPoster from "@/assets/north-event-poster.png";
+
 export type Sensor = { label: string; unit: string; value: number; min: number; max: number };
 export type Slider = { label: string; value: number; min: number; max: number; unit: string };
 
@@ -732,7 +735,7 @@ export const events: Event[] = [
 
   <!-- ИЗОБРАЖЕНИЕ -->
   <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #333;">
-    <img src="/north-event-poster.png" alt="Север зовёт" style="width: 100%; height: auto; display: block;" />
+   <img src="${northPoster}" alt="Север зовёт" style="width: 100%; height: auto; display: block;" />
   </div>
 
   <div style="text-align: center; margin-bottom: 30px;">
