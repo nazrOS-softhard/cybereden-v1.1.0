@@ -55,22 +55,22 @@ function EventsPage() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {filtered.map((e) => (
-          <NeonCard
-            key={e.id}
-            layoutId={`event-${e.id}`}
-            onClick={() => setOpenId(e.id)}
-            eyebrow={e.type}
-            title={e.title}
-            meta={`${e.date ? e.date + " · " : ""}${e.location}`}
-          >
-          {e.description
-  .replace(/<[^>]*>/g, '')
-  .replace(/\s+/g, ' ')
-  .trim()
-  .split(' ')
-  .slice(0, 10)
-  .join(' ') + '…'}
-          </NeonCard>
+         <NeonCard
+  key={e.id}
+  layoutId={`event-${e.id}-${type}`} // <--- ДОБАВИЛИ СУФФИКС ФИЛЬТРА
+  onClick={() => setOpenId(e.id)}
+  eyebrow={e.type}
+  title={e.title}
+  meta={`${e.date ? e.date + " · " : ""}${e.location}`}
+>
+  {e.description
+    .replace(/<[^>]*>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .split(' ')
+    .slice(0, 10)
+    .join(' ') + '…'}
+</NeonCard>
         ))}
       </div>
 
