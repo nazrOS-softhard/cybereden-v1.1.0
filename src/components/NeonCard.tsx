@@ -13,7 +13,7 @@ interface Props {
 
 export function NeonCard({ layoutId, onClick, image, eyebrow, title, meta, children }: Props) {
   return (
-    <motion.button
+    <button
       layoutId={layoutId}
       onClick={onClick}
       whileHover={{ y: -4 }}
@@ -46,6 +46,6 @@ export function NeonCard({ layoutId, onClick, image, eyebrow, title, meta, child
           )}
         </div>
       </div>
-    </motion.button>
+    </button>
   );
 }
