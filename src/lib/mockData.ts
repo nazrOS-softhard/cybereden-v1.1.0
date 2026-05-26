@@ -725,7 +725,7 @@ export const events: Event[] = [
   { id: "e19", title: "PORTAL", type: "ДЕПЫ", date: "", location: "Headquarters", description: "Визуальное ядро nazrOS. Интерфейсы, HUD-системы, motion-дизайн и цифровая типографика." },
   { id: "e20", title: "SIGNAL", type: "ДЕПЫ", date: "", location: "Broadcast Center", description: "Трансляции, цифровой журнал, медиа-среда и голос экосистемы nazrOS." },
  
-  { id: "e25",
+  { id: "e21",
   title: "PIRATE STATION",
   type: "ДЕПЫ",
   date: "31 октября",
@@ -798,8 +798,8 @@ export const events: Event[] = [
   { id: "e23", title: "CXEMA", type: "ДЕПЫ", date: "", location: "Hardware Division", description: "Серверные системы, сборка устройств, аппаратные платформы и инженерная инфраструктура." },
   { id: "e24", title: "LOSHADKA", type: "ДЕПЫ", date: "", location: "Philosophy Lab", description: "Архитектура мышления среды, протоколы взаимодействия и системная философия nazrOS." },
   { id: "e25", title: "TRIP", type: "ДЕПЫ", date: "", location: "Philosophy Lab", description: "Архитектура мышления среды, протоколы взаимодействия и системная философия nazrOS." },
-  { id: "e25", title: "GAMMA", type: "ДЕПЫ", date: "", location: "Philosophy Lab", description: "Архитектура мышления среды, протоколы взаимодействия и системная философия nazrOS." },
-  { id: "e25", title: "PRESENT PERFECT", type: "ДЕПЫ", date: "", location: "Philosophy Lab", description: "Архитектура мышления среды, протоколы взаимодействия и системная философия nazrOS." },
+  { id: "e26", title: "GAMMA", type: "ДЕПЫ", date: "", location: "Philosophy Lab", description: "Архитектура мышления среды, протоколы взаимодействия и системная философия nazrOS." },
+  { id: "e27", title: "PRESENT PERFECT", type: "ДЕПЫ", date: "", location: "Philosophy Lab", description: "Архитектура мышления среды, протоколы взаимодействия и системная философия nazrOS." },
 ];
 
 export type Cyber = { 
