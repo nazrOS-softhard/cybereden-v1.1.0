@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react"; // <--- ДОБАВЛЕНО
 import type { ReactNode } from "react";
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
   image?: string;
   cta: string;
   children?: ReactNode;
-  streamUrl?: string; // <--- ДОБАВЛЕНО
+  streamUrl?: string;
 }
 
 export function ExpandedCardModal({
@@ -26,8 +26,10 @@ export function ExpandedCardModal({
   image,
   cta,
   children,
-  streamUrl, // <--- ДОБАВЛЕНО
+  streamUrl,
 }: Props) {
+  const [isExpanded, setIsExpanded] = useState(true); // <--- ДОБАВЛЕНО
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -108,22 +110,33 @@ export function ExpandedCardModal({
                     </div>
                   )}
 
-                  <div className="mt-6 space-y-6 text-sm leading-relaxed text-foreground/90">
-                    {/* Если есть streamUrl, показываем Twitch-плеер */}
-                    {streamUrl ? (
-                      <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4">
-                        <iframe
-                          src={`https://player.twitch.tv/?channel=${streamUrl.split('/').pop()}&parent=localhost&parent=cybereden.vercel.app`}
-                          width="100%"
-                          height="100%"
-                          allowfullscreen
-                          className="w-full h-full"
-                        />
-                      </div>
-                    ) : (
-                      children
-                    )}
+                  <div className="mt-6">
+                    <button
+                      onClick={() => setIsExpanded(!isExpanded)}
+                      className="text-xs font-mono neon-text-cyan hover:underline"
+                    >
+                      {isExpanded ? '▲ Свернуть' : '▼ Развернуть'}
+                    </button>
                   </div>
+
+                  {isExpanded && (
+                    <div className="mt-6 space-y-6 text-sm leading-relaxed text-foreground/90">
+                      {/* Если есть streamUrl, показываем Twitch-плеер */}
+                      {streamUrl ? (
+                        <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4">
+                          <iframe
+                            src={`https://player.twitch.tv/?channel=${streamUrl.split('/').pop()}&parent=localhost&parent=cybereden.vercel.app`}
+                            width="100%"
+                            height="100%"
+                            allowfullscreen
+                            className="w-full h-full"
+                          />
+                        </div>
+                      ) : (
+                        children
+                      )}
+                    </div>
+                  )}
 
                   <div className="mt-8 sticky bottom-0">
                     <button className="w-full md:w-auto inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-display tracking-[0.25em] uppercase text-sm pulse-glow hover:brightness-110 transition">
