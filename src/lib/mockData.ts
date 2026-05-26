@@ -719,12 +719,79 @@ export const events: Event[] = [
 },
   
   // ДЕПЫ
-  { id: "e19", title: "Portal", type: "ДЕПЫ", date: "", location: "Headquarters", description: "Визуальное ядро nazrOS. Интерфейсы, HUD-системы, motion-дизайн и цифровая типографика." },
-  { id: "e20", title: "Signal", type: "ДЕПЫ", date: "", location: "Broadcast Center", description: "Трансляции, цифровой журнал, медиа-среда и голос экосистемы nazrOS." },
-  { id: "e21", title: "Pirate Station", type: "ДЕПЫ", date: "", location: "Tech HQ", description: "Разработка ядра платформы, backend-систем, инфраструктуры и цифровой логики." },
-  { id: "e22", title: "Black! Factory", type: "ДЕПЫ", date: "", location: "Experimental Lab", description: "Экспериментальные технологии, фантомные концепты и прототипирование будущих систем." },
+  { id: "e19", title: "PORTAL", type: "ДЕПЫ", date: "", location: "Headquarters", description: "Визуальное ядро nazrOS. Интерфейсы, HUD-системы, motion-дизайн и цифровая типографика." },
+  { id: "e20", title: "SIGNAL", type: "ДЕПЫ", date: "", location: "Broadcast Center", description: "Трансляции, цифровой журнал, медиа-среда и голос экосистемы nazrOS." },
+ 
+  { id: "e25",
+  title: "PIRATE STATION",
+  type: "ДЕПЫ",
+  date: "31 октября",
+  location: "VK Stadium · Москва",
+  description: `
+<div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
+
+  <div style="text-align: center; margin-bottom: 30px;">
+    <p style="font-size: 14px; color: #888; letter-spacing: 4px; text-transform: uppercase;">
+      Мир древних северных мифов вновь откроет врата.
+    </p>
+  </div>
+
+  <p style="font-size: 16px; margin-bottom: 20px; text-align: center;">
+    Тени арктических духов,<br />
+    холод неоновых огней,<br />
+    ритмы, пробуждающие древние механизмы памяти —<br />
+    всё это станет частью единого цифрового обряда.
+  </p>
+
+  <div style="border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 20px 0; margin: 20px 0; text-align: center; font-size: 18px; letter-spacing: 2px; color: #a855f7;">
+    ТРИ СЦЕНЫ. КУЛЬТОВЫЕ АРТИСТЫ. ТЫСЯЧИ СЕРДЕЦ, БЬЮЩИХСЯ В ОДНОМ РИТМЕ.
+  </div>
+
+  <p style="font-size: 16px; margin-bottom: 20px; text-align: center;">
+    Это больше, чем событие.<br />
+    Это — погружение в северную реальность,<br />
+    где шаманские мотивы переплетаются с индустриальным future-звучанием,<br />
+    а пространство превращается в живую систему.
+  </p>
+
+  <h3 style="font-size: 20px; color: #06b6d4; margin-top: 30px; border-bottom: 1px solid #333; padding-bottom: 8px;">
+    [ АТМОСФЕРА ]
+  </h3>
+
+  <ul style="padding-left: 20px; margin-bottom: 20px; list-style-type: none;">
+    <li style="margin-bottom: 6px;">→ северная этника</li>
+    <li style="margin-bottom: 6px;">→ мистические ритуалы</li>
+    <li style="margin-bottom: 6px;">→ арктический cyberpunk</li>
+    <li style="margin-bottom: 6px;">→ цифровые тотемы</li>
+    <li style="margin-bottom: 6px;">→ ледяные визуальные системы</li>
+    <li style="margin-bottom: 6px;">→ древние символы в неоне</li>
+  </ul>
+
+  <h3 style="font-size: 20px; color: #06b6d4; margin-top: 30px; border-bottom: 1px solid #333; padding-bottom: 8px;">
+    [ ЛОКАЦИЯ ]
+  </h3>
+
+  <div style="text-align: center; margin-bottom: 20px;">
+    <p style="font-size: 16px; font-weight: bold;">VK STADIUM</p>
+    <p style="font-size: 14px; color: #888;">МОСКВА</p>
+    <p style="font-size: 14px; color: #a855f7;">31 ОКТЯБРЯ 22:00 → ДО РАССВЕТА</p>
+  </div>
+
+  <div style="border-top: 1px solid #333; padding-top: 20px; margin-top: 20px; font-family: monospace; font-size: 12px; color: #22c55e; text-align: center;">
+    ◉ СЕВЕРНЫЙ ПРОТОКОЛ АКТИВИРОВАН<br />
+    ◉ ВРАТА ОТКРЫВАЮТСЯ<br />
+    ◉ СИНХРОНИЗАЦИЯ СТАНЦИИ ЗАПУЩЕНА
+  </div>
+
+</div>
+`
+},
+  { id: "e22", title: "BLACK! FACTORY", type: "ДЕПЫ", date: "", location: "Experimental Lab", description: "Экспериментальные технологии, фантомные концепты и прототипирование будущих систем." },
   { id: "e23", title: "CXEMA", type: "ДЕПЫ", date: "", location: "Hardware Division", description: "Серверные системы, сборка устройств, аппаратные платформы и инженерная инфраструктура." },
   { id: "e24", title: "LOSHADKA", type: "ДЕПЫ", date: "", location: "Philosophy Lab", description: "Архитектура мышления среды, протоколы взаимодействия и системная философия nazrOS." },
+  { id: "e25", title: "TRIP", type: "ДЕПЫ", date: "", location: "Philosophy Lab", description: "Архитектура мышления среды, протоколы взаимодействия и системная философия nazrOS." },
+  { id: "e25", title: "GAMMA", type: "ДЕПЫ", date: "", location: "Philosophy Lab", description: "Архитектура мышления среды, протоколы взаимодействия и системная философия nazrOS." },
+  { id: "e25", title: "PRESENT PERFECT", type: "ДЕПЫ", date: "", location: "Philosophy Lab", description: "Архитектура мышления среды, протоколы взаимодействия и системная философия nazrOS." },
 ];
 
 export type Cyber = { 
