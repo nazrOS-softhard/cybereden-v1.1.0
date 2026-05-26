@@ -176,12 +176,12 @@ function ProfilePage() {
           </div>
           <div className="mt-4 space-y-1.5 text-sm font-mono">
             <div className="flex justify-between">
-              <span className="text-muted-foreground">XP</span>
+              <span className="text-muted-foreground">ПХ</span>
               <span className="neon-text-cyan">482 300</span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Rank</span>
-              <span className="neon-text-violet">Архитектор</span>
+              <span className="neon-text-violet">Оператор</span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Joined</span>
@@ -322,7 +322,7 @@ function ProfilePage() {
                     <div className="font-display text-sm">{asset.name}</div>
                     <div className="font-mono text-xs text-muted-foreground">{asset.size}</div>
                   </div>
-                  <div className="font-mono text-xs neon-text-acid">+{asset.xp} XP</div>
+                  <div className="font-mono text-xs neon-text-acid">+{asset.xp} ПХ</div>
                 </div>
               ))}
               <label className="flex items-center justify-center gap-2 p-3 border-2 border-dashed border-border hover:border-neon-cyan transition cursor-pointer group">
@@ -359,7 +359,7 @@ function ProfilePage() {
                       <div className="font-display text-sm">{item.title}</div>
                       <div className="font-mono text-xs text-muted-foreground">{item.type}</div>
                     </div>
-                    <div className="font-mono text-xs neon-text-acid">+{item.xp} XP</div>
+                    <div className="font-mono text-xs neon-text-acid">+{item.xp} ПХ</div>
                   </div>
                   <div className="w-full bg-background/40 border border-border h-2">
                     <div
