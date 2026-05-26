@@ -101,7 +101,7 @@ function EventsPage() {
       {active.type !== "ДЕПЫ" && (
         <p className="text-muted-foreground">
           Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
-          +500 XP за участие.
+          +500 ПХ за участие.
         </p>
       )}
     </>
