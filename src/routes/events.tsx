@@ -85,17 +85,17 @@ function EventsPage() {
             : []
         }
       >
-        {active && (
-          <>
-            <p>{active.description}</p>
-            {active.type !== "ДЕПЫ" && (
-              <p className="text-muted-foreground">
-                Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
-                +500 XP за участие.
-              </p>
-            )}
-          </>
-        )}
+       {active && (
+  <>
+    <div dangerouslySetInnerHTML={{ __html: active.description }} />
+    {active.type !== "ДЕПЫ" && (
+      <p className="text-muted-foreground">
+        Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
+        +500 XP за участие.
+      </p>
+    )}
+  </>
+)}
       </ExpandedCardModal>
     </PageShell>
   );
