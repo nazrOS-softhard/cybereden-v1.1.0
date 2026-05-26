@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import type { ReactNode } from "react";
 
 interface Props {
@@ -69,12 +69,12 @@ export function ExpandedCardModal({
               <div className="grid md:grid-cols-[1.1fr_1fr] gap-0 min-h-full">
                 {image && (
                   <div className="relative bg-background hud-corners">
-                   <img
-  src={image}
-  alt={title}
-  className="w-full h-auto object-contain"
-  loading="lazy"
-/>
+                    <img
+                      src={image}
+                      alt={title}
+                      className="w-full h-auto object-contain"
+                      loading="lazy"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background/80 via-transparent to-transparent" />
                   </div>
                 )}
