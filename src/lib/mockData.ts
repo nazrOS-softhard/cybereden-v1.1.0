@@ -722,8 +722,10 @@ export const events: Event[] = [
 },
   
   // ДЕПЫ
-  { id: "e19", title: "PORTAL", type: "ДЕПЫ", date: "", location: "Headquarters", description: "Визуальное ядро nazrOS. Интерфейсы, HUD-системы, motion-дизайн и цифровая типографика." },
-  { id: "e20", title: "SIGNAL", type: "ДЕПЫ", date: "", location: "Broadcast Center", description: "Трансляции, цифровой журнал, медиа-среда и голос экосистемы nazrOS." },
+  { id: "e19", title: "PORTAL", type: "ДЕПЫ", date: "", location: "2026 · Москваа", description: "Визуальное ядро nazrOS. Интерфейсы, HUD-системы, motion-дизайн и цифровая типографика. «Портал 2030–2050» — главный фестиваль будущего в Москве. Событие соберет лучших ученых, футурологов, разработчиков и звезд электронной сцены. Гостей ждут интерактивные зоны, световые инсталляции и арт-объекты цифрового искусства. Пройдет в августе-сентябре в «Сколково» или «Москино». Вход свободный.
+
+" },
+  { id: "e20", title: "SIGNAL", type: "ДЕПЫ", date: "", location: "5 — 7 июня 2026 · Москваа", description: "Трансляции, цифровой журнал, медиа-среда и голос экосистемы nazrOS. Силуэты бетонных цехов,вспышки неонового пламени,вибрации, запускающие скрытые коды нашего сознания — каждая деталь сольется в масштабное технологическое таинство." },
  
   { id: "e21",
   title: "PIRATE STATION",
@@ -734,62 +736,13 @@ export const events: Event[] = [
 <div style="font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
 
   <!-- ИЗОБРАЖЕНИЕ -->
-  <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #333;">
-   <img src="${northPoster}" alt="Север зовёт" style="width: 100%; height: auto; display: block;" />
+  <div style="margin-bottom: 20px; border-radius: 8px; overflow: hidden; border: 1px solid #333;">
+    <img src="${northPoster}" alt="Север зовёт" style="width: 100%; height: auto; display: block;" />
   </div>
 
-  <div style="text-align: center; margin-bottom: 30px;">
-    <p style="font-size: 14px; color: #888; letter-spacing: 4px; text-transform: uppercase;">
-      Мир древних северных мифов вновь откроет врата.
-    </p>
-  </div>
-
-  <p style="font-size: 16px; margin-bottom: 20px; text-align: center;">
-    Тени арктических духов,<br />
-    холод неоновых огней,<br />
-    ритмы, пробуждающие древние механизмы памяти —<br />
-    всё это станет частью единого цифрового обряда.
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Мир древних северных мифов вновь откроет врата. Тени арктических духов, холод неоновых огней, ритмы, пробуждающие древние механизмы памяти — всё это станет частью единого цифрового обряда.
   </p>
-
-  <div style="border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 20px 0; margin: 20px 0; text-align: center; font-size: 18px; letter-spacing: 2px; color: #a855f7;">
-    ТРИ СЦЕНЫ. КУЛЬТОВЫЕ АРТИСТЫ. ТЫСЯЧИ СЕРДЕЦ, БЬЮЩИХСЯ В ОДНОМ РИТМЕ.
-  </div>
-
-  <p style="font-size: 16px; margin-bottom: 20px; text-align: center;">
-    Это больше, чем событие.<br />
-    Это — погружение в северную реальность,<br />
-    где шаманские мотивы переплетаются с индустриальным future-звучанием,<br />
-    а пространство превращается в живую систему.
-  </p>
-
-  <h3 style="font-size: 20px; color: #06b6d4; margin-top: 30px; border-bottom: 1px solid #333; padding-bottom: 8px;">
-    [ АТМОСФЕРА ]
-  </h3>
-
-  <ul style="padding-left: 20px; margin-bottom: 20px; list-style-type: none;">
-    <li style="margin-bottom: 6px;">→ северная этника</li>
-    <li style="margin-bottom: 6px;">→ мистические ритуалы</li>
-    <li style="margin-bottom: 6px;">→ арктический cyberpunk</li>
-    <li style="margin-bottom: 6px;">→ цифровые тотемы</li>
-    <li style="margin-bottom: 6px;">→ ледяные визуальные системы</li>
-    <li style="margin-bottom: 6px;">→ древние символы в неоне</li>
-  </ul>
-
-  <h3 style="font-size: 20px; color: #06b6d4; margin-top: 30px; border-bottom: 1px solid #333; padding-bottom: 8px;">
-    [ ЛОКАЦИЯ ]
-  </h3>
-
-  <div style="text-align: center; margin-bottom: 20px;">
-    <p style="font-size: 16px; font-weight: bold;">VK STADIUM</p>
-    <p style="font-size: 14px; color: #888;">МОСКВА</p>
-    <p style="font-size: 14px; color: #a855f7;">31 ОКТЯБРЯ 22:00 → ДО РАССВЕТА</p>
-  </div>
-
-  <div style="border-top: 1px solid #333; padding-top: 20px; margin-top: 20px; font-family: monospace; font-size: 12px; color: #22c55e; text-align: center;">
-    ◉ СЕВЕРНЫЙ ПРОТОКОЛ АКТИВИРОВАН<br />
-    ◉ ВРАТА ОТКРЫВАЮТСЯ<br />
-    ◉ СИНХРОНИЗАЦИЯ СТАНЦИИ ЗАПУЩЕНА
-  </div>
 
 </div>
 `
