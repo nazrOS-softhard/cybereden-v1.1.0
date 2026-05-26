@@ -296,7 +296,7 @@ function ProfilePage() {
               <div
                 className="flex items-center gap-2 cursor-pointer group flex-1"
                 onClick={() => setDatacenterOpen(true)}
-                title="Открыть DATACENTER"
+                title="Открыть ДАТАЦЕНТР"
               >
                 <Zap size={14} className="neon-text-cyan group-hover:neon-text-acid transition" />
                 <div className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">
@@ -306,10 +306,10 @@ function ProfilePage() {
               <button
                 onClick={() => setDatacenterOpen(true)}
                 className="flex items-center gap-1 text-[10px] neon-text-acid hover:neon-text-cyan transition uppercase tracking-widest"
-                title="Открыть DATACENTER"
+                title="Открыть ДАТАЦЕНТР"
               >
                 <Database size={12} />
-                DATACENTER
+                ДАТАЦЕНТР
               </button>
             </div>
             <div className="space-y-3">
