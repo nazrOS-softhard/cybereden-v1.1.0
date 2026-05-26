@@ -58,10 +58,10 @@ export function DatacenterModal({ open, onClose }: DatacenterModalProps) {
             <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-surface/80 backdrop-blur">
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-widest neon-text-cyan">
-                  DATACENTER
+                  Датацентр
                 </div>
                 <h2 className="font-display text-2xl neon-text-violet">
-                  Хранилище цифровых активов
+                  Хранилище цифровых активов / ЦОД
                 </h2>
               </div>
               <button
