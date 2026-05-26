@@ -728,7 +728,12 @@ export const events: Event[] = [
   date: "31 октября",
   location: "VK Stadium · Москва",
   description: `
-<div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
+<div style="font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
+
+  <!-- ИЗОБРАЖЕНИЕ -->
+  <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #333;">
+    <img src="/north-event-poster.jpg" alt="Север зовёт" style="width: 100%; height: auto; display: block;" />
+  </div>
 
   <div style="text-align: center; margin-bottom: 30px;">
     <p style="font-size: 14px; color: #888; letter-spacing: 4px; text-transform: uppercase;">
