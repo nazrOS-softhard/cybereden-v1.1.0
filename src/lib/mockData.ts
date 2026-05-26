@@ -1,10 +1,5 @@
 import rostn from "@/assets/rostn.jpg";
-import drone from "@/assets/item-drone.jpg";
-import visor from "@/assets/item-visor.jpg";
-import arm from "@/assets/item-arm.jpg";
 import rostnFull from "@/assets/rostn-full.png";
-
-// ДОБАВЛЕННЫЕ НОВЫЕ КАРТИНКИ (с маленькими n)
 import biohn from "@/assets/biohn.png";
 import biohnfull from "@/assets/biohnfull.png";
 import blan from "@/assets/blan.png";
@@ -16,6 +11,14 @@ import pinfull from "@/assets/pinfull.png";
 
 // МЕРОПРИЯТИЯ ДЕПЫ
 import northPoster from "@/assets/north-event-poster.png";
+
+// МЕРОПРИЯТИЯ ТРАНСЛЯЦИИ
+
+
+// МЕРОПРИЯТИЯ ТУРНИРЫ
+
+
+// МЕРОПРИЯТИЯ ХАКАТОНЫ
 
 export type Sensor = { label: string; unit: string; value: number; min: number; max: number };
 export type Slider = { label: string; value: number; min: number; max: number; unit: string };
@@ -125,90 +128,7 @@ export const items: Item[] = [
       { label: "Чувствительность", value: 65, min: 0, max: 100, unit: "%" },
     ],
   },
-  // --- СТАРЫЕ КАРТОЧКИ (остальные, без изменений) ---
-  {
-    id: "drone-vex",
-    name: "Дрон-разведчик VEX-02",
-    category: "Дроны",
-    price: 8900,
-    status: "low",
-    image: drone,
-    short: "Бесшумный микро-дрон со стелс-покрытием.",
-    description:
-      "Радиус автономной работы 14 км, тепловизор, активное шумоподавление и канал прямой передачи в HUD оператора. Идеален для разведки в плотной городской застройке.",
-    sensors: [
-      { label: "Батарея", unit: "%", value: 88, min: 0, max: 100 },
-      { label: "Высота", unit: "м", value: 120, min: 0, max: 500 },
-      { label: "Шум", unit: "дБ", value: 18, min: 0, max: 60 },
-    ],
-    sliders: [
-      { label: "Скорость", value: 40, min: 0, max: 120, unit: "км/ч" },
-      { label: "Стелс-режим", value: 70, min: 0, max: 100, unit: "%" },
-      { label: "Камера ISO", value: 800, min: 100, max: 6400, unit: "ISO" },
-    ],
-  },
-  {
-    id: "visor-aurora",
-    name: "AR-визор «Aurora»",
-    category: "Оптика",
-    price: 6400,
-    status: "in_stock",
-    image: visor,
-    short: "Голографический визор с трекингом глаз 240 Гц.",
-    description:
-      "Двухслойный OLED, обнаружение микро-саккад и адаптивный фокус. Поддерживает overlay-протокол nazrOS Glassware. Заряд: 14 ч активной работы.",
-    sensors: [
-      { label: "Яркость", unit: "нт", value: 1200, min: 100, max: 3000 },
-      { label: "Темп.", unit: "°C", value: 34, min: 20, max: 60 },
-      { label: "Заряд", unit: "%", value: 73, min: 0, max: 100 },
-    ],
-    sliders: [
-      { label: "Прозрачность HUD", value: 60, min: 0, max: 100, unit: "%" },
-      { label: "Контраст", value: 75, min: 0, max: 100, unit: "%" },
-      { label: "Refresh", value: 240, min: 60, max: 360, unit: "Гц" },
-    ],
-  },
-  {
-    id: "arm-vermillion",
-    name: "Кибер-протез «Vermillion»",
-    category: "Протезы",
-    price: 24800,
-    status: "preorder",
-    image: arm,
-    short: "Полноценная кибернетическая рука с тактильной обратной связью.",
-    description:
-      "Углеродный скелет, 32 микро-сервопривода, тактильный слой с разрешением 1 мм. Подключается к Neurochip X-9 без дополнительного драйвера.",
-    sensors: [
-      { label: "Усилие", unit: "Н", value: 220, min: 0, max: 800 },
-      { label: "Темп.", unit: "°C", value: 31, min: 20, max: 70 },
-      { label: "Калибровка", unit: "%", value: 96, min: 0, max: 100 },
-    ],
-    sliders: [
-      { label: "Сила хвата", value: 55, min: 0, max: 100, unit: "%" },
-      { label: "Скорость отклика", value: 80, min: 0, max: 100, unit: "%" },
-      { label: "Чувствительность", value: 65, min: 0, max: 100, unit: "%" },
-    ],
-  },
-  {
-    id: "ice-breaker-v2",
-    name: "ICE-breaker v2",
-    category: "Утилиты",
-    price: 3200,
-    status: "in_stock",
-    image: visor,
-    short: "Инструмент взлома защитных систем нового поколения.",
-    description:
-      "Портативная утилита для обхода ICE-защиты. Совместима с большинством систем nazrOS. Требует верификации уровня доступа.",
-    sensors: [
-      { label: "Эффективность", unit: "%", value: 92, min: 0, max: 100 },
-      { label: "Темп.", unit: "°C", value: 28, min: 20, max: 55 },
-      { label: "Заряд", unit: "%", value: 45, min: 0, max: 100 },
-    ],
-    sliders: [
-      { label: "Проникновение", value: 85, min: 0, max: 100, unit: "%" },
-      { label: "Скорость работы", value: 90, min: 0, max: 100, unit: "%" },
-    ],
-  },
+   // --- rostN ---
   {
     id: "dream-patch",
     name: "Dream patch",
@@ -226,62 +146,6 @@ export const items: Item[] = [
     ],
     sliders: [
       { label: "Глубина REM", value: 72, min: 0, max: 100, unit: "%" },
-    ],
-  },
-  {
-    id: "signal-booster",
-    name: "Signal Booster X",
-    category: "Коммуникации",
-    price: 2800,
-    status: "in_stock",
-    image: drone,
-    short: "Усилитель сигнала для трансляций и стримов.",
-    description:
-      "Компактный передатчик сигнала для прямых трансляций в среде nazrOS. Чистота канала 99.8%. Поддерживает адаптивное кодирование.",
-    sensors: [
-      { label: "Мощность", unit: "дБм", value: 28, min: 0, max: 40 },
-      { label: "Полоса пропускания", unit: "МГц", value: 40, min: 1, max: 100 },
-      { label: "КСВ", unit: "дБ", value: 1.2, min: 1, max: 3 },
-    ],
-    sliders: [
-      { label: "Усиление", value: 78, min: 0, max: 100, unit: "%" },
-    ],
-  },
-  {
-    id: "core-optimizer",
-    name: "Core Optimizer Pro",
-    category: "Системное ПО",
-    price: 4500,
-    status: "low",
-    image: arm,
-    short: "Профессиональный оптимизатор ядра операционной среды.",
-    description:
-      "Повышает производительность системы на 15-25%. Автоматическая оптимизация памяти, кэша и процессов. Требует прав администратора.",
-    sensors: [
-      { label: "Оптимизация", unit: "%", value: 85, min: 0, max: 100 },
-      { label: "Нагрузка ЦП", unit: "%", value: 12, min: 0, max: 100 },
-      { label: "Объём ОЗУ", unit: "ГБ", value: 2.4, min: 0, max: 8 },
-    ],
-    sliders: [
-      { label: "Агрессивность", value: 65, min: 0, max: 100, unit: "%" },
-    ],
-  },
-  {
-    id: "hud-skin-neon",
-    name: "HUD Skin: Neon Edition",
-    category: "Интерфейсы",
-    price: 890,
-    status: "in_stock",
-    image: visor,
-    short: "Кастомная скин для HUD-интерфейса в неоновом стиле.",
-    description:
-      "Визуальный пакет для переоформления HUD с неоновым эффектом. Совместима со всеми версиями Portal. Включает 12 цветовых схем.",
-    sensors: [
-      { label: "Производительность", unit: "%", value: 98, min: 0, max: 100 },
-      { label: "Эффект", unit: "слои", value: 8, min: 1, max: 16 },
-    ],
-    sliders: [
-      { label: "Яркость", value: 75, min: 0, max: 100, unit: "%" },
     ],
   },
 ];
