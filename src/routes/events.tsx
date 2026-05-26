@@ -57,7 +57,7 @@ function EventsPage() {
         {filtered.map((e) => (
           <NeonCard
             key={e.id}
-            layoutId={`event-${e.id}`}
+            // layoutId={`event-${e.id}`}
             onClick={() => setOpenId(e.id)}
             eyebrow={e.type}
             title={e.title}
