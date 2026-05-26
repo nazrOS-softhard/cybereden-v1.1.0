@@ -1,3 +1,5 @@
+
+// КАРТЫ УСТРОЙСТВ
 import rostn from "@/assets/rostn.jpg";
 import rostnFull from "@/assets/rostn-full.png";
 import biohn from "@/assets/biohn.png";
@@ -8,6 +10,13 @@ import clon from "@/assets/clon.png";
 import clonfull from "@/assets/clonfull.png";
 import pin from "@/assets/pin.png";
 import pinfull from "@/assets/pinfull.png";
+import vision from "@/assets/visionN.png";
+import visionfull from "@/assets/visionNfull.png";
+
+
+// КАРТЫ  СОФТА
+
+
 
 // МЕРОПРИЯТИЯ ДЕПЫ
 import northPoster from "@/assets/north-event-poster.png";
@@ -128,26 +137,28 @@ export const items: Item[] = [
       { label: "Чувствительность", value: 65, min: 0, max: 100, unit: "%" },
     ],
   },
-   // --- rostN ---
-  {
-    id: "dream-patch",
-    name: "Dream patch",
-    category: "Нейротехнологии",
-    price: 1200,
-    status: "in_stock",
-    image: rostn,
-    short: "Модуль записи и воспроизведения цифровых снов.",
-    description:
-      "Позволяет записывать, хранить и воспроизводить цифровые сны. Интегрируется с neurochip системами. Рекомендуется использовать с осторожностью.",
-    sensors: [
-      { label: "Запись", unit: "%", value: 78, min: 0, max: 100 },
-      { label: "Качество", unit: "бит", value: 256, min: 32, max: 512 },
-      { label: "Память", unit: "%", value: 34, min: 0, max: 100 },
-    ],
-    sliders: [
-      { label: "Глубина REM", value: 72, min: 0, max: 100, unit: "%" },
-    ],
-  },
+  // --- visioN ---
+{
+  id: "visionN",
+  name: "ВЗГЛЯДН",
+  category: "КИБЕР-ОПТИКА",
+  price: 15400,
+  status: "in_stock",
+  image: vision,
+  expandedImage: visionfull,
+  short: "Носимый визуальный интерфейс с системой цифрового анализа среды",
+  description:
+    "ВЗГЛЯДН — носимая система визуального анализа, предназначенная для расширения восприятия цифровой и физической среды. Устройство оснащено центральной камерой наблюдения с потоковой передачей и фиксацией данных, проекторами объёмной визуализации для построения HUD-интерфейсов, а также светодиодными лампами для адаптивной подсветки и сигнальной индикации.\n\nТехнические характеристики:\n• Камера: 4K / 60 FPS\n• Проекция: Holographic HUD\n• Подсветка: Adaptive LED\n• Подключение: nazrOS LINK / Bluetooth 5.3\n• Аккумулятор: Энергия КиберэдэН\n• Защита: IP67 / -40°C ~ +49°C\n• Вес: 68 грамм\n\nВозможности:\n• Дополненная реальность\n• Цифровые интерфейсы поверх среды\n• Запись и анализ объектов\n• Навигация в тёмных пространствах\n• Интеграция с экосистемой nazrOS\n• Подключение к КиберэдэН",
+  sensors: [
+    { label: "Оптическая мощность", unit: "дБм", value: 28, min: 0, max: 40 },
+    { label: "Температура сенсора", unit: "°C", value: 34, min: 20, max: 60 },
+    { label: "Заряд батареи", unit: "%", value: 73, min: 0, max: 100 },
+  ],
+  sliders: [
+    { label: "Яркость HUD", value: 60, min: 0, max: 100, unit: "%" },
+    { label: "Контрастность", value: 75, min: 0, max: 100, unit: "%" },
+  ],
+},
 ];
 
 export type Article = {
