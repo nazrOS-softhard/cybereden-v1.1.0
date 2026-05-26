@@ -185,7 +185,7 @@ function ProfilePage() {
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Joined</span>
-              <span>12.03.2089</span>
+              <span>01.02.2022</span>
             </div>
           </div>
         </motion.div>
