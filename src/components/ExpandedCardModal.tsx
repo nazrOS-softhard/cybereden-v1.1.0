@@ -28,6 +28,30 @@ export function ExpandedCardModal({
   children,
   streamUrl,
 }: Props) {
+  const [isPanelVisible, setIsPanelVisible] = useState(true);
+  const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  const resetHideTimer = () => {
+    setIsPanelVisible(true);
+    if (hideTimeout) clearTimeout(hideTimeout);
+    const newTimeout = setTimeout(() => {
+      setIsPanelVisible(false);
+    }, 5000);
+    setHideTimeout(newTimeout);
+  };
+
+  useEffect(() => {
+    if (!open) return;
+    resetHideTimer();
+    window.addEventListener("mousemove", resetHideTimer);
+    window.addEventListener("keydown", resetHideTimer);
+    return () => {
+      if (hideTimeout) clearTimeout(hideTimeout);
+      window.removeEventListener("mousemove", resetHideTimer);
+      window.removeEventListener("keydown", resetHideTimer);
+    };
+  }, [open]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
