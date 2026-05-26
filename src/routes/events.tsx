@@ -74,35 +74,39 @@ function EventsPage() {
         ))}
       </div>
 
-      <ExpandedCardModal
-        open={!!active}
-        layoutId={active ? `event-${active.id}` : "_"}
-        onClose={() => setOpenId(null)}
-        eyebrow={active?.type}
-        title={active?.title ?? ""}
-        cta={t("events.cta")}
-        meta={
-          active
-            ? [
-                { label: "Тип", value: active.type },
-                { label: "Дата", value: active.date || "Постоянно" },
-                { label: "Локация", value: active.location },
-              ]
-            : []
-        }
-      >
-        {active && (
-          <>
-            <div dangerouslySetInnerHTML={{ __html: active.description }} />
-            {active.type !== "ДЕПЫ" && (
-              <p className="text-muted-foreground">
-                Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
-                +500 XP за участие.
-              </p>
-            )}
-          </>
-        )}
-      </ExpandedCardModal>
+    <ExpandedCardModal
+  open={!!active}
+  layoutId={active ? `event-${active.id}` : "_"}
+  onClose={() => setOpenId(null)}
+  eyebrow={active?.type}
+  title={active?.title ?? ""}
+  cta={t("events.cta")}
+  streamUrl={active?.streamUrl} // <--- ДОБАВЛЕНО
+  meta={
+    active
+      ? [
+          { label: "Тип", value: active.type },
+          { label: "Дата", value: active.date || "Постоянно" },
+          { label: "Локация", value: active.location },
+        ]
+      : []
+  }
+>
+  {active && (
+    <>
+      {/* Если streamUrl есть, Twitch-плеер отобразится внутри ExpandedCardModal */}
+      {!active.streamUrl && (
+        <div dangerouslySetInnerHTML={{ __html: active.description }} />
+      )}
+      {active.type !== "ДЕПЫ" && (
+        <p className="text-muted-foreground">
+          Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
+          +500 XP за участие.
+        </p>
+      )}
+    </>
+  )}
+</ExpandedCardModal>
     </PageShell>
   );
 }
