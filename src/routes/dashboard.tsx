@@ -119,7 +119,7 @@ function DashboardPage() {
                 {c.rank}
               </div>
               <div className="font-mono text-xs neon-text-cyan text-right">
-                {c.xp.toLocaleString("ru-RU")} XP
+                {c.xp.toLocaleString("ru-RU")} ПХ
               </div>
               <div
                 className={`font-mono text-[10px] uppercase tracking-widest text-right ${statusColor[c.status]}`}
