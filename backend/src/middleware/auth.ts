@@ -1,6 +1,6 @@
-import { Context, User } from '@types/index';
-import { verifyJWT, extractBearerToken } from '@lib/auth';
-import { getUserById } from '@lib/db';
+import { Context, User } from '../types/index.js';
+import { verifyJWT, extractBearerToken } from '../lib/auth.js';
+import { getUserById } from '../lib/db.js';
 
 // ==================== AUTH MIDDLEWARE ====================
 export async function authMiddleware(context: Context): Promise<void> {
