@@ -1,6 +1,6 @@
-import { Context } from '@types/index';
-import { getUserById, getUserProfile, getTopUsers, updateUser, getXPLogs } from '@lib/db';
-import { HTTPException, createCORSResponse, requireAuth } from '@middleware/auth';
+import { Context } from '../types/index';
+import { getUserById, getUserProfile, getTopUsers, updateUser, getXPLogs } from '../lib/db';
+import { HTTPException, createCORSResponse, requireAuth } from '../middleware/auth';
 
 // ==================== GET PROFILE ====================
 export async function getProfileHandler(context: Context): Promise<Response> {
