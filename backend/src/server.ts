@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { supabase } from './lib/supabaseClient'; // ─── ИСПРАВЛЕНО: импорт из изолированного клиента
+import knowledgeRouter from './routes/knowledge';
 
 import authRouter    from './routes/auth';
 import uploadRouter  from './routes/upload';
@@ -32,6 +33,7 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api/knowledge', knowledgeRouter);
 
 // ─── Health check ─────────────────────────────────────────────────────────────
 const REQUIRED_ENV = [
