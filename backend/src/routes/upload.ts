@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import multer from 'multer';
-import { supabase } from '../server';
+import { supabase } from '../lib/supabaseClient'; // <--- ИСПРАВЛЕНО (было ../server)
 import { authMiddleware } from '../middleware/auth';
 
 const router = Router();
