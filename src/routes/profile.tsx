@@ -36,12 +36,12 @@ const accounts = [
 ];
 
 const inventory = [
-  { name: "Neurochip X-9", tier: "S" },
-  { name: "VEX-02", tier: "A" },
-  { name: "Aurora visor", tier: "A" },
-  { name: "Vermillion arm", tier: "S" },
-  { name: "ICE-breaker v2", tier: "B" },
-  { name: "Dream patch", tier: "C" },
+  { name: "cloN-001", tier: "S" },
+  { name: "rostN-001", tier: "A" },
+  { name: "piN-001", tier: "B" },
+  { name: "visioN-001", tier: "S" },
+  { name: "blaN-001", tier: "B" },
+  { name: "biohN-001", tier: "A" },
 ];
 
 const achievements = [
