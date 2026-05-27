@@ -347,3 +347,5 @@ function getXPForLevel(level: number): number {
 
   return totalXP;
 }
+
+export default router;
