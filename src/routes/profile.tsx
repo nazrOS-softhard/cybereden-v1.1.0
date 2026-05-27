@@ -81,12 +81,20 @@ function ProfilePage() {
     }
 
     const formData = new FormData();
-    formData.append("avatar", file);
+    formData.append("avatar", file); // Название поля совпадает с upload.single('avatar') на бэке
     formData.append("userId", userId);
 
     try {
-      const response = await fetch("https://cybereden-v1-1-0.vercel.app/api/user/avatar", {
+      // Достаем токен авторизации из хранилища (измени ключ, если он называется иначе, например 'nazros_token')
+      const token = localStorage.getItem("token");
+
+      // ИСПРАВЛЕНО: Изменен путь с /api/user/avatar на /api/upload/avatar согласно вашему upload.ts бэкенда
+      const response = await fetch("https://cybereden-v1-1-0.vercel.app/api/upload/avatar", {
         method: "POST",
+        headers: {
+          ...(token ? { "Authorization": `Bearer ${token}` } : {}),
+          // Content-Type указывать НЕ НАДО, браузер сам выставит multipart/form-data с нужным boundary
+        },
         body: formData,
       });
 
@@ -96,7 +104,7 @@ function ProfilePage() {
         // Устанавливаем полученную публичную ссылку из Supabase бакета
         setAvatarPreview(data.avatarUrl);
       } else {
-        alert(`Ошибка при сохранении аватара: ${data.error}`);
+        alert(`Ошибка при сохранении аватара: ${data.error || "Неизвестная ошибка"}`);
       }
     } catch (error) {
       console.error("Ошибка отправки аватара:", error);
