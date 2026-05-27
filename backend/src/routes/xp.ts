@@ -1,6 +1,6 @@
-import { Context } from '../types/index';
-import { addXP, getXPLogs, getUserById } from '../lib/db';
-import { HTTPException, createCORSResponse, requireAuth } from '../middleware/auth';
+import { Context } from '../types/index.js';
+import { addXP, getXPLogs, getUserById } from '../lib/db.js';
+import { HTTPException, createCORSResponse, requireAuth } from '../middleware/auth.js';
 
 // ==================== ADD XP ====================
 export async function addXPHandler(context: Context): Promise<Response> {
