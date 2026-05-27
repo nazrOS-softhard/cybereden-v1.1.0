@@ -1,32 +1,13 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { supabase } from './lib/supabaseClient'; // ─── ИСПРАВЛЕНО: импорт из изолированного клиента
 
 import authRouter    from './routes/auth';
 import uploadRouter  from './routes/upload';
 import profileRouter from './routes/profile';
 
 dotenv.config();
-
-// ─── Supabase: безопасная инициализация ───────────────────────────────────────
-// Не бросаем исключение при отсутствии env — функция остаётся живой,
-// /health покажет какие переменные отсутствуют.
-const SUPABASE_URL = process.env.SUPABASE_URL ?? '';
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY ?? '';
-
-export let supabase: SupabaseClient;
-
-try {
-  if (!SUPABASE_URL || !SUPABASE_KEY) {
-    throw new Error('SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is not set');
-  }
-  supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-} catch (e: any) {
-  console.error('[Supabase Init Error]', e.message);
-  // Создаём заглушку чтобы функция не падала при импорте модуля
-  supabase = {} as SupabaseClient;
-}
 
 // ─── Express ──────────────────────────────────────────────────────────────────
 const app = express();
@@ -53,7 +34,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ─── Health check ─────────────────────────────────────────────────────────────
-// Всегда отвечает 200 — показывает статус конфигурации и БД
 const REQUIRED_ENV = [
   'SUPABASE_URL',
   'SUPABASE_SERVICE_ROLE_KEY',
