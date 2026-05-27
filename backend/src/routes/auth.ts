@@ -252,3 +252,5 @@ export async function refreshTokenHandler(context: Context): Promise<Response> {
     );
   }
 }
+
+export default router;
