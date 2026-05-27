@@ -69,9 +69,6 @@ function ProfilePage() {
   // Используем валидный формат UUID, чтобы Supabase (PostgreSQL) не ругался на тип данных
   const userId = "6a2f7412-8724-4632-9df7-0245a4b7d142";
 
-  // Временный ID для тестов (замените на динамический из вашего Auth Context, когда подключите сессии)
-  const userId = "4a82"; 
-
   // Интеграция с бэкендом Vercel + Supabase Storage
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
