@@ -112,22 +112,13 @@ export function ExpandedCardModal({
                     {/* Если есть streamUrl, показываем Twitch-плеер */}
                     {streamUrl ? (
                       <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4">
-            <iframe
-  src={`https://player.twitch.tv/?channel=${streamUrl.split('/').pop()}&parent=cybereden.vercel.app&autoplay=true`}
+          <iframe
+  src={`https://player.twitch.tv/?channel=${streamUrl.split('/').pop()}&parent=cybereden-git-main-nazr-os-s-projects.vercel.app`}
   width="100%"
   height="100%"
   allow="autoplay; fullscreen"
   allowfullscreen
   className="w-full h-full"
-  onLoad={() => {
-    // Попытка запустить плеер через JS
-    setTimeout(() => {
-      const iframe = document.querySelector('iframe');
-      if (iframe) {
-        iframe.contentWindow?.postMessage('{"method":"play","params":[]}', '*');
-      }
-    }, 100);
-  }}
 />
                       </div>
                     ) : (
