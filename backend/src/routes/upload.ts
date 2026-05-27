@@ -1,7 +1,7 @@
-import { Context, UploadResponse } from '@types/index';
-import { uploadAvatar, uploadAsset, validateFileSize, validateFileType, getFileSize } from '@lib/storage';
-import { createAsset, updateUser, addXP } from '@lib/db';
-import { HTTPException, createCORSResponse, requireAuth, getClientIP } from '@middleware/auth';
+import { Context, UploadResponse } from '../types/index';
+import { uploadAvatar, uploadAsset, validateFileSize, validateFileType, getFileSize } from '../lib/storage';
+import { createAsset, updateUser, addXP } from '../lib/db';
+import { HTTPException, createCORSResponse, requireAuth, getClientIP } from '../middleware/auth';
 
 // ==================== MAX FILE SIZES ====================
 const MAX_AVATAR_SIZE = 10 * 1024 * 1024; // 10MB
