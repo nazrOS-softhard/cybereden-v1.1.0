@@ -1,16 +1,15 @@
 {
-  "name": "cybereden-backend",
+  "name": "backend",
   "version": "1.0.0",
   "type": "module",
-  "main": "dist/server.js",
+  "main": "src/server.ts",
   "engines": {
-    "node": "24.x"
+    "node": "22.x"
   },
   "scripts": {
     "build": "tsc",
-  "vercel-build": "tsc",
-  "start": "node dist/server.js",
-  "dev": "ts-node src/server.ts"
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts"
   },
   "dependencies": {
     "express": "^4.18.2",
@@ -26,10 +25,4 @@
     "@types/node": "^20.10.0",
     "tsx": "^4.1.0"
   }
-}
-"scripts": {
-  "build": "tsc",
-  "vercel-build": "tsc",
-  "start": "node dist/server.js",
-  "dev": "ts-node src/server.ts"
 }
