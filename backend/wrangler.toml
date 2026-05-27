@@ -20,8 +20,8 @@ vars = { ENVIRONMENT = "production", API_URL = "https://api.cybereden.com" }
 [[d1_databases]]
 binding = "DB"
 database_name = "cybereden-db"
-database_id = "REPLACE_WITH_YOUR_D1_ID"
-preview_database_id = "REPLACE_WITH_YOUR_PREVIEW_ID"
+database_id = "1e1c153e-9c2e-41cd-96e2-8d57fa835957"
+preview_database_id = "1e1c153e-9c2e-41cd-96e2-8d57fa835957"
 
 [[r2_buckets]]
 binding = "R2_AVATARS"
@@ -35,8 +35,8 @@ preview_bucket_name = "cybereden-assets-preview"
 
 [[kv_namespaces]]
 binding = "AUTH_CACHE"
-id = "REPLACE_WITH_YOUR_KV_ID"
-preview_id = "REPLACE_WITH_YOUR_KV_PREVIEW_ID"
+id = "fa9618cd62a447678c1841ef37181f8e"
+preview_id = "fa9618cd62a447678c1841ef37181f8e"
 
 [vars]
 GITHUB_CLIENT_ID = "your_github_client_id"
