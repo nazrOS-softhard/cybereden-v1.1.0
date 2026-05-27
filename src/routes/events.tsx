@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { PageShell } from "@/components/PageShell";
 import { NeonCard } from "@/components/NeonCard";
 import { ExpandedCardModal } from "@/components/ExpandedCardModal";
@@ -24,12 +24,41 @@ function EventsPage() {
   const { t } = useI18n();
   const [type, setType] = useState<(typeof types)[number]>("ВСЕ");
   const [openId, setOpenId] = useState<string | null>(null);
+  const [hostname, setHostname] = useState<string>("");
+
+  // Получаем hostname на клиенте, чтобы избежать ошибок гидратации при SSR
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setHostname(window.location.hostname);
+    }
+  }, []);
+
   const active = events.find((e) => e.id === openId) ?? null;
 
   const filtered = useMemo(
     () => (type === "ВСЕ" ? events : events.filter((e) => e.type === type)),
     [type],
   );
+
+  // Модифицируем Twitch URL, динамически добавляя обязательный параметр parent
+  const safeStreamUrl = useMemo(() => {
+    if (!active?.streamUrl) return undefined;
+    
+    try {
+      const url = new URL(active.streamUrl);
+      if (url.hostname.includes("twitch.tv") && hostname) {
+        url.searchParams.set("parent", hostname);
+      }
+      return url.toString();
+    } catch {
+      // Если в mockData лежит относительная строка или битый URL, добавляем parent вручную
+      if (hostname) {
+        const separator = active.streamUrl.includes("?") ? "&" : "?";
+        return `${active.streamUrl}${separator}parent=${hostname}`;
+      }
+      return active.streamUrl;
+    }
+  }, [active?.streamUrl, hostname]);
 
   return (
     <PageShell
@@ -57,7 +86,6 @@ function EventsPage() {
         {filtered.map((e) => (
           <NeonCard
             key={e.id}
-            // layoutId={`event-${e.id}`}
             onClick={() => setOpenId(e.id)}
             eyebrow={e.type}
             title={e.title}
@@ -74,39 +102,38 @@ function EventsPage() {
         ))}
       </div>
 
-    <ExpandedCardModal
-  open={!!active}
-  layoutId={active ? `event-${active.id}` : "_"}
-  onClose={() => setOpenId(null)}
-  eyebrow={active?.type}
-  title={active?.title ?? ""}
-  cta={t("events.cta")}
-  streamUrl={active?.streamUrl} // <--- ДОБАВЛЕНО
-  meta={
-    active
-      ? [
-          { label: "Тип", value: active.type },
-          { label: "Дата", value: active.date || "Постоянно" },
-          { label: "Локация", value: active.location },
-        ]
-      : []
-  }
->
-  {active && (
-    <>
-      {/* Если streamUrl есть, Twitch-плеер отобразится внутри ExpandedCardModal */}
-      {!active.streamUrl && (
-        <div dangerouslySetInnerHTML={{ __html: active.description }} />
-      )}
-      {active.type !== "ДЕПЫ" && (
-        <p className="text-muted-foreground">
-          Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
-          +500 ПХ за участие.
-        </p>
-      )}
-    </>
-  )}
-</ExpandedCardModal>
+      <ExpandedCardModal
+        open={!!active}
+        layoutId={active ? `event-${active.id}` : "_"}
+        onClose={() => setOpenId(null)}
+        eyebrow={active?.type}
+        title={active?.title ?? ""}
+        cta={t("events.cta")}
+        streamUrl={safeStreamUrl} // Ипользуем безопасный URL с параметром parent
+        meta={
+          active
+            ? [
+                { label: "Тип", value: active.type },
+                { label: "Дата", value: active.date || "Постоянно" },
+                { label: "Локация", value: active.location },
+              ]
+            : []
+        }
+      >
+        {active && (
+          <>
+            {!active.streamUrl && (
+              <div dangerouslySetInnerHTML={{ __html: active.description }} />
+            )}
+            {active.type !== "ДЕПЫ" && (
+              <p className="text-muted-foreground">
+                Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
+                +500 ПХ за участие.
+              </p>
+            )}
+          </>
+        )}
+      </ExpandedCardModal>
     </PageShell>
   );
 }
