@@ -1,62 +1,124 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-import authRouter   from './routes/auth';
-import uploadRouter from './routes/upload';
+import authRouter    from './routes/auth';
+import uploadRouter  from './routes/upload';
 import profileRouter from './routes/profile';
 
 dotenv.config();
 
-// 1. Безопасное извлечение переменных окружения
-const supabaseUrl = process.env.SUPABASE_URL || '';
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+// ─── Supabase: безопасная инициализация ───────────────────────────────────────
+// Не бросаем исключение при отсутствии env — функция остаётся живой,
+// /health покажет какие переменные отсутствуют.
+const SUPABASE_URL = process.env.SUPABASE_URL ?? '';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY ?? '';
 
-if (!supabaseUrl || !supabaseKey) {
-  console.error('❌ КРИТИЧЕСКАЯ ОШИБКА: В настройках Vercel не заданы SUPABASE_URL или SUPABASE_SERVICE_ROLE_KEY!');
+export let supabase: SupabaseClient;
+
+try {
+  if (!SUPABASE_URL || !SUPABASE_KEY) {
+    throw new Error('SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is not set');
+  }
+  supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+} catch (e: any) {
+  console.error('[Supabase Init Error]', e.message);
+  // Создаём заглушку чтобы функция не падала при импорте модуля
+  supabase = {} as SupabaseClient;
 }
 
-// Экспортируем supabase, чтобы файлы из папки routes могли его импортировать
-export const supabase = createClient(supabaseUrl, supabaseKey);
-
+// ─── Express ──────────────────────────────────────────────────────────────────
 const app = express();
 
-// 2. Настройка CORS (разрешаем фронтенду слать запросы)
-const allowedOrigins = process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : '*';
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true
-}));
+// ─── CORS ─────────────────────────────────────────────────────────────────────
+const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173')
+  .split(',')
+  .map((o) => o.trim());
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
+        callback(null, true);
+      } else {
+        callback(new Error(`Origin ${origin} not allowed by CORS`));
+      }
+    },
+    credentials: true,
+  })
+);
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// 3. Эндпоинт проверки работоспособности бэкенда
-app.get('/health', (req: Request, res: Response) => {
-  res.status(200).json({ 
-    status: 'healthy', 
-    database: supabaseUrl ? 'connected' : 'missing_credentials' 
-  });
+// ─── Health check ─────────────────────────────────────────────────────────────
+// Всегда отвечает 200 — показывает статус конфигурации и БД
+const REQUIRED_ENV = [
+  'SUPABASE_URL',
+  'SUPABASE_SERVICE_ROLE_KEY',
+  'JWT_SECRET',
+  'GITHUB_CLIENT_ID',
+  'GITHUB_CLIENT_SECRET',
+  'TWITCH_CLIENT_ID',
+  'TWITCH_CLIENT_SECRET',
+  'API_URL',
+  'FRONTEND_URL',
+];
+
+app.get('/health', async (_req: Request, res: Response) => {
+  const missing = REQUIRED_ENV.filter((k) => !process.env[k]);
+
+  if (missing.length > 0) {
+    return res.status(200).json({
+      status: 'degraded',
+      database: 'not_configured',
+      missing_env: missing,
+      fix: 'Add these variables to Vercel Dashboard → Settings → Environment Variables',
+      timestamp: new Date().toISOString(),
+    });
+  }
+
+  try {
+    const { error } = await supabase.from('users').select('count').limit(1);
+    res.status(200).json({
+      status: 'healthy',
+      database: error ? `error: ${error.message}` : 'connected',
+      timestamp: new Date().toISOString(),
+    });
+  } catch (err: any) {
+    res.status(200).json({
+      status: 'degraded',
+      database: `error: ${err.message}`,
+      timestamp: new Date().toISOString(),
+    });
+  }
 });
 
-// 4. Подключение роутов приложения
-app.use('/api/auth', authRouter);
-app.use('/api/upload', uploadRouter);
+// ─── Роуты ────────────────────────────────────────────────────────────────────
+app.use('/api/auth',    authRouter);
+app.use('/api/upload',  uploadRouter);
 app.use('/api/profile', profileRouter);
 
-// 5. Глобальный перехватчик ошибок (чтобы сервер не падал намертво при сбоях)
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.error('💥 Произошла ошибка внутри Express:', err.message || err);
-  res.status(500).json({ error: 'Internal Server Error', details: err.message });
+// ─── 404 ─────────────────────────────────────────────────────────────────────
+app.use((_req: Request, res: Response) => {
+  res.status(404).json({ error: 'Route not found' });
 });
 
-// 6. Условие для локального запуска (на Vercel этот блок автоматически игнорируется)
+// ─── Глобальный обработчик ошибок ─────────────────────────────────────────────
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+  console.error('[Server Error]', err.message);
+  res.status(500).json({ error: err.message || 'Internal server error' });
+});
+
+// ─── Локальный запуск (Vercel использует export default) ──────────────────────
 if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 5000;
+  const PORT = process.env.PORT || 3001;
   app.listen(PORT, () => {
-    console.log(`🚀 Сервер успешно запущен локально на порту ${PORT}`);
+    console.log(`\n✅  CyberEden backend: http://localhost:${PORT}`);
+    console.log(`    GET /health — статус`);
   });
 }
 
-// Критически важно для сборщика @vercel/node
 export default app;
