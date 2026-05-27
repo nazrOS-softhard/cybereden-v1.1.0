@@ -384,3 +384,6 @@ export async function getMyProfileHandler(context: Context): Promise<Response> {
     );
   }
 }
+
+
+export default router;
