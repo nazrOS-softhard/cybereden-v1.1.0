@@ -3,6 +3,13 @@ import cors from 'cors';
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
 
+// Импорты роутов
+import authRoutes from './routes/auth.js';
+import uploadRoutes from './routes/upload.js';
+import assetsRoutes from './routes/assets.js';
+import profileRoutes from './routes/profile.js';
+import xpRoutes from './routes/xp.js';
+
 // Загружаем environment переменные
 dotenv.config();
 
@@ -51,69 +58,11 @@ app.get('/test', (req, res) => {
 });
 
 // ==================== API ROUTES ====================
-
-// Auth routes
-app.post('/auth/github', (req, res) => {
-  res.json({ message: 'GitHub auth endpoint', status: 'not implemented yet' });
-});
-
-app.post('/auth/twitch', (req, res) => {
-  res.json({ message: 'Twitch auth endpoint', status: 'not implemented yet' });
-});
-
-app.get('/auth/me', (req, res) => {
-  res.json({ message: 'Get current user', status: 'not implemented yet' });
-});
-
-// Upload routes
-app.post('/upload/avatar', (req, res) => {
-  res.json({ message: 'Avatar upload', status: 'not implemented yet' });
-});
-
-app.post('/upload/asset', (req, res) => {
-  res.json({ message: 'Asset upload', status: 'not implemented yet' });
-});
-
-// Assets routes
-app.get('/assets', (req, res) => {
-  res.json({
-    message: 'List assets',
-    status: 'not implemented yet',
-    assets: [],
-  });
-});
-
-app.get('/assets/:id', (req, res) => {
-  res.json({ message: `Get asset ${req.params.id}`, status: 'not implemented yet' });
-});
-
-// Profile routes
-app.get('/profile', (req, res) => {
-  res.json({ message: 'Get my profile', status: 'not implemented yet' });
-});
-
-app.get('/profile/:userId', (req, res) => {
-  res.json({
-    message: `Get profile for user ${req.params.userId}`,
-    status: 'not implemented yet',
-  });
-});
-
-// XP routes
-app.get('/xp/leaderboard', (req, res) => {
-  res.json({ message: 'Get XP leaderboard', status: 'not implemented yet', leaderboard: [] });
-});
-
-app.get('/stats', (req, res) => {
-  res.json({
-    message: 'Get platform stats',
-    status: 'not implemented yet',
-    stats: {
-      totalUsers: 0,
-      totalAssets: 0,
-    },
-  });
-});
+app.use('/auth', authRoutes);
+app.use('/upload', uploadRoutes);
+app.use('/assets', assetsRoutes);
+app.use('/profile', profileRoutes);
+app.use('/xp', xpRoutes);
 
 // ==================== 404 HANDLER ====================
 app.use((req, res) => {
