@@ -1,6 +1,6 @@
-import { Router, IRequest } from 'itty-router';
-import { Context, Env } from '@types/index';
-import { authMiddleware, handleError, HTTPException, createCORSResponse } from '@middleware/auth';
+import { Router } from 'itty-router';
+import { Context, Env } from './types/index';
+import { authMiddleware, handleError, HTTPException, createCORSResponse } from './middleware/auth';
 
 // Import route handlers
 import {
@@ -9,14 +9,14 @@ import {
   logoutHandler,
   getCurrentUserHandler,
   refreshTokenHandler,
-} from '@routes/auth';
+} from './routes/auth';
 
 import {
   uploadAvatarHandler,
   uploadAssetHandler,
   deleteAssetHandler,
   downloadAssetHandler,
-} from '@routes/upload';
+} from './routes/upload';
 
 import {
   getAssetsHandler,
@@ -24,7 +24,7 @@ import {
   getMyAssetsHandler,
   getAssetHandler,
   updateAssetVisibilityHandler,
-} from '@routes/assets';
+} from './routes/assets';
 
 import {
   getProfileHandler,
@@ -33,7 +33,7 @@ import {
   searchUsersHandler,
   getUserStatsHandler,
   getMyProfileHandler,
-} from '@routes/profile';
+} from './routes/profile';
 
 import {
   addXPHandler,
@@ -41,10 +41,10 @@ import {
   getXPLeaderboardHandler,
   getUserLevelHandler,
   getStatsHandler,
-} from '@routes/xp';
+} from './routes/xp';
 
 // ==================== ROUTER ====================
-const router = Router<IRequest, [Context]>();
+const router = Router();
 
 // ==================== CORS PREFLIGHT ====================
 router.options('*', () => {
@@ -114,27 +114,22 @@ router.all('*', () => {
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     try {
-      // Логирование запроса
       console.log(`[${new Date().toISOString()}] ${request.method} ${new URL(request.url).pathname}`);
 
-      // Создаем контекст
-      const context: Context = {
+      const context = {
         env,
         req: request,
         user: undefined,
         params: {},
       };
 
-      // Применяем middleware аутентификации
       await authMiddleware(context);
 
-      // Маршрутизируем запрос
       const response = await router.handle(request, context);
 
-      // Добавляем CORS headers
       const corsResponse = new Response(response.body, response);
       const origin = request.headers.get('origin');
-      const allowedOrigins = env.CORS_ORIGINS.split(',').map((o) => o.trim());
+      const allowedOrigins = (env.CORS_ORIGINS || '').split(',').map((o) => o.trim());
 
       if (allowedOrigins.includes(origin || '') || allowedOrigins.includes('*')) {
         corsResponse.headers.set('Access-Control-Allow-Origin', origin || '*');
