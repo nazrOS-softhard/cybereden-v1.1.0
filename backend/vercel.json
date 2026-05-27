@@ -2,22 +2,7 @@
   "version": 2,
   "buildCommand": "npm run build",
   "installCommand": "npm ci",
-  "builds": [
-    {
-      "src": "dist/server.js",
-      "use": "@vercel/node",
-      "config": {
-        "maxDuration": 60,
-        "includeFiles": "dist/**"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/server.js"
-    }
-  ],
+  "devCommand": "npm run dev",
   "env": {
     "NODE_ENV": "production"
   }
