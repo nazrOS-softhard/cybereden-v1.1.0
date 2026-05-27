@@ -35,30 +35,29 @@ const accounts = [
 ];
 
 const inventory = [
-  { name: "111111111-001", tier: "S" },
+  { name: "cloN-001", tier: "S" },
   { name: "rostN-001", tier: "A" },
   { name: "piN-001", tier: "B" },
   { name: "visioN-001", tier: "S" },
   { name: "blaN-001", tier: "B" },
   { name: "biohN-001", tier: "A" },
+  { name: "paragoN-001", tier: "S" },
 ];
 
 const achievements = [
-  { name: "...", date: "..." },
-  { name: "...", date: "..." },
-  { name: "...", date: "..." },
-  { name: "...", date: "..." },
+  { name: "КиберХак 2026", date: "..." },
+  { name: "РазрабКонф 2026", date: "..." },
 ];
 
 const assets = [
-  { id: "a1", name: "", size: "... MB", xp: 500 },
-  { id: "a2", name: "", size: "... MB", xp: 250 },
+  { id: "a1", name: "Интерфейс Спутникого терминал Сфера", size: "245 MB", xp: 500 },
+  { id: "a2", name: "Цифровой протокол ПО СтраННо", size: "12 MB", xp: 250 },
 ];
 
 const knowledge = [
-  { title: "...", progress: 85, xp: 1200, type: "Статья" },
-  { title: "...", progress: 60, xp: 800, type: "Видео" },
-  { title: "...", progress: 45, xp: 600, type: "Курс" },
+  { title: "KILLNET: Как хакерские группировки стали частью цифровой геополитики", progress: 85, xp: 1200, type: "Публикация" },
+  { title: "TEAM YANDEX: Как корпорации заходят в цифровой спорт", progress: 60, xp: 800, type: "Интервью" },
+  { title: "Архитектура нового доверия", progress: 45, xp: 600, type: "Алгоритм" },
 ];
 
 function ProfilePage() {
