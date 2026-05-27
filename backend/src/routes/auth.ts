@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
-import { supabase } from '../server';
+import { supabase } from '../lib/supabaseClient'; 
 import { authMiddleware } from '../middleware/auth';
 
 const router = Router();
