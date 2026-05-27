@@ -171,12 +171,111 @@ export type Article = {
 };
 
 export const articles: Article[] = [
-  { id: "a1",
-     title: "Архитектура нулевого доверия в 2090",
-      topic: "Кибербезопасность",
-       excerpt: "Почему периметр умер и что пришло на смену.",
-        body: "Zero Trust как практика, а не маркетинг. Сегментация на уровне нейронных запросов, политики на основе поведения и непрерывная аттестация контекстов. Разбираем кейсы корпораций Aoyama и SynLine.",
-         readTime: 7 },
+  {
+  id: "a1",
+  title: "Архитектура нового доверия",
+  topic: "Кибербезопасность",
+  excerpt: "Почему периметр умер и что пришло на смену.",
+  body: `
+<div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
+
+  <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #22d3ee; padding: 40px 20px; text-align: center; background: linear-gradient(135deg, #0f172a 0%, #080711 100%);">
+    <div style="font-size: 48px; margin-bottom: 10px;">🛡️</div>
+    <h4 style="margin: 0; color: #22d3ee; font-size: 18px; text-transform: uppercase; letter-spacing: 2px;">Zero Trust Interactive Matrix</h4>
+    <p style="margin: 5px 0 0 0; color: #64748b; font-size: 14px;">Алгоритм-тест для архитекторов систем безопасности</p>
+  </div>
+
+  <h2 style="font-size: 28px; color: #22d3ee; border-left: 4px solid #22d3ee; padding-left: 16px; margin-top: 0;">
+    Архитектура нового доверия: Почему периметр умер
+  </h2>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Классическая концепция кибербезопасности «крепость с рвом» больше не защищает данные. Как только злоумышленник пробивает внешний периметр (VPN или корпоративный фаервол), он получает неограниченный доступ ко всей внутренней сети. 
+  </p>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    На смену пришла концепция <strong style="color: #a855f7;">Zero Trust (Нулевое доверие)</strong>. Её главный постулат: <em>«Никому не доверяй, всегда проверяй»</em>. Проверка контекста, устройства и пользователя должна происходить непрерывно, а не только в момент авторизации.
+  </p>
+
+  <blockquote style="border-left: 4px solid #22d3ee; padding-left: 16px; margin: 20px 0; font-style: italic; color: #94a3b8;">
+    «Периметра больше нет. Каждый нейронный запрос, каждый микросервис и каждый девайс — это потенциальная точка компрометации.»
+  </blockquote>
+
+  <h3 style="font-size: 24px; color: #a855f7; margin-top: 40px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">
+    ⚡ Алгоритм-тест: Проектируем систему нового доверия
+  </h3>
+
+  <div style="background: #111122; border: 1px solid #334155; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
+    <span style="background: #a855f7; color: #fff; padding: 2px 8px; font-size: 12px; font-weight: bold; border-radius: 4px;">ШАГ 1</span>
+    <h4 style="font-size: 18px; color: #fff; margin: 10px 0;">Аутентификация субъекта и контекста</h4>
+    <p style="font-size: 14px; color: #cbd5e1; margin-bottom: 15px;">
+      Ваш сотрудник успешно ввёл логин, сложный пароль и прошёл MFA (биометрию) из дома. Ваши действия?
+    </p>
+    <div style="margin-left: 10px;">
+      <div style="margin-bottom: 12px;">
+        <strong style="color: #ef4444;">❌ Вариант А:</strong> Выдать сессионный токен на 8 часов. 
+        <br><span style="color: #64748b; font-size: 13px;">⚠️ <em>Ошибка архитектуры:</em> Если через 5 минут устройство перехватит инфостилер, злоумышленник будет легитимно скачивать базу данных оставшиеся 7 часов 55 minutes.</span>
+      </div>
+      <div>
+        <strong style="color: #22c55e;">✅ Вариант Б (Zero Trust):</strong> Запустить непрерывную аттестацию контекста.
+        <br><span style="color: #64748b; font-size: 13px;">⚙️ <em>Как это работает:</em> Система каждые пару минут проверяет: не изменился ли IP, не запущены ли подозрительные процессы, соответствует ли поведение пользователя его стандартному профилю.</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: #111122; border: 1px solid #334155; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
+    <span style="background: #22d3ee; color: #000; padding: 2px 8px; font-size: 12px; font-weight: bold; border-radius: 4px;">ШАГ 2</span>
+    <h4 style="font-size: 18px; color: #fff; margin: 10px 0;">Сегментация на уровне нейронных запросов</h4>
+    <p style="font-size: 14px; color: #cbd5e1; margin-bottom: 15px;">
+      Вам необходимо разграничить доступ к конфиденциальным API-эндпоинтам. Какую архитектуру выбрать?
+    </p>
+    <div style="margin-left: 10px;">
+      <div style="margin-bottom: 12px;">
+        <strong style="color: #ef4444;">❌ Вариант А:</strong> Разбить сеть на стандартные подсети (VLAN) для отделов.
+        <br><span style="color: #64748b; font-size: 13px;">⚠️ <em>Риск:</em> Внутри одной подсети трафик обычно не фильтруется (East-West traffic). Взлом одного бухгалтера компрометирует всю бухгалтерию.</span>
+      </div>
+      <div>
+        <strong style="color: #22c55e;">✅ Вариант Б (Zero Trust):</strong> Микросегментация на уровне единичных запросов.
+        <br><span style="color: #64748b; font-size: 13px;">⚙️ <em>Как это работает:</em> Каждый микросервис изолирован. Доступ выдается точечно (например, Контейнер_А может слать только GET-запросы в Контейнер_Б и ничего больше).</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 22px; color: #22d3ee; margin-top: 32px;">
+    Практика рынка: Кейсы Aoyama и SynLine
+  </h3>
+
+  <p style="font-size: 16px; margin-bottom: 20px;">
+    Теория Нулевого доверия звучит красиво, но как она реализуется крупными технологическими конгломератами в боевых условиях?
+  </p>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: square; color: #cbd5e1;">
+    <li style="margin-bottom: 12px;">
+      <strong style="color: #fff;">Кейс корпорации Aoyama:</strong> После инцидента с утечкой исходных кодов, инженеры Aoyama полностью отказались от корпоративного VPN. Теперь любой внутренний инструмент доступен прямо из глобальной сети, но защищен прокси-сервером, который проверяет состояние безопасности устройства (наличие патчей ОС, активный EDR) до того, как пропустить трафик к приложению.
+    </li>
+    <li style="margin-bottom: 12px;">
+      <strong style="color: #fff;">Кейс SynLine:</strong> Корпорация внедрила динамические поведенческие политики. Если системный администратор SynLine внезапно пытается подключиться к базе данных в 3 часа ночи из непривычной локации и запрашивает в 10 раз больше данных, чем обычно — система автоматически блокирует запрос и отправляет его сессию на повторную глубокую проверку, минимизируя ущерб от возможного перехвата аккаунта.
+    </li>
+  </ul>
+
+  <h3 style="font-size: 22px; color: #a855f7; margin-top: 32px;">
+    Резюме: Если вы строите современное приложение...
+  </h3>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: disc;">
+    <li style="margin-bottom: 6px;"><strong style="color: #22d3ee;">Предусмотрите</strong>, что токен авторизации может быть украден (сокращайте время жизни `accessToken` и используйте механизмы ротации `refreshToken`).</li>
+    <li style="margin-bottom: 6px;"><strong style="color: #22d3ee;">Защищайте</strong> каждый эндпоинт так, будто он находится в открытом доступе для всего интернета.</li>
+    <li style="margin-bottom: 6px;"><strong style="color: #22d3ee;">Логируйте</strong> не просто факт входа, а контекст использования данных для последующего поведенческого анализа.</li>
+  </ul>
+
+  <p style="font-size: 15px; color: #64748b; text-align: center; margin-top: 40px; border-top: 1px solid #1e293b; padding-top: 20px;">
+    Материал подготовлен аналитическим отделом Киберэдэн. Информация — это новая инфраструктура. Protect it.
+  </p>
+
+</div>
+`,
+  readTime: 7
+},
 
 {
   id: "a2",
