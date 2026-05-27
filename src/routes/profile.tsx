@@ -1,4 +1,3 @@
-
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
@@ -68,14 +67,41 @@ function ProfilePage() {
   const [uploadedAssets, setUploadedAssets] = useState(assets);
   const [datacenterOpen, setDatacenterOpen] = useState(false);
 
-  const handleAvatarUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Временный ID для тестов (замените на динамический из вашего Auth Context, когда подключите сессии)
+  const userId = "4a82"; 
+
+  // Интеграция с бэкендом Vercel + Supabase Storage
+  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setAvatarPreview(event.target?.result as string);
-      };
-      reader.readAsDataURL(file);
+    if (!file) return;
+
+    // Ограничение на стороне клиента (Vercel Serverless лимит на тело запроса составляет 4.5 МБ)
+    if (file.size > 4.5 * 1024 * 1024) {
+      alert("Размер файла превышает 4.5 МБ. Выберите изображение поменьше.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("avatar", file);
+    formData.append("userId", userId);
+
+    try {
+      const response = await fetch("https://cybereden-v1-1-0.vercel.app/api/user/avatar", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Устанавливаем полученную публичную ссылку из Supabase бакета
+        setAvatarPreview(data.avatarUrl);
+      } else {
+        alert(`Ошибка при сохранении аватара: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Ошибка отправки аватара:", error);
+      alert("Не удалось связаться с сервером бэкенда.");
     }
   };
 
@@ -108,28 +134,28 @@ function ProfilePage() {
     >
       {/* --- ТРЕУГОЛЬНИК В ЗЕЛЕНОЙ ОБЛАСТИ --- */}
       <div className="absolute top-[200px] right-[830px] z-50 pointer-events-none scale-[2.0]">
-  <div className="relative flex items-center justify-center w-5 h-5">
-    <svg
-      viewBox="0 0 100 100"
-      className="w-full h-full fill-none"
-      style={{
-        stroke: '#FFD700',
-        strokeWidth: '14px',
-        filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)'
-      }}
-    >
-      <polygon points="50,12 93,85 7,85" />
-    </svg>
- <span
-  className="absolute z-10 font-mono text-[10px] font-black text-[#8b5cf6] translate-y-[1px]"
-  style={{
-    textShadow: '0 0 4px rgba(255,255,255,0.2), 0 0 8px rgba(139, 92, 246, 0.8)'
-  }}
->
-  7
-</span>
-  </div>
-</div>
+        <div className="relative flex items-center justify-center w-5 h-5">
+          <svg
+            viewBox="0 0 100 100"
+            className="w-full h-full fill-none"
+            style={{
+              stroke: '#FFD700',
+              strokeWidth: '14px',
+              filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)'
+            }}
+          >
+            <polygon points="50,12 93,85 7,85" />
+          </svg>
+          <span
+            className="absolute z-10 font-mono text-[10px] font-black text-[#8b5cf6] translate-y-[1px]"
+            style={{
+              textShadow: '0 0 4px rgba(255,255,255,0.2), 0 0 8px rgba(139, 92, 246, 0.8)'
+            }}
+          >
+            7
+          </span>
+        </div>
+      </div>
 
       {/* --- ОСНОВНАЯ СЕТКА (GRID) --- */}
       <div className="relative grid lg:grid-cols-[280px_1fr] gap-6">
@@ -145,7 +171,7 @@ function ProfilePage() {
               className="absolute inset-0"
               style={{
                 background: avatarPreview
-                  ? `url(${avatarPreview}) center/cover`
+                  ? `url(${avatarPreview}) center/cover no-repeat`
                   : "radial-gradient(circle at 50% 35%, oklch(0.7 0.28 305 / 0.6), oklch(0.13 0.04 290) 70%)",
               }}
             />
@@ -170,7 +196,7 @@ function ProfilePage() {
               />
             </label>
             <div className="absolute bottom-2 left-2 right-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground flex justify-between">
-              <span>id · 4a82</span>
+              <span>id · {userId}</span>
               <span className="neon-text-acid">● online</span>
             </div>
           </div>
