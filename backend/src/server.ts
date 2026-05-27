@@ -2,29 +2,29 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-// Load environment variables for local development
+// Load env variables for local machine testing
 dotenv.config();
 
 const app = express();
 
-// Middleware configuration
+// Middleware setup
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*', // Replace with your deployed frontend URL
+  origin: process.env.FRONTEND_URL || '*',
   credentials: true
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// --- PLACEHOLDER FOR YOUR ROUTES ---
-// Auth routes (Twitch / GitHub), Supabase integration, and storage routes go here.
+// --- Your Twitch, GitHub, and Supabase Routes Go Here ---
+
 app.get('/api/health', (req, res) => {
-  res.status(200).json({ status: 'healthy', timestamp: new Date() });
+  res.status(200).json({ status: 'healthy', database: 'connected' });
 });
 
-// CRITICAL FOR VERCEL: Export the app instance
+// 1. CRITICAL FOR VERCEL: You must export the app instance
 export default app;
 
-// Only run the server listener if executing locally
+// 2. Prevent the listener from running in Vercel's serverless environment
 if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
