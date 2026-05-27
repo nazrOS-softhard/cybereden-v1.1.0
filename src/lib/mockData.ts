@@ -171,7 +171,7 @@ export type Article = {
 };
 
 export const articles: Article[] = [
-  {
+ {
   id: "a1",
   title: "Архитектура нового доверия",
   topic: "Кибербезопасность",
@@ -179,6 +179,7 @@ export const articles: Article[] = [
   body: `
 <div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
 
+  <!-- ИЛЛЮСТРАЦИЯ / МЕДИА ЗАГЛУШКА -->
   <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #22d3ee; padding: 40px 20px; text-align: center; background: linear-gradient(135deg, #0f172a 0%, #080711 100%);">
     <div style="font-size: 48px; margin-bottom: 10px;">🛡️</div>
     <h4 style="margin: 0; color: #22d3ee; font-size: 18px; text-transform: uppercase; letter-spacing: 2px;">Zero Trust Interactive Matrix</h4>
@@ -198,13 +199,15 @@ export const articles: Article[] = [
   </p>
 
   <blockquote style="border-left: 4px solid #22d3ee; padding-left: 16px; margin: 20px 0; font-style: italic; color: #94a3b8;">
-    «Периметра больше нет. Каждый нейронный запрос, каждый микросервис и каждый девайс — это потенциальная точка компрометации.»
+    «Периметра больше нет. Каждый нейронный запрос, каждый микросервис и каждый девайс — это potential точка компрометации.»
   </blockquote>
 
+  <!-- ИНТЕРАКТИВНЫЙ ТЕСТ-АЛГОРИТМ -->
   <h3 style="font-size: 24px; color: #a855f7; margin-top: 40px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">
     ⚡ Алгоритм-тест: Проектируем систему нового доверия
   </h3>
 
+  <!-- ШАГ 1 -->
   <div style="background: #111122; border: 1px solid #334155; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
     <span style="background: #a855f7; color: #fff; padding: 2px 8px; font-size: 12px; font-weight: bold; border-radius: 4px;">ШАГ 1</span>
     <h4 style="font-size: 18px; color: #fff; margin: 10px 0;">Аутентификация субъекта и контекста</h4>
@@ -214,7 +217,7 @@ export const articles: Article[] = [
     <div style="margin-left: 10px;">
       <div style="margin-bottom: 12px;">
         <strong style="color: #ef4444;">❌ Вариант А:</strong> Выдать сессионный токен на 8 часов. 
-        <br><span style="color: #64748b; font-size: 13px;">⚠️ <em>Ошибка архитектуры:</em> Если через 5 минут устройство перехватит инфостилер, злоумышленник будет легитимно скачивать базу данных оставшиеся 7 часов 55 minutes.</span>
+        <br><span style="color: #64748b; font-size: 13px;">⚠️ <em>Ошибка архитектуры:</em> Если через 5 минут устройство перехватит инфостилер, злоумышленник будет легитимно скачивать базу данных оставшиеся 7 часов 55 минут.</span>
       </div>
       <div>
         <strong style="color: #22c55e;">✅ Вариант Б (Zero Trust):</strong> Запустить непрерывную аттестацию контекста.
@@ -223,6 +226,7 @@ export const articles: Article[] = [
     </div>
   </div>
 
+  <!-- ШАГ 2 -->
   <div style="background: #111122; border: 1px solid #334155; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
     <span style="background: #22d3ee; color: #000; padding: 2px 8px; font-size: 12px; font-weight: bold; border-radius: 4px;">ШАГ 2</span>
     <h4 style="font-size: 18px; color: #fff; margin: 10px 0;">Сегментация на уровне нейронных запросов</h4>
@@ -241,6 +245,7 @@ export const articles: Article[] = [
     </div>
   </div>
 
+  <!-- КЕЙСЫ КОРПОРАЦИЙ -->
   <h3 style="font-size: 22px; color: #22d3ee; margin-top: 32px;">
     Практика рынка: Кейсы Aoyama и SynLine
   </h3>
@@ -258,12 +263,13 @@ export const articles: Article[] = [
     </li>
   </ul>
 
+  <!-- ЧЕК-ЛИСТ ДЛЯ РАЗРАБОТЧИКА -->
   <h3 style="font-size: 22px; color: #a855f7; margin-top: 32px;">
     Резюме: Если вы строите современное приложение...
   </h3>
 
   <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: disc;">
-    <li style="margin-bottom: 6px;"><strong style="color: #22d3ee;">Предусмотрите</strong>, что токен авторизации может быть украден (сокращайте время жизни `accessToken` и используйте механизмы ротации `refreshToken`).</li>
+    <li style="margin-bottom: 6px;"><strong style="color: #22d3ee;">Предусмотрите</strong>, что токен авторизации может быть украден (сокращайте время жизни <code style="background: #1e1e2e; padding: 2px 4px; border-radius: 4px; color: #22d3ee;">accessToken</code> и используйте механизмы ротации <code style="background: #1e1e2e; padding: 2px 4px; border-radius: 4px; color: #22d3ee;">refreshToken</code>).</li>
     <li style="margin-bottom: 6px;"><strong style="color: #22d3ee;">Защищайте</strong> каждый эндпоинт так, будто он находится в открытом доступе для всего интернета.</li>
     <li style="margin-bottom: 6px;"><strong style="color: #22d3ee;">Логируйте</strong> не просто факт входа, а контекст использования данных для последующего поведенческого анализа.</li>
   </ul>
