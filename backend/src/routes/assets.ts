@@ -1,6 +1,6 @@
-import { Context, AssetsListResponse, Asset, AssetWithUser } from '../types/index';
-import { getPublicAssets, getAssetsByUserId, getAssetById } from '../lib/db';
-import { HTTPException, createCORSResponse } from '../middleware/auth';
+import { Context, AssetsListResponse, Asset, AssetWithUser } from '../types/index.js';
+import { getPublicAssets, getAssetsByUserId, getAssetById } from '../lib/db.js';
+import { HTTPException, createCORSResponse } from '../middleware/auth.js';
 
 // ==================== GET ALL PUBLIC ASSETS (DATACENTER) ====================
 export async function getAssetsHandler(context: Context): Promise<Response> {
