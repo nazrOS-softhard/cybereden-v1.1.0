@@ -7,9 +7,10 @@
     "node": "24.x"
   },
   "scripts": {
-    "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+  "vercel-build": "tsc",
+  "start": "node dist/server.js",
+  "dev": "ts-node src/server.ts"
   },
   "dependencies": {
     "express": "^4.18.2",
@@ -25,4 +26,10 @@
     "@types/node": "^20.10.0",
     "tsx": "^4.1.0"
   }
+}
+"scripts": {
+  "build": "tsc",
+  "vercel-build": "tsc",
+  "start": "node dist/server.js",
+  "dev": "ts-node src/server.ts"
 }
