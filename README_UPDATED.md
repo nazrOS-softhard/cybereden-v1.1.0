@@ -537,12 +537,10 @@ vercel deploy --prod
 - 📦 GitHub:
   https://github.com/nazrOS-softhard/cybereden-v1.1.0
 
----
+```
+  
+info@cybereden.ru
 
-# 🧬 Статус
-
-```txt
-CYBEREDEN CORE ONLINE
 ```
 
 ---
