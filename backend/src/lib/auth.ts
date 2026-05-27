@@ -1,5 +1,5 @@
 import { sign, verify } from 'jsonwebtoken';
-import { GitHubUser, TwitchUser, OAuthToken } from '@types/index';
+import { GitHubUser, TwitchUser, OAuthToken } from '../types/index';
 
 // ==================== JWT ====================
 export function generateJWT(
