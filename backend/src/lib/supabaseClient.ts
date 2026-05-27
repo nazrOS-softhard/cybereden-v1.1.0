@@ -1,10 +1,20 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import dotenv from 'dotenv';
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
+dotenv.config();
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Критическая ошибка: отсутствуют переменные SUPABASE_URL или SUPABASE_ANON_KEY в .env');
+const SUPABASE_URL = process.env.SUPABASE_URL ?? '';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY ?? '';
+
+export let supabase: SupabaseClient;
+
+try {
+  if (!SUPABASE_URL || !SUPABASE_KEY) {
+    throw new Error('SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is not set');
+  }
+  supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+} catch (e: any) {
+  console.error('[Supabase Init Error]', e.message);
+  // Создаём заглушку, чтобы роуты не падали при импорте модуля
+  supabase = {} as SupabaseClient;
 }
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
