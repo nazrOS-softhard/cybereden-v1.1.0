@@ -1,4 +1,4 @@
-import { Context, AuthResponse, GitHubUser, TwitchUser } from '@types/index';
+import { Context, AuthResponse, GitHubUser, TwitchUser } from '../types/index.js';
 import {
   generateOAuthState,
   generateJWT,
@@ -7,19 +7,19 @@ import {
   getGitHubUserEmail,
   getTwitchToken,
   getTwitchUser,
-} from '@lib/auth';
+} from '../lib/auth.js';
 import {
   getUserByGithubId,
   getUserByTwitchId,
   createUser,
   createSession,
   updateUser,
-} from '@lib/db';
+} from '../lib/db.js';
 import {
   HTTPException,
   createCORSResponse,
   getClientIP,
-} from '@middleware/auth';
+} from '../middleware/auth.js';
 
 // ==================== GITHUB OAUTH ====================
 export async function githubAuthHandler(context: Context): Promise<Response> {
