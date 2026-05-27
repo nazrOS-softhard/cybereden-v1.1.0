@@ -1,4 +1,4 @@
-import { User, Asset, Session, XPLog, UserProfile } from '@types/index';
+import { User, Asset, Session, XPLog, UserProfile } from '../types/index';
 import { v4 as uuidv4 } from 'uuid';
 
 // ==================== USER OPERATIONS ====================
