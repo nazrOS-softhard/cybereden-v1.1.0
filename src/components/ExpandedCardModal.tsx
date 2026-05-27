@@ -112,13 +112,12 @@ export function ExpandedCardModal({
                     {/* Если есть streamUrl, показываем Twitch-плеер */}
                     {streamUrl ? (
                       <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4">
-              <iframe
-  src={`https://player.twitch.tv/?channel=${streamUrl.split('/').pop()}&parent=cybereden.vercel.app`}
+             <iframe
+  src={`https://embed.twitch.tv?channel=${streamUrl.split('/').pop()}&parent=cybereden.vercel.app&autoplay=true`}
   width="100%"
   height="100%"
   allow="autoplay; fullscreen"
   allowfullscreen
-  muted
   className="w-full h-full"
 />
                       </div>
