@@ -36,7 +36,7 @@ const accounts = [
 ];
 
 const inventory = [
-  { name: "cloN-001", tier: "S" },
+  { name: "111111111-001", tier: "S" },
   { name: "rostN-001", tier: "A" },
   { name: "piN-001", tier: "B" },
   { name: "visioN-001", tier: "S" },
@@ -45,21 +45,21 @@ const inventory = [
 ];
 
 const achievements = [
-  { name: "Первый имплант", date: "12.03.2089" },
-  { name: "Финалист Nexus Pro", date: "08.07.2090" },
-  { name: "Hack the Spire · gold", date: "20.08.2090" },
-  { name: "1M XP", date: "01.09.2090" },
+  { name: "...", date: "..." },
+  { name: "...", date: "..." },
+  { name: "...", date: "..." },
+  { name: "...", date: "..." },
 ];
 
 const assets = [
-  { id: "a1", name: "neural_map_v3.zip", size: "245 MB", xp: 500 },
-  { id: "a2", name: "protocol_lib.json", size: "12 MB", xp: 250 },
+  { id: "a1", name: "", size: "... MB", xp: 500 },
+  { id: "a2", name: "", size: "... MB", xp: 250 },
 ];
 
 const knowledge = [
-  { title: "Архитектура Zero Trust", progress: 85, xp: 1200, type: "Статья" },
-  { title: "Эксплойты нейро-API", progress: 60, xp: 800, type: "Видео" },
-  { title: "Основы HUD-дизайна", progress: 45, xp: 600, type: "Курс" },
+  { title: "...", progress: 85, xp: 1200, type: "Статья" },
+  { title: "...", progress: 60, xp: 800, type: "Видео" },
+  { title: "...", progress: 45, xp: 600, type: "Курс" },
 ];
 
 function ProfilePage() {
