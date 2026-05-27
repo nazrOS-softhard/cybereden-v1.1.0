@@ -360,3 +360,5 @@ function calculateXPReward(fileSize: number, fileType: string): number {
 
   return Math.max(totalXP, 10); // Мин 10 XP
 }
+
+export default router;
