@@ -82,3 +82,4 @@ app.listen(PORT, () => {
 
 // Экспортируем app для корректной работы Serverless-функций Vercel
 export default app;
+
