@@ -398,3 +398,7 @@ export async function updateAssetVisibilityHandler(context: Context): Promise<Re
     );
   }
 }
+export default router;
+
+
+
