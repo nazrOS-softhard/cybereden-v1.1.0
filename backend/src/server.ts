@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // --- Your Twitch, GitHub, and Supabase Routes Go Here ---
 
-app.get('/api/health', (req, res) => {
+app.get('/health', (req, res) => {
   res.status(200).json({ status: 'healthy', database: 'connected' });
 });
 
