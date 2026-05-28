@@ -16,6 +16,14 @@ interface Props {
   streamUrl?: string;
 }
 
+// Функция для безопасного извлечения имени канала Twitch
+function getTwitchChannel(urlOrName: string): string {
+  if (!urlOrName) return "";
+  // Регулярное выражение вытаскивает последний сегмент пути перед слэшами или параметрами
+  const match = urlOrName.match(/(?:twitch\.tv\/)([\w]+)/i);
+  return match ? match[1] : urlOrName.trim();
+}
+
 export function ExpandedCardModal({
   open,
   layoutId,
@@ -38,6 +46,8 @@ export function ExpandedCardModal({
       window.removeEventListener("keydown", onKey);
     };
   }, [open, onClose]);
+
+  const twitchChannel = streamUrl ? getTwitchChannel(streamUrl) : "";
 
   return (
     <AnimatePresence>
@@ -109,17 +119,17 @@ export function ExpandedCardModal({
                   )}
 
                   <div className="mt-6 space-y-6 text-sm leading-relaxed text-foreground/90">
-                    {/* Если есть streamUrl, показываем Twitch-плеер */}
-                    {streamUrl ? (
+                    {/* Если передан streamUrl и успешно распарсился канал */}
+                    {twitchChannel ? (
                       <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4">
-          <iframe
-  src={`https://player.twitch.tv/?channel=${streamUrl.split('/').pop()}&parent=cybereden.vercel.app`}
-  width="100%"
-  height="100%"
-  allow="autoplay; fullscreen"
-  allowfullscreen
-  className="w-full h-full"
-/>
+                        <iframe
+                          src={`https://player.twitch.tv/?channel=${twitchChannel}&parent=cybereden.vercel.app`}
+                          width="100%"
+                          height="100%"
+                          allow="autoplay; fullscreen"
+                          allowFullScreen // Исправлен регистр
+                          className="w-full h-full border-0"
+                        />
                       </div>
                     ) : (
                       children
