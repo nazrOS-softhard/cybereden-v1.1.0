@@ -1,415 +1,98 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import {
-  Trophy,
-  Github,
-  Twitch,
-  Globe,
-  ShoppingBag,
-  Upload,
-  BookOpen,
-  Zap,
-  Database,
-} from "lucide-react";
-import { useState } from "react";
+import { Trophy, Github, Twitch, Globe, ShoppingBag, Upload, BookOpen, Zap, Database } from "lucide-react";
+import { useState, useEffect } from "react"; // Добавили useEffect
 import { PageShell } from "@/components/PageShell";
 import { useI18n } from "@/lib/i18n";
 import { DatacenterModal } from "@/components/DatacenterModal";
 
-export const Route = createFileRoute("/profile")({
-  head: () => ({
-    meta: [
-      { title: "Profile · nazrOS" },
-      { name: "description", content: "Аватар, подключённые аккаунты, инвентарь и достижения." },
-      { property: "og:title", content: "Profile · nazrOS" },
-      { property: "og:description", content: "Профиль пользователя nazrOS." },
-    ],
-  }),
-  component: ProfilePage,
-});
-
-const accounts = [
-  { name: "GitHub", handle: "@nazr-os", icon: Github, connected: true, url: "https://github.com" },
-  { name: "Twitch", handle: "@nazr.os", icon: Twitch, connected: true, url: "https://twitch.tv" },
-  { name: "Darknet", handle: "node://4a82…", icon: Globe, connected: false },
-];
-
-const inventory = [
-  { name: "cloN-001", tier: "S" },
-  { name: "rostN-001", tier: "A" },
-  { name: "piN-001", tier: "B" },
-  { name: "visioN-001", tier: "S" },
-  { name: "blaN-001", tier: "B" },
-  { name: "biohN-001", tier: "A" },
-  { name: "paragoN-001", tier: "S" },
-];
-
-const achievements = [
-  { name: "КиберХак 2026", date: "..." },
-  { name: "РазрабКонф 2026", date: "..." },
-];
-
-const assets = [
-  { id: "a1", name: "Интерфейс Спутникого терминал Сфера", size: "245 MB", xp: 500 },
-  { id: "a2", name: "Цифровой протокол ПО СтраННо", size: "12 MB", xp: 250 },
-];
-
-const knowledge = [
-  { title: "KILLNET: Как хакерские группировки стали частью цифровой геополитики", progress: 85, xp: 1200, type: "Публикация" },
-  { title: "TEAM YANDEX: Как корпорации заходят в цифровой спорт", progress: 60, xp: 800, type: "Интервью" },
-  { title: "Архитектура нового доверия", progress: 45, xp: 600, type: "Алгоритм" },
-];
+// ... (оставь константы accounts, inventory, achievements как есть)
 
 function ProfilePage() {
   const { t } = useI18n();
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-  const [uploadedAssets, setUploadedAssets] = useState(assets);
+  const [uploadedAssets, setUploadedAssets] = useState<any[]>([]); 
+  const [knowledge, setKnowledge] = useState<any[]>([]);
   const [datacenterOpen, setDatacenterOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  // Используем валидный формат UUID, чтобы Supabase (PostgreSQL) не ругался на тип данных
-  const userId = "6a2f7412-8724-4632-9df7-0245a4b7d142";
+  // Загрузка данных при монтировании
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const response = await fetch("https://cybereden-v1-1-0.vercel.app/api/profile", {
+          headers: { "Authorization": `Bearer ${token}` }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setKnowledge(data.knowledge || []);
+          setUploadedAssets(data.assets || []);
+        }
+      } catch (err) {
+        console.error("Ошибка загрузки данных профиля", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProfile();
+  }, []);
 
-  // Интеграция с бэкендом Vercel + Supabase Storage
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Ограничение на стороне клиента (Vercel Serverless лимит на тело запроса составляет 4.5 МБ)
-    if (file.size > 4.5 * 1024 * 1024) {
-      alert("Размер файла превышает 4.5 МБ. Выберите изображение поменьше.");
-      return;
-    }
-
     const formData = new FormData();
-    formData.append("avatar", file); // Название поля совпадает с upload.single('avatar') на бэке
-    formData.append("userId", userId);
+    formData.append("avatar", file);
 
     try {
-      // Достаем токен авторизации из хранилища (измени ключ, если он называется иначе, например 'nazros_token')
       const token = localStorage.getItem("token");
-
-      // ИСПРАВЛЕНО: Изменен путь с /api/user/avatar на /api/upload/avatar согласно вашему upload.ts бэкенда
       const response = await fetch("https://cybereden-v1-1-0.vercel.app/api/upload/avatar", {
         method: "POST",
         headers: {
-          ...(token ? { "Authorization": `Bearer ${token}` } : {}),
-          // Content-Type указывать НЕ НАДО, браузер сам выставит multipart/form-data с нужным boundary
+          "Authorization": `Bearer ${token}` // Токен передается здесь
         },
         body: formData,
       });
 
       const data = await response.json();
-
       if (response.ok) {
-        // Устанавливаем полученную публичную ссылку из Supabase бакета
         setAvatarPreview(data.avatarUrl);
       } else {
-        alert(`Ошибка при сохранении аватара: ${data.error || "Неизвестная ошибка"}`);
+        alert(`Ошибка: ${data.message || data.error}`);
       }
     } catch (error) {
-      console.error("Ошибка отправки аватара:", error);
-      alert("Не удалось связаться с сервером бэкенда.");
+      alert("Ошибка сети при загрузке аватара.");
     }
   };
 
-  const handleAssetUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setUploadedAssets([
-        ...uploadedAssets,
-        {
-          id: `a${uploadedAssets.length + 1}`,
-          name: file.name,
-          size: `${Math.round(file.size / 1024 / 1024)} MB`,
-          xp: Math.floor(Math.random() * 500) + 200,
-        },
-      ]);
-    }
-  };
-
-  const handleOAuthClick = (account: typeof accounts[0]) => {
-    if (account.url && account.connected) {
-      alert(`OAuth подключён к ${account.name}`);
-    }
-  };
+  // ... (остальные функции handleAssetUpload и handleOAuthClick остаются без изменений)
 
   return (
-    <PageShell
-      eyebrow={t("profile.eyebrow")}
-      title="@f00rtime"
-      subtitle={t("profile.subtitle")}
-    >
-      {/* --- ТРЕУГОЛЬНИК В ЗЕЛЕНОЙ ОБЛАСТИ --- */}
-      <div className="absolute top-[200px] right-[830px] z-50 pointer-events-none scale-[2.0]">
-        <div className="relative flex items-center justify-center w-5 h-5">
-          <svg
-            viewBox="0 0 100 100"
-            className="w-full h-full fill-none"
-            style={{
-              stroke: '#FFD700',
-              strokeWidth: '14px',
-              filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)'
-            }}
-          >
-            <polygon points="50,12 93,85 7,85" />
-          </svg>
-          <span
-            className="absolute z-10 font-mono text-[10px] font-black text-[#8b5cf6] translate-y-[1px]"
-            style={{
-              textShadow: '0 0 4px rgba(255,255,255,0.2), 0 0 8px rgba(139, 92, 246, 0.8)'
-            }}
-          >
-            7
-          </span>
-        </div>
+    <PageShell eyebrow={t("profile.eyebrow")} title="@f00rtime" subtitle={t("profile.subtitle")}>
+      {/* --- ТРЕУГОЛЬНИК И СЕТКА ОСТАЮТСЯ КАК БЫЛИ --- */}
+      {/* ... */}
+      
+      {/* ПРИМЕР ИСПОЛЬЗОВАНИЯ ДИНАМИЧЕСКИХ ДАННЫХ В СЕКЦИИ KNOWLEDGE */}
+      {/* Замени твой map в секции Knowledge на этот: */}
+      <div className="space-y-4">
+        {knowledge.map((item, idx) => (
+          <div key={idx} className="space-y-2">
+            <div className="flex justify-between items-center">
+              <div>
+                <div className="font-display text-sm">{item.title}</div>
+                <div className="font-mono text-xs text-muted-foreground">{item.type}</div>
+              </div>
+              <div className="font-mono text-xs neon-text-acid">+{item.xp} ПХ</div>
+            </div>
+            <div className="w-full bg-background/40 border border-border h-2">
+              <div className="bg-neon-cyan h-full transition-all" style={{ width: `${item.progress}%` }} />
+            </div>
+          </div>
+        ))}
       </div>
-
-      {/* --- ОСНОВНАЯ СЕТКА (GRID) --- */}
-      <div className="relative grid lg:grid-cols-[280px_1fr] gap-6">
-
-        {/* Avatar card (Левая колонка) */}
-        <motion.div
-          initial={{ opacity: 0, x: -12 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="hud-corners p-6 border border-border bg-surface/50 backdrop-blur"
-        >
-          <div className="relative aspect-square neon-border-cyan overflow-hidden">
-            <div
-              className="absolute inset-0"
-              style={{
-                background: avatarPreview
-                  ? `url(${avatarPreview}) center/cover no-repeat`
-                  : "radial-gradient(circle at 50% 35%, oklch(0.7 0.28 305 / 0.6), oklch(0.13 0.04 290) 70%)",
-              }}
-            />
-            {!avatarPreview && (
-              <>
-                <div className="absolute inset-0 hud-grid opacity-40" />
-                <div className="absolute inset-0 flex items-center justify-center font-display text-7xl neon-text-violet">
-                  N
-                </div>
-              </>
-            )}
-            <label className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 hover:opacity-100 transition-opacity cursor-pointer group">
-              <div className="flex flex-col items-center gap-2 text-white">
-                <Upload size={24} />
-                <span className="text-xs">Загрузить аватар</span>
-              </div>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleAvatarUpload}
-                className="hidden"
-              />
-            </label>
-            <div className="absolute bottom-2 left-2 right-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground flex justify-between">
-              <span>id · {userId}</span>
-              <span className="neon-text-acid">● online</span>
-            </div>
-          </div>
-          <div className="mt-4 space-y-1.5 text-sm font-mono">
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">ПХ</span>
-              <span className="neon-text-cyan">482 300</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Rank</span>
-              <span className="neon-text-violet">Оператор</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Joined</span>
-              <span>01.02.2022</span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Правая колонка */}
-        <div className="space-y-6">
-          {/* Accounts */}
-          <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
-            <div className="font-display text-sm tracking-widest neon-text-violet mb-4">
-              {t("profile.accounts")}
-            </div>
-            <div className="grid sm:grid-cols-3 gap-3">
-              {accounts.map((a) => {
-                const Icon = a.icon;
-                return (
-                  <button
-                    key={a.name}
-                    onClick={() => handleOAuthClick(a)}
-                    className={`flex items-center gap-3 p-3 border transition ${
-                      a.connected
-                        ? "border-border bg-background/40 hover:neon-border-acid cursor-pointer"
-                        : "border-border bg-background/20 hover:border-neon-cyan cursor-pointer"
-                    }`}
-                  >
-                    <Icon
-                      size={18}
-                      className={a.connected ? "neon-text-cyan" : "text-muted-foreground"}
-                    />
-                    <div className="text-left">
-                      <div className="font-display text-xs uppercase tracking-widest">
-                        {a.name}
-                      </div>
-                      <div className="font-mono text-[11px] text-muted-foreground">
-                        {a.connected ? a.handle : "Не подключен"}
-                      </div>
-                    </div>
-                    {a.connected && (
-                      <div className="w-2 h-2 rounded-full bg-neon-acid animate-pulse ml-auto" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </section>
-
-          <div className="grid lg:grid-cols-2 gap-6">
-            {/* Inventory */}
-            <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
-              <div className="flex items-center gap-2 mb-4 justify-between">
-                <div className="flex items-center gap-2">
-                  <ShoppingBag size={14} className="neon-text-cyan" />
-                  <div className="font-display text-sm tracking-widest neon-text-violet">
-                    {t("profile.inventory")}
-                  </div>
-                </div>
-                <Link
-                  to="/market"
-                  className="text-[10px] neon-text-acid hover:underline uppercase tracking-widest"
-                >
-                  Перейти →
-                </Link>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                {inventory.slice(0, 4).map((it) => (
-                  <div
-                    key={it.name}
-                    className="relative p-3 border border-border bg-background/40 hover:neon-border transition"
-                  >
-                    <div className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center font-display text-xs neon-text-acid border border-neon-acid">
-                      {it.tier}
-                    </div>
-                    <div className="font-display text-xs pr-8">{it.name}</div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Achievements */}
-            <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
-              <div className="flex items-center gap-2 mb-4 justify-between">
-                <div className="flex items-center gap-2">
-                  <Trophy size={14} className="neon-text-acid" />
-                  <div className="font-display text-sm tracking-widest neon-text-violet">
-                    {t("profile.achievements")}
-                  </div>
-                </div>
-                <Link
-                  to="/events"
-                  className="text-[10px] neon-text-acid hover:underline uppercase tracking-widest"
-                >
-                  События →
-                </Link>
-              </div>
-              <ul className="divide-y divide-border">
-                {achievements.slice(0, 3).map((a) => (
-                  <li key={a.name} className="py-2 flex justify-between text-xs">
-                    <span className="font-display">{a.name}</span>
-                    <span className="font-mono text-[10px] text-muted-foreground">{a.date}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </div>
-
-          {/* Assets */}
-          <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
-            <div className="flex items-center gap-2 mb-4 justify-between">
-              <div
-                className="flex items-center gap-2 cursor-pointer group flex-1"
-                onClick={() => setDatacenterOpen(true)}
-                title="Открыть ДАТАЦЕНТР"
-              >
-                <Zap size={14} className="neon-text-cyan group-hover:neon-text-acid transition" />
-                <div className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">
-                  АКТИВЫ
-                </div>
-              </div>
-              <button
-                onClick={() => setDatacenterOpen(true)}
-                className="flex items-center gap-1 text-[10px] neon-text-acid hover:neon-text-cyan transition uppercase tracking-widest"
-                title="Открыть ДАТАЦЕНТР"
-              >
-                <Database size={12} />
-                ДАТАЦЕНТР
-              </button>
-            </div>
-            <div className="space-y-3">
-              {uploadedAssets.map((asset) => (
-                <div
-                  key={asset.id}
-                  className="flex items-center justify-between p-3 border border-border bg-background/40 hover:neon-border transition"
-                >
-                  <div>
-                    <div className="font-display text-sm">{asset.name}</div>
-                    <div className="font-mono text-xs text-muted-foreground">{asset.size}</div>
-                  </div>
-                  <div className="font-mono text-xs neon-text-acid">+{asset.xp} ПХ</div>
-                </div>
-              ))}
-              <label className="flex items-center justify-center gap-2 p-3 border-2 border-dashed border-border hover:border-neon-cyan transition cursor-pointer group">
-                <Upload size={16} className="neon-text-cyan group-hover:neon-text-acid transition" />
-                <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground group-hover:neon-text-cyan">
-                  Загрузить файл
-                </span>
-                <input
-                  type="file"
-                  onChange={handleAssetUpload}
-                  className="hidden"
-                />
-              </label>
-            </div>
-          </section>
-
-          {/* Knowledge */}
-          <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
-            <Link
-              to="/journal"
-              className="flex items-center gap-2 mb-4 cursor-pointer group"
-            >
-              <BookOpen size={14} className="neon-text-cyan group-hover:neon-text-acid transition" />
-              <div className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">
-                ЗНАНИЯ
-              </div>
-              <span className="ml-auto text-[10px] neon-text-acid group-hover:underline">Перейти →</span>
-            </Link>
-            <div className="space-y-4">
-              {knowledge.map((item) => (
-                <div key={item.title} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <div className="font-display text-sm">{item.title}</div>
-                      <div className="font-mono text-xs text-muted-foreground">{item.type}</div>
-                    </div>
-                    <div className="font-mono text-xs neon-text-acid">+{item.xp} ПХ</div>
-                  </div>
-                  <div className="w-full bg-background/40 border border-border h-2">
-                    <div
-                      className="bg-neon-cyan h-full transition-all"
-                      style={{ width: `${item.progress}%` }}
-                    />
-                  </div>
-                  <div className="font-mono text-[10px] text-muted-foreground">{item.progress}% завершено</div>
-                </div>
-              ))}
-            </div>
-          </section>
-        </div>
-
-      </div>
-
-      <DatacenterModal open={datacenterOpen} onClose={() => setDatacenterOpen(false)} />
     </PageShell>
   );
 }
+
+export const Route = createFileRoute("/profile")({ component: ProfilePage });
