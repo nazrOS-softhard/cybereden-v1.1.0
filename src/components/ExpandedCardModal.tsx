@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { useEffect, useMemo } from "react"; // Добавили useMemo
+import { useEffect, useMemo, useState } from "react"; // Добавили useState
 import type { ReactNode } from "react";
 
 interface Props {
@@ -34,8 +34,14 @@ export function ExpandedCardModal({
   children,
   streamUrl,
 }: Props) {
+  // Флаг, который станет true только ПОСЛЕ окончания анимации появления
+  const [isAnimationDone, setIsAnimationDone] = useState(false);
+
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      setIsAnimationDone(false); // Сбрасываем при закрытии
+      return;
+    }
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
@@ -45,15 +51,14 @@ export function ExpandedCardModal({
     };
   }, [open, onClose]);
 
-  // Кэшируем имя канала, чтобы оно не вычислялось заново при ререндерах
   const twitchChannel = useMemo(() => {
     return streamUrl ? getTwitchChannel(streamUrl) : "";
   }, [streamUrl]);
 
-  // Кэшируем сам URL плеера. Теперь строка ссылки железно стабильна
   const iframeSrc = useMemo(() => {
     if (!twitchChannel) return "";
-    return `https://player.twitch.tv/?channel=${twitchChannel}&parent=cybereden.vercel.app&autoplay=true`;
+    // Добавили &muted=false на случай, если браузер блокирует автоплей со звуком
+    return `https://player.twitch.tv/?channel=${twitchChannel}&parent=cybereden.vercel.app&autoplay=true&muted=false`;
   }, [twitchChannel]);
 
   return (
@@ -72,6 +77,8 @@ export function ExpandedCardModal({
             layoutId={layoutId}
             className="fixed inset-2 sm:inset-4 md:inset-8 z-50 bg-surface neon-border overflow-hidden flex flex-col"
             transition={{ type: "spring", stiffness: 260, damping: 30 }}
+            // НАШЕ СПАСЕНИЕ: Срабатывает ровно тогда, когда анимация карточки полностью завершилась
+            onLayoutAnimationComplete={() => setIsAnimationDone(true)}
           >
             <div className="absolute inset-0 hud-scanlines pointer-events-none" />
             <button
@@ -127,16 +134,26 @@ export function ExpandedCardModal({
 
                   <div className="mt-6 space-y-6 text-sm leading-relaxed text-foreground/90">
                     {iframeSrc ? (
-                      <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4">
-                        <iframe
-                          key={twitchChannel} // Статичный ключ предотвращает деструктивное пересоздание DOM-узла
-                          src={iframeSrc}
-                          width="100%"
-                          height="100%"
-                          allow="autoplay; fullscreen"
-                          allowFullScreen
-                          className="w-full h-full border-0"
-                        />
+                      <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4 flex items-center justify-center relative">
+                        {/* Пока идет анимация, показываем стильный загрузчик, чтобы не было пустой дыры */}
+                        {!isAnimationDone && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-background/50 font-mono text-xs uppercase tracking-widest text-cyan-400 animate-pulse">
+                            Connecting Stream...
+                          </div>
+                        )}
+                        
+                        {/* Рендерим iframe строго после фиксации размеров модалки */}
+                        {isAnimationDone && (
+                          <iframe
+                            key={twitchChannel}
+                            src={iframeSrc}
+                            width="100%"
+                            height="100%"
+                            allow="autoplay; fullscreen"
+                            allowFullScreen
+                            className="w-full h-full border-0"
+                          />
+                        )}
                       </div>
                     ) : (
                       children
