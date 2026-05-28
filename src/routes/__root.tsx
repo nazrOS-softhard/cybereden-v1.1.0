@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import { TopNav } from "@/components/TopNav";
 import { RainBackground } from "@/components/RainBackground";
 import { LanguageProvider } from "@/lib/i18n";
+import { AuthProvider } from "@/lib/auth";   // ← добавлено
 
 function NotFoundComponent() {
   return (
@@ -50,10 +51,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <p className="mt-2 text-sm text-muted-foreground">Попробуйте повторить запрос.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
-            onClick={() => {
-              router.invalidate();
-              reset();
-            }}
+            onClick={() => { router.invalidate(); reset(); }}
             className="px-5 py-2 bg-primary text-primary-foreground font-display text-xs tracking-[0.25em] uppercase"
           >
             Retry
@@ -70,23 +68,16 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "CyberEden · nazrOS" },
-      {
-        name: "description",
-        content:
-          "CyberEden — киберпанк-платформа nazrOS. Маркет имплантов, журнал, события, стримы и дашборд.",
-      },
+      { name: "description", content: "CyberEden — киберпанк-платформа nazrOS. Маркет имплантов, журнал, события, стримы и дашборд." },
       { name: "author", content: "nazrOS" },
       { property: "og:title", content: "CyberEden · nazrOS" },
-      {
-        property: "og:description",
-        content: "Маркет имплантов, журнал, события, стримы и дашборд под управлением nazrOS.",
-      },
+      { property: "og:description", content: "Маркет имплантов, журнал, события, стримы и дашборд под управлением nazrOS." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -102,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
-});
+}));
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
@@ -122,11 +113,13 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <RainBackground />
-        <TopNav />
-        <Outlet />
-      </LanguageProvider>
+      <AuthProvider>                  {/* ← оборачиваем всё приложение */}
+        <LanguageProvider>
+          <RainBackground />
+          <TopNav />
+          <Outlet />
+        </LanguageProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
