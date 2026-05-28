@@ -1,10 +1,10 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import ws from 'ws';
 
 /**
- * Standalone Supabase module — разрывает circular dependency с server.ts.
- * Все роуты импортируют отсюда, никто не импортирует из server.ts.
- * Клиент создаётся лениво (при первом вызове), поэтому отсутствие
- * env vars не крашит функцию при загрузке модуля.
+ * Standalone Supabase module — нет circular dependency с server.ts.
+ * ws-пакет нужен потому что Node.js 20 не имеет нативного WebSocket.
+ * Node.js 22+ имеет встроенный — там ws игнорируется автоматически.
  */
 
 let _client: SupabaseClient | null = null;
@@ -21,12 +21,15 @@ export function getSupabase(): SupabaseClient {
     );
   }
 
-  _client = createClient(url, key);
+  _client = createClient(url, key, {
+    realtime: {
+      transport: ws,     // ← фикс для Node.js < 22
+    },
+  });
+
   return _client;
 }
 
-// Proxy: методы вызываются лениво при обращении, а не при импорте модуля.
-// Это исключает крэш при загрузке функции если env vars не заданы.
 export const supabase = new Proxy({} as SupabaseClient, {
   get(_target, prop: string | symbol) {
     const client = getSupabase();
