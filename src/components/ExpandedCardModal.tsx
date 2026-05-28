@@ -16,10 +16,8 @@ interface Props {
   streamUrl?: string;
 }
 
-// Улучшенная функция извлечения имени канала
 function getTwitchChannel(urlOrName: string): string {
   if (!urlOrName) return "";
-  // Извлекает username из twitch.tv/username и игнорирует слэши в конце
   const match = urlOrName.match(/(?:twitch\.tv\/)([\w\-\.\d]+)/i);
   return match ? match[1] : urlOrName.trim();
 }
@@ -36,7 +34,6 @@ export function ExpandedCardModal({
   children,
   streamUrl,
 }: Props) {
-  // На всякий случай добавим небольшой таймаут, если onLayoutAnimationComplete все же сбоит
   const [isFullyExpanded, setIsFullyExpanded] = useState(false);
 
   useEffect(() => {
@@ -44,10 +41,19 @@ export function ExpandedCardModal({
       setIsFullyExpanded(false);
       return;
     }
+
+    // НАДЕЖНЫЙ ФИКС: Включаем плеер гарантированно через 400мс через таймер,
+    // вообще не дожидаясь капризных коллбэков Framer Motion
+    const timer = setTimeout(() => {
+      setIsFullyExpanded(true);
+    }, 400);
+
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
+
     return () => {
+      clearTimeout(timer);
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
@@ -59,7 +65,6 @@ export function ExpandedCardModal({
 
   const iframeSrc = useMemo(() => {
     if (!twitchChannel) return "";
-    // ОБНОВЛЕНИЕ: muted=false обязателен для автоплея со звуком
     return `https://player.twitch.tv/?channel=${twitchChannel}&parent=cybereden.vercel.app&autoplay=true&muted=false`;
   }, [twitchChannel]);
 
@@ -67,7 +72,6 @@ export function ExpandedCardModal({
     <AnimatePresence>
       {open && (
         <>
-          {/* Фон с размытием */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -76,28 +80,11 @@ export function ExpandedCardModal({
             className="fixed inset-0 z-50 bg-background/85 backdrop-blur-md"
             onClick={onClose}
           />
-
-          {/* Основное окно карточки */}
           <motion.div
             layoutId={layoutId}
-            // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: overflow-hidden обязателен, чтобы внутренний скролл не мешал анимации Shared Layout
             className="fixed inset-2 sm:inset-4 md:inset-8 z-50 bg-surface neon-border overflow-hidden flex flex-col"
-            // Более стабильная анимация
             transition={{ type: "spring", stiffness: 300, damping: 35 }}
-            // ИСПРАВЛЕНИЕ: Принудительный скролл наверх в начале анимации
-            initial={{ y: 0 }}
-            onLayoutAnimationStart={() => {
-              // Если вдруг был скролл, он сломает onLayoutAnimationComplete
-              const content = document.getElementById("expanded-content");
-              if (content) content.scrollTop = 0;
-            }}
-            // Срабатывает в конце анимации
-            onLayoutAnimationComplete={() => {
-              console.log("Card expanded, starting Twitch player...");
-              setIsFullyExpanded(true);
-            }}
           >
-            {/* HUD Элементы */}
             <div className="absolute inset-0 hud-scanlines pointer-events-none" />
             <button
               onClick={onClose}
@@ -107,8 +94,7 @@ export function ExpandedCardModal({
               <ArrowLeft size={14} /> Back
             </button>
 
-            {/* Контент с прокруткой */}
-            <div id="expanded-content" className="relative flex-1 overflow-y-auto">
+            <div className="relative flex-1 overflow-y-auto">
               <div className="grid md:grid-cols-[1.1fr_1fr] gap-0 min-h-full">
                 {image && (
                   <div className="relative bg-background hud-corners">
@@ -121,8 +107,6 @@ export function ExpandedCardModal({
                     <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background/80 via-transparent to-transparent" />
                   </div>
                 )}
-                
-                {/* Текстовый контент */}
                 <div className="p-6 md:p-10 lg:p-12">
                   {eyebrow && (
                     <div className="font-mono text-[10px] uppercase tracking-[0.4em] neon-text-cyan mb-3">
@@ -138,7 +122,6 @@ export function ExpandedCardModal({
                     {title}
                   </motion.h2>
 
-                  {/* Мета-информация */}
                   {meta && meta.length > 0 && (
                     <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
                       {meta.map((m) => (
@@ -154,22 +137,19 @@ export function ExpandedCardModal({
                     </div>
                   )}
 
-                  {/* Стриминг и основной контент */}
                   <div className="mt-6 space-y-6 text-sm leading-relaxed text-foreground/90">
                     {iframeSrc ? (
                       <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4 flex items-center justify-center relative border border-border/50">
                         
-                        {/* Показываем загрузчик пока анимация Shared Layout не зафиксирована */}
                         {!isFullyExpanded && (
                           <div className="absolute inset-0 flex items-center justify-center bg-black font-mono text-[10px] uppercase tracking-widest text-cyan-400">
                             <span className="animate-pulse">Connecting Stream...</span>
                           </div>
                         )}
                         
-                        {/* ИСПРАВЛЕНИЕ: Показываем плеер только когда он статичен */}
                         {isFullyExpanded && (
                           <iframe
-                            key={`${twitchChannel}-player`} // Уникальный ключ
+                            key={`${twitchChannel}-player`}
                             src={iframeSrc}
                             width="100%"
                             height="100%"
@@ -184,7 +164,6 @@ export function ExpandedCardModal({
                     )}
                   </div>
 
-                  {/* Кнопка действия */}
                   <div className="mt-8 sticky bottom-0">
                     <button className="w-full md:w-auto inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-display tracking-[0.25em] uppercase text-sm pulse-glow hover:brightness-110 transition">
                       {cta}
