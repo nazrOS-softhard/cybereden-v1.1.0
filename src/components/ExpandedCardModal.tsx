@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react"; // Добавили useMemo
 import type { ReactNode } from "react";
 
 interface Props {
@@ -16,10 +16,8 @@ interface Props {
   streamUrl?: string;
 }
 
-// Функция для безопасного извлечения имени канала Twitch
 function getTwitchChannel(urlOrName: string): string {
   if (!urlOrName) return "";
-  // Регулярное выражение вытаскивает последний сегмент пути перед слэшами или параметрами
   const match = urlOrName.match(/(?:twitch\.tv\/)([\w]+)/i);
   return match ? match[1] : urlOrName.trim();
 }
@@ -47,7 +45,16 @@ export function ExpandedCardModal({
     };
   }, [open, onClose]);
 
-  const twitchChannel = streamUrl ? getTwitchChannel(streamUrl) : "";
+  // Кэшируем имя канала, чтобы оно не вычислялось заново при ререндерах
+  const twitchChannel = useMemo(() => {
+    return streamUrl ? getTwitchChannel(streamUrl) : "";
+  }, [streamUrl]);
+
+  // Кэшируем сам URL плеера. Теперь строка ссылки железно стабильна
+  const iframeSrc = useMemo(() => {
+    if (!twitchChannel) return "";
+    return `https://player.twitch.tv/?channel=${twitchChannel}&parent=cybereden.vercel.app&autoplay=true`;
+  }, [twitchChannel]);
 
   return (
     <AnimatePresence>
@@ -119,15 +126,15 @@ export function ExpandedCardModal({
                   )}
 
                   <div className="mt-6 space-y-6 text-sm leading-relaxed text-foreground/90">
-                    {/* Если передан streamUrl и успешно распарсился канал */}
-                    {twitchChannel ? (
+                    {iframeSrc ? (
                       <div className="aspect-video w-full bg-black rounded-lg overflow-hidden mt-4">
                         <iframe
-                          src={`https://player.twitch.tv/?channel=${twitchChannel}&parent=cybereden.vercel.app`}
+                          key={twitchChannel} // Статичный ключ предотвращает деструктивное пересоздание DOM-узла
+                          src={iframeSrc}
                           width="100%"
                           height="100%"
                           allow="autoplay; fullscreen"
-                          allowFullScreen // Исправлен регистр
+                          allowFullScreen
                           className="w-full h-full border-0"
                         />
                       </div>
