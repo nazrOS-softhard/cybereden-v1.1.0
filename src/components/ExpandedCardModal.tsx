@@ -42,10 +42,9 @@ export function ExpandedCardModal({
       return;
     }
 
-    // Включаем плеер через 600мс, когда анимация "tween" гарантированно и полностью замерла
     const timer = setTimeout(() => {
       setIsFullyExpanded(true);
-    }, 600);
+    }, 500);
 
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     document.body.style.overflow = "hidden";
@@ -64,8 +63,9 @@ export function ExpandedCardModal({
 
   const iframeSrc = useMemo(() => {
     if (!twitchChannel) return "";
-    // Добавили autoplay=1 и muted=false (иногда Twitch капризничает без явных единиц)
-    return `https://player.twitch.tv/?channel=${twitchChannel}&parent=cybereden.vercel.app&autoplay=true&muted=false`;
+    // ЖЕЛЕЗНОЕ РЕШЕНИЕ: Ставим muted=true. 
+    // Браузер разрешает автоплей, Twitch не падает в паузу.
+    return `https://player.twitch.tv/?channel=${twitchChannel}&parent=cybereden.vercel.app&autoplay=true&muted=true`;
   }, [twitchChannel]);
 
   return (
@@ -83,8 +83,6 @@ export function ExpandedCardModal({
           <motion.div
             layoutId={layoutId}
             className="fixed inset-2 sm:inset-4 md:inset-8 z-50 bg-surface neon-border overflow-hidden flex flex-col"
-            // ИСПРАВЛЕНИЕ: Меняем капризный "spring" на четкий и фиксированный "tween"
-            // Это убирает микро-колебания пикселей в конце анимации, которые пугали Twitch
             transition={{ type: "tween", ease: "easeOut", duration: 0.4 }}
           >
             <div className="absolute inset-0 hud-scanlines pointer-events-none" />
@@ -155,7 +153,6 @@ export function ExpandedCardModal({
                             src={iframeSrc}
                             width="100%"
                             height="100%"
-                            // Добавили дополнительные политики разрешений для iframe
                             allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
                             allowFullScreen
                             className="w-full h-full border-0"
