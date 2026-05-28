@@ -1,16 +1,11 @@
+import 'dotenv/config';
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import { supabase } from './lib/supabaseClient'; // ─── ИСПРАВЛЕНО: импорт из изолированного клиента
-import knowledgeRouter from './routes/knowledge';
 
-import authRouter    from './routes/auth';
-import uploadRouter  from './routes/upload';
-import profileRouter from './routes/profile';
+import authRouter     from './routes/auth';
+import uploadRouter   from './routes/upload';
+import profileRouter  from './routes/profile';
 
-dotenv.config();
-
-// ─── Express ──────────────────────────────────────────────────────────────────
 const app = express();
 
 // ─── CORS ─────────────────────────────────────────────────────────────────────
@@ -18,22 +13,19 @@ const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173')
   .split(',')
   .map((o) => o.trim());
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
-        callback(null, true);
-      } else {
-        callback(new Error(`Origin ${origin} not allowed by CORS`));
-      }
-    },
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS: origin ${origin} not allowed`));
+    }
+  },
+  credentials: true,
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api/knowledge', knowledgeRouter);
 
 // ─── Health check ─────────────────────────────────────────────────────────────
 const REQUIRED_ENV = [
@@ -56,20 +48,21 @@ app.get('/health', async (_req: Request, res: Response) => {
       status: 'degraded',
       database: 'not_configured',
       missing_env: missing,
-      fix: 'Add these variables to Vercel Dashboard → Settings → Environment Variables',
+      fix: 'Vercel Dashboard → Settings → Environment Variables',
       timestamp: new Date().toISOString(),
     });
   }
 
   try {
-    const { error } = await supabase.from('users').select('count').limit(1);
-    res.status(200).json({
+    const { getSupabase } = require('./lib/supabaseClient');
+    const { error } = await getSupabase().from('users').select('count').limit(1);
+    return res.status(200).json({
       status: 'healthy',
       database: error ? `error: ${error.message}` : 'connected',
       timestamp: new Date().toISOString(),
     });
   } catch (err: any) {
-    res.status(200).json({
+    return res.status(200).json({
       status: 'degraded',
       database: `error: ${err.message}`,
       timestamp: new Date().toISOString(),
@@ -94,12 +87,12 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   res.status(500).json({ error: err.message || 'Internal server error' });
 });
 
-// ─── Локальный запуск (Vercel использует export default) ──────────────────────
+// ─── Локальный запуск ─────────────────────────────────────────────────────────
 if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 3001;
   app.listen(PORT, () => {
     console.log(`\n✅  CyberEden backend: http://localhost:${PORT}`);
-    console.log(`    GET /health — статус`);
+    console.log(`    GET /health\n`);
   });
 }
 
