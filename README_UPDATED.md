@@ -532,7 +532,7 @@ vercel deploy --prod
 # 🔗 Ссылки
 
 - 🌐 Live Demo:
-  https://cybereden.vercel.app/
+  https://cybereden.ru
 
 - 📦 GitHub:
   https://github.com/nazrOS-softhard/cybereden-v1.1.0
