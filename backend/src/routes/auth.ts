@@ -15,6 +15,21 @@ function signToken(userId: string): string {
   );
 }
 
+// ─── Хелпер для парсинга параметра state ──────────────────────────────────────
+function parseState(stateStr?: any): { isLinking: boolean; userId: string | null } {
+  if (!stateStr) return { isLinking: false, userId: null };
+  try {
+    const decoded = Buffer.from(stateStr as string, 'base64').toString('utf-8');
+    const [action, userId] = decoded.split(':');
+    if (action === 'link' && userId) {
+      return { isLinking: true, userId };
+    }
+  } catch (err) {
+    console.error('[OAuth State Parse Error]', err);
+  }
+  return { isLinking: false, userId: null };
+}
+
 // ─── Найти или создать пользователя в Supabase ────────────────────────────────
 async function upsertUser(data: {
   github_id?: number;
@@ -40,7 +55,7 @@ async function upsertUser(data: {
     const { data: updated, error } = await supabase
       .from('users')
       .update({
-        avatar_url: data.avatar_url,
+        avatar_url: data.avatar_url || existing.avatar_url,
         email:      data.email || existing.email,
         last_login: new Date().toISOString(),
       })
@@ -74,7 +89,7 @@ async function upsertUser(data: {
 // ══════════════════════════════════════════════
 
 // GET /api/auth/github
-// Возвращает URL для редиректа на GitHub
+// Возвращает URL для редиректа на GitHub (оставлен для обратной совместимости)
 router.get('/github', (_req: Request, res: Response) => {
   const params = new URLSearchParams({
     client_id:    process.env.GITHUB_CLIENT_ID!,
@@ -85,15 +100,16 @@ router.get('/github', (_req: Request, res: Response) => {
 });
 
 // GET /api/auth/github/callback
-// GitHub редиректит сюда после авторизации
 router.get('/github/callback', async (req: Request, res: Response): Promise<any> => {
-  const { code } = req.query;
+  const { code, state } = req.query;
 
   if (!code) {
-    return res.redirect(`${process.env.FRONTEND_URL}?auth_error=missing_code`);
+    return res.redirect(`${process.env.FRONTEND_URL}/auth-callback?auth_error=missing_code`);
   }
 
   try {
+    const { isLinking, userId } = parseState(state);
+
     // 1. Обмен code → access_token
     const tokenRes = await axios.post(
       'https://github.com/login/oauth/access_token',
@@ -122,22 +138,39 @@ router.get('/github/callback', async (req: Request, res: Response): Promise<any>
     const ghUser  = userRes.data;
     const primary = (emailsRes.data as any[]).find((e) => e.primary)?.email ?? ghUser.email;
 
-    // 3. Upsert в Supabase
-    const user = await upsertUser({
-      github_id:       ghUser.id,
-      github_username: ghUser.login,
-      display_name:    ghUser.name || ghUser.login,
-      email:           primary,
-      avatar_url:      ghUser.avatar_url,
-    });
+    let targetUserId = userId;
 
-    // 4. JWT → редирект на фронтенд
-    const token = signToken(user.id);
+    if (isLinking && targetUserId) {
+      // ─── РЕЖИМ СВЯЗЫВАНИЯ АККАУНТА ───
+      const { error } = await supabase
+        .from('users')
+        .update({
+          github_id:       ghUser.id,
+          github_username: ghUser.login,
+          last_login:      new Date().toISOString(),
+        })
+        .eq('id', targetUserId);
+
+      if (error) throw error;
+    } else {
+      // ─── РЕЖИМ ОБЫЧНОГО ВХОДА / РЕГИСТРАЦИИ ───
+      const user = await upsertUser({
+        github_id:       ghUser.id,
+        github_username: ghUser.login,
+        display_name:    ghUser.name || ghUser.login,
+        email:           primary,
+        avatar_url:      ghUser.avatar_url,
+      });
+      targetUserId = user.id;
+    }
+
+    // 4. Генерируем JWT приложения и шлем на фронтенд-колбэк
+    const token = signToken(targetUserId!);
     return res.redirect(`${process.env.FRONTEND_URL}/auth-callback?token=${token}`);
 
   } catch (err: any) {
-    console.error('[GitHub OAuth]', err.message);
-    return res.redirect(`${process.env.FRONTEND_URL}?auth_error=github_failed`);
+    console.error('[GitHub OAuth Callback Error]', err.message);
+    return res.redirect(`${process.env.FRONTEND_URL}/auth-callback?auth_error=github_failed`);
   }
 });
 
@@ -146,7 +179,7 @@ router.get('/github/callback', async (req: Request, res: Response): Promise<any>
 // ══════════════════════════════════════════════
 
 // GET /api/auth/twitch
-// Возвращает URL для редиректа на Twitch
+// Возвращает URL для редиректа на Twitch (оставлен для обратной совместимости)
 router.get('/twitch', (_req: Request, res: Response) => {
   const params = new URLSearchParams({
     client_id:     process.env.TWITCH_CLIENT_ID!,
@@ -158,15 +191,16 @@ router.get('/twitch', (_req: Request, res: Response) => {
 });
 
 // GET /api/auth/twitch/callback
-// Twitch редиректит сюда после авторизации
 router.get('/twitch/callback', async (req: Request, res: Response): Promise<any> => {
-  const { code } = req.query;
+  const { code, state } = req.query;
 
   if (!code) {
-    return res.redirect(`${process.env.FRONTEND_URL}?auth_error=missing_code`);
+    return res.redirect(`${process.env.FRONTEND_URL}/auth-callback?auth_error=missing_code`);
   }
 
   try {
+    const { isLinking, userId } = parseState(state);
+
     // 1. Обмен code → access_token
     const tokenRes = await axios.post('https://id.twitch.tv/oauth2/token', null, {
       params: {
@@ -190,23 +224,39 @@ router.get('/twitch/callback', async (req: Request, res: Response): Promise<any>
     });
 
     const twUser = userRes.data.data[0];
+    let targetUserId = userId;
 
-    // 3. Upsert в Supabase
-    const user = await upsertUser({
-      twitch_id:       twUser.id,
-      twitch_username: twUser.login,
-      display_name:    twUser.display_name,
-      email:           twUser.email,
-      avatar_url:      twUser.profile_image_url,
-    });
+    if (isLinking && targetUserId) {
+      // ─── РЕЖИМ СВЯЗЫВАНИЯ АККАУНТА ───
+      const { error } = await supabase
+        .from('users')
+        .update({
+          twitch_id:       twUser.id,
+          twitch_username: twUser.login,
+          last_login:      new Date().toISOString(),
+        })
+        .eq('id', targetUserId);
 
-    // 4. JWT → редирект на фронтенд
-    const token = signToken(user.id);
+      if (error) throw error;
+    } else {
+      // ─── РЕЖИМ ОБЫЧНОГО ВХОДА / РЕГИСТРАЦИИ ───
+      const user = await upsertUser({
+        twitch_id:       twUser.id,
+        twitch_username: twUser.login,
+        display_name:    twUser.display_name,
+        email:           twUser.email,
+        avatar_url:      twUser.profile_image_url,
+      });
+      targetUserId = user.id;
+    }
+
+    // 4. Генерируем JWT приложения и шлем на фронтенд-колбэк
+    const token = signToken(targetUserId!);
     return res.redirect(`${process.env.FRONTEND_URL}/auth-callback?token=${token}`);
 
   } catch (err: any) {
-    console.error('[Twitch OAuth]', err.message);
-    return res.redirect(`${process.env.FRONTEND_URL}?auth_error=twitch_failed`);
+    console.error('[Twitch OAuth Callback Error]', err.message);
+    return res.redirect(`${process.env.FRONTEND_URL}/auth-callback?auth_error=twitch_failed`);
   }
 });
 
@@ -215,7 +265,6 @@ router.get('/twitch/callback', async (req: Request, res: Response): Promise<any>
 // ══════════════════════════════════════════════
 
 // GET /api/auth/me
-// Получить текущего пользователя по токену
 router.get('/me', authMiddleware, async (req: Request, res: Response): Promise<any> => {
   const userId = (req as any).userId;
 
@@ -233,7 +282,6 @@ router.get('/me', authMiddleware, async (req: Request, res: Response): Promise<a
 });
 
 // POST /api/auth/logout
-// JWT stateless — удаление токена происходит на фронтенде
 router.post('/logout', (_req: Request, res: Response) => {
   res.json({ success: true, message: 'Logged out' });
 });
