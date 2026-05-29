@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "nazrOS · CyberEden" },
-      { name: "description", content: "Войди в nazrOS — операционную систему киберпанк-сообщества CyberEden." },
+      { name: "description", content: "Войди в nazrOS — операционную среду CyberEden." },
       { property: "og:title", content: "nazrOS · CyberEden" },
       { property: "og:description", content: "Операционная система CyberEden." },
     ],
