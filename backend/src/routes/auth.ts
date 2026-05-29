@@ -133,7 +133,7 @@ router.get('/github/callback', async (req: Request, res: Response): Promise<any>
 
     // 4. JWT → редирект на фронтенд
     const token = signToken(user.id);
-    return res.redirect(`${process.env.FRONTEND_URL}/auth/callback?token=${token}`);
+    return res.redirect(`${process.env.FRONTEND_URL}/auth-callback?token=${token}`);
 
   } catch (err: any) {
     console.error('[GitHub OAuth]', err.message);
@@ -202,7 +202,7 @@ router.get('/twitch/callback', async (req: Request, res: Response): Promise<any>
 
     // 4. JWT → редирект на фронтенд
     const token = signToken(user.id);
-    return res.redirect(`${process.env.FRONTEND_URL}/auth/callback?token=${token}`);
+    return res.redirect(`${process.env.FRONTEND_URL}/auth-callback?token=${token}`);
 
   } catch (err: any) {
     console.error('[Twitch OAuth]', err.message);
