@@ -25,11 +25,11 @@ const dict: Dict = {
   "home.nodes.eyebrow": { ru: "// узлы сети", en: "// network nodes" },
   "home.nodes.title.a": { ru: "Шесть модулей", en: "Six modules" },
   "home.nodes.title.b": { ru: "одной системы", en: "of one system" },
-  "node.market.desc": { ru: "Импланты, дроны, оптика", en: "Implants, drones, optics" },
+  "node.market.desc": { ru: "Устройства и софт", en: "Devices & Software" },
   "node.journal.desc": { ru: "Хакинг, этика, киберспорт", en: "Hacking, ethics, esports" },
   "node.events.desc": { ru: "Турниры, митапы, хакатоны", en: "Tournaments, meetups, hackathons" },
-  "node.streams.desc": { ru: "Прямые включения", en: "Live broadcasts" },
-  "node.dashboard.desc": { ru: "Сетка и метрики", en: "Grid and metrics" },
+  "node.streams.desc": { ru: "Трансляции киберов", en: "Live broadcasts" },
+  "node.dashboard.desc": { ru: "Сетка и статистика", en: "Grid & stats" },
   "node.profile.desc": { ru: "Инвентарь и ачивки", en: "Inventory and achievements" },
 
   // Dashboard
