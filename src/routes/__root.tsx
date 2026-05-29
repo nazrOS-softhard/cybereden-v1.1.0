@@ -12,7 +12,7 @@ import appCss from "../styles.css?url";
 import { TopNav } from "@/components/TopNav";
 import { RainBackground } from "@/components/RainBackground";
 import { LanguageProvider } from "@/lib/i18n";
-import { AuthProvider } from "@/lib/auth";   // ← добавлено
+import { AuthProvider } from "@/lib/auth";
 
 function NotFoundComponent() {
   return (
@@ -47,8 +47,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <div className="font-mono text-xs uppercase tracking-[0.4em] neon-text-cyan">
           System fault
         </div>
-        <h1 className="mt-3 font-display text-2xl neon-text-violet">Сбой подсистемы</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Попробуйте повторить запрос.</p>
+        <h1 className="mt-3 font-display text-2xl neon-text-violet">
+          Сбой подсистемы
+        </h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Попробуйте повторить запрос.
+        </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => { router.invalidate(); reset(); }}
@@ -56,30 +60,29 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           >
             Retry
           </button>
-          <a
-            href="/"
+          {/* ← Link вместо <a href> — не ломает клиентский роутер */}
+          <Link
+            to="/"
             className="px-5 py-2 border border-border font-display text-xs tracking-[0.25em] uppercase hover:neon-border"
           >
             Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(({
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "CyberEden · nazrOS" },
-      { name: "description", content: "CyberEden — киберпанк-платформа nazrOS. Маркет имплантов, журнал, события, стримы и дашборд." },
+      { name: "description", content: "CyberEden — киберпанк-платформа nazrOS." },
       { name: "author", content: "nazrOS" },
       { property: "og:title", content: "CyberEden · nazrOS" },
-      { property: "og:description", content: "Маркет имплантов, журнал, события, стримы и дашборд под управлением nazrOS." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -93,7 +96,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
-}));
+});
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
@@ -113,7 +116,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>                  {/* ← оборачиваем всё приложение */}
+      <AuthProvider>
         <LanguageProvider>
           <RainBackground />
           <TopNav />
