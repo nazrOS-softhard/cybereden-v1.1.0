@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import {
   Trophy, Github, Twitch, Globe,
   ShoppingBag, Upload, BookOpen, Zap,
-  Database, LogOut, Github as GithubIcon,
+  Database, LogOut,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { PageShell } from "@/components/PageShell";
@@ -38,6 +38,52 @@ const mockKnowledge = [
   { title: "TEAM YANDEX: Как корпорации заходят в цифровой спорт", progress: 60, xp: 800, type: "Интервью" },
   { title: "Архитектура нового доверия", progress: 45, xp: 600, type: "Алгоритм" },
 ];
+
+// ─── Компонент предупреждения о связке аккаунтов ─────────────────────────────
+function LinkAccountBanner({ user }: { user: any }) {
+  const hasGithub = !!user.github_username;
+  const hasTwitch = !!user.twitch_username;
+
+  if (hasGithub && hasTwitch) return null;
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="mb-6 p-4 border border-amber-500/30 bg-amber-500/10 backdrop-blur font-mono text-xs flex flex-col sm:flex-row items-center justify-between gap-4 relative z-40"
+    >
+      <div className="flex items-center gap-3">
+        <span className="text-amber-400 animate-pulse text-sm">⚠️</span>
+        <div>
+          <span className="text-amber-400 uppercase tracking-wider font-bold block">Синхронизация среды не завершена</span>
+          <span className="text-muted-foreground text-[11px]">
+            {!hasGithub && "Подключите GitHub для верификации репозиториев. "}
+            {!hasTwitch && "Подключите Twitch для отслеживания трансляций и начисления ПХ."}
+          </span>
+        </div>
+      </div>
+      
+      <div className="flex gap-2 w-full sm:w-auto justify-end">
+        {!hasGithub && (
+          <button 
+            onClick={() => startOAuth("github", user.id)}
+            className="px-3 py-1.5 border border-amber-500/50 hover:bg-amber-500/20 text-amber-300 uppercase tracking-widest text-[10px] transition font-bold"
+          >
+            + Link GitHub
+          </button>
+        )}
+        {!hasTwitch && (
+          <button 
+            onClick={() => startOAuth("twitch", user.id)}
+            className="px-3 py-1.5 border border-amber-500/50 hover:bg-amber-500/20 text-amber-300 uppercase tracking-widest text-[10px] transition font-bold"
+          >
+            + Link Twitch
+          </button>
+        )}
+      </div>
+    </motion.div>
+  );
+}
 
 // ─── Страница не авторизована ─────────────────────────────────────────────────
 function LoginRequired() {
@@ -77,7 +123,7 @@ function LoginRequired() {
         </div>
 
         <div className="mt-6 font-mono text-[10px] text-muted-foreground">
-          Необходимо подключить{" "}
+           Необходимо подключить{" "}
           <span className="neon-text-cyan">оба аккаунта</span>{" "}
           для полного доступа
         </div>
@@ -177,14 +223,14 @@ function ProfilePage() {
       handle: user.github_username ? `@${user.github_username}` : "Не подключен",
       icon: Github,
       connected: !!user.github_username,
-      onClick: () => !user.github_username && startOAuth("github"),
+      onClick: () => !user.github_username && startOAuth("github", user.id),
     },
     {
       name: "Twitch",
       handle: user.twitch_username ? `@${user.twitch_username}` : "Не подключен",
       icon: Twitch,
       connected: !!user.twitch_username,
-      onClick: () => !user.twitch_username && startOAuth("twitch"),
+      onClick: () => !user.twitch_username && startOAuth("twitch", user.id),
     },
     {
       name: "Darknet",
@@ -197,6 +243,9 @@ function ProfilePage() {
 
   return (
     <PageShell eyebrow={t("profile.eyebrow")} title={`@${user.display_name}`} subtitle={t("profile.subtitle")}>
+
+      {/* Баннер предупреждения синхронизации аккаунтов */}
+      <LinkAccountBanner user={user} />
 
       {/* Треугольник уровня */}
       <div className="absolute top-[200px] right-[830px] z-50 pointer-events-none scale-[2.0]">
