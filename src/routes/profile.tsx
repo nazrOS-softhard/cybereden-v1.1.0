@@ -23,12 +23,20 @@ const mockKnowledge    = [
 ];
 
 // ── Значок инвестора ──────────────────────────────────────────────────────────
-function InvestorBadge() {
+// ── Значок инвестора с поддержкой ID ──────────────────────────────────────────
+function InvestorBadge({ code }: { code?: string }) {
   return (
-    <span title="Квалифицированный инвестор nazrOS"
-      className="inline-flex items-center gap-1 px-2 py-0.5 border border-yellow-500/60 bg-yellow-500/10 font-mono text-[9px] uppercase tracking-widest neon-text-acid select-none">
-      ◆ ИНВЕСТ
-    </span>
+    <div className="flex flex-col items-start gap-1">
+      <span title="Квалифицированный инвестор nazrOS"
+        className="inline-flex items-center gap-1 px-2 py-0.5 border border-yellow-500/60 bg-yellow-500/10 font-mono text-[9px] uppercase tracking-widest neon-text-acid select-none">
+        ◆ ИНВЕСТОР
+      </span>
+      {code && (
+        <span className="font-mono text-[10px] text-yellow-500/80 tracking-wider">
+          {code}
+        </span>
+      )}
+    </div>
   );
 }
 
@@ -265,8 +273,12 @@ function ProfilePage() {
           <div className="flex items-center gap-3 flex-wrap">
             <EditableNickname userId={user.id} initial={displayName} onSaved={v => { setDisplayName(v); refreshUser(); }} />
             <LevelBadge level={user.level} />
-            {/* Значок инвестора — показываем если is_investor === true в БД */}
-            {user.is_investor && <InvestorBadge />}
+          {/* Значок инвестора — вытаскиваем сгенерированный ботом ID из bio, если он там есть */}
+            {user.is_investor && (
+              <InvestorBadge 
+                code={user.bio?.includes("Investor ID:") ? user.bio.split("Investor ID: ")[1]?.trim() : undefined} 
+              />
+            )}
           </div>
           <button onClick={handleLogout}
             className="flex items-center gap-2 px-3 py-1.5 border border-border hover:border-red-500 hover:text-red-400 transition font-mono text-xs uppercase tracking-widest">
