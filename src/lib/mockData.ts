@@ -29,6 +29,13 @@ import northPoster from "@/assets/north-event-poster.png";
 
 // МЕРОПРИЯТИЯ ХАКАТОНЫ
 
+
+// ЖУРНАЛ ЦИФРОВАЯ ЭТИКА
+import ethicsPoster1 from "@/assets/ethics-poster_1.png";
+
+//ЖУРНАЛ КИБЕРБЕЗОПАСНОСТЬ 
+Import cyberSecurityPoster1 from "@/assets/cybersecurity_poster_1.png";
+
 export type Sensor = { label: string; unit: string; value: number; min: number; max: number };
 export type Slider = { label: string; value: number; min: number; max: number; unit: string };
 
@@ -634,21 +641,290 @@ export const articles: Article[] = [
 
 </div>
 `,
-  readTime: 6},
+  readTime: 6
+  },
 
-  { id: "a5",
-     title: "Кто владеет твоими снами?",
-      topic: "Цифровая этика",
-       excerpt: "Сны как данные — правовой вакуум.",
-        body: "После анонса DreamCache корпорации получили доступ к слоям REM-памяти. Что говорят регуляторы Сектора 4.",
-         readTime: 10 },
+{
+  id: "a5",
+  title: "Правила цифрового мира",
+  topic: "Цифровая культура",
+  excerpt: "Почему цифровая этика начинается не с нейросетей, а с поведения людей в сети.",
+  body: `
+<div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
 
-  { id: "a6",
-     title: "ICE-машины 2090: что под капотом",
-      topic: "Кибербезопасность",
-       excerpt: "Активная защита: от ловушек до контратак.",
-        body: "Технический разбор современных Intrusion Countermeasures Electronics и их слабых мест.",
-         readTime: 8 },
+  <!-- ИЗОБРАЖЕНИЕ -->
+  <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #a855f7;">
+    <img src="${ethicsPoster1}" alt="Цифровая этика" style="width: 100%; height: auto; display: block;" />
+  </div>
+
+  <h2 style="font-size: 28px; color: #a855f7; border-left: 4px solid #a855f7; padding-left: 16px; margin-top: 0;">
+    Цифровая этика: правила мира без границ
+  </h2>
+
+  <p>
+    Когда люди слышат словосочетание «цифровая этика», чаще всего речь сразу заходит об искусственном интеллекте, алгоритмах и больших технологических корпорациях.
+  </p>
+
+  <p>
+    Однако цифровая этика начинается гораздо раньше — с обычного сообщения, комментария, публикации фотографии или электронного письма.
+  </p>
+
+  <blockquote style="border-left: 4px solid #22d3ee; padding-left: 16px; margin: 20px 0; font-style: italic; color: #94a3b8;">
+    «Технологии становятся частью общества только тогда, когда общество учится пользоваться ими ответственно».
+  </blockquote>
+
+  <h3 style="font-size: 24px; color: #22d3ee; margin-top: 40px; margin-bottom: 20px;">
+    ⚡ Алгоритм цифровой этики
+  </h3>
+
+  <div style="background: #111122; border: 1px solid #334155; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
+    <span style="background: #22d3ee; color: #000; padding: 2px 8px; font-size: 12px; font-weight: bold; border-radius: 4px;">ШАГ 1</span>
+    <h4 style="font-size: 18px; color: #fff; margin: 10px 0;">Ответственность за коммуникацию</h4>
+    <p style="font-size: 14px; color: #cbd5e1;">Вам написал коллега, партнёр или знакомый.</p>
+    <div style="margin-left: 10px;">
+      <div style="margin-bottom: 12px;">
+        <strong style="color: #ef4444;">❌ Вариант А:</strong> Игнорировать сообщение несколько дней.<br>
+        <span style="color: #64748b; font-size: 13px;">Потеря доверия, задержка проектов и неопределённость.</span>
+      </div>
+      <div>
+        <strong style="color: #22c55e;">✅ Вариант Б:</strong> Подтвердить получение сообщения и обозначить сроки ответа.<br>
+        <span style="color: #64748b; font-size: 13px;">В профессиональной среде хорошим тоном считается отвечать на сообщения в течение нескольких часов, а на электронные письма — в течение одного рабочего дня.</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: #111122; border: 1px solid #334155; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
+    <span style="background: #a855f7; color: #fff; padding: 2px 8px; font-size: 12px; font-weight: bold; border-radius: 4px;">ШАГ 2</span>
+    <h4 style="font-size: 18px; color: #fff; margin: 10px 0;">Работа с личной информацией</h4>
+    <div style="margin-left: 10px;">
+      <div style="margin-bottom: 12px;">
+        <strong style="color: #ef4444;">❌ Вариант А:</strong> Опубликовать чужую переписку или фотографию без согласия.
+      </div>
+      <div>
+        <strong style="color: #22c55e;">✅ Вариант Б:</strong> Получить разрешение автора перед публикацией.
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 22px; color: #22d3ee; margin-top: 32px;">
+    Реальные кейсы
+  </h3>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: square; color: #cbd5e1;">
+    <li style="margin-bottom: 12px;">
+      <strong style="color: #fff;">Amazon:</strong>
+      Компания отказалась от экспериментальной системы подбора персонала после обнаружения гендерной предвзятости алгоритма.
+    </li>
+    <li style="margin-bottom: 12px;">
+      <strong style="color: #fff;">MIT Media Lab:</strong>
+      Исследования показали различия в точности некоторых систем распознавания лиц для разных групп пользователей.
+    </li>
+    <li style="margin-bottom: 12px;">
+      <strong style="color: #fff;">Право быть забытым:</strong>
+      В ряде стран пользователи могут требовать удаления устаревшей информации о себе из поисковой выдачи.
+    </li>
+  </ul>
+
+  <h3 style="font-size: 22px; color: #a855f7; margin-top: 32px;">
+    Практика цифровой культуры
+  </h3>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px;">
+    <li>Уважайте время других людей.</li>
+    <li>Не распространяйте личные данные без согласия.</li>
+    <li>Проверяйте источники информации.</li>
+    <li>Указывайте авторов материалов.</li>
+    <li>Соблюдайте цифровую приватность.</li>
+    <li>Помните, что за каждым аккаунтом находится живой человек.</li>
+  </ul>
+
+  <p style="font-size: 15px; color: #64748b; text-align: center; margin-top: 40px; border-top: 1px solid #1e293b; padding-top: 20px;">
+    Материал подготовлен аналитическим отделом КиберэдэН.<br>
+    Цифровая культура начинается с личной ответственности.
+  </p>
+
+</div>
+`,
+  readTime: 7
+},
+
+ {
+id: "a6",
+title: "Главная уязвимость любой системы",
+topic: "Кибербезопасность",
+excerpt: "Большинство успешных атак начинаются не со взлома систем, а с ошибок людей и слабых процессов безопасности.",
+body: `
+
+<div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
+
+  <!-- ИЗОБРАЖЕНИЕ -->
+
+  <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #22d3ee;">
+    <img src="\${cyberSecurityPoster1}" alt="Кибербезопасность" style="width: 100%; height: auto; display: block;" />
+  </div>
+
+  <h2 style="font-size: 28px; color: #22d3ee; border-left: 4px solid #22d3ee; padding-left: 16px; margin-top: 0;">
+    Кибербезопасность начинается с поведения людей
+  </h2>
+
+  <p>
+    Когда говорят о кибербезопасности, многие представляют сложные системы защиты, центры мониторинга и команды специалистов.
+  </p>
+
+  <p>
+    На практике большинство инцидентов начинается значительно проще — с украденного пароля, фишингового письма или невнимательного действия пользователя.
+  </p>
+
+  <blockquote style="border-left: 4px solid #a855f7; padding-left: 16px; margin: 20px 0; font-style: italic; color: #94a3b8;">
+    «Самая сложная система защиты может быть обойдена одним скомпрометированным аккаунтом».
+  </blockquote>
+
+  <h3 style="font-size: 24px; color: #a855f7; margin-top: 40px; margin-bottom: 20px;">
+    ⚡ Алгоритм базовой кибербезопасности
+  </h3>
+
+  <div style="background: #111122; border: 1px solid #334155; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
+    <span style="background: #22d3ee; color: #000; padding: 2px 8px; font-size: 12px; font-weight: bold; border-radius: 4px;">ШАГ 1</span>
+
+```
+<h4 style="font-size: 18px; color: #fff; margin: 10px 0;">
+  Защита учётных записей
+</h4>
+
+<p style="font-size: 14px; color: #cbd5e1;">
+  Большинство компрометаций начинается с украденных паролей.
+</p>
+
+<div style="margin-left: 10px;">
+  <div style="margin-bottom: 12px;">
+    <strong style="color: #ef4444;">❌ Вариант А:</strong>
+    Использовать один пароль для нескольких сервисов.
+    <br>
+    <span style="color: #64748b; font-size: 13px;">
+      В случае утечки злоумышленники получают доступ сразу к нескольким аккаунтам.
+    </span>
+  </div>
+
+  <div>
+    <strong style="color: #22c55e;">✅ Вариант Б:</strong>
+    Использовать уникальные пароли и многофакторную аутентификацию (MFA).
+    <br>
+    <span style="color: #64748b; font-size: 13px;">
+      MFA остаётся одним из наиболее эффективных способов предотвращения захвата аккаунтов.
+    </span>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div style="background: #111122; border: 1px solid #334155; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
+    <span style="background: #a855f7; color: #fff; padding: 2px 8px; font-size: 12px; font-weight: bold; border-radius: 4px;">ШАГ 2</span>
+
+```
+<h4 style="font-size: 18px; color: #fff; margin: 10px 0;">
+  Проверка сообщений и ссылок
+</h4>
+
+<div style="margin-left: 10px;">
+  <div style="margin-bottom: 12px;">
+    <strong style="color: #ef4444;">❌ Вариант А:</strong>
+    Открывать вложения и ссылки от неизвестных отправителей.
+  </div>
+
+  <div>
+    <strong style="color: #22c55e;">✅ Вариант Б:</strong>
+    Проверять адрес отправителя, домен сайта и содержание сообщения перед открытием файлов.
+  </div>
+</div>
+```
+
+  </div>
+
+  <div style="background: #111122; border: 1px solid #334155; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
+    <span style="background: #06b6d4; color: #000; padding: 2px 8px; font-size: 12px; font-weight: bold; border-radius: 4px;">ШАГ 3</span>
+
+```
+<h4 style="font-size: 18px; color: #fff; margin: 10px 0;">
+  Обновление систем
+</h4>
+
+<div style="margin-left: 10px;">
+  <div style="margin-bottom: 12px;">
+    <strong style="color: #ef4444;">❌ Вариант А:</strong>
+    Игнорировать обновления операционной системы и программ.
+  </div>
+
+  <div>
+    <strong style="color: #22c55e;">✅ Вариант Б:</strong>
+    Устанавливать обновления безопасности сразу после их выпуска.
+  </div>
+</div>
+```
+
+  </div>
+
+  <h3 style="font-size: 22px; color: #22d3ee; margin-top: 32px;">
+    Реальные кейсы
+  </h3>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: square; color: #cbd5e1;">
+
+```
+<li style="margin-bottom: 12px;">
+  <strong style="color: #fff;">Colonial Pipeline (2021):</strong>
+  Крупнейшая топливная сеть США была вынуждена остановить часть операций после компрометации учётной записи VPN.
+</li>
+
+<li style="margin-bottom: 12px;">
+  <strong style="color: #fff;">MGM Resorts (2023):</strong>
+  Злоумышленники получили доступ к внутренним системам компании через методы социальной инженерии.
+</li>
+
+<li style="margin-bottom: 12px;">
+  <strong style="color: #fff;">MOVEit Transfer (2023):</strong>
+  Уязвимость в системе передачи файлов привела к компрометации данных сотен организаций по всему миру.
+</li>
+```
+
+  </ul>
+
+  <h3 style="font-size: 22px; color: #a855f7; margin-top: 32px;">
+    Практика цифровой безопасности
+  </h3>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px;">
+    <li>Используйте менеджер паролей.</li>
+    <li>Включайте многофакторную аутентификацию.</li>
+    <li>Не открывайте подозрительные вложения.</li>
+    <li>Проверяйте адреса сайтов перед вводом данных.</li>
+    <li>Регулярно обновляйте устройства и приложения.</li>
+    <li>Создавайте резервные копии важных данных.</li>
+    <li>Ограничивайте доступ к конфиденциальной информации.</li>
+  </ul>
+
+  <h3 style="font-size: 22px; color: #22d3ee; margin-top: 32px;">
+    Что показывают исследования
+  </h3>
+
+  <ul style="padding-left: 24px; margin-bottom: 20px;">
+    <li>По данным Verizon DBIR, человеческий фактор остаётся одним из главных элементов большинства инцидентов безопасности.</li>
+    <li>Фишинг и кража учётных данных стабильно входят в число наиболее распространённых способов первоначального доступа.</li>
+    <li>Многофакторная аутентификация значительно снижает риск компрометации аккаунтов.</li>
+    <li>Большая часть известных атак использует уже обнаруженные и опубликованные уязвимости, для которых существуют исправления.</li>
+  </ul>
+
+  <p style="font-size: 15px; color: #64748b; text-align: center; margin-top: 40px; border-top: 1px solid #1e293b; padding-top: 20px;">
+    Материал подготовлен аналитическим отделом КиберэдэН.<br>
+    Кибербезопасность — это не продукт и не программа. Это постоянный процесс управления рисками.
+  </p>
+
+</div>
+
+`,
+readTime: 8
+}
+,
 ];
 
 export type Event = {
