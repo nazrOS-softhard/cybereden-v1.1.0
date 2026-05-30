@@ -6,7 +6,7 @@ import { ExpandedCardModal } from "@/components/ExpandedCardModal";
 import { DeviceSensorPanel } from "@/components/DeviceSensorPanel";
 import { items } from "@/lib/mockData";
 import { useI18n } from "@/lib/i18n";
-import { useAuth } from "@/lib/auth"; // Подключаем твою систему авторизации
+import { useAuth } from "@/lib/auth";
 
 export const Route = createFileRoute("/market")({
   head: () => ({
@@ -24,9 +24,6 @@ const statusLabel: Record<string, string> = {
   low:      "Мало",
   preorder: "Предзаказ",
 };
-
-// ── Ссылка на Telegram-бота для покупки (замени на реальный юзернейм бота) ───
-const TELEGRAM_BOT = "https://t.me/cybereden_market_bot?start=cybervaucher";
 
 // ── Рендер описания с переносами строк ────────────────────────────────────────
 function Description({ text }: { text: string }) {
@@ -72,10 +69,16 @@ function Description({ text }: { text: string }) {
 
 function MarketPage() {
   const { t } = useI18n();
+  const { user } = useAuth(); // Система авторизации подключена
   const [openId, setOpenId] = useState<string | null>(null);
   const active = items.find((i) => i.id === openId) ?? null;
 
   const isCybervoucher = active?.id === "cybervaucher_nazrOS";
+
+  // Генерируем динамическую ссылку с UUID пользователя
+  const dynamicBotLink = user && user.id
+    ? `https://t.me/cybereden_market_bot?start=cybervaucher_${user.id}`
+    : `https://t.me/cybereden_market_bot?start=cybervaucher_noauth`;
 
   return (
     <PageShell eyebrow={t("market.eyebrow")} title={t("market.title")} subtitle={t("market.subtitle")}>
@@ -99,7 +102,7 @@ function MarketPage() {
         title={active?.name ?? ""}
         image={active?.expandedImage ?? active?.image}
         cta={isCybervoucher ? "Приобрести в Telegram" : t("market.cta")}
-        ctaHref={isCybervoucher ? TELEGRAM_BOT : undefined}
+        ctaHref={isCybervoucher ? dynamicBotLink : undefined} // Передаем динамический URL бота
         meta={
           active
             ? [
