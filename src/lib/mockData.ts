@@ -760,7 +760,7 @@ body: `
   <!-- ИЗОБРАЖЕНИЕ -->
 
   <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #22d3ee;">
-    <img src="${cyberSecurityPoster1}" alt="Кибербезопасность" style="width: 100%; height: auto; display: block;" />
+    <img src="${cyberSecurityPoster1}"alt="Кибербезопасность" style="width: 100%; height: auto; display: block;" />
   </div>
 
   <h2 style="font-size: 28px; color: #22d3ee; border-left: 4px solid #22d3ee; padding-left: 16px; margin-top: 0;">
