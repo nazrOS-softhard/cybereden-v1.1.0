@@ -6,6 +6,7 @@ import { ExpandedCardModal } from "@/components/ExpandedCardModal";
 import { DeviceSensorPanel } from "@/components/DeviceSensorPanel";
 import { items } from "@/lib/mockData";
 import { useI18n } from "@/lib/i18n";
+import { useAuth } from "@/lib/auth"; // Подключаем твою систему авторизации
 
 export const Route = createFileRoute("/market")({
   head: () => ({
