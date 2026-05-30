@@ -1,12 +1,9 @@
-
 import { Router, Request, Response } from 'express';
 import { supabase } from '../lib/supabaseClient';
-import { authMiddleware } from '../middleware/auth';
 
 const router = Router();
 
-// ─── GET /api/users — публичный список киберов для Дашборда ──────────────────
-// Доступен всем (авторизованным и нет)
+// ─── GET /api/users — публичный список киберов (для дашборда) ─────────────────
 router.get('/', async (_req: Request, res: Response): Promise<any> => {
   const { data: users, error } = await supabase
     .from('users')
@@ -16,7 +13,6 @@ router.get('/', async (_req: Request, res: Response): Promise<any> => {
 
   if (error) return res.status(500).json({ error: error.message });
 
-  // Онлайн = last_login в последние 30 минут
   const now = Date.now();
   const withStatus = (users || []).map(u => ({
     ...u,
@@ -28,7 +24,7 @@ router.get('/', async (_req: Request, res: Response): Promise<any> => {
   return res.json({ users: withStatus });
 });
 
-// ─── GET /api/users/:id — публичный профиль конкретного кибера ───────────────
+// ─── GET /api/users/:id — публичный профиль кибера + его активы ───────────────
 router.get('/:id', async (req: Request, res: Response): Promise<any> => {
   const { id } = req.params;
 
@@ -41,7 +37,6 @@ router.get('/:id', async (req: Request, res: Response): Promise<any> => {
   if (error || !user) return res.status(404).json({ error: 'Кибер не найден' });
   if (!user.is_public) return res.status(403).json({ error: 'Профиль скрыт' });
 
-  // Публичные активы кибера
   const { data: assets } = await supabase
     .from('assets')
     .select('id, file_name, file_type, file_size, url, created_at')
