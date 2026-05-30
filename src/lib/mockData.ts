@@ -162,38 +162,59 @@ export const items: Item[] = [
     ],
   },
   // --- cybervaucher nazrOS ---
-  {
+ {
     id: "cybervaucher_nazrOS",
     name: "КИБЕРВАУЧЕР",
     category: "ИНВЕСТ",
     price: 15400,
     status: "in_stock",
-    image: cybervaucher, // Убраны кавычки
-    expandedImage: cybervaucherfull, // Убраны кавычки
+    image: cybervaucher,
+    expandedImage: cybervaucherfull,
     short: "Тёмная подвеска — цифровой паспорт. Квалификация инвестора + ранний доступ к устройствам, софту nazrOS и системе лояльности.",
-    description: `⚡ DEV MODE
-Функционал в стадии сборки. Возможны корректировки и горячие исправления.
+    description: `
+      <div style="font-family: sans-serif; color: #cbd5e1; line-height: 1.6;">
+        <div style="background: rgba(249, 115, 22, 0.1); border-left: 3px solid #f97316; padding: 10px; margin-bottom: 20px; border-radius: 4px;">
+          <strong style="color: #f97316;">⚡ DEV MODE</strong><br />
+          <span style="font-size: 13px; color: #94a3b8;">Функционал в стадии сборки. Возможны корректировки и горячие исправления.</span>
+        </div>
 
-▸ КИБЕРВАУЧЕР — тёмная подвеска с логотипом nazrOS.
-Твой цифровой паспорт в Цифровом конгломерате nazrOS.
+        <p style="margin-bottom: 20px;">
+          <strong>КИБЕРВАУЧЕР</strong> — тёмная подвеска с логотипом nazrOS. Твой цифровой паспорт в Цифровом конгломерате nazrOS.
+        </p>
 
-▸ ПРИОРИТЕТЫ
-  01. Квалификация инвестора
-      Активация через Telegram Wallet → ID в Кибле Кибера.
-  02. Ранний доступ к устройствам nazrOS
-      Новые девайсы до анонса.
-  03. Ранний доступ к софту nazrOS
-      Прошивки и модули на стадии бета-тестирования.
-  04. Система лояльности
-      Скидки и подписки у партнёров:
-      Международные: Samsung, Apple, Sony, Xiaomi, Huawei, Microsoft, Honor, Oppo, Vivo, Motorola, Nokia, OnePlus, Meizu, Lenovo, ASUS, LG, HTC, ZTE, Infinix, realme, Google, Nothing
-      Российские: Irbis, BQ, DEXP, F+, Inoi, Tecno, Vertex
+        <h4 style="color: #22d3ee; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-size: 14px;">▸ ПРИОРИТЕТЫ</h4>
+        <ul style="padding-left: 20px; margin-bottom: 20px; list-style-type: none;">
+          <li style="margin-bottom: 12px;">
+            <strong style="color: #fff;">01. Квалификация инвестора</strong><br />
+            <span style="color: #94a3b8; font-size: 13px;">Активация через Telegram Wallet &rarr; ID в Кибле Кибера.</span>
+          </li>
+          <li style="margin-bottom: 12px;">
+            <strong style="color: #fff;">02. Ранний доступ к устройствам nazrOS</strong><br />
+            <span style="color: #94a3b8; font-size: 13px;">Новые девайсы до официального анонса.</span>
+          </li>
+          <li style="margin-bottom: 12px;">
+            <strong style="color: #fff;">03. Ранний доступ к софту nazrOS</strong><br />
+            <span style="color: #94a3b8; font-size: 13px;">Прошивки и модули на стадии бета-тестирования.</span>
+          </li>
+          <li style="margin-bottom: 12px;">
+            <strong style="color: #fff;">04. Система лояльности</strong><br />
+            <span style="color: #94a3b8; font-size: 13px;">Скидки и подписки у партнёров:</span>
+            <div style="margin-top: 4px; font-size: 12px; color: #64748b;">
+              <strong>Международные:</strong> Samsung, Apple, Sony, Xiaomi, Huawei, Microsoft, Honor, Oppo, Vivo, Motorola, Nokia, OnePlus, Meizu, Lenovo, ASUS, LG, HTC, ZTE, Infinix, realme, Google, Nothing<br />
+              <strong>Российские:</strong> Irbis, BQ, DEXP, F+, Inoi, Tecno, Vertex
+            </div>
+          </li>
+        </ul>
 
-▸ ЛОГИКА ПРИОБРЕТЕНИЯ
-  1. «Приобрести» → Telegram-бот
-  2. Оплата через Telegram Wallet
-  3. Генерация уникального ID
-  4. ID отображается в Кибле Кибера`,
+        <h4 style="color: #22d3ee; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-size: 14px;">▸ ЛОГИКА ПРИОБРЕТЕНИЯ</h4>
+        <ol style="padding-left: 20px; margin-bottom: 0; color: #cbd5e1; font-size: 13px;">
+          <li style="margin-bottom: 4px;">Нажатие кнопки «Приобрести» перенаправляет в Telegram-бот.</li>
+          <li style="margin-bottom: 4px;">Оплата производится через Telegram Wallet.</li>
+          <li style="margin-bottom: 4px;">Система генерирует ваш уникальный ID.</li>
+          <li style="margin-bottom: 4px;">ID автоматически отображается в Кибле Кибера.</li>
+        </ol>
+      </div>
+    `,
     sensors: [
       { label: "Оптическая мощность", unit: "дБм", value: 28, min: 0, max: 40 },
       { label: "Температура сенсора", unit: "°C", value: 34, min: 20, max: 60 },
