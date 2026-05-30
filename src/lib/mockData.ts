@@ -34,7 +34,7 @@ import northPoster from "@/assets/north-event-poster.png";
 import ethicsPoster1 from "@/assets/ethics-poster_1.png";
 
 //ЖУРНАЛ КИБЕРБЕЗОПАСНОСТЬ 
-Import cyberSecurityPoster1 from "@/assets/cybersecurity_poster_1.png";
+import cyberSecurityPoster1 from "@/assets/cybersecurity_poster_1.png";
 
 export type Sensor = { label: string; unit: string; value: number; min: number; max: number };
 export type Slider = { label: string; value: number; min: number; max: number; unit: string };
