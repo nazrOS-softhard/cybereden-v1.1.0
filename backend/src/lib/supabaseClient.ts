@@ -1,12 +1,6 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import ws from 'ws';
 
-/**
- * Standalone Supabase module — нет circular dependency с server.ts.
- * ws-пакет нужен потому что Node.js 20 не имеет нативного WebSocket.
- * Node.js 22+ имеет встроенный — там ws игнорируется автоматически.
- */
-
 let _client: SupabaseClient | null = null;
 
 export function getSupabase(): SupabaseClient {
@@ -16,14 +10,13 @@ export function getSupabase(): SupabaseClient {
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !key) {
-    throw new Error(
-      'SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set in environment variables'
-    );
+    throw new Error('SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set');
   }
 
   _client = createClient(url, key, {
     realtime: {
-      transport: ws,     // ← фикс для Node.js < 22
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      transport: ws as any,   // ← фикс: Node.js 20 не имеет нативного WebSocket
     },
   });
 
