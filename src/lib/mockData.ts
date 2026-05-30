@@ -199,8 +199,16 @@ description:
   "  2. Оплата через Telegram Wallet<br>" +
   "  3. Генерация уникального ID<br>" +
   "  4. ID отображается в Кибле Кибера",
+ sensors: [
+    { label: "Оптическая мощность", unit: "дБм", value: 28, min: 0, max: 40 },
+    { label: "Температура сенсора", unit: "°C", value: 34, min: 20, max: 60 },
+    { label: "Заряд батареи", unit: "%", value: 73, min: 0, max: 100 },
   ],
-}
+  sliders: [
+    { label: "Яркость HUD", value: 60, min: 0, max: 100, unit: "%" },
+    { label: "Контрастность", value: 75, min: 0, max: 100, unit: "%" },
+  ],
+},
 ];
 
 export type Article = {
