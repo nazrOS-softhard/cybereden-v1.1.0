@@ -749,18 +749,16 @@ export const articles: Article[] = [
 },
 
  {
-id: "a6",
-title: "Главная уязвимость любой системы",
-topic: "Кибербезопасность",
-excerpt: "Большинство успешных атак начинаются не со взлома систем, а с ошибок людей и слабых процессов безопасности.",
-body: `
-
+  id: "a6",
+  title: "Главная уязвимость любой системы",
+  topic: "Кибербезопасность",
+  excerpt: "Большинство успешных атак начинаются не со взлома систем, а с ошибок людей и слабых процессов безопасности.",
+  body: `
 <div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8; color: #e0e0e0; background: #0a0a14; padding: 20px; border-radius: 8px;">
 
   <!-- ИЗОБРАЖЕНИЕ -->
-
   <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; border: 1px solid #22d3ee;">
-    <img src="${cyberSecurityPoster1}"alt="Кибербезопасность" style="width: 100%; height: auto; display: block;" />
+    <img src="${cyberSecurityPoster1}" alt="Кибербезопасность" style="width: 100%; height: auto; display: block;" />
   </div>
 
   <h2 style="font-size: 28px; color: #22d3ee; border-left: 4px solid #22d3ee; padding-left: 16px; margin-top: 0;">
@@ -785,83 +783,44 @@ body: `
 
   <div style="background: #111122; border: 1px solid #334155; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
     <span style="background: #22d3ee; color: #000; padding: 2px 8px; font-size: 12px; font-weight: bold; border-radius: 4px;">ШАГ 1</span>
-
-```
-<h4 style="font-size: 18px; color: #fff; margin: 10px 0;">
-  Защита учётных записей
-</h4>
-
-<p style="font-size: 14px; color: #cbd5e1;">
-  Большинство компрометаций начинается с украденных паролей.
-</p>
-
-<div style="margin-left: 10px;">
-  <div style="margin-bottom: 12px;">
-    <strong style="color: #ef4444;">❌ Вариант А:</strong>
-    Использовать один пароль для нескольких сервисов.
-    <br>
-    <span style="color: #64748b; font-size: 13px;">
-      В случае утечки злоумышленники получают доступ сразу к нескольким аккаунтам.
-    </span>
-  </div>
-
-  <div>
-    <strong style="color: #22c55e;">✅ Вариант Б:</strong>
-    Использовать уникальные пароли и многофакторную аутентификацию (MFA).
-    <br>
-    <span style="color: #64748b; font-size: 13px;">
-      MFA остаётся одним из наиболее эффективных способов предотвращения захвата аккаунтов.
-    </span>
-  </div>
-</div>
-```
-
+    <h4 style="font-size: 18px; color: #fff; margin: 10px 0;">Защита учётных записей</h4>
+    <p style="font-size: 14px; color: #cbd5e1;">Большинство компрометаций начинается с украденных паролей.</p>
+    <div style="margin-left: 10px;">
+      <div style="margin-bottom: 12px;">
+        <strong style="color: #ef4444;">❌ Вариант А:</strong> Использовать один пароль для нескольких сервисов.<br>
+        <span style="color: #64748b; font-size: 13px;">В случае утечки злоумышленники получают доступ сразу к нескольким аккаунтам.</span>
+      </div>
+      <div>
+        <strong style="color: #22c55e;">✅ Вариант Б:</strong> Использовать уникальные пароли и многофакторную аутентификацию (MFA).<br>
+        <span style="color: #64748b; font-size: 13px;">MFA остаётся одним из наиболее эффективных способов предотвращения захвата аккаунтов.</span>
+      </div>
+    </div>
   </div>
 
   <div style="background: #111122; border: 1px solid #334155; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
     <span style="background: #a855f7; color: #fff; padding: 2px 8px; font-size: 12px; font-weight: bold; border-radius: 4px;">ШАГ 2</span>
-
-```
-<h4 style="font-size: 18px; color: #fff; margin: 10px 0;">
-  Проверка сообщений и ссылок
-</h4>
-
-<div style="margin-left: 10px;">
-  <div style="margin-bottom: 12px;">
-    <strong style="color: #ef4444;">❌ Вариант А:</strong>
-    Открывать вложения и ссылки от неизвестных отправителей.
-  </div>
-
-  <div>
-    <strong style="color: #22c55e;">✅ Вариант Б:</strong>
-    Проверять адрес отправителя, домен сайта и содержание сообщения перед открытием файлов.
-  </div>
-</div>
-```
-
+    <h4 style="font-size: 18px; color: #fff; margin: 10px 0;">Проверка сообщений и ссылок</h4>
+    <div style="margin-left: 10px;">
+      <div style="margin-bottom: 12px;">
+        <strong style="color: #ef4444;">❌ Вариант А:</strong> Открывать вложения и ссылки от неизвестных отправителей.
+      </div>
+      <div>
+        <strong style="color: #22c55e;">✅ Вариант Б:</strong> Проверять адрес отправителя, домен сайта и содержание сообщения перед открытием файлов.
+      </div>
+    </div>
   </div>
 
   <div style="background: #111122; border: 1px solid #334155; padding: 20px; border-radius: 6px; margin-bottom: 24px;">
     <span style="background: #06b6d4; color: #000; padding: 2px 8px; font-size: 12px; font-weight: bold; border-radius: 4px;">ШАГ 3</span>
-
-```
-<h4 style="font-size: 18px; color: #fff; margin: 10px 0;">
-  Обновление систем
-</h4>
-
-<div style="margin-left: 10px;">
-  <div style="margin-bottom: 12px;">
-    <strong style="color: #ef4444;">❌ Вариант А:</strong>
-    Игнорировать обновления операционной системы и программ.
-  </div>
-
-  <div>
-    <strong style="color: #22c55e;">✅ Вариант Б:</strong>
-    Устанавливать обновления безопасности сразу после их выпуска.
-  </div>
-</div>
-```
-
+    <h4 style="font-size: 18px; color: #fff; margin: 10px 0;">Обновление систем</h4>
+    <div style="margin-left: 10px;">
+      <div style="margin-bottom: 12px;">
+        <strong style="color: #ef4444;">❌ Вариант А:</strong> Игнорировать обновления операционной системы и программ.
+      </div>
+      <div>
+        <strong style="color: #22c55e;">✅ Вариант Б:</strong> Устанавливать обновления безопасности сразу после их выпуска.
+      </div>
+    </div>
   </div>
 
   <h3 style="font-size: 22px; color: #22d3ee; margin-top: 32px;">
@@ -869,24 +828,18 @@ body: `
   </h3>
 
   <ul style="padding-left: 24px; margin-bottom: 20px; list-style-type: square; color: #cbd5e1;">
-
-```
-<li style="margin-bottom: 12px;">
-  <strong style="color: #fff;">Colonial Pipeline (2021):</strong>
-  Крупнейшая топливная сеть США была вынуждена остановить часть операций после компрометации учётной записи VPN.
-</li>
-
-<li style="margin-bottom: 12px;">
-  <strong style="color: #fff;">MGM Resorts (2023):</strong>
-  Злоумышленники получили доступ к внутренним системам компании через методы социальной инженерии.
-</li>
-
-<li style="margin-bottom: 12px;">
-  <strong style="color: #fff;">MOVEit Transfer (2023):</strong>
-  Уязвимость в системе передачи файлов привела к компрометации данных сотен организаций по всему миру.
-</li>
-```
-
+    <li style="margin-bottom: 12px;">
+      <strong style="color: #fff;">Colonial Pipeline (2021):</strong>
+      Крупнейшая топливная сеть США была вынуждена остановить часть операций после компрометации учётной записи VPN.
+    </li>
+    <li style="margin-bottom: 12px;">
+      <strong style="color: #fff;">MGM Resorts (2023):</strong>
+      Злоумышленники получили доступ к внутренним системам компании через методы социальной инженерии.
+    </li>
+    <li style="margin-bottom: 12px;">
+      <strong style="color: #fff;">MOVEit Transfer (2023):</strong>
+      Уязвимость в системе передачи файлов привела к компрометации данных сотен организаций по всему миру.
+    </li>
   </ul>
 
   <h3 style="font-size: 22px; color: #a855f7; margin-top: 32px;">
@@ -920,11 +873,9 @@ body: `
   </p>
 
 </div>
-
 `,
-readTime: 8
-}
-,
+  readTime: 8
+},
 ];
 
 export type Event = {
