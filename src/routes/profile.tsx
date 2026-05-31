@@ -1,12 +1,15 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
-  Trophy, Github, Twitch, Globe, ShoppingBag,
-  Upload, BookOpen, Zap, Database, LogOut, Check, X, Pencil,
+  Github, Twitch, Globe, Upload, LogOut,
+  Check, X, Pencil, ShoppingBag, Trophy, BookOpen, Zap, Database,
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useI18n } from "@/lib/i18n";
-import { DatacenterModal } from "@/components/DatacenterModal";
+import { DatacenterModal }    from "@/components/DatacenterModal";
+import { KnowledgeModal }     from "@/components/KnowledgeModal";
+import { AchievementsModal }  from "@/components/AchievementsModal";
+import { InventoryModal }     from "@/components/InventoryModal";
 import { useAuth, startOAuth, apiPost, apiPatch, apiGet } from "@/lib/auth";
 
 export const Route = createFileRoute("/profile")({
@@ -14,36 +17,34 @@ export const Route = createFileRoute("/profile")({
   component: ProfilePage,
 });
 
-const mockInventory    = [{ name: "cloN-001", tier: "S" }, { name: "rostN-001", tier: "A" }, { name: "piN-001", tier: "B" }, { name: "visioN-001", tier: "S" }];
-const mockAchievements = [{ name: "КиберХак 2026", date: "..." }, { name: "РазрабКонф 2026", date: "..." }];
-const mockKnowledge    = [
-  { title: "KILLNET: хакерские группировки в геополитике", progress: 85, xp: 1200, type: "Публикация" },
-  { title: "TEAM YANDEX: корпорации в цифровом спорте",   progress: 60, xp: 800,  type: "Интервью" },
-  { title: "Архитектура нового доверия",                  progress: 45, xp: 600,  type: "Алгоритм" },
-];
-
 // ── Значок инвестора ──────────────────────────────────────────────────────────
-// ── Значок инвестора с поддержкой ID ──────────────────────────────────────────
-function InvestorBadge({ code }: { code?: string }) {
+function InvestorBadge() {
   return (
-    <div className="flex flex-col items-start gap-1">
-      <span title="Квалифицированный инвестор nazrOS"
-        className="inline-flex items-center gap-1 px-2 py-0.5 border border-yellow-500/60 bg-yellow-500/10 font-mono text-[9px] uppercase tracking-widest neon-text-acid select-none">
-        ◆ ИНВЕСТОР
-      </span>
-      {code && (
-        <span className="font-mono text-[10px] text-yellow-500/80 tracking-wider">
-          {code}
-        </span>
-      )}
+    <span title="Квалифицированный инвестор nazrOS"
+      className="inline-flex items-center gap-1 px-2 py-0.5 border border-yellow-500/60 bg-yellow-500/10 font-mono text-[9px] uppercase tracking-widest neon-text-acid select-none">
+      ◆ ИНВЕСТ
+    </span>
+  );
+}
+
+// ── Треугольник уровня ────────────────────────────────────────────────────────
+function LevelBadge({ level }: { level: number }) {
+  return (
+    <div className="relative flex items-center justify-center w-8 h-8 flex-shrink-0">
+      <svg viewBox="0 0 100 100" className="w-full h-full fill-none"
+        style={{ stroke: "#FFD700", strokeWidth: "12px", filter: "drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)" }}>
+        <polygon points="50,10 95,88 5,88" />
+      </svg>
+      <span className="absolute font-mono text-[11px] font-black text-[#8b5cf6] translate-y-[1px]"
+        style={{ textShadow: "0 0 8px rgba(139,92,246,0.9)" }}>{level}</span>
     </div>
   );
 }
 
 // ── Редактируемый никнейм ─────────────────────────────────────────────────────
-function EditableNickname({
-  userId, initial, onSaved,
-}: { userId: string; initial: string; onSaved: (v: string) => void }) {
+function EditableNickname({ userId, initial, onSaved }: {
+  userId: string; initial: string; onSaved: (v: string) => void;
+}) {
   const [editing, setEditing] = useState(false);
   const [value,   setValue]   = useState(initial);
   const [saving,  setSaving]  = useState(false);
@@ -56,75 +57,48 @@ function EditableNickname({
   const save = async () => {
     const trimmed = value.trim().slice(0, 30);
     if (!trimmed || trimmed === initial) { cancel(); return; }
-
-    setSaving(true);
-    setError(null);
-
+    setSaving(true); setError(null);
     try {
-      // ← PATCH а не POST, с таймаутом через apiPatch
-      const res = await apiPatch('/api/profile', { display_name: trimmed });
-      if (res.ok) {
-        onSaved(trimmed);
-        setEditing(false);
-      } else {
-        const data = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
-        setError(data.error || 'Ошибка сохранения');
+      const res = await apiPatch("/api/profile", { display_name: trimmed });
+      if (res.ok) { onSaved(trimmed); setEditing(false); }
+      else {
+        const d = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+        setError(d.error || "Ошибка сохранения");
       }
     } catch (err: any) {
-      // Сюда попадает таймаут или сетевая ошибка — не зависает!
-      setError(err.message || 'Нет соединения с сервером');
-    } finally {
-      setSaving(false);
-    }
+      setError(err.message || "Нет соединения с сервером");
+    } finally { setSaving(false); }
   };
 
   const cancel = () => { setValue(initial); setEditing(false); setError(null); };
 
-  if (editing) {
-    return (
-      <div className="flex flex-col gap-1">
-        <div className="flex items-center gap-2">
-          <span className="font-display text-3xl md:text-4xl neon-text-violet">@</span>
-          <input ref={inputRef} value={value}
-            onChange={e => { setValue(e.target.value); setError(null); }}
-            onKeyDown={e => { if (e.key === 'Enter') save(); if (e.key === 'Escape') cancel(); }}
-            maxLength={30} disabled={saving}
-            className="font-display text-3xl md:text-4xl neon-text-violet bg-transparent border-b-2 border-neon-cyan outline-none disabled:opacity-50 min-w-[120px]"
-            style={{ width: `${Math.max(value.length, 5) + 1}ch` }}
-          />
-          <button onClick={save} disabled={saving}
-            className="p-1.5 border border-neon-cyan hover:bg-neon-cyan/10 transition disabled:opacity-40">
-            <Check size={16} className="neon-text-cyan" />
-          </button>
-          <button onClick={cancel} disabled={saving}
-            className="p-1.5 border border-border hover:border-red-500 hover:text-red-400 transition disabled:opacity-40">
-            <X size={16} />
-          </button>
-        </div>
-        {saving && <div className="font-mono text-[10px] text-muted-foreground animate-pulse pl-8">Сохранение…</div>}
-        {error  && <div className="font-mono text-[10px] text-red-400 pl-8">{error}</div>}
+  if (editing) return (
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center gap-2">
+        <span className="font-display text-3xl md:text-4xl neon-text-violet">@</span>
+        <input ref={inputRef} value={value}
+          onChange={e => { setValue(e.target.value); setError(null); }}
+          onKeyDown={e => { if (e.key === "Enter") save(); if (e.key === "Escape") cancel(); }}
+          maxLength={30} disabled={saving}
+          className="font-display text-3xl md:text-4xl neon-text-violet bg-transparent border-b-2 border-neon-cyan outline-none disabled:opacity-50 min-w-[120px]"
+          style={{ width: `${Math.max(value.length, 5) + 1}ch` }}
+        />
+        <button onClick={save} disabled={saving} className="p-1.5 border border-neon-cyan hover:bg-neon-cyan/10 transition disabled:opacity-40">
+          <Check size={16} className="neon-text-cyan" />
+        </button>
+        <button onClick={cancel} disabled={saving} className="p-1.5 border border-border hover:border-red-500 hover:text-red-400 transition disabled:opacity-40">
+          <X size={16} />
+        </button>
       </div>
-    );
-  }
+      {saving && <div className="font-mono text-[10px] text-muted-foreground animate-pulse pl-8">Сохранение…</div>}
+      {error  && <div className="font-mono text-[10px] text-red-400 pl-8">{error}</div>}
+    </div>
+  );
 
   return (
     <div className="flex items-center gap-3 group cursor-pointer" onClick={() => setEditing(true)}>
       <h1 className="font-display text-3xl md:text-4xl neon-text-violet">@{initial}</h1>
       <Pencil size={14} className="text-muted-foreground group-hover:neon-text-cyan transition opacity-0 group-hover:opacity-100" />
-    </div>
-  );
-}
-
-// ── Треугольник уровня ────────────────────────────────────────────────────────
-function LevelBadge({ level }: { level: number }) {
-  return (
-    <div className="relative flex items-center justify-center w-8 h-8 flex-shrink-0">
-      <svg viewBox="0 0 100 100" className="w-full h-full fill-none"
-        style={{ stroke: '#FFD700', strokeWidth: '12px', filter: 'drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 10px #FFA500)' }}>
-        <polygon points="50,10 95,88 5,88" />
-      </svg>
-      <span className="absolute font-mono text-[11px] font-black text-[#8b5cf6] translate-y-[1px]"
-        style={{ textShadow: '0 0 8px rgba(139,92,246,0.9)' }}>{level}</span>
     </div>
   );
 }
@@ -139,11 +113,11 @@ function LoginRequired() {
         <h1 className="font-display text-3xl neon-text-violet mb-2">Кибла кибера</h1>
         <p className="text-sm text-muted-foreground mb-8">Подключи GitHub и Twitch для доступа к личному кабинету, активам и системе ПХ.</p>
         <div className="flex flex-col gap-3">
-          <button onClick={() => startOAuth('github')}
+          <button onClick={() => startOAuth("github")}
             className="inline-flex items-center justify-center gap-3 px-8 py-3 border border-border hover:neon-border-cyan bg-background/60 font-display text-sm tracking-[0.2em] uppercase transition group w-full">
             <Github size={18} className="group-hover:neon-text-cyan transition" /> Войти через GitHub
           </button>
-          <button onClick={() => startOAuth('twitch')}
+          <button onClick={() => startOAuth("twitch")}
             className="inline-flex items-center justify-center gap-3 px-8 py-3 border border-border hover:neon-border bg-background/60 font-display text-sm tracking-[0.2em] uppercase transition group w-full">
             <Twitch size={18} className="group-hover:neon-text-violet transition" /> Войти через Twitch
           </button>
@@ -167,17 +141,17 @@ function LinkAccountBanner({ user }: { user: any }) {
       <div>
         <div className="font-display tracking-widest text-xs neon-text-acid mb-1">⚠ СИНХРОНИЗАЦИЯ СРЕДЫ НЕ ЗАВЕРШЕНА</div>
         <p className="font-mono text-xs text-muted-foreground">
-          Подключите {needTwitch ? 'Twitch' : 'GitHub'} для отслеживания трансляций и начисления ПХ.
+          Подключите {needTwitch ? "Twitch" : "GitHub"} для отслеживания трансляций и начисления ПХ.
         </p>
       </div>
       {needTwitch && (
-        <button onClick={() => startOAuth('twitch', user.id)}
+        <button onClick={() => startOAuth("twitch", user.id)}
           className="whitespace-nowrap px-4 py-2 border border-yellow-500/50 hover:border-neon-cyan font-display text-xs tracking-widest uppercase transition flex items-center gap-2">
           <Twitch size={14} /> + Link Twitch
         </button>
       )}
       {needGithub && (
-        <button onClick={() => startOAuth('github', user.id)}
+        <button onClick={() => startOAuth("github", user.id)}
           className="whitespace-nowrap px-4 py-2 border border-yellow-500/50 hover:border-neon-cyan font-display text-xs tracking-widest uppercase transition flex items-center gap-2">
           <Github size={14} /> + Link GitHub
         </button>
@@ -188,60 +162,56 @@ function LinkAccountBanner({ user }: { user: any }) {
 
 // ── Основная страница ─────────────────────────────────────────────────────────
 function ProfilePage() {
-  const { t } = useI18n();
+  const { t }    = useI18n();
   const navigate = useNavigate();
   const { user, loading, logout, refreshUser } = useAuth();
 
-  const [displayName,    setDisplayName]    = useState('');
+  const [displayName,    setDisplayName]    = useState("");
   const [avatarPreview,  setAvatarPreview]  = useState<string | null>(null);
-  const [assets,         setAssets]         = useState<any[]>([]);
-  const [assetsLoading,  setAssetsLoading]  = useState(false);
-  const [datacenterOpen, setDatacenterOpen] = useState(false);
+
+  // Модалы
+  const [datacenterOpen,   setDatacenterOpen]   = useState(false);
+  const [knowledgeOpen,    setKnowledgeOpen]    = useState(false);
+  const [achievementsOpen, setAchievementsOpen] = useState(false);
+  const [inventoryOpen,    setInventoryOpen]    = useState(false);
+
+  // Счётчики для превью
+  const [assetCount,      setAssetCount]      = useState<number | null>(null);
+  const [achieveCount,    setAchieveCount]    = useState<number | null>(null);
+  const [knowledgeCount,  setKnowledgeCount]  = useState<number | null>(null);
+  const [inventoryCount,  setInventoryCount]  = useState<number | null>(null);
 
   useEffect(() => {
     if (!user) return;
     setDisplayName(user.display_name);
     if (user.avatar_url) setAvatarPreview(user.avatar_url);
-    loadAssets();
-  }, [user?.id]);
 
-  async function loadAssets() {
-    setAssetsLoading(true);
-    try {
-      const res = await apiGet('/api/upload/assets');
-      if (res.ok) setAssets((await res.json()).assets || []);
-    } catch { /* ignore */ }
-    finally { setAssetsLoading(false); }
-  }
+    // Загружаем счётчики
+    apiGet("/api/upload/assets").then(r => r.ok ? r.json() : { assets: [] })
+      .then(d => setAssetCount((d.assets || []).length)).catch(() => {});
+    apiGet("/api/achievements").then(r => r.ok ? r.json() : { achievements: [] })
+      .then(d => setAchieveCount((d.achievements || []).length)).catch(() => {});
+    apiGet("/api/knowledge/progress").then(r => r.ok ? r.json() : { items: [] })
+      .then(d => setKnowledgeCount((d.items || []).length)).catch(() => {});
+    apiGet("/api/inventory").then(r => r.ok ? r.json() : { items: [] })
+      .then(d => setInventoryCount((d.items || []).length)).catch(() => {});
+  }, [user?.id]);
 
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    if (file.size > 4.5 * 1024 * 1024) { alert('Файл > 4.5 МБ'); return; }
+    if (file.size > 4.5 * 1024 * 1024) { alert("Файл > 4.5 МБ"); return; }
     const form = new FormData();
-    form.append('avatar', file);
+    form.append("avatar", file);
     try {
-      const res  = await apiPost('/api/upload/avatar', form);
-      const data = await res.json();
-      if (res.ok) { setAvatarPreview(data.avatarUrl); refreshUser(); }
-      else alert(`Ошибка: ${data.error}`);
+      const res = await apiPost("/api/upload/avatar", form);
+      const d   = await res.json();
+      if (res.ok) { setAvatarPreview(d.avatarUrl); refreshUser(); }
+      else alert(`Ошибка: ${d.error}`);
     } catch (err: any) { alert(err.message); }
   };
 
-  const handleAssetUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const form = new FormData();
-    form.append('file', file);
-    try {
-      const res  = await apiPost('/api/upload/asset', form);
-      const data = await res.json();
-      if (res.ok) setAssets(prev => [data.asset, ...prev]);
-      else alert(`Ошибка: ${data.error}`);
-    } catch (err: any) { alert(err.message); }
-  };
-
-  const handleLogout = () => { logout(); navigate({ to: '/' }); };
+  const handleLogout = () => { logout(); navigate({ to: "/" }); };
 
   if (loading) return (
     <div className="relative z-10 flex min-h-screen items-center justify-center">
@@ -251,41 +221,36 @@ function ProfilePage() {
 
   if (!user) return <LoginRequired />;
 
-  const joinedDate = new Date(user.created_at).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  const joinedDate = new Date(user.created_at).toLocaleDateString("ru-RU", { day: "2-digit", month: "2-digit", year: "numeric" });
+
   const accounts = [
-    { name: 'GitHub', handle: user.github_username ? `@${user.github_username}` : 'Не подключен', icon: Github,
-      connected: !!user.github_username, onClick: () => !user.github_username && startOAuth('github', user.id) },
-    { name: 'Twitch', handle: user.twitch_username ? `@${user.twitch_username}` : 'Не подключен', icon: Twitch,
-      connected: !!user.twitch_username, onClick: () => !user.twitch_username && startOAuth('twitch', user.id) },
-    { name: 'Darknet', handle: 'Не подключен', icon: Globe, connected: false, onClick: () => {} },
+    { name: "GitHub",  handle: user.github_username ? `@${user.github_username}` : "Не подключен", icon: Github,
+      connected: !!user.github_username, onClick: () => !user.github_username && startOAuth("github", user.id) },
+    { name: "Twitch",  handle: user.twitch_username ? `@${user.twitch_username}` : "Не подключен", icon: Twitch,
+      connected: !!user.twitch_username, onClick: () => !user.twitch_username && startOAuth("twitch", user.id) },
+    { name: "Darknet", handle: "Не подключен", icon: Globe, connected: false, onClick: () => {} },
   ];
 
   return (
     <motion.main initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
       className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 pt-24 pb-24">
 
-      {/* ── Заголовок ─────────────────────────────────────────────────────── */}
+      {/* Заголовок */}
       <header className="mb-6 hud-corners relative p-6 border border-border bg-surface/30 backdrop-blur-sm">
-        <div className="absolute inset-0 hud-scanlines pointer-events-none" />
-        <div className="font-mono text-xs uppercase tracking-[0.4em] neon-text-cyan mb-2">{t('profile.eyebrow')}</div>
-
+        <div className="font-mono text-xs uppercase tracking-[0.4em] neon-text-cyan mb-2">{t("profile.eyebrow")}</div>
         <div className="flex items-center gap-3 justify-between flex-wrap">
           <div className="flex items-center gap-3 flex-wrap">
-            <EditableNickname userId={user.id} initial={displayName} onSaved={v => { setDisplayName(v); refreshUser(); }} />
+            <EditableNickname userId={user.id} initial={displayName}
+              onSaved={v => { setDisplayName(v); refreshUser(); }} />
             <LevelBadge level={user.level} />
-          {/* Значок инвестора — вытаскиваем сгенерированный ботом ID из bio, если он там есть */}
-            {user.is_investor && (
-              <InvestorBadge 
-                code={user.bio?.includes("Investor ID:") ? user.bio.split("Investor ID: ")[1]?.trim() : undefined} 
-              />
-            )}
+            {(user as any).is_investor && <InvestorBadge />}
           </div>
           <button onClick={handleLogout}
             className="flex items-center gap-2 px-3 py-1.5 border border-border hover:border-red-500 hover:text-red-400 transition font-mono text-xs uppercase tracking-widest">
             <LogOut size={12} /> Выход
           </button>
         </div>
-        <div className="mt-2 text-sm text-muted-foreground">{t('profile.subtitle')}</div>
+        <div className="mt-2 text-sm text-muted-foreground">{t("profile.subtitle")}</div>
       </header>
 
       <LinkAccountBanner user={user} />
@@ -299,13 +264,13 @@ function ProfilePage() {
             <div className="absolute inset-0" style={{
               background: avatarPreview
                 ? `url(${avatarPreview}) center/cover no-repeat`
-                : 'radial-gradient(circle at 50% 35%, oklch(0.7 0.28 305/0.6), oklch(0.13 0.04 290) 70%)',
+                : "radial-gradient(circle at 50% 35%, oklch(0.7 0.28 305/0.6), oklch(0.13 0.04 290) 70%)",
             }} />
             {!avatarPreview && (
               <>
                 <div className="absolute inset-0 hud-grid opacity-40" />
                 <div className="absolute inset-0 flex items-center justify-center font-display text-7xl neon-text-violet">
-                  {displayName?.[0]?.toUpperCase() ?? '?'}
+                  {displayName?.[0]?.toUpperCase() ?? "?"}
                 </div>
               </>
             )}
@@ -319,7 +284,7 @@ function ProfilePage() {
             </div>
           </div>
           <div className="mt-4 space-y-1.5 text-sm font-mono">
-            <div className="flex justify-between"><span className="text-muted-foreground">ПХ</span><span className="neon-text-cyan">{user.xp.toLocaleString('ru-RU')}</span></div>
+            <div className="flex justify-between"><span className="text-muted-foreground">ПХ</span><span className="neon-text-cyan">{user.xp.toLocaleString("ru-RU")}</span></div>
             <div className="flex justify-between"><span className="text-muted-foreground">Rank</span><span className="neon-text-violet">Оператор</span></div>
             <div className="flex justify-between"><span className="text-muted-foreground">Joined</span><span>{joinedDate}</span></div>
           </div>
@@ -328,13 +293,14 @@ function ProfilePage() {
         {/* Правая колонка */}
         <div className="space-y-6">
 
+          {/* Аккаунты */}
           <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
-            <div className="font-display text-sm tracking-widest neon-text-violet mb-4">{t('profile.accounts')}</div>
+            <div className="font-display text-sm tracking-widest neon-text-violet mb-4">{t("profile.accounts")}</div>
             <div className="grid sm:grid-cols-3 gap-3">
               {accounts.map(a => { const Icon = a.icon; return (
                 <button key={a.name} onClick={a.onClick}
-                  className={`flex items-center gap-3 p-3 border transition text-left ${a.connected ? 'border-border bg-background/40 cursor-default' : 'border-border bg-background/20 hover:border-neon-cyan cursor-pointer'}`}>
-                  <Icon size={18} className={a.connected ? 'neon-text-cyan' : 'text-muted-foreground'} />
+                  className={`flex items-center gap-3 p-3 border transition text-left ${a.connected ? "border-border bg-background/40 cursor-default" : "border-border bg-background/20 hover:border-neon-cyan cursor-pointer"}`}>
+                  <Icon size={18} className={a.connected ? "neon-text-cyan" : "text-muted-foreground"} />
                   <div>
                     <div className="font-display text-xs uppercase tracking-widest">{a.name}</div>
                     <div className="font-mono text-[11px] text-muted-foreground">{a.handle}</div>
@@ -346,37 +312,52 @@ function ProfilePage() {
           </section>
 
           <div className="grid lg:grid-cols-2 gap-6">
-            <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
+            {/* Инвентарь — открывает InventoryModal */}
+            <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur cursor-pointer hover:neon-border transition group"
+              onClick={() => setInventoryOpen(true)}>
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2"><ShoppingBag size={14} className="neon-text-cyan" /><span className="font-display text-sm tracking-widest neon-text-violet">{t('profile.inventory')}</span></div>
-                <Link to="/market" className="text-[10px] neon-text-acid hover:underline uppercase tracking-widest">Перейти →</Link>
+                <div className="flex items-center gap-2">
+                  <ShoppingBag size={14} className="neon-text-cyan group-hover:neon-text-acid transition" />
+                  <span className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">{t("profile.inventory")}</span>
+                </div>
+                <span className="text-[10px] neon-text-acid">
+                  {inventoryCount !== null ? `${inventoryCount} предм.` : ""} →
+                </span>
               </div>
-              <div className="grid grid-cols-2 gap-3">
-                {mockInventory.map(it => (
-                  <div key={it.name} className="relative p-3 border border-border bg-background/40 hover:neon-border transition">
-                    <div className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center font-display text-xs neon-text-acid border border-neon-acid">{it.tier}</div>
-                    <div className="font-display text-xs pr-8">{it.name}</div>
-                  </div>
-                ))}
+              <div className="font-mono text-xs text-muted-foreground">
+                {inventoryCount === 0
+                  ? "Нет приобретённых предметов"
+                  : inventoryCount === null
+                    ? "Загрузка…"
+                    : `${inventoryCount} предм. в инвентаре · нажми чтобы открыть`
+                }
               </div>
             </section>
 
-            <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
+            {/* Достижения — открывает AchievementsModal */}
+            <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur cursor-pointer hover:neon-border transition group"
+              onClick={() => setAchievementsOpen(true)}>
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2"><Trophy size={14} className="neon-text-acid" /><span className="font-display text-sm tracking-widest neon-text-violet">{t('profile.achievements')}</span></div>
-                <Link to="/events" className="text-[10px] neon-text-acid hover:underline uppercase tracking-widest">События →</Link>
+                <div className="flex items-center gap-2">
+                  <Trophy size={14} className="neon-text-acid group-hover:neon-text-cyan transition" />
+                  <span className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">{t("profile.achievements")}</span>
+                </div>
+                <span className="text-[10px] neon-text-acid">
+                  {achieveCount !== null ? `${achieveCount} событий` : ""} →
+                </span>
               </div>
-              <ul className="divide-y divide-border">
-                {mockAchievements.map(a => (
-                  <li key={a.name} className="py-2 flex justify-between text-xs">
-                    <span className="font-display">{a.name}</span>
-                    <span className="font-mono text-[10px] text-muted-foreground">{a.date}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="font-mono text-xs text-muted-foreground">
+                {achieveCount === 0
+                  ? "Нет посещённых мероприятий"
+                  : achieveCount === null
+                    ? "Загрузка…"
+                    : `${achieveCount} достижений · нажми чтобы открыть`
+                }
+              </div>
             </section>
           </div>
 
+          {/* Активы + Датацентр */}
           <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2 cursor-pointer group" onClick={() => setDatacenterOpen(true)}>
@@ -387,51 +368,41 @@ function ProfilePage() {
                 <Database size={12} /> Датацентр
               </button>
             </div>
-            <div className="space-y-3">
-              {assetsLoading && <div className="font-mono text-xs text-muted-foreground animate-pulse">Загрузка активов…</div>}
-              {!assetsLoading && assets.length === 0 && <div className="font-mono text-xs text-muted-foreground">Активы не загружены</div>}
-              {assets.map(asset => (
-                <div key={asset.id} className="flex items-center justify-between p-3 border border-border bg-background/40 hover:neon-border transition">
-                  <div>
-                    <div className="font-display text-sm">{asset.file_name}</div>
-                    <div className="font-mono text-xs text-muted-foreground">{asset.file_size ? `${(asset.file_size/1024/1024).toFixed(1)} MB` : '—'}</div>
-                  </div>
-                  {asset.url && <a href={asset.url} target="_blank" rel="noreferrer" className="font-mono text-xs neon-text-acid hover:underline">Скачать</a>}
-                </div>
-              ))}
-              <label className="flex items-center justify-center gap-2 p-3 border-2 border-dashed border-border hover:border-neon-cyan transition cursor-pointer group">
-                <Upload size={16} className="neon-text-cyan group-hover:neon-text-acid transition" />
-                <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground group-hover:neon-text-cyan">Загрузить файл</span>
-                <input type="file" onChange={handleAssetUpload} className="hidden" />
-              </label>
+            <div className="font-mono text-xs text-muted-foreground cursor-pointer hover:text-foreground transition"
+              onClick={() => setDatacenterOpen(true)}>
+              {assetCount === null ? "Загрузка…" : assetCount === 0 ? "Загрузи первый файл" : `${assetCount} файлов в датацентре`}
             </div>
           </section>
 
-          <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
-            <Link to="/journal" className="flex items-center gap-2 mb-4 group">
-              <BookOpen size={14} className="neon-text-cyan group-hover:neon-text-acid transition" />
-              <span className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">ЗНАНИЯ</span>
-              <span className="ml-auto text-[10px] neon-text-acid group-hover:underline">Перейти →</span>
-            </Link>
-            <div className="space-y-4">
-              {mockKnowledge.map(item => (
-                <div key={item.title} className="space-y-2">
-                  <div className="flex justify-between items-start gap-2">
-                    <div><div className="font-display text-sm">{item.title}</div><div className="font-mono text-xs text-muted-foreground">{item.type}</div></div>
-                    <div className="font-mono text-xs neon-text-acid whitespace-nowrap">+{item.xp} ПХ</div>
-                  </div>
-                  <div className="w-full bg-background/40 border border-border h-2">
-                    <div className="bg-neon-cyan h-full" style={{ width: `${item.progress}%` }} />
-                  </div>
-                  <div className="font-mono text-[10px] text-muted-foreground">{item.progress}% завершено</div>
-                </div>
-              ))}
+          {/* Знания — открывает KnowledgeModal */}
+          <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur cursor-pointer hover:neon-border transition group"
+            onClick={() => setKnowledgeOpen(true)}>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <BookOpen size={14} className="neon-text-cyan group-hover:neon-text-acid transition" />
+                <span className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">ЗНАНИЯ</span>
+              </div>
+              <span className="text-[10px] neon-text-acid">
+                {knowledgeCount !== null ? `${knowledgeCount} материалов` : ""} →
+              </span>
+            </div>
+            <div className="font-mono text-xs text-muted-foreground">
+              {knowledgeCount === 0
+                ? "Открой публикацию, интервью или алгоритм в Журнале"
+                : knowledgeCount === null
+                  ? "Загрузка…"
+                  : `${knowledgeCount} материалов изучается · нажми чтобы открыть`
+              }
             </div>
           </section>
         </div>
       </div>
 
-      <DatacenterModal open={datacenterOpen} onClose={() => setDatacenterOpen(false)} />
+      {/* Модалы */}
+      <DatacenterModal   open={datacenterOpen}   onClose={() => setDatacenterOpen(false)} />
+      <KnowledgeModal    open={knowledgeOpen}    onClose={() => setKnowledgeOpen(false)} />
+      <AchievementsModal open={achievementsOpen} onClose={() => setAchievementsOpen(false)} />
+      <InventoryModal    open={inventoryOpen}    onClose={() => setInventoryOpen(false)} />
     </motion.main>
   );
 }
