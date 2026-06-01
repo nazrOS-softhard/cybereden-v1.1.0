@@ -178,7 +178,7 @@ function ProfilePage() {
   // Счётчики для превью
   const [assetCount,      setAssetCount]      = useState<number | null>(null);
   const [achieveCount,    setAchieveCount]    = useState<number | null>(null);
-  const [knowledgeCount,  setKnowledgeCount]  = useState<number | null>(null);
+  const [knowledgeItems,  setKnowledgeItems]  = useState<any[]>([]);
   const [inventoryCount,  setInventoryCount]  = useState<number | null>(null);
 
   useEffect(() => {
@@ -192,7 +192,7 @@ function ProfilePage() {
     apiGet("/api/achievements").then(r => r.ok ? r.json() : { achievements: [] })
       .then(d => setAchieveCount((d.achievements || []).length)).catch(() => {});
     apiGet("/api/knowledge/progress").then(r => r.ok ? r.json() : { items: [] })
-      .then(d => setKnowledgeCount((d.items || []).length)).catch(() => {});
+      .then(d => setKnowledgeItems(d.items || [])).catch(() => {});
     apiGet("/api/inventory").then(r => r.ok ? r.json() : { items: [] })
       .then(d => setInventoryCount((d.items || []).length)).catch(() => {});
   }, [user?.id]);
@@ -374,26 +374,69 @@ function ProfilePage() {
             </div>
           </section>
 
-          {/* Знания — открывает KnowledgeModal */}
-          <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur cursor-pointer hover:neon-border transition group"
-            onClick={() => setKnowledgeOpen(true)}>
+          {/* Знания — инлайн превью + модал */}
+          <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
+            {/* Заголовок с двумя кнопками */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <BookOpen size={14} className="neon-text-cyan group-hover:neon-text-acid transition" />
-                <span className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">ЗНАНИЯ</span>
+                <BookOpen size={14} className="neon-text-cyan" />
+                <span className="font-display text-sm tracking-widest neon-text-violet">ЗНАНИЯ</span>
               </div>
-              <span className="text-[10px] neon-text-acid">
-                {knowledgeCount !== null ? `${knowledgeCount} материалов` : ""} →
-              </span>
+              <div className="flex items-center gap-3">
+                <button onClick={() => setKnowledgeOpen(true)}
+                  className="text-[10px] neon-text-acid hover:neon-text-cyan transition uppercase tracking-widest">
+                  Все ({knowledgeItems.length}) →
+                </button>
+                <Link to="/journal" className="text-[10px] text-muted-foreground hover:neon-text-cyan transition uppercase tracking-widest">
+                  Журнал →
+                </Link>
+              </div>
             </div>
-            <div className="font-mono text-xs text-muted-foreground">
-              {knowledgeCount === 0
-                ? "Открой публикацию, интервью или алгоритм в Журнале"
-                : knowledgeCount === null
-                  ? "Загрузка…"
-                  : `${knowledgeCount} материалов изучается · нажми чтобы открыть`
-              }
-            </div>
+
+            {/* Инлайн список — последние 3 */}
+            {knowledgeItems.length === 0 ? (
+              <div className="font-mono text-xs text-muted-foreground">
+                Открой публикацию, интервью или алгоритм в{" "}
+                <Link to="/journal" className="neon-text-acid hover:underline">Журнале</Link>
+                {" "}— прогресс сохранится здесь
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {knowledgeItems.slice(0, 3).map((item: any) => {
+                  const pct = Math.min(100, Math.round(item.progress));
+                  return (
+                    <div key={item.id} className="space-y-1.5">
+                      <div className="flex justify-between items-start gap-2">
+                        <div className="min-w-0">
+                          <div className="font-display text-sm truncate">{item.title}</div>
+                          <div className="font-mono text-[10px] text-muted-foreground">{item.type}</div>
+                        </div>
+                        <div className="font-mono text-xs neon-text-acid whitespace-nowrap flex-shrink-0">
+                          +{item.earned_xp} ПХ
+                        </div>
+                      </div>
+                      <div className="w-full bg-background/40 border border-border h-1.5">
+                        <div
+                          className="bg-neon-cyan h-full transition-all"
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                      <div className="font-mono text-[10px] text-muted-foreground">
+                        {pct}% завершено
+                      </div>
+                    </div>
+                  );
+                })}
+                {knowledgeItems.length > 3 && (
+                  <button
+                    onClick={() => setKnowledgeOpen(true)}
+                    className="w-full text-center font-mono text-[10px] text-muted-foreground hover:neon-text-cyan transition py-1 border border-border/30 hover:border-neon-cyan/30"
+                  >
+                    + ещё {knowledgeItems.length - 3} материалов
+                  </button>
+                )}
+              </div>
+            )}
           </section>
         </div>
       </div>
