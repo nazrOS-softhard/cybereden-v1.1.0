@@ -3,7 +3,10 @@ import { supabase } from '../lib/supabaseClient';
 
 const router = Router();
 
-// ─── GET /api/users — публичный список киберов (для дашборда) ─────────────────
+// Онлайн = last_login в последние 10 минут (heartbeat каждые 5 мин с фронтенда)
+const ONLINE_THRESHOLD_MS = 10 * 60 * 1000;
+
+// ─── GET /api/users ───────────────────────────────────────────────────────────
 router.get('/', async (_req: Request, res: Response): Promise<any> => {
   const { data: users, error } = await supabase
     .from('users')
@@ -17,14 +20,14 @@ router.get('/', async (_req: Request, res: Response): Promise<any> => {
   const withStatus = (users || []).map(u => ({
     ...u,
     is_online: u.last_login
-      ? (now - new Date(u.last_login).getTime()) < 30 * 60 * 1000
+      ? (now - new Date(u.last_login).getTime()) < ONLINE_THRESHOLD_MS
       : false,
   }));
 
   return res.json({ users: withStatus });
 });
 
-// ─── GET /api/users/:id — публичный профиль кибера + его активы ───────────────
+// ─── GET /api/users/:id ───────────────────────────────────────────────────────
 router.get('/:id', async (req: Request, res: Response): Promise<any> => {
   const { id } = req.params;
 
@@ -44,7 +47,12 @@ router.get('/:id', async (req: Request, res: Response): Promise<any> => {
     .eq('is_public', true)
     .order('created_at', { ascending: false });
 
-  return res.json({ user, assets: assets || [] });
+  const now = Date.now();
+  const is_online = user.last_login
+    ? (now - new Date(user.last_login).getTime()) < ONLINE_THRESHOLD_MS
+    : false;
+
+  return res.json({ user: { ...user, is_online }, assets: assets || [] });
 });
 
 export default router;
