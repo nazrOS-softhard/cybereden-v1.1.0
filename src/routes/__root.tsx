@@ -1,35 +1,25 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
-  Outlet,
-  Link,
-  createRootRouteWithContext,
-  useRouter,
-  HeadContent,
-  Scripts,
+  Outlet, Link, createRootRouteWithContext,
+  useRouter, HeadContent, Scripts,
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import { TopNav } from "@/components/TopNav";
-import { RainBackground } from "@/components/RainBackground";
+import { TopNav }          from "@/components/TopNav";
+import { RainBackground }  from "@/components/RainBackground";
 import { LanguageProvider } from "@/lib/i18n";
-import { AuthProvider } from "@/lib/auth";
+import { AuthProvider }    from "@/lib/auth";
+import { useHeartbeat }    from "@/hooks/useHeartbeat";
 
 function NotFoundComponent() {
   return (
     <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
       <div className="max-w-md text-center hud-corners p-10 border border-border bg-surface/40 backdrop-blur">
-        <div className="font-mono text-xs uppercase tracking-[0.4em] neon-text-cyan">
-          Signal lost
-        </div>
+        <div className="font-mono text-xs uppercase tracking-[0.4em] neon-text-cyan">Signal lost</div>
         <h1 className="mt-3 font-display text-7xl neon-text-violet">404</h1>
-        <p className="mt-3 text-sm text-muted-foreground">
-          Узел не отвечает. Маршрут вне сетки nazrOS.
-        </p>
+        <p className="mt-3 text-sm text-muted-foreground">Узел не отвечает. Маршрут вне сетки nazrOS.</p>
         <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center px-5 py-2 bg-primary text-primary-foreground font-display text-xs tracking-[0.25em] uppercase pulse-glow"
-          >
+          <Link to="/" className="inline-flex items-center justify-center px-5 py-2 bg-primary text-primary-foreground font-display text-xs tracking-[0.25em] uppercase pulse-glow">
             Return home
           </Link>
         </div>
@@ -44,27 +34,16 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
       <div className="max-w-md text-center hud-corners p-10 border border-border bg-surface/40 backdrop-blur">
-        <div className="font-mono text-xs uppercase tracking-[0.4em] neon-text-cyan">
-          System fault
-        </div>
-        <h1 className="mt-3 font-display text-2xl neon-text-violet">
-          Сбой подсистемы
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Попробуйте повторить запрос.
-        </p>
+        <div className="font-mono text-xs uppercase tracking-[0.4em] neon-text-cyan">System fault</div>
+        <h1 className="mt-3 font-display text-2xl neon-text-violet">Сбой подсистемы</h1>
+        <p className="mt-2 text-sm text-muted-foreground">Попробуйте повторить запрос.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => { router.invalidate(); reset(); }}
-            className="px-5 py-2 bg-primary text-primary-foreground font-display text-xs tracking-[0.25em] uppercase"
-          >
+            className="px-5 py-2 bg-primary text-primary-foreground font-display text-xs tracking-[0.25em] uppercase">
             Retry
           </button>
-          {/* ← Link вместо <a href> — не ломает клиентский роутер */}
-          <Link
-            to="/"
-            className="px-5 py-2 border border-border font-display text-xs tracking-[0.25em] uppercase hover:neon-border"
-          >
+          <Link to="/" className="px-5 py-2 border border-border font-display text-xs tracking-[0.25em] uppercase hover:neon-border">
             Home
           </Link>
         </div>
@@ -101,14 +80,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" className="dark">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
+      <head><HeadContent /></head>
+      <body>{children}<Scripts /></body>
     </html>
+  );
+}
+
+// Внутренний компонент — может использовать хуки
+function AppContent() {
+  useHeartbeat();   // ← пингует /api/auth/heartbeat каждые 5 мин
+  return (
+    <>
+      <RainBackground />
+      <TopNav />
+      <Outlet />
+    </>
   );
 }
 
@@ -118,9 +104,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <LanguageProvider>
-          <RainBackground />
-          <TopNav />
-          <Outlet />
+          <AppContent />
         </LanguageProvider>
       </AuthProvider>
     </QueryClientProvider>
