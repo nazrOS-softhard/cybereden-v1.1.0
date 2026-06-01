@@ -19,15 +19,10 @@ function parseLinkState(state?: string): string | null {
   return null;
 }
 
-// ─── upsertUser ───────────────────────────────────────────────────────────────
 async function upsertUser(data: {
-  github_id?: number;
-  twitch_id?: string;
-  github_username?: string;
-  twitch_username?: string;
-  display_name: string;
-  email?: string | null;
-  avatar_url?: string | null;
+  github_id?: number; twitch_id?: string;
+  github_username?: string; twitch_username?: string;
+  display_name: string; email?: string | null; avatar_url?: string | null;
 }) {
   const column = data.github_id ? 'github_id' : 'twitch_id';
   const value  = data.github_id ?? data.twitch_id;
@@ -36,18 +31,12 @@ async function upsertUser(data: {
     .from('users').select('*').eq(column, value).single();
 
   if (existing) {
-    // ── КРИТИЧЕСКИ ВАЖНО: не перезаписываем аватарку если юзер уже загрузил свою
-    // avatar_url берётся из Supabase Storage если там есть /avatars/ в пути
     const isCustomAvatar = existing.avatar_url?.includes('/avatars/');
-    
     const updates: Record<string, any> = {
       email:      data.email || existing.email,
       last_login: new Date().toISOString(),
     };
-    // Обновляем OAuth-аватар только если у юзера нет кастомного
-    if (!isCustomAvatar) {
-      updates.avatar_url = data.avatar_url;
-    }
+    if (!isCustomAvatar) updates.avatar_url = data.avatar_url;
 
     const { data: updated, error } = await supabase
       .from('users').update(updates).eq('id', existing.id).select().single();
@@ -55,7 +44,6 @@ async function upsertUser(data: {
     return updated;
   }
 
-  // Новый пользователь
   const { data: created, error } = await supabase
     .from('users')
     .insert({ ...data, xp: 0, level: 1, is_public: true, last_login: new Date().toISOString() })
@@ -64,21 +52,15 @@ async function upsertUser(data: {
   return created;
 }
 
-// ─── linkAccount — привязать второй аккаунт ───────────────────────────────────
 async function linkAccount(userId: string, data: {
   github_id?: number; github_username?: string;
   twitch_id?: string; twitch_username?: string;
   avatar_url?: string | null;
 }) {
-  // Не перезаписываем кастомный аватар при привязке второго аккаунта
   const { data: existing } = await supabase
     .from('users').select('avatar_url').eq('id', userId).single();
-  
   const isCustomAvatar = existing?.avatar_url?.includes('/avatars/');
-  const updates: Record<string, any> = {
-    ...data,
-    last_login: new Date().toISOString(),
-  };
+  const updates: Record<string, any> = { ...data, last_login: new Date().toISOString() };
   if (isCustomAvatar) delete updates.avatar_url;
 
   const { data: updated, error } = await supabase
@@ -87,9 +69,7 @@ async function linkAccount(userId: string, data: {
   return updated;
 }
 
-// ══════════════════════════════════════════════════════════════════════════════
-//  GITHUB
-// ══════════════════════════════════════════════════════════════════════════════
+// ── GitHub ────────────────────────────────────────────────────────────────────
 
 router.get('/github', (_req: Request, res: Response) => {
   const params = new URLSearchParams({
@@ -103,7 +83,6 @@ router.get('/github', (_req: Request, res: Response) => {
 router.get('/github/callback', async (req: Request, res: Response): Promise<any> => {
   const { code, state } = req.query as Record<string, string>;
   const FRONT = process.env.FRONTEND_URL!;
-
   if (!code) return res.redirect(`${FRONT}?auth_error=missing_code`);
 
   try {
@@ -122,20 +101,11 @@ router.get('/github/callback', async (req: Request, res: Response): Promise<any>
     ]);
     const ghUser  = userRes.data;
     const primary = (emailsRes.data as any[]).find(e => e.primary)?.email ?? ghUser.email;
-
     const linkUserId = parseLinkState(state);
-    let user: any;
 
-    if (linkUserId) {
-      user = await linkAccount(linkUserId, {
-        github_id: ghUser.id, github_username: ghUser.login, avatar_url: ghUser.avatar_url,
-      });
-    } else {
-      user = await upsertUser({
-        github_id: ghUser.id, github_username: ghUser.login,
-        display_name: ghUser.name || ghUser.login, email: primary, avatar_url: ghUser.avatar_url,
-      });
-    }
+    const user = linkUserId
+      ? await linkAccount(linkUserId, { github_id: ghUser.id, github_username: ghUser.login, avatar_url: ghUser.avatar_url })
+      : await upsertUser({ github_id: ghUser.id, github_username: ghUser.login, display_name: ghUser.name || ghUser.login, email: primary, avatar_url: ghUser.avatar_url });
 
     return res.redirect(`${FRONT}/auth-callback?token=${signToken(user.id)}`);
   } catch (err: any) {
@@ -144,9 +114,7 @@ router.get('/github/callback', async (req: Request, res: Response): Promise<any>
   }
 });
 
-// ══════════════════════════════════════════════════════════════════════════════
-//  TWITCH
-// ══════════════════════════════════════════════════════════════════════════════
+// ── Twitch ────────────────────────────────────────────────────────────────────
 
 router.get('/twitch', (_req: Request, res: Response) => {
   const params = new URLSearchParams({
@@ -159,7 +127,6 @@ router.get('/twitch', (_req: Request, res: Response) => {
 router.get('/twitch/callback', async (req: Request, res: Response): Promise<any> => {
   const { code, state } = req.query as Record<string, string>;
   const FRONT = process.env.FRONTEND_URL!;
-
   if (!code) return res.redirect(`${FRONT}?auth_error=missing_code`);
 
   try {
@@ -175,19 +142,13 @@ router.get('/twitch/callback', async (req: Request, res: Response): Promise<any>
     });
     const twUser = userRes.data.data[0];
 
-    const linkUserId = parseLinkState(state);
-    let user: any;
+    // Нормализуем login — всегда lowercase без @
+    const twitchLogin = twUser.login.toLowerCase().replace(/^@/, '');
 
-    if (linkUserId) {
-      user = await linkAccount(linkUserId, {
-        twitch_id: twUser.id, twitch_username: twUser.login, avatar_url: twUser.profile_image_url,
-      });
-    } else {
-      user = await upsertUser({
-        twitch_id: twUser.id, twitch_username: twUser.login,
-        display_name: twUser.display_name, email: twUser.email, avatar_url: twUser.profile_image_url,
-      });
-    }
+    const linkUserId = parseLinkState(state);
+    const user = linkUserId
+      ? await linkAccount(linkUserId, { twitch_id: twUser.id, twitch_username: twitchLogin, avatar_url: twUser.profile_image_url })
+      : await upsertUser({ twitch_id: twUser.id, twitch_username: twitchLogin, display_name: twUser.display_name, email: twUser.email, avatar_url: twUser.profile_image_url });
 
     return res.redirect(`${FRONT}/auth-callback?token=${signToken(user.id)}`);
   } catch (err: any) {
@@ -196,19 +157,29 @@ router.get('/twitch/callback', async (req: Request, res: Response): Promise<any>
   }
 });
 
-// ─── /me ──────────────────────────────────────────────────────────────────────
+// ── /me ───────────────────────────────────────────────────────────────────────
 router.get('/me', authMiddleware, async (req: Request, res: Response): Promise<any> => {
   const userId = (req as any).userId;
   const { data: user, error } = await supabase
     .from('users')
-    .select('id, display_name, github_username, twitch_username, email, avatar_url, bio, xp, level, is_public, created_at, last_login')
+    .select('id, display_name, github_username, twitch_username, email, avatar_url, bio, xp, level, is_public, is_investor, created_at, last_login')
     .eq('id', userId).single();
 
   if (error || !user) return res.status(404).json({ error: 'User not found' });
   return res.json({ user });
 });
 
-// ─── /logout ──────────────────────────────────────────────────────────────────
+// ── /heartbeat — обновляет last_login (вызывается каждые 5 мин с фронтенда) ──
+router.post('/heartbeat', authMiddleware, async (req: Request, res: Response): Promise<any> => {
+  const userId = (req as any).userId;
+  await supabase
+    .from('users')
+    .update({ last_login: new Date().toISOString() })
+    .eq('id', userId);
+  return res.json({ ok: true, ts: new Date().toISOString() });
+});
+
+// ── /logout ───────────────────────────────────────────────────────────────────
 router.post('/logout', (_req: Request, res: Response) => {
   res.json({ success: true });
 });
