@@ -1,13 +1,11 @@
-
 import { Router, Request, Response } from 'express';
 import { supabase } from '../lib/supabaseClient';
 
 const router = Router();
 
-// ─── POST /api/market/purchase — создать заказ (вызывается Telegram-ботом) ────
-// Telegram бот отправляет сюда данные после оплаты Stars
+// ─── POST /api/market/purchase — создать заказ ────
 router.post('/purchase', async (req: Request, res: Response): Promise<any> => {
-  // Проверяем ключ бота
+  // 1. Проверяем ключ бота
   const botSecret = req.headers['x-bot-secret'];
   if (botSecret !== process.env.TELEGRAM_BOT_SECRET) {
     return res.status(403).json({ error: 'Forbidden' });
@@ -19,10 +17,10 @@ router.post('/purchase', async (req: Request, res: Response): Promise<any> => {
     return res.status(400).json({ error: 'cyber_user_id, product_id, unique_code required' });
   }
 
-  // Проверяем что юзер существует
+  // 2. Проверяем что юзер существует
   const { data: user, error: userErr } = await supabase
     .from('users')
-    .select('id, xp')
+    .select('id')
     .eq('id', cyber_user_id)
     .single();
 
@@ -30,7 +28,19 @@ router.post('/purchase', async (req: Request, res: Response): Promise<any> => {
     return res.status(404).json({ error: 'CyberEden user not found' });
   }
 
-  // Создаём заказ
+  // 3. НОВАЯ ЛОГИКА: Проверяем, не покупал ли юзер этот товар ранее
+  const { data: existingPurchase } = await supabase
+    .from('purchases')
+    .select('id')
+    .eq('user_id', cyber_user_id)
+    .eq('product_id', product_id)
+    .maybeSingle(); // Используем maybeSingle, чтобы не падать, если записи нет
+
+  if (existingPurchase) {
+    return res.status(409).json({ error: 'Этот продукт уже был приобретен ранее' });
+  }
+
+  // 4. Создаём заказ
   const { data: purchase, error } = await supabase
     .from('purchases')
     .insert({
@@ -45,13 +55,10 @@ router.post('/purchase', async (req: Request, res: Response): Promise<any> => {
     .single();
 
   if (error) {
-    if (error.code === '23505') {
-      return res.status(409).json({ error: 'Этот unique_code уже используется' });
-    }
     return res.status(500).json({ error: error.message });
   }
 
-  // Если это киберваучер — ставим is_investor=true
+  // 5. Если это киберваучер — ставим is_investor=true
   if (product_id === 'cybervaucher_nazrOS') {
     await supabase
       .from('users')
@@ -63,7 +70,7 @@ router.post('/purchase', async (req: Request, res: Response): Promise<any> => {
     success: true,
     purchase_id: purchase.id,
     unique_code,
-    message: 'Заказ создан. Статус: pending. После доставки обнови статус через /api/inventory/deliver',
+    message: 'Заказ создан.',
   });
 });
 
