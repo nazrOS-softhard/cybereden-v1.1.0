@@ -17,6 +17,8 @@ export const Route = createFileRoute("/profile")({
   component: ProfilePage,
 });
 
+const API = (import.meta.env.VITE_API_URL || "https://cybereden-v1-1-0.vercel.app").replace(/\/$/, "");
+
 // ── Значок инвестора ──────────────────────────────────────────────────────────
 function InvestorBadge() {
   return (
@@ -42,16 +44,14 @@ function LevelBadge({ level }: { level: number }) {
 }
 
 // ── Редактируемый никнейм ─────────────────────────────────────────────────────
-function EditableNickname({ userId, initial, onSaved }: {
-  userId: string; initial: string; onSaved: (v: string) => void;
-}) {
+function EditableNickname({ initial, onSaved }: { initial: string; onSaved: (v: string) => void }) {
   const [editing, setEditing] = useState(false);
   const [value,   setValue]   = useState(initial);
   const [saving,  setSaving]  = useState(false);
   const [error,   setError]   = useState<string | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const ref = useRef<HTMLInputElement>(null);
 
-  useEffect(() => { if (editing) inputRef.current?.focus(); }, [editing]);
+  useEffect(() => { if (editing) ref.current?.focus(); }, [editing]);
   useEffect(() => { setValue(initial); }, [initial]);
 
   const save = async () => {
@@ -62,12 +62,11 @@ function EditableNickname({ userId, initial, onSaved }: {
       const res = await apiPatch("/api/profile", { display_name: trimmed });
       if (res.ok) { onSaved(trimmed); setEditing(false); }
       else {
-        const d = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
-        setError(d.error || "Ошибка сохранения");
+        const d = await res.json().catch(() => ({}));
+        setError(d.error || `HTTP ${res.status}`);
       }
-    } catch (err: any) {
-      setError(err.message || "Нет соединения с сервером");
-    } finally { setSaving(false); }
+    } catch (e: any) { setError(e.message || "Нет соединения"); }
+    finally { setSaving(false); }
   };
 
   const cancel = () => { setValue(initial); setEditing(false); setError(null); };
@@ -76,19 +75,15 @@ function EditableNickname({ userId, initial, onSaved }: {
     <div className="flex flex-col gap-1">
       <div className="flex items-center gap-2">
         <span className="font-display text-3xl md:text-4xl neon-text-violet">@</span>
-        <input ref={inputRef} value={value}
+        <input ref={ref} value={value}
           onChange={e => { setValue(e.target.value); setError(null); }}
           onKeyDown={e => { if (e.key === "Enter") save(); if (e.key === "Escape") cancel(); }}
           maxLength={30} disabled={saving}
           className="font-display text-3xl md:text-4xl neon-text-violet bg-transparent border-b-2 border-neon-cyan outline-none disabled:opacity-50 min-w-[120px]"
           style={{ width: `${Math.max(value.length, 5) + 1}ch` }}
         />
-        <button onClick={save} disabled={saving} className="p-1.5 border border-neon-cyan hover:bg-neon-cyan/10 transition disabled:opacity-40">
-          <Check size={16} className="neon-text-cyan" />
-        </button>
-        <button onClick={cancel} disabled={saving} className="p-1.5 border border-border hover:border-red-500 hover:text-red-400 transition disabled:opacity-40">
-          <X size={16} />
-        </button>
+        <button onClick={save} disabled={saving} className="p-1.5 border border-neon-cyan hover:bg-neon-cyan/10 transition disabled:opacity-40"><Check size={16} className="neon-text-cyan" /></button>
+        <button onClick={cancel} disabled={saving} className="p-1.5 border border-border hover:border-red-500 hover:text-red-400 transition disabled:opacity-40"><X size={16} /></button>
       </div>
       {saving && <div className="font-mono text-[10px] text-muted-foreground animate-pulse pl-8">Сохранение…</div>}
       {error  && <div className="font-mono text-[10px] text-red-400 pl-8">{error}</div>}
@@ -111,20 +106,15 @@ function LoginRequired() {
         className="max-w-md w-full text-center hud-corners p-10 border border-border bg-surface/40 backdrop-blur">
         <div className="font-mono text-[10px] uppercase tracking-[0.4em] neon-text-cyan mb-3">Идентификация требуется</div>
         <h1 className="font-display text-3xl neon-text-violet mb-2">Кибла кибера</h1>
-        <p className="text-sm text-muted-foreground mb-8">Подключи GitHub и Twitch для доступа к личному кабинету, активам и системе ПХ.</p>
+        <p className="text-sm text-muted-foreground mb-8">Подключи GitHub и Twitch для доступа к личному кабинету.</p>
         <div className="flex flex-col gap-3">
-          <button onClick={() => startOAuth("github")}
-            className="inline-flex items-center justify-center gap-3 px-8 py-3 border border-border hover:neon-border-cyan bg-background/60 font-display text-sm tracking-[0.2em] uppercase transition group w-full">
+          <button onClick={() => startOAuth("github")} className="inline-flex items-center justify-center gap-3 px-8 py-3 border border-border hover:neon-border-cyan bg-background/60 font-display text-sm tracking-[0.2em] uppercase transition group w-full">
             <Github size={18} className="group-hover:neon-text-cyan transition" /> Войти через GitHub
           </button>
-          <button onClick={() => startOAuth("twitch")}
-            className="inline-flex items-center justify-center gap-3 px-8 py-3 border border-border hover:neon-border bg-background/60 font-display text-sm tracking-[0.2em] uppercase transition group w-full">
+          <button onClick={() => startOAuth("twitch")} className="inline-flex items-center justify-center gap-3 px-8 py-3 border border-border hover:neon-border bg-background/60 font-display text-sm tracking-[0.2em] uppercase transition group w-full">
             <Twitch size={18} className="group-hover:neon-text-violet transition" /> Войти через Twitch
           </button>
         </div>
-        <p className="mt-6 font-mono text-[10px] text-muted-foreground">
-          Необходимо подключить <span className="neon-text-cyan">оба аккаунта</span> для полного доступа
-        </p>
         <Link to="/" className="mt-4 inline-block font-mono text-[10px] neon-text-acid hover:underline">← Главная</Link>
       </motion.div>
     </div>
@@ -132,30 +122,20 @@ function LoginRequired() {
 }
 
 function LinkAccountBanner({ user }: { user: any }) {
-  const needTwitch = !user.twitch_username;
-  const needGithub = !user.github_username;
-  if (!needGithub && !needTwitch) return null;
+  const need = !user.github_username ? "github" : !user.twitch_username ? "twitch" : null;
+  if (!need) return null;
   return (
     <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
       className="mb-6 flex items-center justify-between gap-4 p-4 border border-yellow-500/40 bg-yellow-500/10">
       <div>
         <div className="font-display tracking-widest text-xs neon-text-acid mb-1">⚠ СИНХРОНИЗАЦИЯ СРЕДЫ НЕ ЗАВЕРШЕНА</div>
-        <p className="font-mono text-xs text-muted-foreground">
-          Подключите {needTwitch ? "Twitch" : "GitHub"} для отслеживания трансляций и начисления ПХ.
-        </p>
+        <p className="font-mono text-xs text-muted-foreground">Подключите {need === "github" ? "GitHub" : "Twitch"} для начисления ПХ.</p>
       </div>
-      {needTwitch && (
-        <button onClick={() => startOAuth("twitch", user.id)}
-          className="whitespace-nowrap px-4 py-2 border border-yellow-500/50 hover:border-neon-cyan font-display text-xs tracking-widest uppercase transition flex items-center gap-2">
-          <Twitch size={14} /> + Link Twitch
-        </button>
-      )}
-      {needGithub && (
-        <button onClick={() => startOAuth("github", user.id)}
-          className="whitespace-nowrap px-4 py-2 border border-yellow-500/50 hover:border-neon-cyan font-display text-xs tracking-widest uppercase transition flex items-center gap-2">
-          <Github size={14} /> + Link GitHub
-        </button>
-      )}
+      <button onClick={() => startOAuth(need as any, user.id)}
+        className="whitespace-nowrap px-4 py-2 border border-yellow-500/50 hover:border-neon-cyan font-display text-xs tracking-widest uppercase transition flex items-center gap-2">
+        {need === "github" ? <Github size={14} /> : <Twitch size={14} />}
+        + Link {need === "github" ? "GitHub" : "Twitch"}
+      </button>
     </motion.div>
   );
 }
@@ -168,6 +148,13 @@ function ProfilePage() {
 
   const [displayName,    setDisplayName]    = useState("");
   const [avatarPreview,  setAvatarPreview]  = useState<string | null>(null);
+  const [nxCode,         setNxCode]         = useState<string | null>(null);
+
+  // Реальные данные из API
+  const [assets,         setAssets]         = useState<any[]>([]);
+  const [knowledgeItems, setKnowledgeItems] = useState<any[]>([]);
+  const [achieveCount,   setAchieveCount]   = useState<number | null>(null);
+  const [inventoryCount, setInventoryCount] = useState<number | null>(null);
 
   // Модалы
   const [datacenterOpen,   setDatacenterOpen]   = useState(false);
@@ -175,40 +162,47 @@ function ProfilePage() {
   const [achievementsOpen, setAchievementsOpen] = useState(false);
   const [inventoryOpen,    setInventoryOpen]    = useState(false);
 
-  // Счётчики для превью
-  const [assetCount,      setAssetCount]      = useState<number | null>(null);
-  const [achieveCount,    setAchieveCount]    = useState<number | null>(null);
-  const [knowledgeItems,  setKnowledgeItems]  = useState<any[]>([]);
-  const [inventoryCount,  setInventoryCount]  = useState<number | null>(null);
-
   useEffect(() => {
     if (!user) return;
     setDisplayName(user.display_name);
     if (user.avatar_url) setAvatarPreview(user.avatar_url);
 
-    // Загружаем счётчики
-    apiGet("/api/upload/assets").then(r => r.ok ? r.json() : { assets: [] })
-      .then(d => setAssetCount((d.assets || []).length)).catch(() => {});
-    apiGet("/api/achievements").then(r => r.ok ? r.json() : { achievements: [] })
-      .then(d => setAchieveCount((d.achievements || []).length)).catch(() => {});
-    apiGet("/api/knowledge/progress").then(r => r.ok ? r.json() : { items: [] })
-      .then(d => setKnowledgeItems(d.items || [])).catch(() => {});
-    apiGet("/api/inventory").then(r => r.ok ? r.json() : { items: [] })
-      .then(d => setInventoryCount((d.items || []).length)).catch(() => {});
+    // Загружаем все данные параллельно
+    Promise.all([
+      apiGet("/api/upload/assets").then(r => r.ok ? r.json() : { assets: [] }).then(d => setAssets(d.assets || [])),
+      apiGet("/api/knowledge/progress").then(r => r.ok ? r.json() : { items: [] }).then(d => setKnowledgeItems(d.items || [])),
+      apiGet("/api/achievements").then(r => r.ok ? r.json() : { achievements: [] }).then(d => setAchieveCount((d.achievements || []).length)),
+      apiGet("/api/inventory").then(r => r.ok ? r.json() : { items: [] }).then(d => setInventoryCount((d.items || []).length)),
+      // NX код если инвестор
+      (user as any).is_investor
+        ? apiGet("/api/profile/nx-code").then(r => r.ok ? r.json() : {}).then(d => setNxCode(d.nx_code || null))
+        : Promise.resolve(),
+    ]).catch(() => {});
   }, [user?.id]);
 
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     if (file.size > 4.5 * 1024 * 1024) { alert("Файл > 4.5 МБ"); return; }
-    const form = new FormData();
-    form.append("avatar", file);
+    const form = new FormData(); form.append("avatar", file);
     try {
       const res = await apiPost("/api/upload/avatar", form);
       const d   = await res.json();
       if (res.ok) { setAvatarPreview(d.avatarUrl); refreshUser(); }
       else alert(`Ошибка: ${d.error}`);
-    } catch (err: any) { alert(err.message); }
+    } catch (e: any) { alert(e.message); }
+  };
+
+  const handleAssetUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const form = new FormData(); form.append("file", file);
+    try {
+      const res = await apiPost("/api/upload/asset", form);
+      const d   = await res.json();
+      if (res.ok) { setAssets(prev => [d.asset, ...prev]); }
+      else alert(`Ошибка: ${d.error}`);
+    } catch (e: any) { alert(e.message); }
   };
 
   const handleLogout = () => { logout(); navigate({ to: "/" }); };
@@ -218,16 +212,14 @@ function ProfilePage() {
       <div className="font-mono text-xs uppercase tracking-[0.4em] neon-text-cyan animate-pulse">Загрузка кибера...</div>
     </div>
   );
-
   if (!user) return <LoginRequired />;
 
-  const joinedDate = new Date(user.created_at).toLocaleDateString("ru-RU", { day: "2-digit", month: "2-digit", year: "numeric" });
+  const joinedDate  = new Date(user.created_at).toLocaleDateString("ru-RU", { day: "2-digit", month: "2-digit", year: "numeric" });
+  const isInvestor  = !!(user as any).is_investor;
 
   const accounts = [
-    { name: "GitHub",  handle: user.github_username ? `@${user.github_username}` : "Не подключен", icon: Github,
-      connected: !!user.github_username, onClick: () => !user.github_username && startOAuth("github", user.id) },
-    { name: "Twitch",  handle: user.twitch_username ? `@${user.twitch_username}` : "Не подключен", icon: Twitch,
-      connected: !!user.twitch_username, onClick: () => !user.twitch_username && startOAuth("twitch", user.id) },
+    { name: "GitHub",  handle: user.github_username ? `@${user.github_username}` : "Не подключен", icon: Github,  connected: !!user.github_username, onClick: () => !user.github_username && startOAuth("github", user.id) },
+    { name: "Twitch",  handle: user.twitch_username ? `@${user.twitch_username}` : "Не подключен", icon: Twitch,  connected: !!user.twitch_username, onClick: () => !user.twitch_username && startOAuth("twitch", user.id) },
     { name: "Darknet", handle: "Не подключен", icon: Globe, connected: false, onClick: () => {} },
   ];
 
@@ -240,13 +232,11 @@ function ProfilePage() {
         <div className="font-mono text-xs uppercase tracking-[0.4em] neon-text-cyan mb-2">{t("profile.eyebrow")}</div>
         <div className="flex items-center gap-3 justify-between flex-wrap">
           <div className="flex items-center gap-3 flex-wrap">
-            <EditableNickname userId={user.id} initial={displayName}
-              onSaved={v => { setDisplayName(v); refreshUser(); }} />
+            <EditableNickname initial={displayName} onSaved={v => { setDisplayName(v); refreshUser(); }} />
             <LevelBadge level={user.level} />
-            {(user as any).is_investor && <InvestorBadge />}
+            {isInvestor && <InvestorBadge />}
           </div>
-          <button onClick={handleLogout}
-            className="flex items-center gap-2 px-3 py-1.5 border border-border hover:border-red-500 hover:text-red-400 transition font-mono text-xs uppercase tracking-widest">
+          <button onClick={handleLogout} className="flex items-center gap-2 px-3 py-1.5 border border-border hover:border-red-500 hover:text-red-400 transition font-mono text-xs uppercase tracking-widest">
             <LogOut size={12} /> Выход
           </button>
         </div>
@@ -279,14 +269,30 @@ function ProfilePage() {
               <input type="file" accept="image/*" onChange={handleAvatarUpload} className="hidden" />
             </label>
             <div className="absolute bottom-2 left-2 right-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground flex justify-between">
-              <span className="truncate max-w-[140px]">id · {user.id.slice(0, 16)}…</span>
+              <span className="truncate max-w-[140px]">id · {user.id.slice(0, 14)}…</span>
               <span className="neon-text-acid">● online</span>
             </div>
           </div>
+
           <div className="mt-4 space-y-1.5 text-sm font-mono">
             <div className="flex justify-between"><span className="text-muted-foreground">ПХ</span><span className="neon-text-cyan">{user.xp.toLocaleString("ru-RU")}</span></div>
             <div className="flex justify-between"><span className="text-muted-foreground">Rank</span><span className="neon-text-violet">Оператор</span></div>
             <div className="flex justify-between"><span className="text-muted-foreground">Joined</span><span>{joinedDate}</span></div>
+
+            {/* NX код инвестора */}
+            {isInvestor && nxCode && (
+              <div className="mt-3 pt-3 border-t border-border/50">
+                <div className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground mb-1">NX · Инвестор</div>
+                <div className="font-mono text-xs neon-text-acid tracking-widest select-all" title="Ваш уникальный NX-код">
+                  {nxCode}
+                </div>
+              </div>
+            )}
+            {isInvestor && !nxCode && (
+              <div className="mt-3 pt-3 border-t border-border/50">
+                <div className="font-mono text-[9px] text-muted-foreground animate-pulse">NX · загрузка…</div>
+              </div>
+            )}
           </div>
         </motion.div>
 
@@ -312,52 +318,30 @@ function ProfilePage() {
           </section>
 
           <div className="grid lg:grid-cols-2 gap-6">
-            {/* Инвентарь — открывает InventoryModal */}
-            <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur cursor-pointer hover:neon-border transition group"
-              onClick={() => setInventoryOpen(true)}>
+            {/* Инвентарь */}
+            <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur cursor-pointer hover:neon-border transition group" onClick={() => setInventoryOpen(true)}>
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <ShoppingBag size={14} className="neon-text-cyan group-hover:neon-text-acid transition" />
-                  <span className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">{t("profile.inventory")}</span>
-                </div>
-                <span className="text-[10px] neon-text-acid">
-                  {inventoryCount !== null ? `${inventoryCount} предм.` : ""} →
-                </span>
+                <div className="flex items-center gap-2"><ShoppingBag size={14} className="neon-text-cyan group-hover:neon-text-acid transition" /><span className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">{t("profile.inventory")}</span></div>
+                <span className="text-[10px] neon-text-acid">{inventoryCount !== null ? `${inventoryCount} предм.` : ""} →</span>
               </div>
               <div className="font-mono text-xs text-muted-foreground">
-                {inventoryCount === 0
-                  ? "Нет приобретённых предметов"
-                  : inventoryCount === null
-                    ? "Загрузка…"
-                    : `${inventoryCount} предм. в инвентаре · нажми чтобы открыть`
-                }
+                {inventoryCount === 0 ? "Нет приобретённых предметов" : inventoryCount === null ? "Загрузка…" : `${inventoryCount} предм. · нажми чтобы открыть`}
               </div>
             </section>
 
-            {/* Достижения — открывает AchievementsModal */}
-            <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur cursor-pointer hover:neon-border transition group"
-              onClick={() => setAchievementsOpen(true)}>
+            {/* Достижения */}
+            <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur cursor-pointer hover:neon-border transition group" onClick={() => setAchievementsOpen(true)}>
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <Trophy size={14} className="neon-text-acid group-hover:neon-text-cyan transition" />
-                  <span className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">{t("profile.achievements")}</span>
-                </div>
-                <span className="text-[10px] neon-text-acid">
-                  {achieveCount !== null ? `${achieveCount} событий` : ""} →
-                </span>
+                <div className="flex items-center gap-2"><Trophy size={14} className="neon-text-acid group-hover:neon-text-cyan transition" /><span className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">{t("profile.achievements")}</span></div>
+                <span className="text-[10px] neon-text-acid">{achieveCount !== null ? `${achieveCount} событий` : ""} →</span>
               </div>
               <div className="font-mono text-xs text-muted-foreground">
-                {achieveCount === 0
-                  ? "Нет посещённых мероприятий"
-                  : achieveCount === null
-                    ? "Загрузка…"
-                    : `${achieveCount} достижений · нажми чтобы открыть`
-                }
+                {achieveCount === 0 ? "Нет посещённых мероприятий" : achieveCount === null ? "Загрузка…" : `${achieveCount} достижений · нажми чтобы открыть`}
               </div>
             </section>
           </div>
 
-          {/* Активы + Датацентр */}
+          {/* АКТИВЫ — инлайн список последних 3 файлов */}
           <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2 cursor-pointer group" onClick={() => setDatacenterOpen(true)}>
@@ -365,26 +349,57 @@ function ProfilePage() {
                 <span className="font-display text-sm tracking-widest neon-text-violet group-hover:neon-text-cyan transition">АКТИВЫ</span>
               </div>
               <button onClick={() => setDatacenterOpen(true)} className="flex items-center gap-1 text-[10px] neon-text-acid hover:neon-text-cyan transition uppercase tracking-widest">
-                <Database size={12} /> Датацентр
+                <Database size={12} /> Датацентр ({assets.length})
               </button>
             </div>
-            <div className="font-mono text-xs text-muted-foreground cursor-pointer hover:text-foreground transition"
-              onClick={() => setDatacenterOpen(true)}>
-              {assetCount === null ? "Загрузка…" : assetCount === 0 ? "Загрузи первый файл" : `${assetCount} файлов в датацентре`}
+
+            <div className="space-y-2">
+              {assets.length === 0 ? (
+                <div className="font-mono text-xs text-muted-foreground">Активы не загружены</div>
+              ) : (
+                <>
+                  {assets.slice(0, 3).map(asset => (
+                    <div key={asset.id} className="flex items-center justify-between p-3 border border-border bg-background/40 hover:neon-border transition group">
+                      <div className="min-w-0">
+                        <div className="font-display text-sm truncate">{asset.file_name}</div>
+                        <div className="font-mono text-xs text-muted-foreground">
+                          {asset.file_type?.toUpperCase()} · {asset.file_size ? `${(asset.file_size / 1024 / 1024).toFixed(1)} MB` : "—"}
+                        </div>
+                      </div>
+                      {asset.url && (
+                        <a href={asset.url} target="_blank" rel="noreferrer" onClick={e => e.stopPropagation()}
+                          className="font-mono text-xs neon-text-acid hover:underline whitespace-nowrap ml-3 flex-shrink-0">
+                          Скачать
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                  {assets.length > 3 && (
+                    <button onClick={() => setDatacenterOpen(true)}
+                      className="w-full text-center font-mono text-[10px] text-muted-foreground hover:neon-text-cyan transition py-1.5 border border-border/30 hover:border-neon-cyan/30">
+                      + ещё {assets.length - 3} файлов в датацентре
+                    </button>
+                  )}
+                </>
+              )}
+
+              <label className="flex items-center justify-center gap-2 p-3 border-2 border-dashed border-border hover:border-neon-cyan transition cursor-pointer group mt-2">
+                <Upload size={16} className="neon-text-cyan group-hover:neon-text-acid transition" />
+                <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground group-hover:neon-text-cyan">Загрузить файл</span>
+                <input type="file" onChange={handleAssetUpload} className="hidden" />
+              </label>
             </div>
           </section>
 
-          {/* Знания — инлайн превью + модал */}
+          {/* ЗНАНИЯ — инлайн последние 3 + кнопки */}
           <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
-            {/* Заголовок с двумя кнопками */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <BookOpen size={14} className="neon-text-cyan" />
                 <span className="font-display text-sm tracking-widest neon-text-violet">ЗНАНИЯ</span>
               </div>
               <div className="flex items-center gap-3">
-                <button onClick={() => setKnowledgeOpen(true)}
-                  className="text-[10px] neon-text-acid hover:neon-text-cyan transition uppercase tracking-widest">
+                <button onClick={() => setKnowledgeOpen(true)} className="text-[10px] neon-text-acid hover:neon-text-cyan transition uppercase tracking-widest">
                   Все ({knowledgeItems.length}) →
                 </button>
                 <Link to="/journal" className="text-[10px] text-muted-foreground hover:neon-text-cyan transition uppercase tracking-widest">
@@ -393,12 +408,9 @@ function ProfilePage() {
               </div>
             </div>
 
-            {/* Инлайн список — последние 3 */}
             {knowledgeItems.length === 0 ? (
               <div className="font-mono text-xs text-muted-foreground">
-                Открой публикацию, интервью или алгоритм в{" "}
-                <Link to="/journal" className="neon-text-acid hover:underline">Журнале</Link>
-                {" "}— прогресс сохранится здесь
+                Открой публикацию в <Link to="/journal" className="neon-text-acid hover:underline">Журнале</Link> — прогресс сохранится здесь
               </div>
             ) : (
               <div className="space-y-4">
@@ -411,27 +423,18 @@ function ProfilePage() {
                           <div className="font-display text-sm truncate">{item.title}</div>
                           <div className="font-mono text-[10px] text-muted-foreground">{item.type}</div>
                         </div>
-                        <div className="font-mono text-xs neon-text-acid whitespace-nowrap flex-shrink-0">
-                          +{item.earned_xp} ПХ
-                        </div>
+                        <div className="font-mono text-xs neon-text-acid whitespace-nowrap">+{item.earned_xp} ПХ</div>
                       </div>
                       <div className="w-full bg-background/40 border border-border h-1.5">
-                        <div
-                          className="bg-neon-cyan h-full transition-all"
-                          style={{ width: `${pct}%` }}
-                        />
+                        <div className="bg-neon-cyan h-full" style={{ width: `${pct}%` }} />
                       </div>
-                      <div className="font-mono text-[10px] text-muted-foreground">
-                        {pct}% завершено
-                      </div>
+                      <div className="font-mono text-[10px] text-muted-foreground">{pct}% завершено</div>
                     </div>
                   );
                 })}
                 {knowledgeItems.length > 3 && (
-                  <button
-                    onClick={() => setKnowledgeOpen(true)}
-                    className="w-full text-center font-mono text-[10px] text-muted-foreground hover:neon-text-cyan transition py-1 border border-border/30 hover:border-neon-cyan/30"
-                  >
+                  <button onClick={() => setKnowledgeOpen(true)}
+                    className="w-full text-center font-mono text-[10px] text-muted-foreground hover:neon-text-cyan transition py-1 border border-border/30 hover:border-neon-cyan/30">
                     + ещё {knowledgeItems.length - 3} материалов
                   </button>
                 )}
@@ -441,7 +444,6 @@ function ProfilePage() {
         </div>
       </div>
 
-      {/* Модалы */}
       <DatacenterModal   open={datacenterOpen}   onClose={() => setDatacenterOpen(false)} />
       <KnowledgeModal    open={knowledgeOpen}    onClose={() => setKnowledgeOpen(false)} />
       <AchievementsModal open={achievementsOpen} onClose={() => setAchievementsOpen(false)} />
