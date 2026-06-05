@@ -282,7 +282,7 @@ function ProfilePage() {
             {/* NX код инвестора */}
             {isInvestor && nxCode && (
               <div className="mt-3 pt-3 border-t border-border/50">
-                <div className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground mb-1">NX · Инвестор</div>
+                <div className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground mb-1">NX · код</div>
                 <div className="font-mono text-xs neon-text-acid tracking-widest select-all" title="Ваш уникальный NX-код">
                   {nxCode}
                 </div>
