@@ -13,6 +13,8 @@ import vision    from "@/assets/vision.png";
 import visionfull from "@/assets/visionfull.png";
 import cybervaucher     from "@/assets/cybervaucher.png";
 import cybervaucherfull from "@/assets/cybervaucherfull.png";
+import stranno    from "@/assets/stranno.png";
+import kefirnno from "@/assets/kefirnno.png";
 
 // МЕРОПРИЯТИЯ
 import northPoster from "@/assets/north-event-poster.png";
@@ -201,8 +203,8 @@ export const items: Item[] = [
     marketCategory: "СОФТ",
     price: 2400,
     status: "preorder",
-    image: PLACEHOLDER_STRANNO,
-    expandedImage: PLACEHOLDER_STRANNO,
+    image: stranno,
+    expandedImage: stranno,
     short: "Нейросетевой генератор нестандартных решений. Думает иначе.",
     description:
       "⚡ DEV MODE\nФункционал в стадии сборки. Возможны корректировки.\n\nстраНно — экспериментальный AI-ассистент, обученный на нестандартных паттернах мышления.\n\n▸ ФУНКЦИОНАЛЬНОСТЬ\n\n01. Генерация нестандартных решений\nНа основе контекста задачи предлагает неочевидные пути.\n\n02. Анализ паттернов\nИщет связи там, где другие не видят.\n\n03. Интеграция с nazrOS\nРаботает внутри цифровой инфраструктуры КиберэдэН.\n\n04. Адаптивное обучение\nЧем больше задач — тем точнее результат.\n\n▸ СТАТУС\nПредзаказ. Релиз после набора 100 пользователей.",
@@ -217,8 +219,8 @@ export const items: Item[] = [
     marketCategory: "СОФТ",
     price: 800,
     status: "preorder",
-    image: PLACEHOLDER_KEFIRNO,
-    expandedImage: PLACEHOLDER_KEFIRNO,
+    image: kefirnno,
+    expandedImage: kefirnno,
     short: "Утилита форматирования и очистки данных nazrOS.",
     description:
       "⚡ DEV MODE\nФункционал в стадии сборки. Возможны корректировки.\n\nкефирНно — утилита очистки и нормализации данных.\n\n▸ ФУНКЦИОНАЛЬНОСТЬ\n\n01. Форматирование\nПриводит данные к стандарту nazrOS.\n\n02. Очистка\nУдаляет дублирующиеся, повреждённые и устаревшие данные.\n\n03. Нормализация\nАвтоматически подбирает схему под тип входных данных.\n\n04. Пакетная обработка\nОбрабатывает массивы данных одной командой.\n\n▸ СТАТУС\nПредзаказ. Релиз Q3 2026.",
