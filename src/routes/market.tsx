@@ -5,8 +5,10 @@ import { NeonCard }          from "@/components/NeonCard";
 import { ExpandedCardModal } from "@/components/ExpandedCardModal";
 import { DeviceSensorPanel } from "@/components/DeviceSensorPanel";
 import { items }             from "@/lib/mockData";
+import { ITEM_STAGES }       from "@/lib/stages";
 import { useI18n }           from "@/lib/i18n";
 import { useAuth }           from "@/lib/auth";
+import type { MarketCategory } from "@/lib/mockData";
 
 export const Route = createFileRoute("/market")({
   head: () => ({
@@ -24,23 +26,13 @@ const statusLabel: Record<string, string> = {
   preorder: "Предзаказ",
 };
 
-// ── Категории для фильтра ─────────────────────────────────────────────────────
-const MARKET_FILTERS = ["ВСЕ", "УСТРОЙСТВА", "СОФТ", "ИНОЕ"] as const;
-type MarketFilter = (typeof MARKET_FILTERS)[number];
+const FILTERS: { key: MarketCategory | "ВСЕ"; label: string }[] = [
+  { key: "ВСЕ",       label: "Все"       },
+  { key: "УСТРОЙСТВА", label: "Устройства" },
+  { key: "СОФТ",       label: "Софт"      },
+  { key: "ИНОЕ",       label: "Иное"      },
+];
 
-// ── Маппинг id → категория фильтра ────────────────────────────────────────────
-const ITEM_FILTER_MAP: Record<string, MarketFilter> = {
-  biohn:                "УСТРОЙСТВА",
-  clon:                 "УСТРОЙСТВА",
-  blan:                 "УСТРОЙСТВА",
-  pin:                  "УСТРОЙСТВА",
-  visionN:              "УСТРОЙСТВА",
-  stranno:              "СОФТ",
-  kefirno:              "СОФТ",
-  cybervaucher_nazrOS:  "ИНОЕ",
-};
-
-// ── Читаемый рендер описания ──────────────────────────────────────────────────
 function Description({ text }: { text: string }) {
   return (
     <div className="space-y-2 text-sm leading-relaxed">
@@ -65,40 +57,43 @@ function MarketPage() {
   const { t }    = useI18n();
   const { user } = useAuth();
 
-  const [filter, setFilter] = useState<MarketFilter>("ВСЕ");
+  const [filter, setFilter] = useState<MarketCategory | "ВСЕ">("ВСЕ");
   const [openId, setOpenId] = useState<string | null>(null);
 
   const active         = items.find(i => i.id === openId) ?? null;
   const isCybervoucher = active?.id === "cybervaucher_nazrOS";
+  const activeStages   = active ? ITEM_STAGES[active.id] : undefined;
 
   const telegramUrl = user
     ? `https://t.me/cybereden_market_bot?start=cybervaucher_${user.id}`
     : "https://t.me/cybereden_market_bot?start=cybervaucher";
 
-  // Фильтрованный список
-  const filtered = useMemo(() => {
-    if (filter === "ВСЕ") return items;
-    return items.filter(it => (ITEM_FILTER_MAP[it.id] ?? "УСТРОЙСТВА") === filter);
-  }, [filter]);
+  const filtered = useMemo(() =>
+    filter === "ВСЕ" ? items : items.filter(it => it.marketCategory === filter),
+    [filter],
+  );
 
-  const countOf = (f: MarketFilter) =>
-    f === "ВСЕ" ? items.length : items.filter(it => (ITEM_FILTER_MAP[it.id] ?? "УСТРОЙСТВА") === f).length;
+  const countOf = (key: typeof filter) =>
+    key === "ВСЕ" ? items.length : items.filter(it => it.marketCategory === key).length;
 
   return (
-    <PageShell eyebrow={t("market.eyebrow")} title={t("market.title")} subtitle={t("market.subtitle")}>
-
+    <PageShell
+      eyebrow={t("market.eyebrow")}
+      title={t("market.title")}
+      subtitle={t("market.subtitle")}
+    >
       {/* ── Фильтры ──────────────────────────────────────────────────────── */}
-      <div className="mb-8 flex flex-wrap gap-2 items-center">
-        {MARKET_FILTERS.map(f => (
-          <button key={f} onClick={() => setFilter(f)}
+      <div className="mb-8 flex flex-wrap gap-2">
+        {FILTERS.map(f => (
+          <button key={f.key} onClick={() => setFilter(f.key)}
             className={`inline-flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-widest border transition-all ${
-              f === filter
+              f.key === filter
                 ? "border-neon-cyan neon-text-cyan bg-neon-cyan/10"
-                : "border-border text-muted-foreground hover:border-border hover:text-foreground"
+                : "border-border text-muted-foreground hover:text-foreground"
             }`}>
-            {f}
-            <span className={`text-[10px] px-1 ${f === filter ? "neon-text-cyan" : "text-muted-foreground/60"}`}>
-              {countOf(f)}
+            {f.label}
+            <span className={`text-[10px] px-1 ${f.key === filter ? "neon-text-cyan" : "text-muted-foreground/60"}`}>
+              {countOf(f.key)}
             </span>
           </button>
         ))}
@@ -108,7 +103,6 @@ function MarketPage() {
       {filtered.length === 0 ? (
         <div className="hud-corners p-16 border border-border text-center">
           <div className="font-display text-xl neon-text-violet mb-2">Нет позиций</div>
-          <p className="font-mono text-xs text-muted-foreground">В этой категории пока нет товаров</p>
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -123,6 +117,12 @@ function MarketPage() {
               meta={`${it.price.toLocaleString("ru-RU")} ПХ`}
             >
               {it.short}
+              {/* Значок стадий */}
+              {ITEM_STAGES[it.id] && (
+                <div className="mt-2 font-mono text-[10px] neon-text-acid">
+                  ◈ {ITEM_STAGES[it.id].length} стадий сборки
+                </div>
+              )}
             </NeonCard>
           ))}
         </div>
@@ -138,15 +138,13 @@ function MarketPage() {
         image={active?.expandedImage ?? active?.image}
         cta={isCybervoucher ? "Приобрести в Telegram" : t("market.cta")}
         ctaHref={isCybervoucher ? telegramUrl : undefined}
-        meta={
-          active
-            ? [
-                { label: "Цена",      value: `${active.price.toLocaleString("ru-RU")} XP` },
-                { label: "Категория", value: active.category },
-                { label: "Статус",    value: statusLabel[active.status] ?? active.status },
-              ]
-            : []
-        }
+        stages={activeStages}
+        itemId={active?.id}
+        meta={active ? [
+          { label: "Цена",      value: `${active.price.toLocaleString("ru-RU")} XP` },
+          { label: "Категория", value: active.category },
+          { label: "Статус",    value: statusLabel[active.status] ?? active.status },
+        ] : []}
       >
         {active && (
           <>
