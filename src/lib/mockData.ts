@@ -170,8 +170,8 @@ export const items: Item[] = [
 },
 
   {
-    id: "visionN",
-    name: "visionN",
+    id: "vision",
+    name: "visioN",
     category: "КИБЕР-ОПТИКА",
     marketCategory: "УСТРОЙСТВА",
     price: 15400,
