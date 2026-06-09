@@ -80,7 +80,7 @@ export const items: Item[] = [
   marketCategory: "УСТРОЙСТВА",
   price: 128000,
   status: "in_stock",
-  image: rostnn,
+  image: rostn,
   expandedImage: rostnfull,
   short: "Автономная домашняя теплица с системой мониторинга и управления через приложение ростН.",
   description:
