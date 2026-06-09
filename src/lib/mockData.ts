@@ -1,6 +1,6 @@
 // КАРТЫ УСТРОЙСТВ
 import rostn     from "@/assets/rostn.jpg";
-import rostnFull from "@/assets/rostn-full.png";
+import rostnfull from "@/assets/rostnfull.png";
 import biohn     from "@/assets/biohn.png";
 import biohnfull from "@/assets/biohnfull.png";
 import blan      from "@/assets/blan.png";
@@ -12,7 +12,7 @@ import pinfull   from "@/assets/pinfull.png";
 import vision    from "@/assets/vision.png";
 import visionfull from "@/assets/visionfull.png";
 import cybervaucher     from "@/assets/cybervaucher.png";
-import cybervaucherfull from "@/assets/cybervaucher.png";
+import cybervaucherfull from "@/assets/cybervaucherfull.png";
 
 // МЕРОПРИЯТИЯ
 import northPoster from "@/assets/north-event-poster.png";
@@ -196,7 +196,7 @@ export const items: Item[] = [
 
   {
     id: "stranno",
-    name: "страНно",
+    name: "straNNo",
     category: "НЕЙРОНЕТ",
     marketCategory: "СОФТ",
     price: 2400,
@@ -212,7 +212,7 @@ export const items: Item[] = [
 
   {
     id: "kefirno",
-    name: "кефирНно",
+    name: "kefirNNo",
     category: "УТИЛИТЫ",
     marketCategory: "СОФТ",
     price: 800,
