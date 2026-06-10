@@ -10,6 +10,7 @@ import { RainBackground }  from "@/components/RainBackground";
 import { LanguageProvider } from "@/lib/i18n";
 import { AuthProvider }    from "@/lib/auth";
 import { useHeartbeat }    from "@/hooks/useHeartbeat";
+import { Footer } from "@/components/Footer";
 
 function NotFoundComponent() {
   return (
@@ -77,11 +78,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+import { Footer } from "@/components/Footer"; // ← добавь импорт
+
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" className="dark">
       <head><HeadContent /></head>
-      <body>{children}<Scripts /></body>
+      <body>
+        {/* Основной контент */}
+        {children}
+        
+        {/* Футер — будет отображаться на всех страницах */}
+        <Footer />
+        
+        <Scripts />
+      </body>
     </html>
   );
 }
