@@ -727,6 +727,7 @@ export const kefirnoStages: DeviceStage[] = [
 // ══════════════════════════════════════════════════════════════════════════════
 export const ITEM_STAGES: Record<string, DeviceStage[]> = {
   clon:    cloNStages,
+  biohn:   rostNStages,
   biohn:   biohNStages,
   blan:    blaNStages,
   pin:     piNStages,
