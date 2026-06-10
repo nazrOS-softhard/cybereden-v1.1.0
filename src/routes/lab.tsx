@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { X, ExternalLink } from "lucide-react";
+import kefirnno from "@/assets/kefirnno.png";
 
 export const Route = createFileRoute("/lab")({
   head: () => ({
@@ -20,6 +21,7 @@ interface LabZone {
   labelShort: string;
   x: number;   // % от ширины
   y: number;   // % от высоты
+  image: lab.png;
   color: string;
   description: string;
   protocol: string[];
