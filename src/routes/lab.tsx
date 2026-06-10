@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { X, ExternalLink } from "lucide-react";
 import labn from "@/assets/labn.png";
+import roomn from "@/assets/roomn.png"; // ← импорт нового изображения
 
 export const Route = createFileRoute("/lab")({
   head: () => ({
@@ -213,10 +214,22 @@ function ZonePanel({ zone, onClose }: { zone: LabZone; onClose: () => void }) {
 // ── Основная страница ─────────────────────────────────────────────────────────
 function LabPage() {
   const [activeZone, setActiveZone] = useState<LabZone | null>(null);
+  const [filter, setFilter] = useState<"all" | "devices" | "bio" | "creative" | "showroom">("all");
 
   const handleZoneClick = (zone: LabZone) => {
     setActiveZone(prev => prev?.id === zone.id ? null : zone);
   };
+
+  const filteredZones = filter === "all" 
+    ? ZONES 
+    : filter === "showroom"
+      ? ZONES // для шоурума показываем все зоны, но меняем фон
+      : ZONES.filter(zone => {
+          if (filter === "devices") return zone.linkedDevice;
+          if (filter === "bio") return zone.id === "rostn" || zone.id === "sanitary";
+          if (filter === "creative") return zone.id === "portal" || zone.id === "sewing";
+          return true;
+        });
 
   return (
     <div className="relative z-10 min-h-screen pt-20 pb-10 px-4">
@@ -233,15 +246,30 @@ function LabPage() {
           </p>
         </div>
 
+        {/* Фильтр */}
+        <div className="flex gap-2 mb-4 flex-wrap">
+          {["all", "devices", "bio", "creative", "showroom"].map(f => (
+            <button 
+              key={f} 
+              onClick={() => setFilter(f as any)}
+              className={`px-3 py-1 text-xs uppercase tracking-widest border ${
+                filter === f ? "border-neon-cyan text-white" : "border-border text-muted-foreground"
+              }`}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+
         {/* Интерактивная карта */}
         <div className="relative w-full" style={{ paddingBottom: "66%" }}>
           <div className="absolute inset-0 border border-border overflow-hidden">
 
-            {/* Фоновое изображение */}
+            {/* Фоновое изображение (меняется в зависимости от фильтра) */}
             <div 
               className="absolute inset-0"
               style={{
-                backgroundImage: `url(${labn})`,
+                backgroundImage: `url(${filter === "showroom" ? roomn : labn})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 opacity: 0.8,
@@ -253,7 +281,7 @@ function LabPage() {
             <div className="absolute inset-0 hud-scanlines opacity-10 pointer-events-none" />
 
             {/* Зоны */}
-            {ZONES.map(zone => (
+            {filteredZones.map(zone => (
               <button
                 key={zone.id}
                 onClick={() => handleZoneClick(zone)}
@@ -312,7 +340,7 @@ function LabPage() {
 
         {/* Список всех зон под картой */}
         <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {ZONES.map(zone => (
+          {filteredZones.map(zone => (
             <button key={zone.id} onClick={() => handleZoneClick(zone)}
               className={`text-left p-3 border transition-all ${
                 activeZone?.id === zone.id ? "bg-surface/60" : "bg-surface/20 hover:bg-surface/40"
