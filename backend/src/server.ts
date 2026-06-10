@@ -11,6 +11,7 @@ import knowledgeRouter    from './routes/knowledge';
 import achievementsRouter from './routes/achievements';
 import inventoryRouter    from './routes/inventory';
 import marketRouter       from './routes/market';
+import stagesRouter       from './routes/stages';
 
 const app = express();
 
@@ -29,7 +30,6 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ─── Health ───────────────────────────────────────────────────────────────────
 const REQUIRED_ENV = [
   'SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'JWT_SECRET',
   'GITHUB_CLIENT_ID', 'GITHUB_CLIENT_SECRET',
@@ -39,23 +39,16 @@ const REQUIRED_ENV = [
 
 app.get('/health', async (_req: Request, res: Response) => {
   const missing = REQUIRED_ENV.filter(k => !process.env[k]);
-  if (missing.length) {
-    return res.json({ status: 'degraded', missing_env: missing });
-  }
+  if (missing.length) return res.json({ status: 'degraded', missing_env: missing });
   try {
     const { getSupabase } = require('./lib/supabaseClient');
     const { error } = await getSupabase().from('users').select('count').limit(1);
-    return res.json({
-      status:    'healthy',
-      database:  error ? `error: ${error.message}` : 'connected',
-      timestamp: new Date().toISOString(),
-    });
+    return res.json({ status: 'healthy', database: error ? `error: ${error.message}` : 'connected', timestamp: new Date().toISOString() });
   } catch (e: any) {
     return res.json({ status: 'degraded', database: e.message });
   }
 });
 
-// ─── Routes ───────────────────────────────────────────────────────────────────
 app.use('/api/auth',         authRouter);
 app.use('/api/upload',       uploadRouter);
 app.use('/api/profile',      profileRouter);
@@ -65,6 +58,7 @@ app.use('/api/knowledge',    knowledgeRouter);
 app.use('/api/achievements', achievementsRouter);
 app.use('/api/inventory',    inventoryRouter);
 app.use('/api/market',       marketRouter);
+app.use('/api/stages',       stagesRouter);   // ← файлы стадий (signed URLs)
 
 app.use((_req: Request, res: Response) =>
   res.status(404).json({ error: 'Route not found' }));
@@ -79,10 +73,8 @@ if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 3001;
   app.listen(PORT, () => {
     console.log(`\n✅  CyberEden backend: http://localhost:${PORT}`);
-    console.log(`    /api/knowledge/progress`);
-    console.log(`    /api/achievements`);
-    console.log(`    /api/inventory`);
-    console.log(`    /api/market/purchase\n`);
+    console.log(`    /api/stages/file  — signed URL для файлов стадий`);
+    console.log(`    /api/stages/list  — список файлов разблокированной стадии\n`);
   });
 }
 
