@@ -21,7 +21,6 @@ interface LabZone {
   labelShort: string;
   x: number;   // % от ширины
   y: number;   // % от высоты
-  image: labn;
   color: string;
   description: string;
   protocol: string[];
@@ -236,7 +235,18 @@ function LabPage() {
 
         {/* Интерактивная карта */}
         <div className="relative w-full" style={{ paddingBottom: "66%" }}>
-          <div className="absolute inset-0 border border-border bg-surface/20 backdrop-blur overflow-hidden">
+          <div className="absolute inset-0 border border-border overflow-hidden">
+
+            {/* Фоновое изображение */}
+            <div 
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${labn})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                opacity: 0.8,
+              }}
+            />
 
             {/* Фоновая сетка */}
             <div className="absolute inset-0 hud-grid opacity-20" />
