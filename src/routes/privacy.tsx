@@ -10,47 +10,44 @@ function PrivacyPage() {
       <h1 className="font-display text-3xl neon-text-violet mb-6">
         Политика конфиденциальности
       </h1>
-      <div className="space-y-4 font-mono text-sm text-muted-foreground">
-        <p>
-          nazrOS уважает вашу конфиденциальность. Мы собираем только те
-          данные, которые необходимы для работы платформы.
-        </p>
-
+      <div className="space-y-6 font-mono text-sm text-muted-foreground">
+        
+        {/* Пункт 1 */}
         <div>
-          <h2 className="font-display text-lg neon-text-cyan mt-4">
-            1. Какие данные мы собираем
-          </h2>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Имя и аватар из Telegram</li>
-            <li>Данные о ваших действиях на платформе</li>
-            <li>Технические данные: IP, браузер, устройство</li>
-          </ul>
-        </div>
-
-        <div>
-          <h2 className="font-display text-lg neon-text-cyan mt-4">
-            2. Как мы используем данные
-          </h2>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Для работы платформы</li>
-            <li>Для улучшения пользовательского опыта</li>
-            <li>Для аналитики</li>
-          </ul>
-        </div>
-
-        <div>
-          <h2 className="font-display text-lg neon-text-cyan mt-4">
-            3. Контакты
+          <h2 className="font-display text-lg neon-text-cyan mb-2">
+            1. Хранение данных
           </h2>
           <p>
-            По вопросам конфиденциальности:{" "}
-            <a href="mailto:privacy@nazros.ru" className="text-neon-cyan hover:underline">
-              privacy@nazros.ru
-            </a>
+            Мы несём ответственность за хранение ваших данных. Все данные,
+            которые вы предоставляете платформе, хранятся в защищённой среде
+            и не передаются третьим лицам без вашего согласия.
           </p>
         </div>
 
-        <p className="mt-6 text-xs text-muted-foreground">
+        {/* Пункт 2 */}
+        <div>
+          <h2 className="font-display text-lg neon-text-cyan mb-2">
+            2. Интеллектуальные права (NFT)
+          </h2>
+          <p>
+            Всё, что вы загружаете в киберпространство КиберэдэН,
+            автоматически переходит в категорию NFT. При этом ваш аккаунт
+            полностью владеет интеллектуальными правами на загруженный материал.
+          </p>
+        </div>
+
+        {/* Пункт 3 */}
+        <div>
+          <h2 className="font-display text-lg neon-text-cyan mb-2">
+            3. Использование скачанного
+          </h2>
+          <p>
+            Всё, что вы скачали из киберпространства КиберэдэН, вы можете
+            использовать в любых своих личных целях без ограничений.
+          </p>
+        </div>
+
+        <p className="mt-8 text-xs text-muted-foreground border-t border-border pt-4">
           Последнее обновление: 10 июня 2026 года.
         </p>
       </div>
