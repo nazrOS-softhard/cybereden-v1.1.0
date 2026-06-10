@@ -386,28 +386,6 @@ export const articles: Article[] = [
 </ul>
 </div>`,
   },
-
-  {
-    id: "a6",
-    title: "ICE-машины 2090: что под капотом",
-    topic: "Кибербезопасность",
-    excerpt: "Активная защита: от ловушек до контратак.",
-    readTime: 8,
-    body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
-<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">ICE-машины: технический разбор систем активной защиты</h2>
-<p>Intrusion Countermeasures Electronics (ICE) — не просто фантастический термин. Современные системы активной киберзащиты всё больше напоминают ICE из киберпанк-прозы Гибсона.</p>
-<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">Что такое активная защита</h3>
-<p>В отличие от пассивных фаерволов и антивирусов, активные системы не ждут атаки — они выходят навстречу. Honeypot-сети заманивают злоумышленников в ловушку, собирая данные об их тактиках. Deception Technology создаёт целые фиктивные инфраструктуры.</p>
-<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">Слабые места современных ICE</h3>
-<ul style="padding-left:24px;list-style-type:disc;">
-<li style="margin-bottom:6px;">Высокая стоимость внедрения и сопровождения</li>
-<li style="margin-bottom:6px;">Ложные срабатывания на легитимный трафик</li>
-<li style="margin-bottom:6px;">Уязвимость самих систем защиты</li>
-<li style="margin-bottom:6px;">Правовые ограничения на контратаки</li>
-</ul>
-<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Лучшая защита — заставить атакующего думать, что он уже внутри»</blockquote>
-</div>`,
-  },
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
