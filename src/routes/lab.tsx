@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { X, ExternalLink } from "lucide-react";
-import labn from "@/assets/lab.png";
+import labn from "@/assets/labn.png";
 
 export const Route = createFileRoute("/lab")({
   head: () => ({
