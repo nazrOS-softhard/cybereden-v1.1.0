@@ -717,7 +717,7 @@ export const events: Event[] = [
 Плей-офф (single-elimination):
 • четвертьфиналы и полуфиналы — best-of-3
 • гранд-финал — best-of-5`,
-  streamUrl: "https://www.twitch.tv/iem"
+  streamUrl: "https://www.twitch.tv/cs2_paragon_ru"
 },
   { id: "e13", title: "КиберХак 2027",             type: "ХАКАТОНЫ",  date: "20.08.2027",              location: "Эрарта · Санкт-Петербург",         description: "Главный хакатон киберсистемы nazrOS. 48 часов непрерывного кодинга, менторство и призовой фонд." },
   { id: "e14", title: "назрОС РазрабКонф 2027",    type: "ХАКАТОНЫ",  date: "08.09.2027",              location: "ЦДП · Москва",                     description: "Конференция разработчиков киберсистемы nazrOS. Доклады, открытые мастерские, нетворкинг." },
