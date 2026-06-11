@@ -322,6 +322,14 @@ function JournalPage() {
             title={a.title}
             meta={`${a.readTime} ${t("journal.readTime")}`}
           >
+              {/* ← ДОБАВИТЬ ИЗОБРАЖЕНИЕ ЗДЕСЬ */}
+    {a.image && (
+      <img 
+        src={a.image} 
+        alt={a.title} 
+        className="w-full h-40 object-cover rounded-t-md mb-3 -mt-4 -mx-4 first:mt-0"
+      />
+            )}
             {a.excerpt}
           </NeonCard>
         ))}
