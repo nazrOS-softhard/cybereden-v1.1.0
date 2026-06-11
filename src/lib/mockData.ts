@@ -397,9 +397,9 @@ export const articles: Article[] = [
   },
    {
     id: "a6",
-    title: "Режим разработчика nazrOS: питание и тело",
+    title: "Операционная среда тела",
     topic: "Цифровая этика" as const,
-    excerpt: "Операционная среда тела",
+    excerpt: "Режим разработчика: ВКЛ. ",
     readTime: 5,
     image: freshN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
