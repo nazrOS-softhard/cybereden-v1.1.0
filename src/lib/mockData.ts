@@ -399,7 +399,7 @@ export const articles: Article[] = [
     id: "a6",
     title: "Режим разработчика nazrOS: питание и тело",
     topic: "Цифровая этика" as const,
-    excerpt: "Операционная среда тела. Еда — топливо. Движение — поддержка. Вода — среда. Это не план — это рабочий режим.",
+    excerpt: "Операционная среда тела",
     readTime: 5,
     image: freshN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -439,7 +439,7 @@ export const articles: Article[] = [
     id: "a7",
     title: "Инженерный день 2.0: расписание, инструменты, Maya + Unreal",
     topic: "Геймдев" as const,
-    excerpt: "Планшет + нейросети + движки + Maya + ассемблер + схемы. Структура максимально продуктивного инженерного дня для разработчика nazrOS.",
+    excerpt: "Продуктивный инженерный день",
     readTime: 12,
     image: enginedayN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -515,7 +515,7 @@ export const articles: Article[] = [
  
   {
     id: "a8",
-    title: "Режим сна nazrOS: модуль восстановления системы",
+    title: "Модуль восстановления системы",
     topic: "Цифровая этика" as const,
     excerpt: "Сон — это не пауза в жизни. Это главная фаза восстановления мозга, гормонов и мышц. Беруши + маска = максимальный отдых.",
     readTime: 7,
@@ -561,7 +561,7 @@ export const articles: Article[] = [
  
   {
     id: "a9",
-    title: "Спорт и движение: недельный баланс разработчика nazrOS",
+    title: "Недельный баланс разработчика",
     topic: "Цифровая этика" as const,
     excerpt: "Движение каждый день — даже 10 минут. Йога и растяжка — база для суставов и спины. Резина и пол — сила без железа.",
     readTime: 8,
@@ -602,7 +602,7 @@ export const articles: Article[] = [
  
   {
     id: "a10",
-    title: "Операционная среда разработчика: протокол эксплуатации v3.0",
+    title: "Операционная среда разработчика",
     topic: "Цифровая этика" as const,
     excerpt: "Мы создаём будущее. Мы управляем системой. Мы отвечаем за результат. Не игнорируй протокол — среда отвечает состоянию разработчика.",
     readTime: 10,
