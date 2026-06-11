@@ -386,6 +386,285 @@ export const articles: Article[] = [
 </ul>
 </div>`,
   },
+   {
+    id: "a6",
+    title: "Режим разработчика nazrOS: питание и тело",
+    topic: "Цифровая этика" as const,
+    excerpt: "Операционная среда тела. Еда — топливо. Движение — поддержка. Вода — среда. Это не план — это рабочий режим.",
+    readTime: 5,
+    body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#a855f7;border-left:4px solid #a855f7;padding-left:16px;margin-top:0;">Режим разработчика nazrOS v1.0</h2>
+<p>Тело — это тоже система. И как любая система, она требует правильного топлива, обслуживания и режима работы.</p>
+<h3 style="color:#22d3ee;margin-top:24px;">Запуск системы (утро)</h3>
+<ul style="padding-left:24px;list-style:disc;margin:0 0 16px;">
+<li>Вода с лимоном + железо — мягкий старт без перегрузки</li>
+<li><strong style="color:#fff;">Питание 1</strong> (готовится заранее): вода, мёд, орехи, лён, чиа, кунжут, корица, куркума, перец, оливковое масло</li>
+<li>Добавки: кальций, D3, B12, омега-3 — лёгкая энергия без скачков</li>
+</ul>
+<h3 style="color:#22d3ee;margin-top:24px;">Питание в течение дня</h3>
+<ul style="padding-left:24px;list-style:disc;margin:0 0 16px;">
+<li><strong style="color:#fff;">Питание 2:</strong> чечевица, морковь, лук, специи → суп-крем. Стабильная работа системы</li>
+<li><strong style="color:#fff;">Питание 3:</strong> хлеб, йогурт, яйцо, зелень, горчица + магний, цинк. Восстановление перед сном</li>
+</ul>
+<h3 style="color:#22d3ee;margin-top:24px;">Жидкости</h3>
+<p>Зелёный чай + имбирь → фокус. Травяной → спокойствие. Поддержка в течение всего дня.</p>
+<h3 style="color:#22d3ee;margin-top:24px;">Движение</h3>
+<ul style="padding-left:24px;list-style:disc;margin:0 0 16px;">
+<li>Растяжка — 15 мин ежедневно</li>
+<li>Кардио — 30 мин, 3–4 раза в неделю</li>
+<li>Силовые — 30–45 мин, 2–3 раза в неделю</li>
+<li>Тело не должно простаивать</li>
+</ul>
+<blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Это не план — это рабочий режим. Еда → топливо. Движение → поддержка. Добавки → усиление. Вода → среда.»</blockquote>
+<h3 style="color:#22d3ee;margin-top:24px;">Правило разработчика</h3>
+<ul style="padding-left:24px;list-style:disc;">
+<li>Не зацикливайся — адаптируй под состояние</li>
+<li>Усиливай при ресурсе, снижай при усталости</li>
+<li>Адаптируй под задачу дня</li>
+</ul>
+</div>`,
+  },
+ 
+  {
+    id: "a7",
+    title: "Инженерный день 2.0: расписание, инструменты, Maya + Unreal",
+    topic: "Геймдев" as const,
+    excerpt: "Планшет + нейросети + движки + Maya + ассемблер + схемы. Структура максимально продуктивного инженерного дня для разработчика nazrOS.",
+    readTime: 12,
+    body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Инженерный день 2.0 · nazrOS</h2>
+<p style="color:#94a3b8;font-size:14px;">Планшет · Нейросети · Движки · Maya · Ассемблер · Схемы</p>
+<h3 style="color:#a855f7;margin-top:24px;">Утро: планшет + перо</h3>
+<ul style="padding-left:24px;list-style:disc;margin:0 0 16px;">
+<li>Эскиз на планшете: архитектурное пятно / кинематическая схема / топология платы</li>
+<li>Приложения: Concepts / Sketchbook / Notability</li>
+<li>Нейросети для проектирования: Krea.ai, Midjourney, DALL-E</li>
+<li>Быстрые расчёты через Matlab / Python через облачный блокнот</li>
+</ul>
+<h3 style="color:#a855f7;margin-top:24px;">Основной блок за компьютером (3–5 часов)</h3>
+<div style="background:#111122;border:1px solid #333;padding:16px;border-radius:4px;margin-bottom:16px;">
+<strong style="color:#22d3ee;">Правило 50/10:</strong> 50 минут работы → 10 минут паузы (глаза, спина, вода)
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+<div style="border:1px solid #333;padding:12px;border-radius:4px;">
+<h4 style="color:#22d3ee;margin-top:0;font-size:14px;">Нейросети (30–60 мин ежедневно)</h4>
+<ul style="padding-left:16px;margin:0;font-size:13px;list-style:disc;">
+<li>Krea.ai — референсы, текстуры</li>
+<li>ChatGPT / DeepSeek — код, документация</li>
+<li>Blackbox AI — автодополнение</li>
+<li>Runway, Leonardo — рендер, анимация</li>
+</ul>
+</div>
+<div style="border:1px solid #333;padding:12px;border-radius:4px;">
+<h4 style="color:#22d3ee;margin-top:0;font-size:14px;">Maya (добавлено)</h4>
+<ul style="padding-left:16px;margin:0;font-size:13px;list-style:disc;">
+<li>Полигональное моделирование</li>
+<li>Риггинг и скелетная анимация</li>
+<li>Подготовка моделей FBX / USD</li>
+<li>Maya → Unreal → симуляция</li>
+</ul>
+</div>
+<div style="border:1px solid #333;padding:12px;border-radius:4px;">
+<h4 style="color:#22d3ee;margin-top:0;font-size:14px;">Unreal Engine (визуализация)</h4>
+<ul style="padding-left:16px;margin:0;font-size:13px;list-style:disc;">
+<li>Импорт CAD/BIM/Maya-моделей</li>
+<li>Материалы, свет, камеры</li>
+<li>Интерактив (конструктор / полёт)</li>
+<li>Экспорт видео / виртуального тура</li>
+</ul>
+</div>
+<div style="border:1px solid #333;padding:12px;border-radius:4px;">
+<h4 style="color:#22d3ee;margin-top:0;font-size:14px;">Электроника / МК</h4>
+<ul style="padding-left:16px;margin:0;font-size:13px;list-style:disc;">
+<li>Схема: KiCad / EasyEDA / Altium</li>
+<li>Трассировка платы</li>
+<li>Прошивка: C / C++ / Rust</li>
+</ul>
+</div>
+</div>
+<h3 style="color:#a855f7;margin-top:24px;">Вечер: ручной блок (1–2 часа)</h3>
+<ul style="padding-left:24px;list-style:disc;margin:0 0 16px;">
+<li>Макетирование: картон, фанера, пластик, 3D-печать</li>
+<li>Пайка: монтаж платы, тестирование узла</li>
+<li>Настройка прошивки: отладка, логика, связь с ПК</li>
+<li>Интеграция с Unreal Engine / Maya</li>
+<li>Запись в бортовой журнал: схема, код, выводы нейросетей</li>
+</ul>
+<h3 style="color:#22d3ee;margin-top:24px;">Примерная неделя</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;">
+<tr style="border-bottom:1px solid #333;"><th style="padding:8px 4px;color:#22d3ee;text-align:left;">День</th><th style="padding:8px 4px;color:#22d3ee;text-align:left;">Утро</th><th style="padding:8px 4px;color:#22d3ee;text-align:left;">Основной блок</th><th style="padding:8px 4px;color:#22d3ee;text-align:left;">Вечер</th></tr>
+<tr style="border-bottom:1px solid #1e1e2e;"><td style="padding:6px 4px;">Пн</td><td style="padding:6px 4px;color:#94a3b8;">Эскиз дома</td><td style="padding:6px 4px;color:#94a3b8;">BIM + Unreal</td><td style="padding:6px 4px;color:#94a3b8;">Макет из пенокартона</td></tr>
+<tr style="border-bottom:1px solid #1e1e2e;"><td style="padding:6px 4px;">Вт</td><td style="padding:6px 4px;color:#94a3b8;">Кинематика</td><td style="padding:6px 4px;color:#94a3b8;">Механика + Python</td><td style="padding:6px 4px;color:#94a3b8;">3D-печать узла</td></tr>
+<tr style="border-bottom:1px solid #1e1e2e;"><td style="padding:6px 4px;">Ср</td><td style="padding:6px 4px;color:#94a3b8;">Профиль крыла</td><td style="padding:6px 4px;color:#94a3b8;">Maya + Unreal</td><td style="padding:6px 4px;color:#94a3b8;">Сборка модели дрона</td></tr>
+<tr style="border-bottom:1px solid #1e1e2e;"><td style="padding:6px 4px;">Чт</td><td style="padding:6px 4px;color:#94a3b8;">Схема подвески</td><td style="padding:6px 4px;color:#94a3b8;">Ассемблер + машинный код</td><td style="padding:6px 4px;color:#94a3b8;">Прошивка контроллера</td></tr>
+<tr><td style="padding:6px 4px;">Пт</td><td style="padding:6px 4px;color:#94a3b8;">Топология Maya</td><td style="padding:6px 4px;color:#94a3b8;">Электроника: схема → плата</td><td style="padding:6px 4px;color:#94a3b8;">Пайка + тесты</td></tr>
+</table>
+</div>`,
+  },
+ 
+  {
+    id: "a8",
+    title: "Режим сна nazrOS: модуль восстановления системы",
+    topic: "Цифровая этика" as const,
+    excerpt: "Сон — это не пауза в жизни. Это главная фаза восстановления мозга, гормонов и мышц. Беруши + маска = максимальный отдых.",
+    readTime: 7,
+    body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#6366f1;border-left:4px solid #6366f1;padding-left:16px;margin-top:0;">Режим сна nazrOS · SLEEP_MODE: ON</h2>
+<h3 style="color:#22d3ee;margin-top:24px;">За 1 час до сна</h3>
+<ul style="padding-left:24px;list-style:disc;margin:0 0 16px;">
+<li>Убрать экраны (телефон, ТВ, ноутбук) — синий свет нарушает мелатонин</li>
+<li>Проветрить комнату (18–20°C)</li>
+<li>Приглушить свет — настольная лампа / торшер</li>
+<li>Лёгкая растяжка или дыхание 5–10 мин</li>
+<li>Запись мыслей в блокнот если крутится голова</li>
+</ul>
+<h3 style="color:#22d3ee;margin-top:24px;">Непосредственно перед сном</h3>
+<ul style="padding-left:24px;list-style:disc;margin:0 0 16px;">
+<li>Увлажнить лицо: лёгкий крем / гель</li>
+<li>Маска для сна — полная темнота = мелатонин</li>
+<li>Беруши — тишина для глубоких фаз сна</li>
+<li>Поза: на спине или боку — оптимально</li>
+<li>5 медленных вдохов: вдох носом 4 счёта, выдох ртом 6–8</li>
+</ul>
+<h3 style="color:#22d3ee;margin-top:24px;">Правила гигиены сна</h3>
+<ul style="padding-left:24px;list-style:disc;margin:0 0 16px;">
+<li>Ложиться и вставать в одно время (±30 мин)</li>
+<li>Спать 7–9 часов (взрослый здоровый человек)</li>
+<li>Не есть за 2–3 часа до сна</li>
+<li>Не пить кофеин после 14:00–15:00</li>
+<li>Сахар минимально вечером — снижает глубину сна</li>
+<li>Матрас и подушка удобные, не проваленные</li>
+<li>В комнате темно и тихо: беруши + маска + плотные шторы</li>
+</ul>
+<h3 style="color:#22d3ee;margin-top:24px;">Недельные ритуалы</h3>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;">
+<div style="border:1px solid #333;padding:10px;border-radius:4px;text-align:center;"><div style="color:#22d3ee;font-size:12px;font-weight:bold;">ПН</div><div style="font-size:11px;color:#94a3b8;">Тёплая ванна (1.5 ч)</div></div>
+<div style="border:1px solid #333;padding:10px;border-radius:4px;text-align:center;"><div style="color:#22d3ee;font-size:12px;font-weight:bold;">СР</div><div style="font-size:11px;color:#94a3b8;">Массаж стоп</div></div>
+<div style="border:1px solid #333;padding:10px;border-radius:4px;text-align:center;"><div style="color:#22d3ee;font-size:12px;font-weight:bold;">ПТ</div><div style="font-size:11px;color:#94a3b8;">Травяной чай</div></div>
+<div style="border:1px solid #333;padding:10px;border-radius:4px;text-align:center;"><div style="color:#22d3ee;font-size:12px;font-weight:bold;">ВС</div><div style="font-size:11px;color:#94a3b8;">Йога нидра 15 мин</div></div>
+</div>
+<blockquote style="border-left:4px solid #6366f1;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Беруши + маска = глубокая темнота и тишина = максимальный отдых. Меньше сахара вечером = глубже сон.»</blockquote>
+</div>`,
+  },
+ 
+  {
+    id: "a9",
+    title: "Спорт и движение: недельный баланс разработчика nazrOS",
+    topic: "Цифровая этика" as const,
+    excerpt: "Движение каждый день — даже 10 минут. Йога и растяжка — база для суставов и спины. Резина и пол — сила без железа.",
+    readTime: 8,
+    body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#eab308;border-left:4px solid #eab308;padding-left:16px;margin-top:0;">Спорт и движение · nazrOS v1.0</h2>
+<p style="color:#94a3b8;">Недельный баланс силы, гибкости и выносливости</p>
+<h3 style="color:#22d3ee;margin-top:24px;">Йога и растяжка (ежедневная база)</h3>
+<ul style="padding-left:24px;list-style:disc;margin:0 0 16px;">
+<li>Утро — 10–15 мин: суставная разминка + дыхание</li>
+<li>Вечер — 10–15 мин: мягкая растяжка (спина, бёдра, шея)</li>
+<li>Дополнительно — полноценный класс йоги 1 раз в неделю</li>
+</ul>
+<h3 style="color:#22d3ee;margin-top:24px;">Аэро / Бег (кардио)</h3>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;">
+<tr style="border-bottom:1px solid #333;"><th style="padding:6px;color:#22d3ee;text-align:left;">День</th><th style="padding:6px;color:#22d3ee;">Формат</th></tr>
+<tr style="border-bottom:1px solid #1e1e2e;"><td style="padding:6px;">Пн</td><td style="padding:6px;color:#94a3b8;">Бег на улице 20–30 мин</td></tr>
+<tr style="border-bottom:1px solid #1e1e2e;"><td style="padding:6px;">Ср</td><td style="padding:6px;color:#94a3b8;">Интервалы: 1 мин быстро / 2 мин спокойно, 15–20 мин</td></tr>
+<tr><td style="padding:6px;">Пт</td><td style="padding:6px;color:#94a3b8;">Лёгкий восстановительный бег 15–20 мин</td></tr>
+</table>
+<h3 style="color:#22d3ee;margin-top:24px;">Силовые без веса (в комнате, с резиной)</h3>
+<p style="color:#94a3b8;font-size:13px;">20–30 мин, 2–3 раза в неделю. Инвентарь: коврик, эспандер, стул.</p>
+<p>Упражнения: отжимания, приседания, выпады, ягодичный мост, планка, тяга резины.</p>
+<p><strong style="color:#22d3ee;">Схема:</strong> 3–4 круга × 8–15 повторений / 30–40 сек. Отдых 60–90 сек.</p>
+<h3 style="color:#22d3ee;margin-top:24px;">Тренировки в клубе</h3>
+<ul style="padding-left:24px;list-style:disc;margin:0 0 16px;">
+<li><strong>Вт:</strong> групповой класс (силовой, функциональный) или круговая 45 мин</li>
+<li><strong>Чт:</strong> самостоятельная силовая / станки / гантели 40–60 мин</li>
+</ul>
+<h3 style="color:#22d3ee;margin-top:24px;">Опционально</h3>
+<ul style="padding-left:24px;list-style:disc;margin:0 0 16px;">
+<li>Грепплинг 1–2 раза в неделю — захваты, мышцы кора, реакция</li>
+<li>Плавание 1 раз в неделю — 30–45 мин, восстановление + дыхание</li>
+</ul>
+<blockquote style="border-left:4px solid #eab308;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Движение каждый день — даже 10 минут. Йога и растяжка — база для суставов. Резина и пол — сила без железа. Клуб — прогресс.»</blockquote>
+</div>`,
+  },
+ 
+  {
+    id: "a10",
+    title: "Операционная среда разработчика: протокол эксплуатации v3.0",
+    topic: "Цифровая этика" as const,
+    excerpt: "Мы создаём будущее. Мы управляем системой. Мы отвечаем за результат. Не игнорируй протокол — среда отвечает состоянию разработчика.",
+    readTime: 10,
+    body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#a855f7;border-left:4px solid #a855f7;padding-left:16px;margin-top:0;">Операционная среда разработчика nazrOS v3.0</h2>
+<p style="color:#94a3b8;font-style:italic;margin-bottom:24px;">Мы создаём будущее. Мы управляем системой. Мы отвечаем за результат.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
+<div style="border:1px solid #1e3a5f;padding:16px;border-radius:4px;background:#0d1f33;">
+<h4 style="color:#22d3ee;margin-top:0;font-size:15px;">01 Санитарный модуль</h4>
+<ul style="padding-left:16px;margin:0 0 8px;font-size:13px;list-style:disc;color:#94a3b8;">
+<li>Принимать душ минимум 2 раза в день</li>
+<li>Соблюдать личную гигиену</li>
+<li>Поддерживать чистоту пространства</li>
+</ul>
+<p style="color:#22d3ee;font-size:11px;margin:0;font-weight:bold;">ЧИСТОЕ ТЕЛО — СТАБИЛЬНОЕ СОСТОЯНИЕ</p>
+</div>
+<div style="border:1px solid #2d1b4e;padding:16px;border-radius:4px;background:#1a0d2e;">
+<h4 style="color:#a855f7;margin-top:0;font-size:15px;">02 Вычислительное ядро</h4>
+<ul style="padding-left:16px;margin:0 0 8px;font-size:13px;list-style:disc;color:#94a3b8;">
+<li>Контролировать температуру и нагрузку</li>
+<li>Очищать систему от мусора</li>
+<li>Проверять стабильность перед длительными задачами</li>
+<li>Выполнять резервное копирование</li>
+</ul>
+<p style="color:#ef4444;font-size:11px;margin:0;font-weight:bold;">НЕСТАБИЛЬНОЕ ЯДРО ЛОМАЕТ ВСЮ СРЕДУ</p>
+</div>
+<div style="border:1px solid #1b2d4e;padding:16px;border-radius:4px;background:#0d1f33;">
+<h4 style="color:#6366f1;margin-top:0;font-size:15px;">03 Жилой модуль (Сон)</h4>
+<ul style="padding-left:16px;margin:0 0 8px;font-size:13px;list-style:disc;color:#94a3b8;">
+<li>Спать не менее 8 часов каждые 16 часов</li>
+<li>Соблюдать режим восстановления</li>
+<li>Не использовать зону отдыха для работы</li>
+</ul>
+<p style="color:#ef4444;font-size:11px;margin:0;font-weight:bold;">БЕЗ ВОССТАНОВЛЕНИЯ СИСТЕМА ДЕГРАДИРУЕТ</p>
+</div>
+<div style="border:1px solid #3d2800;padding:16px;border-radius:4px;background:#1f1500;">
+<h4 style="color:#f97316;margin-top:0;font-size:15px;">04 Хранение</h4>
+<ul style="padding-left:16px;margin:0 0 8px;font-size:13px;list-style:disc;color:#94a3b8;">
+<li>Стирать вещи раз в 3–4 дня</li>
+<li>Сортировать предметы по функциям</li>
+<li>Избавляться от лишнего</li>
+</ul>
+<p style="color:#f97316;font-size:11px;margin:0;font-weight:bold;">ХАОС В ВЕЩАХ — ХАОС В СИСТЕМЕ</p>
+</div>
+<div style="border:1px solid #1e3a5f;padding:16px;border-radius:4px;background:#0d1f33;">
+<h4 style="color:#22d3ee;margin-top:0;font-size:15px;">05 Центр управления</h4>
+<ul style="padding-left:16px;margin:0 0 8px;font-size:13px;list-style:disc;color:#94a3b8;">
+<li>Обновлять ПО перед каждой активной сессией</li>
+<li>Фиксировать задачи перед началом работы</li>
+<li>Завершать сессию сохранением состояния</li>
+<li>Не перегружать интерфейс лишними окнами</li>
+</ul>
+<p style="color:#22d3ee;font-size:11px;margin:0;font-weight:bold;">УПРАВЛЕНИЕ НАЧИНАЕТСЯ С ЧИСТОТЫ ПРОЦЕССОВ</p>
+</div>
+<div style="border:1px solid #1a3520;padding:16px;border-radius:4px;background:#0d1f13;">
+<h4 style="color:#22c55e;margin-top:0;font-size:15px;">06 Био-модуль (ростН)</h4>
+<ul style="padding-left:16px;margin:0 0 8px;font-size:13px;list-style:disc;color:#94a3b8;">
+<li>Соблюдать световой режим</li>
+<li>Контролировать полив</li>
+<li>Следить за состоянием растений</li>
+</ul>
+<p style="color:#22c55e;font-size:11px;margin:0;font-weight:bold;">КОНТРОЛЬ ЖИВОГО — КОНТРОЛЬ СРЕДЫ</p>
+</div>
+</div>
+<h3 style="color:#a855f7;margin-top:24px;">Общие правила</h3>
+<ul style="padding-left:24px;list-style:disc;margin:0 0 16px;">
+<li>Соблюдай режим и дисциплину</li>
+<li>Поддерживай чистоту и порядок</li>
+<li>Контролируй качество процессов</li>
+<li>Развивай среду и себя</li>
+<li>Не нарушай баланс работы и отдыха</li>
+</ul>
+<blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-size:17px;font-style:italic;color:#fff;background:#1a0d2e;padding:16px 16px 16px 20px;">«Не игнорируй протокол. Среда отвечает состоянию разработчика.<br>Ты не живёшь здесь — ты управляешь системой.»</blockquote>
+</div>`,
+  },
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
