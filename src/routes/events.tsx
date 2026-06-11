@@ -120,19 +120,24 @@ function EventsPage() {
             : []
         }
       >
-        {active && (
-          <>
-            {!active.streamUrl && (
-              <div dangerouslySetInnerHTML={{ __html: active.description }} />
-            )}
-            {active.type !== "ДЕПЫ" && (
-              <p className="text-muted-foreground">
-                Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
-                +500 ПХ за участие.
-              </p>
-            )}
-          </>
-        )}
+   {active && (
+  <>
+    {/* Описание показываем всегда — и для стримов, и для событий без стрима */}
+    <div className="mb-6">
+      <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-3">
+        ОПИСАНИЕ
+      </div>
+      <div dangerouslySetInnerHTML={{ __html: active.description }} />
+    </div>
+    
+    {active.type !== "ДЕПЫ" && (
+      <p className="text-muted-foreground">
+        Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
+        +500 ПХ за участие.
+      </p>
+    )}
+  </>
+)}
       </ExpandedCardModal>
     </PageShell>
   );
