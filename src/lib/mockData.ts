@@ -437,9 +437,9 @@ export const articles: Article[] = [
  
   {
     id: "a7",
-    title: "Инженерный день 2.0: расписание, инструменты, Maya + Unreal",
+    title: "Инженерный день 2.0",
     topic: "Геймдев" as const,
-    excerpt: "Продуктивный инженерный день",
+    excerpt: "планы & инструменты",
     readTime: 12,
     image: enginedayN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
