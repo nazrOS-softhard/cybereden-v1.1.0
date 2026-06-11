@@ -517,7 +517,7 @@ export const articles: Article[] = [
     id: "a8",
     title: "Модуль восстановления системы",
     topic: "Цифровая этика" as const,
-    excerpt: "Сон — это не пауза в жизни. Это главная фаза восстановления мозга, гормонов и мышц. Беруши + маска = максимальный отдых.",
+    excerpt: "Беруши + маска = максимальный отдых.",
     readTime: 7,
     image: modeN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
