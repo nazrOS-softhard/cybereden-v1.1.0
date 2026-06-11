@@ -372,29 +372,6 @@ export const articles: Article[] = [
 <blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#a1a1aa;">«Киберспорт — это не игра. Это инфраструктура цифрового будущего»</blockquote>
 </div>`,
   },
-
-  {
-    id: "a5",
-    title: "Кто владеет твоими снами?",
-    topic: "Цифровая этика",
-    excerpt: "Сны как данные — правовой вакуум.",
-    readTime: 10,
-    body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
-<h2 style="font-size:28px;color:#a855f7;border-left:4px solid #a855f7;padding-left:16px;margin-top:0;">Кто владеет твоими снами?</h2>
-<p>После анонса DreamCache крупные технологические корпорации получили потенциальный доступ к слоям REM-памяти через нейроинтерфейсы. Регуляторы молчат. Что происходит на самом деле?</p>
-<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">Правовой вакуум нейроданных</h3>
-<p>Законодательство большинства стран до сих пор не содержит определения «нейроданные». Это означает, что мысли, воспоминания и образы, зафиксированные BCI-устройствами, формально не защищены персональными данными.</p>
-<blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Мы защитили биометрию, но забыли защитить сознание»</blockquote>
-<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">Что говорят регуляторы</h3>
-<p>ЕС начал разработку «Нейроправ» — расширения GDPR на данные мозговой активности. В России аналогичные инициативы пока на стадии обсуждения. США разделены: бизнес-лобби против регулирования, гражданские организации требуют немедленных мер.</p>
-<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">Что делать прямо сейчас</h3>
-<ul style="padding-left:24px;">
-<li style="margin-bottom:6px;">Читать пользовательские соглашения нейроустройств</li>
-<li style="margin-bottom:6px;">Требовать opt-out для сбора нейроданных</li>
-<li style="margin-bottom:6px;">Поддерживать законодательные инициативы по нейроправам</li>
-</ul>
-</div>`,
-  },
    {
     id: "a6",
     title: "Операционная среда тела",
