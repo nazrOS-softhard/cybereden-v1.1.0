@@ -109,7 +109,7 @@ function EventsPage() {
         eyebrow={active?.type}
         title={active?.title ?? ""}
         cta={t("events.cta")}
-        streamUrl={safeStreamUrl} // Ипользуем безопасный URL с параметром parent
+        streamUrl={safeStreamUrl}
         meta={
           active
             ? [
@@ -120,24 +120,26 @@ function EventsPage() {
             : []
         }
       >
-   {active && (
-  <>
-    {/* Описание показываем всегда — и для стримов, и для событий без стрима */}
-    <div className="mb-6">
-      <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-3">
-        ОПИСАНИЕ
-      </div>
-      <div dangerouslySetInnerHTML={{ __html: active.description }} />
-    </div>
-    
-    {active.type !== "ДЕПЫ" && (
-      <p className="text-muted-foreground">
-        Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
-        +500 ПХ за участие.
-      </p>
-    )}
-  </>
-)}
+        {active && (
+          <>
+            {/* ← Описание теперь показываем всегда — и для стримов, и без */}
+            <div className="mb-6">
+              <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-3">
+                ОПИСАНИЕ
+              </div>
+              <div className="text-foreground/90 leading-relaxed whitespace-pre-line">
+                {active.description}
+              </div>
+            </div>
+            
+            {active.type !== "ДЕПЫ" && (
+              <p className="text-muted-foreground">
+                Регистрация открыта. Участникам с верифицированным аккаунтом nazrOS — бонус
+                +500 ПХ за участие.
+              </p>
+            )}
+          </>
+        )}
       </ExpandedCardModal>
     </PageShell>
   );
