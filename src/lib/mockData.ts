@@ -563,7 +563,7 @@ export const articles: Article[] = [
     id: "a9",
     title: "Недельный баланс разработчика",
     topic: "Цифровая этика" as const,
-    excerpt: "Движение каждый день — даже 10 минут. Йога и растяжка — база для суставов и спины. Резина и пол — сила без железа.",
+    excerpt: "Движение 10 минут. Йога = база. Резина = сила.",
     readTime: 8,
     image: sporN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -604,7 +604,7 @@ export const articles: Article[] = [
     id: "a10",
     title: "Операционная среда разработчика",
     topic: "Цифровая этика" as const,
-    excerpt: "Мы создаём будущее. Мы управляем системой. Мы отвечаем за результат. Не игнорируй протокол — среда отвечает состоянию разработчика.",
+    excerpt: "среда отвечает состоянию разработчика.",
     readTime: 10,
     image: technroomN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
