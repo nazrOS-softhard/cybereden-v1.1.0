@@ -19,6 +19,14 @@ import kefirnno from "@/assets/kefirnno.png";
 // МЕРОПРИЯТИЯ
 import northPoster from "@/assets/north-event-poster.png";
 
+// ЖУРНАЛ
+import enginedayN from "@/assets/enginedayN.png";
+import freshN from "@/assets/freshN.png";
+import modeN from "@/assets/modeN.png";
+import sporN from "@/assets/sporN.png";
+import technroomN from "@/assets/technroomN.png";
+
+
 // ─── Плейсхолдер для карточек без изображения ────────────────────────────────
 const PLACEHOLDER_STRANNO =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a855f7'/%3E%3Cstop offset='1' stop-color='%230f172a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23g)'/%3E%3Ctext x='200' y='220' text-anchor='middle' fill='white' font-size='60' font-family='monospace'%3EстраНно%3C/text%3E%3C/svg%3E";
@@ -265,6 +273,7 @@ export type Article = {
   excerpt: string;
   body: string;
   readTime: number;
+  image?: string;
 };
 
 export const articles: Article[] = [
@@ -392,6 +401,7 @@ export const articles: Article[] = [
     topic: "Цифровая этика" as const,
     excerpt: "Операционная среда тела. Еда — топливо. Движение — поддержка. Вода — среда. Это не план — это рабочий режим.",
     readTime: 5,
+    image: freshN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
 <h2 style="font-size:28px;color:#a855f7;border-left:4px solid #a855f7;padding-left:16px;margin-top:0;">Режим разработчика nazrOS v1.0</h2>
 <p>Тело — это тоже система. И как любая система, она требует правильного топлива, обслуживания и режима работы.</p>
@@ -431,6 +441,7 @@ export const articles: Article[] = [
     topic: "Геймдев" as const,
     excerpt: "Планшет + нейросети + движки + Maya + ассемблер + схемы. Структура максимально продуктивного инженерного дня для разработчика nazrOS.",
     readTime: 12,
+    image: enginedayN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
 <h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Инженерный день 2.0 · nazrOS</h2>
 <p style="color:#94a3b8;font-size:14px;">Планшет · Нейросети · Движки · Maya · Ассемблер · Схемы</p>
@@ -508,6 +519,7 @@ export const articles: Article[] = [
     topic: "Цифровая этика" as const,
     excerpt: "Сон — это не пауза в жизни. Это главная фаза восстановления мозга, гормонов и мышц. Беруши + маска = максимальный отдых.",
     readTime: 7,
+    image: modeN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
 <h2 style="font-size:28px;color:#6366f1;border-left:4px solid #6366f1;padding-left:16px;margin-top:0;">Режим сна nazrOS · SLEEP_MODE: ON</h2>
 <h3 style="color:#22d3ee;margin-top:24px;">За 1 час до сна</h3>
@@ -553,6 +565,7 @@ export const articles: Article[] = [
     topic: "Цифровая этика" as const,
     excerpt: "Движение каждый день — даже 10 минут. Йога и растяжка — база для суставов и спины. Резина и пол — сила без железа.",
     readTime: 8,
+    image: sporN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
 <h2 style="font-size:28px;color:#eab308;border-left:4px solid #eab308;padding-left:16px;margin-top:0;">Спорт и движение · nazrOS v1.0</h2>
 <p style="color:#94a3b8;">Недельный баланс силы, гибкости и выносливости</p>
@@ -593,6 +606,7 @@ export const articles: Article[] = [
     topic: "Цифровая этика" as const,
     excerpt: "Мы создаём будущее. Мы управляем системой. Мы отвечаем за результат. Не игнорируй протокол — среда отвечает состоянию разработчика.",
     readTime: 10,
+    image: technroomN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
 <h2 style="font-size:28px;color:#a855f7;border-left:4px solid #a855f7;padding-left:16px;margin-top:0;">Операционная среда разработчика nazrOS v3.0</h2>
 <p style="color:#94a3b8;font-style:italic;margin-bottom:24px;">Мы создаём будущее. Мы управляем системой. Мы отвечаем за результат.</p>
