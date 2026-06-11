@@ -27,7 +27,7 @@ function PrivacyPage() {
         {/* Пункт 2 */}
         <div>
           <h2 className="font-display text-lg neon-text-cyan mb-2">
-            2. Интеллектуальные права (NFT)
+            2. Интеллектуальные права
           </h2>
           <p>
             Всё, что вы загружаете в киберпространство КиберэдэН,
