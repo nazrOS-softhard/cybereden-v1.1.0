@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, BookOpen, CheckCircle } from "lucide-react";
+import { ArrowLeft, BookOpen, CheckCircle, X } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { NeonCard }  from "@/components/NeonCard";
 import { articles }  from "@/lib/mockData";
@@ -87,6 +87,7 @@ function ArticleModal({
   const [xpEarned,      setXpEarned]      = useState(0);
   const [showToast,     setShowToast]      = useState(false);
   const [isSaving,      setIsSaving]       = useState(false);
+  const [lightboxOpen,  setLightboxOpen]   = useState(false);
   const lastSavedRef    = useRef(0);
 
   const type     = TOPIC_TO_TYPE[article.topic] || "Публикация";
@@ -225,13 +226,14 @@ function ArticleModal({
 
             <p className="text-lg font-display neon-text-cyan mb-8">{article.excerpt}</p>
 
-            {/* ← ДОБАВЛЕНО: ИЗОБРАЖЕНИЕ СТАТЬИ */}
+            {/* Изображение статьи — кликабельное */}
             {article.image && (
-              <div className="mb-8">
+              <div className="mb-8 cursor-pointer">
                 <img 
                   src={article.image} 
                   alt={article.title} 
-                  className="w-full max-h-[500px] object-contain rounded-md border border-neon-cyan/20 bg-background/40"
+                  className="w-full max-h-[500px] object-contain rounded-md border border-neon-cyan/20 bg-background/40 transition hover:opacity-80"
+                  onClick={() => setLightboxOpen(true)}
                 />
               </div>
             )}
@@ -291,6 +293,30 @@ function ArticleModal({
           )}
         </div>
       </motion.div>
+
+      {/* Lightbox — увеличенное изображение */}
+      {lightboxOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <button
+            onClick={() => setLightboxOpen(false)}
+            className="absolute top-4 right-4 z-[1000] p-2 bg-surface/50 hover:bg-surface/80 rounded-full border border-border transition"
+          >
+            <X size={28} className="neon-text-cyan" />
+          </button>
+          
+          <img 
+            src={article.image} 
+            alt={article.title} 
+            className="max-w-full max-h-full object-contain"
+          />
+        </motion.div>
+      )}
     </>
   );
 }
