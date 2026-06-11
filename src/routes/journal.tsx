@@ -300,12 +300,12 @@ function ArticleModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
           onClick={() => setLightboxOpen(false)}
         >
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-4 right-4 z-[1000] p-2 bg-surface/50 hover:bg-surface/80 rounded-full border border-border transition"
+            className="absolute top-4 right-4 z-[10000] p-2 bg-surface/50 hover:bg-surface/80 rounded-full border border-border transition"
           >
             <X size={28} className="neon-text-cyan" />
           </button>
