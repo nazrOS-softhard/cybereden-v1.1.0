@@ -225,6 +225,17 @@ function ArticleModal({
 
             <p className="text-lg font-display neon-text-cyan mb-8">{article.excerpt}</p>
 
+            {/* ← ДОБАВЛЕНО: ИЗОБРАЖЕНИЕ СТАТЬИ */}
+            {article.image && (
+              <div className="mb-8">
+                <img 
+                  src={article.image} 
+                  alt={article.title} 
+                  className="w-full max-h-[500px] object-contain rounded-md border border-neon-cyan/20 bg-background/40"
+                />
+              </div>
+            )}
+
             {/* Основное тело — рендерим HTML из mockData */}
             <div
               className="prose-custom text-foreground/90 leading-relaxed"
@@ -311,7 +322,7 @@ function JournalPage() {
         ))}
       </div>
 
-      {/* Карточки */}
+      {/* Карточки — без изображений */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {filtered.map(a => (
           <NeonCard
@@ -322,14 +333,6 @@ function JournalPage() {
             title={a.title}
             meta={`${a.readTime} ${t("journal.readTime")}`}
           >
-              {/* ← ДОБАВИТЬ ИЗОБРАЖЕНИЕ ЗДЕСЬ */}
-    {a.image && (
-      <img 
-        src={a.image} 
-        alt={a.title} 
-        className="w-full h-40 object-cover rounded-t-md mb-3 -mt-4 -mx-4 first:mt-0"
-      />
-            )}
             {a.excerpt}
           </NeonCard>
         ))}
