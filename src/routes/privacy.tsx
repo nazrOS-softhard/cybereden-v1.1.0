@@ -48,7 +48,7 @@ function PrivacyPage() {
         </div>
 
         <p className="mt-8 text-xs text-muted-foreground border-t border-border pt-4">
-          Последнее обновление: 10 июня 2026 года.
+          Последнее обновление: 11 июня 2026 года.
         </p>
       </div>
     </div>
