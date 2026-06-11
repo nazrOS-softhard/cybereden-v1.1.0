@@ -178,17 +178,19 @@ export function ExpandedCardModal({
                     )}
 
                     <div className="mt-6 space-y-4 text-sm leading-relaxed text-foreground/90">
-                      {login ? (
-                        <div className="aspect-video w-full bg-black overflow-hidden">
-                          <iframe key={login}
-                            src={`https://player.twitch.tv/?channel=${login}&${TWITCH_PARENTS}&autoplay=true`}
-                            width="100%" height="100%"
-                            allow="autoplay; fullscreen" allowFullScreen
-                            className="w-full h-full border-0" loading="lazy"
-                          />
-                        </div>
-                      ) : children}
-                    </div>
+                      {/* Плеер — если есть стрим */}
+{login && (
+  <div className="aspect-video w-full bg-black overflow-hidden mb-6">
+    <iframe key={login}
+      src={`https://player.twitch.tv/?channel=${login}&${TWITCH_PARENTS}&autoplay=true`}
+      width="100%" height="100%"
+      allow="autoplay; fullscreen" allowFullScreen
+      className="w-full h-full border-0" loading="lazy"
+    />
+  </div>
+)}
+{/* Дети (описание, кнопка регистрации, бонус) — всегда */}
+{children}
 
                     <div className="mt-8">
                       {ctaHref ? (
