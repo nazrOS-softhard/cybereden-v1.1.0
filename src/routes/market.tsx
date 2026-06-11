@@ -9,6 +9,8 @@ import { ITEM_STAGES }       from "@/lib/stages";
 import { useI18n }           from "@/lib/i18n";
 import { useAuth }           from "@/lib/auth";
 import type { MarketCategory } from "@/lib/mockData";
+import { SoftCollectionModal } from "@/components/SoftCollectionModal";
+import { SOFT_COLLECTIONS } from "@/lib/stages";
 
 export const Route = createFileRoute("/market")({
   head: () => ({
@@ -59,6 +61,8 @@ function MarketPage() {
 
   const [filter, setFilter] = useState<MarketCategory | "ВСЕ">("ВСЕ");
   const [openId, setOpenId] = useState<string | null>(null);
+  const [softModalOpen, setSoftModalOpen] = useState(false);
+  const [selectedSoftItem, setSelectedSoftItem] = useState<typeof items[0] | null>(null);
 
   const active         = items.find(i => i.id === openId) ?? null;
   const isCybervoucher = active?.id === "cybervaucher_nazrOS";
@@ -75,6 +79,15 @@ function MarketPage() {
 
   const countOf = (key: typeof filter) =>
     key === "ВСЕ" ? items.length : items.filter(it => it.marketCategory === key).length;
+
+  const handleCardClick = (it: typeof items[0]) => {
+    if (it.marketCategory === "СОФТ") {
+      setSelectedSoftItem(it);
+      setSoftModalOpen(true);
+    } else {
+      setOpenId(it.id);
+    }
+  };
 
   return (
     <PageShell
@@ -110,7 +123,7 @@ function MarketPage() {
             <NeonCard
               key={it.id}
               layoutId={`card-${it.id}`}
-              onClick={() => setOpenId(it.id)}
+              onClick={() => handleCardClick(it)}
               image={it.image}
               eyebrow={it.category}
               title={it.name}
@@ -157,6 +170,18 @@ function MarketPage() {
           </>
         )}
       </ExpandedCardModal>
+
+      {/* ── SoftCollectionModal для софта ───────────────────────────────── */}
+      {softModalOpen && selectedSoftItem && (
+        <SoftCollectionModal
+          open={softModalOpen}
+          onClose={() => setSoftModalOpen(false)}
+          itemId={selectedSoftItem.id}
+          itemName={selectedSoftItem.name}
+          price={selectedSoftItem.price}
+          collection={SOFT_COLLECTIONS[selectedSoftItem.id]}
+        />
+      )}
     </PageShell>
   );
 }
