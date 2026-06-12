@@ -548,7 +548,8 @@ export const rostNStages: DeviceStage[] = [
       { name: "rostN_nazrOS_Register.pdf", type: "PDF",    description: "Регистрация биоузла" },
     ],
   },
-  export const visioNStages: DeviceStage[] = [
+  ];
+ export const visioNStages: DeviceStage[] = [
   {
     id: 1,
     title: "Дизайн-проект и эргономика",
@@ -557,7 +558,11 @@ export const rostNStages: DeviceStage[] = [
     time_estimate: "2 дня",
     outcome: "Проектная документация и 3D-модель корпуса",
     tools: ["Figma", "Blender"],
-    files: []
+    files: [
+      { name: "visioN_design_v1.pdf", type: "PDF", description: "Дизайн-проект корпуса" },
+      { name: "visioN_3d_model.stl", type: "STL", description: "3D-модель для печати" },
+      { name: "visioN_hud_specs.pdf", type: "PDF", description: "Спецификация HUD-интерфейса" },
+    ],
   },
   {
     id: 2,
@@ -567,7 +572,11 @@ export const rostNStages: DeviceStage[] = [
     time_estimate: "3 дня",
     outcome: "Собранный прототип с базовым функционалом",
     tools: ["Паяльная станция", "Мультиметр"],
-    files: []
+    files: [
+      { name: "visioN_pcb_schematic.pdf", type: "PDF", description: "Схема платы" },
+      { name: "visioN_bom.csv", type: "CSV", description: "Спецификация компонентов" },
+      { name: "visioN_assembly_guide.pdf", type: "PDF", description: "Инструкция по сборке" },
+    ],
   },
   {
     id: 3,
@@ -577,7 +586,11 @@ export const rostNStages: DeviceStage[] = [
     time_estimate: "2 дня",
     outcome: "Рабочая прошивка с откалиброванными параметрами",
     tools: ["Arduino IDE", "USB-C кабель"],
-    files: []
+    files: [
+      { name: "visioN_firmware_v1.zip", type: "CODE", description: "Исходный код прошивки" },
+      { name: "visioN_flash_guide.pdf", type: "PDF", description: "Инструкция по прошивке" },
+      { name: "visioN_calibration.pdf", type: "PDF", description: "Методика калибровки" },
+    ],
   },
   {
     id: 4,
@@ -587,7 +600,10 @@ export const rostNStages: DeviceStage[] = [
     time_estimate: "1 день",
     outcome: "Полностью интегрированное устройство",
     tools: ["nazrOS LINK-модуль"],
-    files: []
+    files: [
+      { name: "visioN_nazrOS_integration.pdf", type: "PDF", description: "Руководство по интеграции" },
+      { name: "visioN_nazrOS_sdk.zip", type: "CODE", description: "SDK для интеграции" },
+    ],
   },
   {
     id: 5,
@@ -597,10 +613,12 @@ export const rostNStages: DeviceStage[] = [
     time_estimate: "1 день",
     outcome: "Готовый visioN с серийным номером",
     tools: ["Отвёртки", "Термоклей"],
-    files: []
-  }
-
-
+    files: [
+      { name: "visioN_final_assembly.pdf", type: "PDF", description: "Финальная инструкция сборки" },
+      { name: "visioN_qa_checklist.pdf", type: "PDF", description: "Чек-лист приёмки" },
+      { name: "visioN_registration.pdf", type: "PDF", description: "Регистрация в nazrOS" },
+    ],
+  },
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
