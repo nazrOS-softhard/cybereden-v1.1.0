@@ -136,6 +136,11 @@ function MarketPage() {
                   ◈ {ITEM_STAGES[it.id].length} стадий сборки
                 </div>
               )}
+              {it.marketCategory === "УСТРОЙСТВА" && (
+                <div className="mt-2 font-mono text-[10px]" style={{ color: "#ff2ea6", textShadow: "0 0 6px #ff2ea6, 0 0 12px #ff2ea6" }}>
+                  ◈ {ITEM_STAGES[it.id]?.length || 7} стадий сборки
+                </div>
+              )}
             </NeonCard>
           ))}
         </div>
