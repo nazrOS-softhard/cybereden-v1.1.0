@@ -43,8 +43,23 @@ const dict: Dict = {
   "dash.kpi.xp": { ru: "XP за 24ч", en: "XP traded · 24h" },
   "dash.kpi.streams": { ru: "Открытые стримы", en: "Open streams" },
   "dash.kpi.threat": { ru: "Индекс угроз", en: "Threat index" },
-  "dash.cybers": { ru: "КИБЕРЫ · ТОП", en: "CYBERS · TOP RANKED" },
-  "dash.sync": { ru: "синхр. · live", en: "sync · live" },
+  "dash.kpi.registered": { ru: "Киберов в сети", en: "Cybers online" },
+  "dash.kpi.registered.trend": { ru: "зарегистрировано", en: "registered" },
+  "dash.kpi.online": { ru: "Онлайн", en: "Online" },
+  "dash.kpi.online.trend": { ru: "активны сейчас", en: "active now" },
+  "dash.kpi.xp": { ru: "ПХ в системе", en: "PX in system" },
+  "dash.kpi.xp.trend": { ru: "всего начислено", en: "total earned" },
+  "dash.kpi.new": { ru: "Новых сегодня", en: "New today" },
+  "dash.kpi.new.trend": { ru: "за 24 ч", en: "last 24h" },
+  "dash.loading": { ru: "Загрузка сети…", en: "Loading network…" },
+  "dash.empty": { ru: "Киберов пока нет. Стань первым — зарегистрируйся.", en: "No cybers yet. Be the first — register." },
+  "dash.no_match": { ru: "Нет совпадений", en: "No matches" },
+  "dash.cybers": { ru: "Киберы · Топ", en: "Cybers · Top" },
+  "dash.you": { ru: "ты", en: "you" },
+  "dash.px": { ru: "ПХ", en: "PX" },
+  "dash.search.placeholder": { ru: "Поиск по нику, GitHub, Twitch…", en: "Search by nick, GitHub, Twitch…" },
+  "dash.register_cta": { ru: "Зарегистрируйся", en: "Register" },
+  "dash.register_suffix": { ru: "чтобы появиться в сетке CyberEden", en: "to appear on the CyberEden grid" },
 
   // Journal
   "journal.eyebrow": { ru: "// поток передач", en: "// transmission feed" },
@@ -84,9 +99,10 @@ const dict: Dict = {
 
   // Profile
   "profile.eyebrow": { ru: "/ кибла кибера", en: "/ cyberqibla" },
- "profile.subtitle": { 
-  ru: "Исследователь цифровых аномалий · Black! Factory · ", en: "Digital Anomaly Researcher · Black! Factory · " 
-},
+  "profile.subtitle": { 
+    ru: "Исследователь цифровых аномалий · Black! Factory · ", 
+    en: "Digital Anomaly Researcher · Black! Factory · " 
+  },
   "profile.accounts": { ru: "ПОДКЛЮЧЁННЫЕ АККАУНТЫ", en: "CONNECTED ACCOUNTS" },
   "profile.inventory": { ru: "ИНВЕНТАРЬ", en: "INVENTORY" },
   "profile.achievements": { ru: "ДОСТИЖЕНИЯ", en: "ACHIEVEMENTS" },
