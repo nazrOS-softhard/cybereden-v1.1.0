@@ -1,4 +1,4 @@
-// КАРТЫ УСТРОЙСТВ
+// КАРТЫ УСТРОЙСТВ и СОФТА
 import rostn     from "@/assets/rostn.jpg";
 import rostnfull from "@/assets/rostnfull.png";
 import biohn     from "@/assets/biohn.png";
@@ -15,6 +15,10 @@ import cybervaucher     from "@/assets/cybervaucher.png";
 import cybervaucherfull from "@/assets/cybervaucherfull.png";
 import stranno    from "@/assets/stranno.png";
 import kefirnno from "@/assets/kefirnno.png";
+
+// ГАЛЛЕРЕЯ УСТРОЙСТВ и СОФТА
+import strannoScreen1 from "@/assets/stranno-screen1.png";
+import kefirnnoScreen1 from "@/assets/kefirnno-screen1.png";
 
 // МЕРОПРИЯТИЯ
 import northPoster from "@/assets/north-event-poster.png";
@@ -213,6 +217,7 @@ export const items: Item[] = [
   status: "preorder",
   image: stranno,
   expandedImage: stranno,
+  gallery: [stranno, strannoScreen1],
   short: "Цифровая производственная среда для создания фильмов, игровых миров, виртуальных студий и симуляций.",
   description:
     "⚡ DEV MODE\nФункционал в стадии сборки. Возможны корректировки.\n\nstraNNo — цифровая производственная киберсистема от nazrOS.\n\n▸ ВОЗМОЖНОСТИ\n\n01. Объёмное моделирование (Руки)\nСкульптинг, параметрика, полигональное моделирование.\n\n02. Скелетная и процедурная анимация (Мульт)\nРиггинг, лицевая анимация, IK-солверы.\n\n03. Система визуальных эффектов (Глюк)\nVFX, частицы, дым, огонь, глитчи.\n\n04. Нодовый композитинг (Точки)\nПроцедурные графы, шейдеры.\n\n05. Аудио-среда (Шина)\nПространственный звук, синтезаторы.\n\n06. Игровые пространства (Поле)\nNPC, логика, интерактив.\n\n07. Цифровое кинопроизводство (Студия)\nМонтаж, виртуальные павильоны.\n\n08. Процедурная генерация миров (Колодец)\nЛандшафты, текстуры, шумы.\n\n09. Библиотека ассетов\nХранение 3D-моделей, текстур, звуков.\n\n10. Маркетплейс (Лавка)\nТорговля цифровыми мирами и модулями.\n\n▸ ПОДДЕРЖИВАЕМЫЕ ФОРМАТЫ\n\nВнутренний контейнер .stranno, импорт/экспорт FBX, glTF, OBJ, WAV.\n\n▸ ТЕХНОЛОГИЧЕСКИЙ СТЕК\n\nWeb-Native: WebGPU + WASM (C++/Rust) + React\nApplication Streaming: C++ + Vulkan + Docker + Kubernetes + WebRTC\n\n▸ СТАТУС\nПредзаказ. Релиз после завершения этапа 5 (Месяцы 33-36).",
@@ -229,6 +234,7 @@ export const items: Item[] = [
   status: "preorder",
   image: kefirnno,
   expandedImage: kefirnno,
+  gallery: [kefirnno, kefirnnoScreen1],
   short: "Персональная киберсреда цифровой памяти, знаний и развития.",
   description:
     "⚡ DEV MODE\nФункционал в стадии сборки. Возможны корректировки.\n\nКефирННо — персональная киберсреда накопления, структурирования и развития знаний пользователя. Система является персональным слоем экосистемы nazrOS.\n\n▸ КЛЮЧЕВЫЕ ХАРАКТЕРИСТИКИ\n\n01. Чат-интерфейс с ИИ (Аджна)\nОсновной интерфейс — беседа с ИИ, а не файловый менеджер.\n\n02. Автоматическая структура\nПользователь не управляет структурой — система строит её автоматически.\n\n03. Граф знаний\nКаждый объект имеет связи с другими объектами.\n\n04. Семантический поиск\nПоиск по смыслу, а не по ключевым словам.\n\n05. Синхронизация с nazrOS\nПротоколы синхроНнН, сигналНнН, архивНнН.\n\n06. Режимы ИИ\nОблачный (GPT-4o/Claude) / Локальный (Llama 3 / Ollama).\n\n▸ ТЕХНОЛОГИЧЕСКИЙ СТЕК\n\nReact Native + Expo + Supabase + pgvector + LLM API + Vercel\n\n▸ ПЛАТФОРМЫ\n\niOS / Android / Web (PWA)\n\n▸ ЭВОЛЮЦИЯ\n\nv1 — ИИ-память (мобильное приложение)\nv2 — ИИ-файловая система (offline-first + CRDT)\nv3 — ИИ-рабочий стол (IPC с nazrOS)\nv4 — ИИ-оболочка nazrOS\nv5 — Оболочка nazrOS (OS shell)\n\n▸ СТАТУС\nПредзаказ. Релиз Q4 2026.",
