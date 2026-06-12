@@ -40,7 +40,6 @@ const dict: Dict = {
     en: "Realtime state of the CyberEden grid.",
   },
   "dash.kpi.nodes": { ru: "Активные узлы", en: "Active nodes" },
-  "dash.kpi.xp": { ru: "XP за 24ч", en: "XP traded · 24h" },
   "dash.kpi.streams": { ru: "Открытые стримы", en: "Open streams" },
   "dash.kpi.threat": { ru: "Индекс угроз", en: "Threat index" },
   "dash.kpi.registered": { ru: "Киберов в сети", en: "Cybers online" },
