@@ -548,6 +548,59 @@ export const rostNStages: DeviceStage[] = [
       { name: "rostN_nazrOS_Register.pdf", type: "PDF",    description: "Регистрация биоузла" },
     ],
   },
+  export const visioNStages: DeviceStage[] = [
+  {
+    id: 1,
+    title: "Дизайн-проект и эргономика",
+    description: "Разработка эргономичного корпуса, компоновка оптического тракта, проектирование HUD-интерфейса.",
+    px_cost: 500,
+    time_estimate: "2 дня",
+    outcome: "Проектная документация и 3D-модель корпуса",
+    tools: ["Figma", "Blender"],
+    files: []
+  },
+  {
+    id: 2,
+    title: "Электроника и оптика",
+    description: "Сборка платы управления, калибровка камеры, настройка проектора и датчиков.",
+    px_cost: 600,
+    time_estimate: "3 дня",
+    outcome: "Собранный прототип с базовым функционалом",
+    tools: ["Паяльная станция", "Мультиметр"],
+    files: []
+  },
+  {
+    id: 3,
+    title: "Прошивка и калибровка",
+    description: "Загрузка прошивки, настройка HUD-интерфейса, калибровка датчиков.",
+    px_cost: 400,
+    time_estimate: "2 дня",
+    outcome: "Рабочая прошивка с откалиброванными параметрами",
+    tools: ["Arduino IDE", "USB-C кабель"],
+    files: []
+  },
+  {
+    id: 4,
+    title: "Интеграция с nazrOS",
+    description: "Подключение к экосистеме, синхронизация с профилем, тестирование связи.",
+    px_cost: 300,
+    time_estimate: "1 день",
+    outcome: "Полностью интегрированное устройство",
+    tools: ["nazrOS LINK-модуль"],
+    files: []
+  },
+  {
+    id: 5,
+    title: "Финальная сборка и регистрация",
+    description: "Финальная сборка, герметизация, регистрация в nazrOS.",
+    px_cost: 200,
+    time_estimate: "1 день",
+    outcome: "Готовый visioN с серийным номером",
+    tools: ["Отвёртки", "Термоклей"],
+    files: []
+  }
+
+
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -612,7 +665,7 @@ export const ITEM_STAGES: Record<string, DeviceStage[]> = {
   biohn:   biohNStages,
   blan:    blaNStages,
   pin:     piNStages,
-  visionN: [], // ВЗГЛЯДН — стадии в следующем апдейте
+  vision:  visioNStages, 
   rostn:   rostNStages,
   // stranno, kefirno, cybervaucher_nazrOS — без стадий (купаж / NX-код)
 };
