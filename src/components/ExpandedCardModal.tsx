@@ -25,6 +25,7 @@ interface Props {
   title: string;
   meta?: { label: string; value: string }[];
   image?: string;
+  images?: string[];  // ← ДОБАВЛЕН МАССИВ ИЗОБРАЖЕНИЙ
   cta: string;
   ctaHref?: string;
   onCtaClick?: () => void;
@@ -37,7 +38,7 @@ interface Props {
 export function ExpandedCardModal({
   open, layoutId, onClose,
   eyebrow, title, meta,
-  image, cta, ctaHref, onCtaClick,
+  image, images, cta, ctaHref, onCtaClick,
   children, streamUrl,
   stages, itemId,
 }: Props) {
@@ -137,21 +138,23 @@ export function ExpandedCardModal({
               ) : (
                 /* ── Вкладка: Описание (дефолт) ──────────────────────── */
                 <div className="grid md:grid-cols-[1.1fr_1fr] gap-0 min-h-full">
-                 {images && images.length > 0 ? (
-  <div className="relative bg-background hud-corners overflow-hidden">
-    <div className="flex flex-col gap-2">
-      {images.map((img, i) => (
-        <img key={i} src={img} alt={`${title} ${i + 1}`} className="w-full h-auto object-contain" loading="lazy" />
-      ))}
-    </div>
-    <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background/80 via-transparent to-transparent" />
-  </div>
-) : image && (
-  <div className="relative bg-background hud-corners">
-    <img src={image} alt={title} className="w-full h-auto object-contain" loading="lazy" />
-    <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background/80 via-transparent to-transparent" />
-  </div>
-)}
+                  {/* ← ГАЛЕРЕЯ ИЗОБРАЖЕНИЙ */}
+                  {images && images.length > 0 ? (
+                    <div className="relative bg-background hud-corners overflow-hidden">
+                      <div className="flex flex-col gap-2">
+                        {images.map((img, i) => (
+                          <img key={i} src={img} alt={`${title} ${i + 1}`} className="w-full h-auto object-contain" loading="lazy" />
+                        ))}
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background/80 via-transparent to-transparent" />
+                    </div>
+                  ) : image && (
+                    <div className="relative bg-background hud-corners">
+                      <img src={image} alt={title} className="w-full h-auto object-contain" loading="lazy" />
+                      <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background/80 via-transparent to-transparent" />
+                    </div>
+                  )}
+
                   <div className="p-6 md:p-10 lg:p-12">
                     {eyebrow && (
                       <div className="font-mono text-[10px] uppercase tracking-[0.4em] neon-text-cyan mb-3">{eyebrow}</div>
