@@ -102,11 +102,11 @@ export function ExpandedCardModal({
                   Описание
                 </button>
                 <button onClick={() => setActiveTab("stages")}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest border transition ${activeTab === "stages" ? "border-neon-acid neon-text-acid bg-neon-acid/10" : "border-border text-muted-foreground hover:text-foreground"}`}>
+                  className={`flex items-center gap-1.5 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest border transition ${activeTab === "stages" ? "border-[#ff2ea6] text-[#ff2ea6] bg-[#ff2ea6]/10" : "border-border text-muted-foreground hover:text-foreground"}`}>
                   <Layers size={11} />
                   Стадии сборки
                   {unlockedSet.size > 0 && (
-                    <span className="ml-1 px-1 bg-neon-acid/20 neon-text-acid text-[9px]">
+                    <span className="ml-1 px-1 bg-[#ff2ea6]/20 text-[#ff2ea6] text-[9px]">
                       {unlockedSet.size}/{stages!.length}
                     </span>
                   )}
@@ -168,7 +168,7 @@ export function ExpandedCardModal({
                     {/* Подсказка что есть стадии */}
                     {hasStages && (
                       <button onClick={() => setActiveTab("stages")}
-                        className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2.5 border border-neon-acid/30 bg-neon-acid/5 hover:bg-neon-acid/10 transition font-mono text-xs neon-text-acid">
+                        className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2.5 border border-[#ff2ea6]/30 bg-[#ff2ea6]/5 hover:bg-[#ff2ea6]/10 transition font-mono text-xs text-[#ff2ea6]">
                         <Layers size={13} />
                         {unlockedSet.size === 0
                           ? `${stages!.length} стадий для самостоятельной сборки →`
