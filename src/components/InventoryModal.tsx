@@ -104,16 +104,24 @@ export function InventoryModal({ open, onClose }: { open: boolean; onClose: () =
   const [filter,  setFilter]  = useState<(typeof FILTERS)[number]>("ВСЕ");
   const [search,  setSearch]  = useState("");
 
-  const loadItems = async () => {
-    setLoading(true);
-    try {
-      // Загружаем ВСЕ покупки (не только delivered)
-      const res  = await apiGet("/api/inventory/all");
-      const data = await res.json();
-      setItems(data.items || []);
-    } catch { /* ignore */ }
-    finally { setLoading(false); }
-  };
+ const loadItems = async () => {
+  setLoading(true);
+  try {
+    const res = await apiGet("/api/inventory/all");
+    if (!res.ok) {
+      console.error("Failed to load inventory:", res.status, await res.text());
+      setItems([]);
+      return;
+    }
+    const data = await res.json();
+    setItems(data.items || []);
+  } catch (e) {
+    console.error("Error loading inventory:", e);
+    setItems([]);
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     if (open) loadItems();
