@@ -82,7 +82,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" className="dark">
       <head><HeadContent /></head>
-      <body>
+      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         {children}
         <Footer />
         <Scripts />
