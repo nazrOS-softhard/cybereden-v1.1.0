@@ -57,6 +57,7 @@ export type Item = {
   description: string;
   sensors: Sensor[];
   sliders: Slider[];
+  gallery?: string[];  // дополнительные изображения для мультигалереи в развёрнутой карточке
 };
 
 export const items: Item[] = [
@@ -85,6 +86,7 @@ export const items: Item[] = [
     { label: "Мониторинг", value: 90, min: 0, max: 100, unit: "%" },
     { label: "Автоматизация", value: 80, min: 0, max: 100, unit: "%" },
   ],
+  gallery: [biohn, biohnfull],  // TODO: добавить 2-3 доп. скриншота (3D-модель, документация)
 },
 
    {
@@ -109,6 +111,7 @@ export const items: Item[] = [
     { label: "Вентиляция", value: 55, min: 0, max: 100, unit: "%" },
     { label: "Полив", value: 40, min: 0, max: 100, unit: "%" },
   ],
+  gallery: [rostn, rostnfull],  // TODO: добавить 2-3 доп. скриншота (3D-модель, документация)
 },
 
 {
@@ -133,6 +136,7 @@ export const items: Item[] = [
     { label: "Производительность", value: 72, min: 0, max: 100, unit: "%" },
     { label: "Синхронизация", value: 90, min: 0, max: 100, unit: "%" },
   ],
+  gallery: [clon, clonfull],  // TODO: добавить 2-3 доп. скриншота (3D-модель, документация)
 },
 
   {
@@ -157,6 +161,7 @@ export const items: Item[] = [
     { label: "Охлаждение", value: 60, min: 0, max: 100, unit: "%" },
     { label: "Яркость", value: 80, min: 0, max: 100, unit: "%" },
   ],
+  gallery: [blan, blanfull],  // TODO: добавить 2-3 доп. скриншота (3D-модель, документация)
 },
 
  {
@@ -181,6 +186,7 @@ export const items: Item[] = [
     { label: "Мощность лазера", value: 50, min: 0, max: 100, unit: "%" },
     { label: "Охлаждение", value: 65, min: 0, max: 100, unit: "%" },
   ],
+  gallery: [pin, pinfull],  // TODO: добавить 2-3 доп. скриншота (3D-модель, документация)
 },
 
   {
@@ -204,6 +210,7 @@ export const items: Item[] = [
       { label: "Яркость HUD",   value: 60, min: 0, max: 100, unit: "%" },
       { label: "Контрастность", value: 75, min: 0, max: 100, unit: "%" },
     ],
+    gallery: [vision, visionfull],  // TODO: добавить 2-3 доп. скриншота (3D-модель, документация)
   },
 
   // ── СОФТ ────────────────────────────────────────────────────────────────────
