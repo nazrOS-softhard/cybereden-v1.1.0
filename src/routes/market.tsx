@@ -149,7 +149,7 @@ function MarketPage() {
         eyebrow={active?.category}
         title={active?.name ?? ""}
         image={active?.expandedImage ?? active?.image}
-        gallery={active?.gallery ?? []}
+        images={active?.gallery ?? []}
         cta={isCybervoucher ? "Приобрести в Telegram" : t("market.cta")}
         ctaHref={isCybervoucher ? telegramUrl : undefined}
         stages={activeStages}
