@@ -29,9 +29,26 @@ export function NeonCard({
   onPrev,
   onNext
 }: Props) {
-  // Определяем, что показывать: галерею или основное изображение
   const hasGallery = galleryImages && galleryImages.length > 1;
   const displayImage = hasGallery ? galleryImages[currentIndex] : image;
+
+  // ✅ Ваш кастомный SVG (повёрнутый для стрелки вперёд)
+  const ArrowIcon = ({ direction = "right" }: { direction?: "left" | "right" }) => (
+    <svg 
+      width="24" 
+      height="24" 
+      viewBox="0 0 182 227" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+      className={direction === "left" ? "scale-x-[-1]" : ""}
+    >
+      <path d="M0 226.998L56.093 178.998L67 187.998L0 226.998Z" fill="white"/>
+      <path d="M73 165.498L100.931 139.998L118 157.998L82.3103 178.998L73 165.498Z" fill="white"/>
+      <path d="M84.0072 64.4016L118.144 81.6591L102.493 102.124L73.1185 76.5584L84.0072 64.4016Z" fill="white"/>
+      <path d="M3.0999 15.7764L69.9917 55.2859L62.2142 67.4427L3.0999 15.7764Z" fill="white"/>
+      <path d="M112 110.998L132.222 90.998L182 120.229L129.111 150.998L112 129.46L121.333 120.229L112 110.998Z" fill="white"/>
+    </svg>
+  );
 
   return (
     <button
@@ -51,7 +68,7 @@ export function NeonCard({
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             
-            {/* ✅ Стрелки переключения галереи — только если есть галерея */}
+            {/* ✅ Стрелки переключения галереи */}
             {hasGallery && (
               <div className="absolute inset-0 flex items-center justify-between p-2 pointer-events-none">
                 <button
@@ -61,19 +78,7 @@ export function NeonCard({
                   }}
                   className="pointer-events-auto bg-black/60 backdrop-blur-sm p-1.5 rounded-full hover:bg-black/80 transition-colors group/btn"
                 >
-                  <svg 
-                    width="16" 
-                    height="16" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="white" 
-                    strokeWidth="2.5" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                    className="group-hover/btn:scale-110 transition-transform"
-                  >
-                    <path d="M15 18L9 12L15 6" />
-                  </svg>
+                  <ArrowIcon direction="left" />
                 </button>
                 <button
                   onClick={(e) => {
@@ -82,19 +87,7 @@ export function NeonCard({
                   }}
                   className="pointer-events-auto bg-black/60 backdrop-blur-sm p-1.5 rounded-full hover:bg-black/80 transition-colors group/btn"
                 >
-                  <svg 
-                    width="16" 
-                    height="16" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="white" 
-                    strokeWidth="2.5" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                    className="group-hover/btn:scale-110 transition-transform"
-                  >
-                    <path d="M9 18L15 12L9 6" />
-                  </svg>
+                  <ArrowIcon direction="right" />
                 </button>
               </div>
             )}
