@@ -9,7 +9,7 @@ interface Props {
   title: string;
   meta?: string;
   children?: ReactNode;
-  // ✅ Новые пропсы для галереи
+  // ✅ Пропсы для галереи
   galleryImages?: string[];
   currentIndex?: number;
   onPrev?: () => void;
@@ -29,8 +29,9 @@ export function NeonCard({
   onPrev,
   onNext
 }: Props) {
-  // Используем galleryImages если переданы, иначе image
-  const displayImage = galleryImages ? galleryImages[currentIndex] : image;
+  // Определяем, что показывать: галерею или основное изображение
+  const hasGallery = galleryImages && galleryImages.length > 1;
+  const displayImage = hasGallery ? galleryImages[currentIndex] : image;
 
   return (
     <button
@@ -50,60 +51,56 @@ export function NeonCard({
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             
-            {/* ✅ Стрелки переключения галереи */}
-            {galleryImages && galleryImages.length > 1 && (
+            {/* ✅ Стрелки переключения галереи — только если есть галерея */}
+            {hasGallery && (
               <div className="absolute inset-0 flex items-center justify-between p-2 pointer-events-none">
-                {onPrev && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onPrev();
-                    }}
-                    className="pointer-events-auto bg-black/60 backdrop-blur-sm p-1.5 rounded-full hover:bg-black/80 transition-colors group/btn"
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onPrev?.();
+                  }}
+                  className="pointer-events-auto bg-black/60 backdrop-blur-sm p-1.5 rounded-full hover:bg-black/80 transition-colors group/btn"
+                >
+                  <svg 
+                    width="16" 
+                    height="16" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="white" 
+                    strokeWidth="2.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    className="group-hover/btn:scale-110 transition-transform"
                   >
-                    <svg 
-                      width="16" 
-                      height="16" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="white" 
-                      strokeWidth="2.5" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                      className="group-hover/btn:scale-110 transition-transform"
-                    >
-                      <path d="M15 18L9 12L15 6" />
-                    </svg>
-                  </button>
-                )}
-                {onNext && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onNext();
-                    }}
-                    className="pointer-events-auto bg-black/60 backdrop-blur-sm p-1.5 rounded-full hover:bg-black/80 transition-colors group/btn"
+                    <path d="M15 18L9 12L15 6" />
+                  </svg>
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onNext?.();
+                  }}
+                  className="pointer-events-auto bg-black/60 backdrop-blur-sm p-1.5 rounded-full hover:bg-black/80 transition-colors group/btn"
+                >
+                  <svg 
+                    width="16" 
+                    height="16" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="white" 
+                    strokeWidth="2.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    className="group-hover/btn:scale-110 transition-transform"
                   >
-                    <svg 
-                      width="16" 
-                      height="16" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="white" 
-                      strokeWidth="2.5" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                      className="group-hover/btn:scale-110 transition-transform"
-                    >
-                      <path d="M9 18L15 12L9 6" />
-                    </svg>
-                  </button>
-                )}
+                    <path d="M9 18L15 12L9 6" />
+                  </svg>
+                </button>
               </div>
             )}
 
             {/* ✅ Индикатор текущего изображения */}
-            {galleryImages && galleryImages.length > 1 && (
+            {hasGallery && (
               <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 pointer-events-none">
                 {galleryImages.map((_, idx) => (
                   <div 
