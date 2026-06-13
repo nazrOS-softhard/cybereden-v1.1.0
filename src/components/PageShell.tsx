@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 interface PageShellProps {
   title: string;
-  subtitle?: ReactNode; // [!] ИЗМЕНЕНО: теперь принимает элементы, а не только строку
+  subtitle?: ReactNode;
   eyebrow?: string;
   children: ReactNode;
 }
@@ -15,7 +15,7 @@ export function PageShell({ title, subtitle, eyebrow, children }: PageShellProps
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 pt-24 pb-24"
+      className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 pt-24 flex-1 w-full"
     >
       <header className="mb-10 hud-corners relative p-6 border border-border bg-surface/30 backdrop-blur-sm">
         <div className="absolute inset-0 hud-scanlines pointer-events-none" />
@@ -26,7 +26,6 @@ export function PageShell({ title, subtitle, eyebrow, children }: PageShellProps
         )}
         <h1 className="font-display text-3xl md:text-5xl neon-text-violet">{title}</h1>
         {subtitle && (
-          /* [!] ИЗМЕНЕНО: заменено с <p> на <div> для валидности HTML */
           <div className="mt-3 text-sm md:text-base text-muted-foreground max-w-2xl">
             {subtitle}
           </div>
