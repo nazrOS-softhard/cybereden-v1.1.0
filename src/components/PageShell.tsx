@@ -15,7 +15,7 @@ export function PageShell({ title, subtitle, eyebrow, children }: PageShellProps
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 pt-24 flex-1 w-full"
+      className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 pt-24 pb-6 flex-1 w-full"
     >
       <header className="mb-10 hud-corners relative p-6 border border-border bg-surface/30 backdrop-blur-sm">
         <div className="absolute inset-0 hud-scanlines pointer-events-none" />
