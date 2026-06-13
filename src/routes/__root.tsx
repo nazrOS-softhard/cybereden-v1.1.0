@@ -78,21 +78,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-import { Footer } from "@/components/Footer"; // ← добавь импорт
-
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" className="dark">
       <head><HeadContent /></head>
-      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        {/* Основной контент */}
-        <main style={{ flex: 1 }}>
-          {children}
-        </main>
-        
-        {/* Футер */}
+      <body>
+        {children}
         <Footer />
-        
         <Scripts />
       </body>
     </html>
@@ -101,7 +93,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 // Внутренний компонент — может использовать хуки
 function AppContent() {
-  useHeartbeat();   // ← пингует /api/auth/heartbeat каждые 5 мин
+  useHeartbeat();
   return (
     <>
       <RainBackground />
