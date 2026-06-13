@@ -63,6 +63,9 @@ function MarketPage() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [softModalOpen, setSoftModalOpen] = useState(false);
   const [selectedSoftItem, setSelectedSoftItem] = useState<typeof items[0] | null>(null);
+  
+  // ✅ Состояние для галереи
+  const [galleryIndex, setGalleryIndex] = useState<Record<string, number>>({});
 
   const active         = items.find(i => i.id === openId) ?? null;
   const isCybervoucher = active?.id === "cybervaucher_nazrOS";
@@ -87,6 +90,21 @@ function MarketPage() {
     } else {
       setOpenId(it.id);
     }
+  };
+
+  // ✅ Функции для галереи
+  const handleGalleryPrev = (itemId: string, length: number) => {
+    setGalleryIndex(prev => ({
+      ...prev,
+      [itemId]: ((prev[itemId] || 0) - 1 + length) % length
+    }));
+  };
+
+  const handleGalleryNext = (itemId: string, length: number) => {
+    setGalleryIndex(prev => ({
+      ...prev,
+      [itemId]: ((prev[itemId] || 0) + 1) % length
+    }));
   };
 
   return (
@@ -128,6 +146,12 @@ function MarketPage() {
               eyebrow={it.category}
               title={it.name}
               meta={`${it.price.toLocaleString("ru-RU")} ПХ`}
+              
+              // ✅ Добавляем пропсы для галереи
+              galleryImages={it.gallery}
+              currentIndex={galleryIndex[it.id] || 0}
+              onPrev={() => handleGalleryPrev(it.id, it.gallery?.length || 1)}
+              onNext={() => handleGalleryNext(it.id, it.gallery?.length || 1)}
             >
               {it.short}
               {/* Значок стадий */}
