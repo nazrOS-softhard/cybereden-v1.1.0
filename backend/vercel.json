@@ -6,17 +6,7 @@
       "use": "@vercel/node"
     }
   ],
-  "crons": [
-    {
-      "path": "/api/cron/streaming-xp",
-      "schedule": "*/1 * * * *"
-    }
-  ],
   "routes": [
-    {
-      "src": "/api/cron/streaming-xp",
-      "dest": "src/routes/cron.ts"
-    },
     {
       "src": "/(.*)",
       "dest": "src/server.ts"
