@@ -669,8 +669,63 @@ export const articles: Article[] = [
 <blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-size:17px;font-style:italic;color:#fff;background:#1a0d2e;padding:16px 16px 16px 20px;">«Не игнорируй протокол. Среда отвечает состоянию разработчика.<br>Ты не живёшь здесь — ты управляешь системой.»</blockquote>
 </div>`,
   },
-];
 
+  {
+    id: "a11",
+    title: "МССИ: многоступенчатая система сбора информации",
+    topic: "Кибербезопасность",
+    excerpt: "Гибридная модель разведки, где OSINT — лишь первый шаг.",
+    readTime: 8,
+    image: technroomN, // можно заменить на другую, если нужно
+    body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">МССИ: многоступенчатая система сбора информации</h2>
+<p>В современном мире информация стала ключевым ресурсом. Однако объём данных, доступных из открытых источников, растёт экспоненциально. Для эффективной работы с этими данными необходима системная и структурированная модель. <strong style="color:#a855f7;">Многоступенчатая система сбора информации (МССИ)</strong> — это гибридная модель разведки, где первый этап строится на методах OSINT, а последующие этапы углубляют анализ.</p>
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«OSINT — это не только инструмент, а фундамент для более глубокого анализа. МССИ позволяет перейти от "знаю, что есть" к "знаю, что это значит и как использовать".»</blockquote>
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">Этапы МССИ</h3>
+<div style="background:#111122;border:1px solid #334155;padding:20px;border-radius:6px;margin-bottom:24px;">
+<span style="background:#22d3ee;color:#000;padding:2px 8px;font-size:12px;font-weight:bold;border-radius:4px;">ЭТАП 1</span>
+<h4 style="font-size:18px;color:#fff;margin:10px 0;">OSINT — разведка по открытым источникам</h4>
+<p style="font-size:14px;color:#cbd5e1;margin-bottom:15px;">Сбор всех доступных публичных данных, поиск в социальных сетях, работа с публичными базами данных.</p>
+<p style="font-size:13px;color:#94a3b8;">Инструменты: Google Dorks, Shodan, Maltego, The Harvester, Censys, SpiderFoot.</p>
+</div>
+<div style="background:#111122;border:1px solid #334155;padding:20px;border-radius:6px;margin-bottom:24px;">
+<span style="background:#22d3ee;color:#000;padding:2px 8px;font-size:12px;font-weight:bold;border-radius:4px;">ЭТАП 2</span>
+<h4 style="font-size:18px;color:#fff;margin:10px 0;">Анализ и структурирование</h4>
+<p style="font-size:14px;color:#cbd5e1;margin-bottom:15px;">Очистка и классификация данных, выявление связей, построение гипотез.</p>
+<p style="font-size:13px;color:#94a3b8;">Инструменты: Maltego, Grafana, Python (Pandas, NetworkX).</p>
+</div>
+<div style="background:#111122;border:1px solid #334155;padding:20px;border-radius:6px;margin-bottom:24px;">
+<span style="background:#22d3ee;color:#000;padding:2px 8px;font-size:12px;font-weight:bold;border-radius:4px;">ЭТАП 3</span>
+<h4 style="font-size:18px;color:#fff;margin:10px 0;">Глубинный анализ и верификация</h4>
+<p style="font-size:14px;color:#cbd5e1;margin-bottom:15px;">Проверка выявленных связей, перекрёстная верификация, работа с частично закрытыми источниками.</p>
+<p style="font-size:13px;color:#94a3b8;">Инструменты: специализированные базы данных, анализ метаданных.</p>
+</div>
+<div style="background:#111122;border:1px solid #334155;padding:20px;border-radius:6px;margin-bottom:24px;">
+<span style="background:#22d3ee;color:#000;padding:2px 8px;font-size:12px;font-weight:bold;border-radius:4px;">ЭТАП 4</span>
+<h4 style="font-size:18px;color:#fff;margin:10px 0;">Интеграция и выводы</h4>
+<p style="font-size:14px;color:#cbd5e1;margin-bottom:15px;">Формирование итогового отчёта, подготовка рекомендаций, передача данных в систему принятия решений.</p>
+</div>
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">Преимущества МССИ</h3>
+<ul style="padding-left:24px;margin-bottom:20px;">
+<li style="margin-bottom:6px;"><strong style="color:#22d3ee;">Универсальность</strong> — модель подходит для разных сфер (безопасность, журналистика, бизнес)</li>
+<li style="margin-bottom:6px;"><strong style="color:#22d3ee;">Контролируемость</strong> — каждый этап документирован</li>
+<li style="margin-bottom:6px;"><strong style="color:#22d3ee;">Глубина и точность</strong> — данные проходят несколько уровней проверки</li>
+<li style="margin-bottom:6px;"><strong style="color:#22d3ee;">Эффективность</strong> — OSINT как первый этап снижает затраты</li>
+</ul>
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">Пример применения в кибербезопасности</h3>
+<div style="background:#111122;border:1px solid #334155;padding:20px;border-radius:6px;margin-bottom:24px;">
+<p style="font-size:14px;color:#cbd5e1;margin-bottom:15px;">Задача: выявление утечек данных компании.</p>
+<ul style="padding-left:20px;color:#94a3b8;font-size:13px;">
+<li><strong>Этап 1:</strong> Сбор упоминаний компании в OSINT-источниках</li>
+<li><strong>Этап 2:</strong> Поиск утечек и открытых репозиториев</li>
+<li><strong>Этап 3:</strong> Верификация найденных данных через анализ метаданных</li>
+<li><strong>Этап 4:</strong> Подготовка отчёта о найденных уязвимостях</li>
+</ul>
+</div>
+<blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«МССИ — это эффективная и масштабируемая модель сбора и анализа информации, которая сочетает скорость OSINT с глубиной специализированных методов.»</blockquote>
+</div>`,
+  },
+];
 // ══════════════════════════════════════════════════════════════════════════════
 // СОБЫТИЯ
 // ══════════════════════════════════════════════════════════════════════════════
