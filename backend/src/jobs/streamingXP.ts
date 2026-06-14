@@ -94,10 +94,8 @@ export async function checkStreamingXP(): Promise<{ checked: number; rewarded: n
       }
 
       await supabase.from('users').update({ xp: (user.xp || 0) + xpToAward }).eq('id', user.id);
-      await supabase.from('xp_logs').insert({
-        user_id: user.id, amount: xpToAward,
-        reason: `Стриминг на Twitch (${xpToAward} мин)`,
-      });
+      // Без детального журнала: не пишем в xp_logs каждую минуту стрима,
+      // чтобы таблица не разрасталась. ПХ обновляется напрямую в users.xp.
       await supabase.from('streaming_xp_state').upsert({
         user_id: user.id, last_checked_at: now.toISOString(), is_live: true,
       });
