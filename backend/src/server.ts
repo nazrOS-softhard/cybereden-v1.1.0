@@ -12,6 +12,7 @@ import achievementsRouter from './routes/achievements';
 import inventoryRouter    from './routes/inventory';
 import marketRouter       from './routes/market';
 import stagesRouter       from './routes/stages';
+import cronRouter         from './routes/cron';
 
 const app = express();
 
@@ -59,6 +60,7 @@ app.use('/api/achievements', achievementsRouter);
 app.use('/api/inventory',    inventoryRouter);
 app.use('/api/market',       marketRouter);
 app.use('/api/stages',       stagesRouter);   // ← файлы стадий (signed URLs)
+app.use('/api/cron',         cronRouter);     // ← +1 ПХ/мин стрима (Vercel Cron)
 
 app.use((_req: Request, res: Response) =>
   res.status(404).json({ error: 'Route not found' }));
