@@ -20,6 +20,9 @@ export function Footer() {
           <Link to="/privacy" className="text-xs text-muted-foreground hover:text-white">
             Политика конфиденциальности
           </Link>
+          <Link to="/salary" className="text-xs text-muted-foreground hover:text-white">
+            Заработная плата
+          </Link>
         </div>
         <div className="text-xs text-muted-foreground">
           © {new Date().getFullYear()} nazrOS
