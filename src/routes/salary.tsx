@@ -16,7 +16,7 @@ function SalaryPage() {
         <div className="hud-corners p-6 border border-border bg-surface/30 backdrop-blur-sm">
           <h3 className="font-display text-lg neon-text-violet mb-3">Концепция</h3>
           <p className="text-sm text-muted-foreground">
-            Вся деятельность nazrOS строится вокруг производства и внедрения собственных устройств.
+            Вся активность nazrOS строится вокруг производства и внедрения собственных устройств.
             Поэтому Кибер получает <strong>натуральные устройства</strong> — произведённые внутри технологичного конгломерата nazrOS.
           </p>
         </div>
@@ -82,7 +82,7 @@ function SalaryPage() {
           <h3 className="font-display text-lg neon-text-violet mb-3">Преимущества</h3>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div className="p-3 border border-border/30 rounded">
-              <p className="font-mono text-xs neon-text-cyan mb-1">Для сотрудника</p>
+              <p className="font-mono text-xs neon-text-cyan mb-1">Кибер</p>
               <ul className="list-disc pl-4 space-y-1 text-muted-foreground text-xs">
                 <li>Все устройства — собственность</li>
                 <li>Доступ к экосистемам и киберсистема из дома</li>
@@ -90,7 +90,7 @@ function SalaryPage() {
               </ul>
             </div>
             <div className="p-3 border border-border/30 rounded">
-              <p className="font-mono text-xs neon-text-cyan mb-1">Для nazrOS</p>
+              <p className="font-mono text-xs neon-text-cyan mb-1">nazrOS</p>
               <ul className="list-disc pl-4 space-y-1 text-muted-foreground text-xs">
                 <li>Отсутствует устаревшая система транзакций </li>
                 <li>Замкнутый цикл производства</li>
