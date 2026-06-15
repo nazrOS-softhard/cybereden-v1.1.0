@@ -104,9 +104,9 @@ function SalaryPage() {
           <h3 className="font-display text-lg neon-text-violet mb-3">Формулировка для вакансий</h3>
           <div className="p-4 border border-neon-cyan/20 rounded text-sm text-muted-foreground">
             <p className="italic">
-              «Вознаграждение выплачивается натуральными устройствами nazrOS (cloN, blaN, biohN, rostN, piN, visioN). 
+              «Вознаграждение выплачивается натуральными устройствами nazrOS (cloN, blaN, biohN, rostN, piN, visioN etc. ). 
               Все программные продукты страННо, кефирННо и ядро nazrOS доступны без подписок и платных дополнений. 
-              Сотрудник получает устройства на руки и становится их собственником.»
+              Разработчик получает устройства на руки и становится их собственником.»
             </p>
           </div>
         </div>
