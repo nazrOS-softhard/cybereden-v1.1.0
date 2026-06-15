@@ -21,7 +21,7 @@ export function Footer() {
             Политика конфиденциальности
           </Link>
           <Link to="/salary" className="text-xs text-muted-foreground hover:text-white">
-            Заработная плата
+            Экономика Киберов
           </Link>
         </div>
         <div className="text-xs text-muted-foreground">
