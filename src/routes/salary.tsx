@@ -10,7 +10,7 @@ function SalaryPage() {
     <PageShell
       eyebrow="// Внутренняя экономика"
       title="Экономика устройств"
-      subtitle="Как мы платим сотрудникам nazrOS устройствами"
+      subtitle="Какие возможности Кибера в nazrOS"
     >
       <div className="space-y-6 max-w-3xl">
         <div className="hud-corners p-6 border border-border bg-surface/30 backdrop-blur-sm">
