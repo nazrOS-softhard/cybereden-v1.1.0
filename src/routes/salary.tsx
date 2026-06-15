@@ -24,9 +24,9 @@ function SalaryPage() {
         <div className="hud-corners p-6 border border-border bg-surface/30 backdrop-blur-sm">
           <h3 className="font-display text-lg neon-text-violet mb-3">Принципы</h3>
           <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
-            <li>Все сотрудники получают вознаграждение готовыми устройствами nazrOS (cloN, blaN, biohN, rostN, piN, visioN).</li>
+            <li>Все Киберы получают вознаграждение готовыми устройствами nazrOS (cloN, blaN, biohN, rostN, piN, visioN etc. ).</li>
             <li>Любой софт nazrOS открыт без подписок и платных дополнений.</li>
-            <li>Устройства, полученные в качестве вознаграждения, являются личной собственностью сотрудника.</li>
+            <li>Устройства, полученные в качестве компенсации затраченного времени, являются личной собственностью Кибера.</li>
             <li>nazrOS может выкупить устройство по стоимости производства.</li>
           </ul>
         </div>
@@ -85,16 +85,16 @@ function SalaryPage() {
               <p className="font-mono text-xs neon-text-cyan mb-1">Для сотрудника</p>
               <ul className="list-disc pl-4 space-y-1 text-muted-foreground text-xs">
                 <li>Все устройства — собственность</li>
-                <li>Доступ к экосистеме из дома</li>
+                <li>Доступ к экосистемам и киберсистема из дома</li>
                 <li>Ценность устройств растёт</li>
               </ul>
             </div>
             <div className="p-3 border border-border/30 rounded">
               <p className="font-mono text-xs neon-text-cyan mb-1">Для nazrOS</p>
               <ul className="list-disc pl-4 space-y-1 text-muted-foreground text-xs">
-                <li>Нет банковских переводов</li>
+                <li>Отсутствует устаревшая система транзакций </li>
                 <li>Замкнутый цикл производства</li>
-                <li>Стимулирует развитие</li>
+                <li>Стимулирует мотивацию</li>
               </ul>
             </div>
           </div>
