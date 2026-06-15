@@ -24,7 +24,7 @@ function SalaryPage() {
         <div className="hud-corners p-6 border border-border bg-surface/30 backdrop-blur-sm">
           <h3 className="font-display text-lg neon-text-violet mb-3">Принципы</h3>
           <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
-            <li>Все Киберы получают вознаграждение готовыми устройствами nazrOS (cloN, blaN, biohN, rostN, piN, visioN etc. ).</li>
+            <li>Все Киберы получают вознаграждение готовыми устройствами nazrOS.</li>
             <li>Любой софт nazrOS открыт без подписок и платных дополнений.</li>
             <li>Устройства, полученные в качестве компенсации затраченного времени, являются личной собственностью Кибера.</li>
             <li>nazrOS может выкупить устройство по стоимости производства.</li>
@@ -85,14 +85,14 @@ function SalaryPage() {
               <p className="font-mono text-xs neon-text-cyan mb-1">Кибер</p>
               <ul className="list-disc pl-4 space-y-1 text-muted-foreground text-xs">
                 <li>Все устройства — собственность</li>
-                <li>Доступ к экосистемам и киберсистема из дома</li>
+                <li>Доступ к экосистемам из дома</li>
                 <li>Ценность устройств растёт</li>
               </ul>
             </div>
             <div className="p-3 border border-border/30 rounded">
               <p className="font-mono text-xs neon-text-cyan mb-1">nazrOS</p>
               <ul className="list-disc pl-4 space-y-1 text-muted-foreground text-xs">
-                <li>Отсутствует устаревшая система транзакций </li>
+                <li>Отсутствует устаревшая система транзакций</li>
                 <li>Замкнутый цикл производства</li>
                 <li>Стимулирует мотивацию</li>
               </ul>
@@ -134,6 +134,46 @@ function SalaryPage() {
                 <tr className="border-b border-border/30">
                   <td className="py-2">Frontend-разработчик (Next.js)</td>
                   <td className="py-2 text-muted-foreground">Разработка интерфейсов для КиберэдэН, Дашборда, Журнала, Трансляций в стиле nazrOS.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">Golang-разработчик (бэкенд)</td>
+                  <td className="py-2 text-muted-foreground">Разработка высокопроизводительных микросервисов для nazrOS. Обработка событий, WebSocket-серверы, аналитика в реальном времени.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">Angular-разработчик (административные панели)</td>
+                  <td className="py-2 text-muted-foreground">Разработка административных панелей для редактирования КиберэдэН.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">React Native-разработчик (мобильное приложение)</td>
+                  <td className="py-2 text-muted-foreground">Разработка мобильного приложения КефирННо и КиберэдэН для iOS и Android.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">SMM-менеджер (киберпанк-эстетика)</td>
+                  <td className="py-2 text-muted-foreground">Ведение Telegram-канала, VK, TikTok. Создание контента в стиле nazrOS.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">Комьюнити-менеджер</td>
+                  <td className="py-2 text-muted-foreground">Работа с сообществом Киберов. Проведение ивентов, поддержка в чатах.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">Технический писатель</td>
+                  <td className="py-2 text-muted-foreground">Написание документации для стадий устройств, FAQ, гайдов, туториалов.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">Игровой дизайнер (CyberEden desktop)</td>
+                  <td className="py-2 text-muted-foreground">Дизайн игровых механик, квестов, сценариев для десктопной игры CyberEden.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">3D-моделлер (игровые ассеты)</td>
+                  <td className="py-2 text-muted-foreground">Создание 3D-моделей персонажей, окружения и предметов для CyberEden.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">UI/UX-дизайнер (игры)</td>
+                  <td className="py-2 text-muted-foreground">Дизайн интерфейсов, HUD, меню и экранов для десктопной игры CyberEden.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">PR-менеджер</td>
+                  <td className="py-2 text-muted-foreground">Взаимодействие со СМИ, подготовка пресс-релизов, организация мероприятий.</td>
                 </tr>
               </tbody>
             </table>
