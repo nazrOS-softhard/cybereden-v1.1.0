@@ -17,7 +17,7 @@ function SalaryPage() {
           <h3 className="font-display text-lg neon-text-violet mb-3">Концепция</h3>
           <p className="text-sm text-muted-foreground">
             Вся деятельность nazrOS строится вокруг производства и внедрения собственных устройств.
-            Поэтому Кибер получает<strong> натуральные устройства</strong> — произведённые внутри технологичного конгломерата nazrOS
+            Поэтому Кибер получает <strong>натуральные устройства</strong> — произведённые внутри технологичного конгломерата nazrOS.
           </p>
         </div>
 
@@ -101,10 +101,50 @@ function SalaryPage() {
         </div>
 
         <div className="hud-corners p-6 border border-border bg-surface/30 backdrop-blur-sm">
+          <h3 className="font-display text-lg neon-text-violet mb-3">Таблица вакансий</h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 font-mono text-xs text-muted-foreground">Позиция</th>
+                  <th className="text-left py-2 font-mono text-xs text-muted-foreground">Задачи</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">Инженер-сборщик устройств</td>
+                  <td className="py-2 text-muted-foreground">Сборка cloN, blaN, biohN по инструкциям стадий. Пайка плат, монтаж корпусов, финальное тестирование.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">Оператор 3D-печати</td>
+                  <td className="py-2 text-muted-foreground">Печать корпусов, кассет и оснастки на piN. Подбор материалов, калибровка принтера, постобработка.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">Разработчик встраиваемых систем</td>
+                  <td className="py-2 text-muted-foreground">Написание прошивок для устройств nazrOS на C++ и Rust. Интеграция с экосистемой через nazrOS LINK.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">Инженер-техник ЦОД</td>
+                  <td className="py-2 text-muted-foreground">Обслуживание серверного оборудования ЦОД nazrOS, замена комплектующих, мониторинг инфраструктуры.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">Разработчик страННо (C++/Rust)</td>
+                  <td className="py-2 text-muted-foreground">Разработка высокопроизводительного ядра страННо для WebGPU и WASM. Визуальные эффекты, физика, звук.</td>
+                </tr>
+                <tr className="border-b border-border/30">
+                  <td className="py-2">Frontend-разработчик (Next.js)</td>
+                  <td className="py-2 text-muted-foreground">Разработка интерфейсов для КиберэдэН, Дашборда, Журнала, Трансляций в стиле nazrOS.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="hud-corners p-6 border border-border bg-surface/30 backdrop-blur-sm">
           <h3 className="font-display text-lg neon-text-violet mb-3">Формулировка для вакансий</h3>
           <div className="p-4 border border-neon-cyan/20 rounded text-sm text-muted-foreground">
             <p className="italic">
-              «Вознаграждение выплачивается натуральными устройствами nazrOS (cloN, blaN, biohN, rostN, piN, visioN etc. ). 
+              «Вознаграждение выплачивается натуральными устройствами nazrOS (cloN, blaN, biohN, rostN, piN, visioN). 
               Все программные продукты страННо, кефирННо и ядро nazrOS доступны без подписок и платных дополнений. 
               Разработчик получает устройства на руки и становится их собственником.»
             </p>
