@@ -16,8 +16,8 @@ function SalaryPage() {
         <div className="hud-corners p-6 border border-border bg-surface/30 backdrop-blur-sm">
           <h3 className="font-display text-lg neon-text-violet mb-3">Концепция</h3>
           <p className="text-sm text-muted-foreground">
-            Вся деятельность nazrOS строится вокруг производства и эксплуатации собственных устройств.
-            Поэтому вознаграждение сотрудникам выплачивается <strong>натуральными устройствами</strong>, произведёнными внутри экосистемы.
+            Вся деятельность nazrOS строится вокруг производства и внедрения собственных устройств.
+            Поэтому Кибер получает<strong> натуральные устройства</strong> — произведённые внутри технологичного конгломерата nazrOS
           </p>
         </div>
 
