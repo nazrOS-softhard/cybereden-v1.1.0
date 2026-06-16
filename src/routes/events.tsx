@@ -86,7 +86,7 @@ function EventsPage() {
             onClick={() => setOpenId(e.id)}
             eyebrow={e.type}
             title={e.title}
-            image={e.image} // ← ДОБАВЛЕНО: передаём изображение в карточку
+            // ❌ Убрали image={e.image} — фото не будет в свернутой карточке
             meta={`${e.date ? e.date + " · " : ""}${e.location}`}
           >
             {e.description
@@ -106,7 +106,8 @@ function EventsPage() {
         onClose={() => setOpenId(null)}
         eyebrow={active?.type}
         title={active?.title ?? ""}
-        image={active?.image} // ← ДОБАВЛЕНО: передаём изображение в модалку
+        // ✅ Оставляем image здесь — в модалке фото будет
+        image={active?.image}
         cta={t("events.cta")}
         streamUrl={safeStreamUrl}
         meta={
