@@ -26,6 +26,7 @@ import cyberhack from "@/assets/cyberhack.png";
 import arcticprotocol from "@/assets/arcticprotocol.png";
 import razrabconf from "@/assets/razrabconf.png";
 import pikseli from "@/assets/pikseli.png";
+import sintez from "@/assets/sintez.png";
 
 
 // ЖУРНАЛ
@@ -809,7 +810,7 @@ export const events: Event[] = [
 • гранд-финал — best-of-5`,
     streamUrl: "https://www.twitch.tv/cs2_paragon_ru"
   },
-  { id: "e13", title: "КиберХак 2027", type: "ХАКАТОНЫ", date: "20.08.2027", location: "Эрарта · Санкт-Петербург", description: "Главный хакатон киберсистемы nazrOS. 48 часов непрерывного кодинга, менторство и призовой фонд." },
+  { id: "e13", title: "КиберХак 2027", type: "ХАКАТОНЫ", date: "20.08.2027", image: cyberhack, location: "Эрарта · Санкт-Петербург", description: "Главный хакатон киберсистемы nazrOS. 48 часов непрерывного кодинга, менторство и призовой фонд." },
   { id: "e14", title: "назрОС РазрабКонф 2027", type: "ХАКАТОНЫ", date: "08.09.2027", location: "ЦДП · Москва", description: "Конференция разработчиков киберсистемы nazrOS. Доклады, открытые мастерские, нетворкинг." },
   { id: "e15", title: "ПИКСЕЛИ", type: "ХАКАТОНЫ", date: "02.06.2027", location: "Иннополис · Казань", description: "12-часовой геймджем для инди-разработчиков. Тема объявляется в момент старта." },
   { id: "e16", title: "TWS: Плесетск", type: "ХАКАТОНЫ", date: "06.04.2027 – 12.04.2027", location: "Плесетск · Архангельская область", description: "The Week Space — цифровое космическое событие в рамках Российской недели космоса." },
