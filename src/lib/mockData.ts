@@ -22,6 +22,11 @@ import kefirnnoScreen1 from "@/assets/kefirnno-screen1.png";
 
 // МЕРОПРИЯТИЯ
 import northPoster from "@/assets/north-event-poster.png";
+import cyberhack from "@/assets/cyberhack.png";
+import arcticprotocol from "@/assets/arcticprotocol.png";
+import razrabconf from "@/assets/razrabconf.png";
+import pikseli from "@/assets/pikseli.png";
+
 
 // ЖУРНАЛ
 import enginedayN from "@/assets/enginedayN.png";
