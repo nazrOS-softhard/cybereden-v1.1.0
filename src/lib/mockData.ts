@@ -779,7 +779,6 @@ export const articles: Article[] = [
 <h3 style="color:#22d3ee;margin-top:24px;">5. Тестирование в облаке</h3>
 <p>Нажми <strong>F5</strong> (Запуск) — UNIGINE откроет окно предпросмотра. Если куб и сфера освещены — первая сцена готова.</p>
 <div style="margin-top:24px;border-top:1px solid #333;padding-top:12px;display:flex;align-items:center;gap:12px;">
-  <img src="/assets/stranno.png" alt="страННо" style="width:40px;height:40px;object-fit:contain;border-radius:8px;border:1px solid #a855f7;" />
   <div>
     <strong style="color:#a855f7;">→</strong> Мы усиленно работаем над <strong>страННо</strong> — цифровой производственной киберсистемой для создания фильмов, игровых миров и симуляций.<br>
     <a href="/market?item=stranno" style="color:#22d3ee;">Перейти в Маркет →</a>
