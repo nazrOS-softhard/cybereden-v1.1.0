@@ -1,4 +1,4 @@
-import { createLazyFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute, Link } from '@tanstack/react-router'
 import { PageShell } from '@/components/PageShell'
 
 export const Route = createLazyFileRoute('/salary')({
@@ -112,67 +112,195 @@ function SalaryPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">Инженер-сборщик устройств</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'inzhener-sborshchik' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      Инженер-сборщик устройств
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Сборка cloN, blaN, biohN по инструкциям стадий. Пайка плат, монтаж корпусов, финальное тестирование.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">Оператор 3D-печати</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'operator-3d-pechati' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      Оператор 3D-печати
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Печать корпусов, кассет и оснастки на piN. Подбор материалов, калибровка принтера, постобработка.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">Разработчик встраиваемых систем</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'razrabotchik-vstraivaemykh-sistem' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      Разработчик встраиваемых систем
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Написание прошивок для устройств nazrOS на C++ и Rust. Интеграция с экосистемой через nazrOS LINK.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">Инженер-техник ЦОД</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'inzhener-tekhnik-tsod' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      Инженер-техник ЦОД
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Обслуживание серверного оборудования ЦОД nazrOS, замена комплектующих, мониторинг инфраструктуры.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">Разработчик страННо (C++/Rust)</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'razrabotchik-stranno' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      Разработчик страННо (C++/Rust)
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Разработка высокопроизводительного ядра страННо для WebGPU и WASM. Визуальные эффекты, физика, звук.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">Frontend-разработчик (Next.js)</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'frontend-razrabotchik' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      Frontend-разработчик (Next.js)
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Разработка интерфейсов для КиберэдэН, Дашборда, Журнала, Трансляций в стиле nazrOS.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">Golang-разработчик (бэкенд)</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'golang-razrabotchik' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      Golang-разработчик (бэкенд)
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Разработка высокопроизводительных микросервисов для nazrOS. Обработка событий, WebSocket-серверы, аналитика в реальном времени.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">Angular-разработчик (административные панели)</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'angular-razrabotchik' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      Angular-разработчик (административные панели)
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Разработка административных панелей для редактирования КиберэдэН.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">React Native-разработчик (мобильное приложение)</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'react-native-razrabotchik' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      React Native-разработчик (мобильное приложение)
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Разработка мобильного приложения КефирННо и КиберэдэН для iOS и Android.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">SMM-менеджер (киберпанк-эстетика)</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'smm-menedzher' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      SMM-менеджер (киберпанк-эстетика)
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Ведение Telegram-канала, VK, TikTok. Создание контента в стиле nazrOS.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">Комьюнити-менеджер</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'komyuniti-menedzher' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      Комьюнити-менеджер
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Работа с сообществом Киберов. Проведение ивентов, поддержка в чатах.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">Технический писатель</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'tekhnicheskiy-pisatel' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      Технический писатель
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Написание документации для стадий устройств, FAQ, гайдов, туториалов.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">Игровой дизайнер (CyberEden desktop)</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'igrovoy-dizayner' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      Игровой дизайнер (CyberEden desktop)
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Дизайн игровых механик, квестов, сценариев для десктопной игры CyberEden.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">3D-моделлер (игровые ассеты)</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: '3d-modeler' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      3D-моделлер (игровые ассеты)
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Создание 3D-моделей персонажей, окружения и предметов для CyberEden.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">UI/UX-дизайнер (игры)</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'ui-ux-dizayner' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      UI/UX-дизайнер (игры)
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Дизайн интерфейсов, HUD, меню и экранов для десктопной игры CyberEden.</td>
                 </tr>
                 <tr className="border-b border-border/30">
-                  <td className="py-2">PR-менеджер</td>
+                  <td className="py-2">
+                    <Link
+                      to="/jobs/$slug"
+                      params={{ slug: 'pr-menedzher' }}
+                      className="hover:neon-text-cyan transition-colors"
+                    >
+                      PR-менеджер
+                    </Link>
+                  </td>
                   <td className="py-2 text-muted-foreground">Взаимодействие со СМИ, подготовка пресс-релизов, организация мероприятий.</td>
                 </tr>
               </tbody>
