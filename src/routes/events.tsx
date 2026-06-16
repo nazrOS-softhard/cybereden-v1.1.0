@@ -26,7 +26,6 @@ function EventsPage() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [hostname, setHostname] = useState<string>("");
 
-  // Получаем hostname на клиенте, чтобы избежать ошибок гидратации при SSR
   useEffect(() => {
     if (typeof window !== "undefined") {
       setHostname(window.location.hostname);
@@ -40,7 +39,6 @@ function EventsPage() {
     [type],
   );
 
-  // Модифицируем Twitch URL, динамически добавляя обязательный параметр parent
   const safeStreamUrl = useMemo(() => {
     if (!active?.streamUrl) return undefined;
     
@@ -51,7 +49,6 @@ function EventsPage() {
       }
       return url.toString();
     } catch {
-      // Если в mockData лежит относительная строка или битый URL, добавляем parent вручную
       if (hostname) {
         const separator = active.streamUrl.includes("?") ? "&" : "?";
         return `${active.streamUrl}${separator}parent=${hostname}`;
@@ -89,6 +86,7 @@ function EventsPage() {
             onClick={() => setOpenId(e.id)}
             eyebrow={e.type}
             title={e.title}
+            image={e.image} // ← ДОБАВЛЕНО: передаём изображение в карточку
             meta={`${e.date ? e.date + " · " : ""}${e.location}`}
           >
             {e.description
@@ -108,6 +106,7 @@ function EventsPage() {
         onClose={() => setOpenId(null)}
         eyebrow={active?.type}
         title={active?.title ?? ""}
+        image={active?.image} // ← ДОБАВЛЕНО: передаём изображение в модалку
         cta={t("events.cta")}
         streamUrl={safeStreamUrl}
         meta={
@@ -122,7 +121,6 @@ function EventsPage() {
       >
         {active && (
           <>
-            {/* ← Описание теперь показываем всегда — и для стримов, и без */}
             <div className="mb-6">
               <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-3">
                 ОПИСАНИЕ
