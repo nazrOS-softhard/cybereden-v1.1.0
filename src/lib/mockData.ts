@@ -46,6 +46,9 @@ const PLACEHOLDER_KEFIRNO =
 export type Sensor = { label: string; unit: string; value: number; min: number; max: number };
 export type Slider = { label: string; value: number; min: number; max: number; unit: string };
 
+
+
+
 export type MarketCategory = "УСТРОЙСТВА" | "СОФТ" | "ИНОЕ";
 
 export type Item = {
@@ -782,6 +785,7 @@ export type Event = {
   type: "ТРАНСЛЯЦИИ" | "ТУРНИРЫ" | "ХАКАТОНЫ" | "ДЕПЫ";
   date: string;
   location: string;
+  image?: string;           // ← отдельное поле для картинки
   description: string;
   streamUrl?: string;
 };
@@ -802,39 +806,27 @@ export const events: Event[] = [
     title: "КиберХак 2027",
     type: "ХАКАТОНЫ",
     date: "20.08.2027",
+    image: cyberhack,
     location: "Эрарта · Санкт-Петербург",
-    description: `<div style="font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
-      <div style="margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid #333;">
-        <img src="${cyberhack}" alt="КиберХак 2027" style="width:100%;height:auto;display:block;" />
-      </div>
-      <p>Главный хакатон киберсистемы nazrOS. 48 часов непрерывного кодинга, менторство и призовой фонд.</p>
-    </div>`,
+    description: "Главный хакатон киберсистемы nazrOS. 48 часов непрерывного кодинга, менторство и призовой фонд.",
   },
   {
     id: "e14",
     title: "назрОС РазрабКонф 2027",
     type: "ХАКАТОНЫ",
     date: "08.09.2027",
+    image: razrabconf,
     location: "ЦДП · Москва",
-    description: `<div style="font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
-      <div style="margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid #333;">
-        <img src="${razrabconf}" alt="назрОС РазрабКонф 2027" style="width:100%;height:auto;display:block;" />
-      </div>
-      <p>Конференция разработчиков киберсистемы nazrOS. Доклады, открытые мастерские, нетворкинг.</p>
-    </div>`,
+    description: "Конференция разработчиков киберсистемы nazrOS. Доклады, открытые мастерские, нетворкинг.",
   },
   {
     id: "e15",
     title: "ПИКСЕЛИ",
     type: "ХАКАТОНЫ",
     date: "02.06.2027",
+    image: pikseli,
     location: "Иннополис · Казань",
-    description: `<div style="font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
-      <div style="margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid #333;">
-        <img src="${pikseli}" alt="ПИКСЕЛИ" style="width:100%;height:auto;display:block;" />
-      </div>
-      <p>12-часовой геймджем для инди-разработчиков. Тема объявляется в момент старта.</p>
-    </div>`,
+    description: "12-часовой геймджем для инди-разработчиков. Тема объявляется в момент старта.",
   },
   {
     id: "e16",
@@ -849,26 +841,18 @@ export const events: Event[] = [
     title: "АРКТИЧЕСКИЙ ПРОТОКОЛ",
     type: "ХАКАТОНЫ",
     date: "17.09.2027",
+    image: arcticprotocol,
     location: "Кластер Северного Дизайна · Мурманск",
-    description: `<div style="font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
-      <div style="margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid #333;">
-        <img src="${arcticprotocol}" alt="АРКТИЧЕСКИЙ ПРОТОКОЛ" style="width:100%;height:auto;display:block;" />
-      </div>
-      <p>Креативная резиденция для дизайнеров, медиахудожников и цифровых креаторов.</p>
-    </div>`,
+    description: "Креативная резиденция для дизайнеров, медиахудожников и цифровых креаторов.",
   },
   {
     id: "e18",
     title: "СИНТЕЗ: ЦИФРОВОЙ СЕЗОН",
     type: "ХАКАТОНЫ",
     date: "24.09.2027",
+    image: sintez,
     location: "IT-парк Цифровая Арктика · Архангельск",
-    description: `<div style="font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
-      <div style="margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid #333;">
-        <img src="${sintez}" alt="СИНТЕЗ: ЦИФРОВОЙ СЕЗОН" style="width:100%;height:auto;display:block;" />
-      </div>
-      <p>Биотехнологическое инженерное мероприятие для Крайнего Севера.</p>
-    </div>`,
+    description: "Биотехнологическое инженерное мероприятие для Крайнего Севера.",
   },
   
   { id: "e19", title: "PORTAL", type: "ДЕПЫ", date: "2026", location: "· Москва", description: "Визуальное ядро nazrOS. Интерфейсы, HUD-системы, motion-дизайн и цифровая типографика." },
