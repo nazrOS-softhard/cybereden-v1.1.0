@@ -705,9 +705,9 @@ export const articles: Article[] = [
   },
   {
     id: "a12",
-    title: "Работа с UNIGINE: от первого запуска до первой сцены",
+    title: "ГеймДев: от первого запуска до первой сцены",
     topic: "Геймдев",
-    excerpt: "Полное руководство для начинающих разработчиков, которые хотят работать с UNIGINE на облачных решениях, используя Яндекс.Диск и ПК-клубы.",
+    excerpt: "Разработчики, которые хотят работать с UNIGINE на облачных решениях, используя экосистемы Яндекс и LANgame.",
     readTime: 15,
     image: technroomN,
     body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -717,7 +717,7 @@ export const articles: Article[] = [
 <p>Для начала работы тебе понадобится:</p>
 <ul>
 <li>Скачать UNIGINE SDK с официального сайта: <a href="https://unigine.com/ru/download" style="color:#22d3ee;">https://unigine.com/ru/download</a></li>
-<li>Выбрать версию: <strong>UNIGINE 2.19</strong> (стабильная, LTS)</li>
+<li>Выбрать версию: <strong>UNIGINE 2.22n</strong> (стабильная, LTS)</li>
 <li>Скачать установщик для Windows и запустить его</li>
 <li>Создать новый проект через Диспетчер проектов UNIGINE:
   <ul>
