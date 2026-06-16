@@ -725,6 +725,65 @@ export const articles: Article[] = [
 <blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«МССИ — это эффективная и масштабируемая модель сбора и анализа информации, которая сочетает скорость OSINT с глубиной специализированных методов.»</blockquote>
 </div>`,
   },
+
+{
+    id: "a12",
+    title: "Геймдев: от первого запуска до первой сцены",
+    topic: "Геймдев",
+    excerpt: " Разработчикам, которые хотят создают в UNIGINE на облачных решениях в экосистемах Яндекс и LANgame",
+    readTime: 15,
+    image: technroomN,
+    body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Работа с UNIGINE: от первого запуска до первой сцены</h2>
+<p><strong style="color:#a855f7;">UNIGINE</strong> — это профессиональная среда для симуляций и цифровых двойников. В этой статье мы разберём, как начать работу с движком, настроить его для облачной работы и создать первую сцену.</p>
+<h3 style="color:#22d3ee;margin-top:24px;">1. Первый запуск: что скачать и как установить</h3>
+<p>Для начала работы тебе понадобится:</p>
+<ul>
+<li>Скачать UNIGINE SDK с официального сайта: <a href="https://unigine.com/ru/download" style="color:#22d3ee;">https://unigine.com/ru/download</a></li>
+<li>Выбрать версию: <strong>UNIGINE 2.19</strong> (стабильная, LTS)</li>
+<li>Скачать установщик для Windows и запустить его</li>
+<li>Создать новый проект через Диспетчер проектов UNIGINE:
+  <ul>
+    <li>Название: <code>CyberEden_Level_1</code></li>
+    <li>Шаблон: <code>Симуляция (пустая)</code></li>
+    <li>Разрешение: <code>1920×1080</code></li>
+  </ul>
+</li>
+</ul>
+<h3 style="color:#22d3ee;margin-top:24px;">2. Настройка под облачные решения (для ПК-клубов)</h3>
+<p>Если ты работаешь в <strong>ПК-клубе</strong> или на арендованной машине, у тебя нет постоянного диска. Вот как настроить UNIGINE для комфортной работы с <strong>Яндекс.Диском</strong>:</p>
+<ul>
+<li>Установи Яндекс.Диск на ПК-клуб и войди в свой аккаунт</li>
+<li>Создай в облаке папку <code>unigine_projects</code>, внутри — <code>CyberEden_Level_1</code></li>
+<li>Скопируй папки <code>data</code> и <code>source</code> из локального проекта в Яндекс.Диск</li>
+<li>В редакторе UNIGINE перейди в <strong>Настройки → Файловая система</strong>, добавь путь <code>Y:\\unigine_projects\\CyberEden_Level_1\\data</code> и включи <strong>Автосинхронизацию</strong></li>
+</ul>
+<h3 style="color:#22d3ee;margin-top:24px;">3. Где хранятся ассеты</h3>
+<p>Основные папки ассетов в UNIGINE:</p>
+<ul>
+<li><code>data/core/</code> — системные шейдеры и материалы</li>
+<li><code>data/scenes/</code> — все сцены проекта</li>
+<li><code>data/models/</code> — 3D-модели (FBX, glTF, UNIGINE-формат)</li>
+<li><code>data/textures/</code> — текстуры (PNG, JPG, TGA)</li>
+<li><code>data/sounds/</code> — аудиофайлы (WAV, OGG)</li>
+<li><code>data/scripts/</code> — скрипты на UnigineScript или C++</li>
+</ul>
+<h3 style="color:#22d3ee;margin-top:24px;">4. Как создаётся первая сцена</h3>
+<ul>
+<li>В редакторе UNIGINE открой <strong>Файл → Новая сцена</strong>, назови её <code>ПерваяСцена</code></li>
+<li>Создай примитивы: <strong>Параллелепипед</strong> (2×2×2) и <strong>Сферу</strong> (радиус 0.5)</li>
+<li>Добавь <strong>Мировой свет</strong> и настрой его цвет и интенсивность</li>
+<li>Добавь <strong>Камеру игрока</strong> и расположи её перед объектами</li>
+<li>Сохрани сцену как <code>ПерваяСцена.unigine</code></li>
+</ul>
+<h3 style="color:#22d3ee;margin-top:24px;">5. Тестирование в облаке</h3>
+<p>Нажми <strong>F5</strong> (Запуск) — UNIGINE откроет окно предпросмотра. Если куб и сфера освещены — первая сцена готова.</p>
+<p style="margin-top:24px;border-top:1px solid #333;padding-top:16px;">
+  <strong style="color:#a855f7;">→</strong> Мы усиленно работаем над <strong>страННо</strong> — цифровой производственной киберсистемой для создания фильмов, игровых миров и симуляций.<br>
+  <a href="/market?item=stranno" style="color:#22d3ee;">Перейти в Маркет →</a>
+</p>
+</div>`,
+  },
 ];
 // ══════════════════════════════════════════════════════════════════════════════
 // СОБЫТИЯ
