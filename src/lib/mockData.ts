@@ -727,20 +727,20 @@ export const articles: Article[] = [
   },
 
 {
-    id: "a12",
-    title: "Геймдев: от первого запуска до первой сцены",
-    topic: "Геймдев",
-    excerpt: " Разработчикам, которые хотят создают в UNIGINE на облачных решениях в экосистемах Яндекс и LANgame",
-    readTime: 15,
-    image: technroomN,
-    body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+  id: "a12",
+  title: "ГеймДеев: от первого запуска до первой сцены",
+  topic: "Геймдев",
+  excerpt: "Разработчики, которые хотят работать с UNIGINE на облачных решениях, используя экосистемы Яндекс и LANgame.",
+  readTime: 15,
+  image: technroomN,
+  body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
 <h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Работа с UNIGINE: от первого запуска до первой сцены</h2>
 <p><strong style="color:#a855f7;">UNIGINE</strong> — это профессиональная среда для симуляций и цифровых двойников. В этой статье мы разберём, как начать работу с движком, настроить его для облачной работы и создать первую сцену.</p>
 <h3 style="color:#22d3ee;margin-top:24px;">1. Первый запуск: что скачать и как установить</h3>
 <p>Для начала работы тебе понадобится:</p>
 <ul>
 <li>Скачать UNIGINE SDK с официального сайта: <a href="https://unigine.com/ru/download" style="color:#22d3ee;">https://unigine.com/ru/download</a></li>
-<li>Выбрать версию: <strong>UNIGINE 2.22</strong> (стабильная, LTS)</li>
+<li>Выбрать версию: <strong>UNIGINE 2.19</strong> (стабильная, LTS)</li>
 <li>Скачать установщик для Windows и запустить его</li>
 <li>Создать новый проект через Диспетчер проектов UNIGINE:
   <ul>
@@ -778,12 +778,15 @@ export const articles: Article[] = [
 </ul>
 <h3 style="color:#22d3ee;margin-top:24px;">5. Тестирование в облаке</h3>
 <p>Нажми <strong>F5</strong> (Запуск) — UNIGINE откроет окно предпросмотра. Если куб и сфера освещены — первая сцена готова.</p>
-<p style="margin-top:24px;border-top:1px solid #333;padding-top:16px;">
-  <strong style="color:#a855f7;">→</strong> Мы усиленно работаем над <strong>страННо</strong> — цифровой производственной киберсистемой для создания фильмов, игровых миров и симуляций.<br>
-  <a href="/market?item=stranno" style="color:#22d3ee;">Перейти в Маркет →</a>
-</p>
+<div style="margin-top:24px;border-top:1px solid #333;padding-top:12px;display:flex;align-items:center;gap:12px;">
+  <img src="/assets/stranno.png" alt="страННо" style="width:40px;height:40px;object-fit:contain;border-radius:8px;border:1px solid #a855f7;" />
+  <div>
+    <strong style="color:#a855f7;">→</strong> Мы усиленно работаем над <strong>страННо</strong> — цифровой производственной киберсистемой для создания фильмов, игровых миров и симуляций.<br>
+    <a href="/market?item=stranno" style="color:#22d3ee;">Перейти в Маркет →</a>
+  </div>
+</div>
 </div>`,
-  },
+},
 ];
 // ══════════════════════════════════════════════════════════════════════════════
 // СОБЫТИЯ
