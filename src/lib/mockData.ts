@@ -857,7 +857,15 @@ export const events: Event[] = [
   
   { id: "e19", title: "PORTAL", type: "ДЕПЫ", date: "2026", location: "· Москва", description: "Визуальное ядро nazrOS. Интерфейсы, HUD-системы, motion-дизайн и цифровая типографика." },
   { id: "e20", title: "SIGNAL", type: "ДЕПЫ", date: "5 — 7 июня 2026", location: "· Москва", description: "Трансляции, цифровой журнал, медиа-среда и голос экосистемы nazrOS." },
-  { id: "e21", title: "PIRATE STATION", type: "ДЕПЫ", date: "31 октября", location: "VK Stadium · Москва", description: `<div style="font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;"><div style="margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid #333;"><img src="${northPoster}" alt="Pirate Station" style="width:100%;height:auto;display:block;" /></div><p>Мир древних северных мифов вновь откроет врата. Тени арктических духов, холод неоновых огней — часть единого цифрового обряда.</p></div>` },
+  {
+  id: "e21",
+  title: "PIRATE STATION",
+  type: "ДЕПЫ",
+  date: "31 октября",
+  image: northPoster,  // ← изображение вынесено в отдельное поле
+  location: "VK Stadium · Москва",
+  description: "Мир древних северных мифов вновь откроет врата. Тени арктических духов, холод неоновых огней — часть единого цифрового обряда.",
+},
   { id: "e22", title: "BLACK! FACTORY", type: "ДЕПЫ", date: "...", location: "Station B · Киев", description: "Экспериментальные технологии, фантомные концепты и прототипирование будущих систем nazrOS." },
   { id: "e23", title: "CXEMA", type: "ДЕПЫ", date: "...", location: "Otel' · Киев", description: "Серверные системы, сборка устройств, аппаратные платформы, ЦОДы и инженерная инфраструктура nazrOS." },
   { id: "e24", title: "LOSHADKA", type: "ДЕПЫ", date: "...", location: "... · Санкт-Петербург", description: "Архитектура мышления среды, протоколы взаимодействия и системная философия nazrOS." },
