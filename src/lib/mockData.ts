@@ -1,4 +1,4 @@
-// КАРТЫ УСТРОЙСТВ и СОФТА
+Эл// КАРТЫ УСТРОЙСТВ и СОФТА
 import rostn     from "@/assets/rostn.jpg";
 import rostnfull from "@/assets/rostnfull.png";
 import biohn     from "@/assets/biohn.png";
@@ -740,7 +740,7 @@ export const articles: Article[] = [
 <p>Для начала работы тебе понадобится:</p>
 <ul>
 <li>Скачать UNIGINE SDK с официального сайта: <a href="https://unigine.com/ru/download" style="color:#22d3ee;">https://unigine.com/ru/download</a></li>
-<li>Выбрать версию: <strong>UNIGINE 2.19</strong> (стабильная, LTS)</li>
+<li>Выбрать версию: <strong>UNIGINE 2.22</strong> (стабильная, LTS)</li>
 <li>Скачать установщик для Windows и запустить его</li>
 <li>Создать новый проект через Диспетчер проектов UNIGINE:
   <ul>
