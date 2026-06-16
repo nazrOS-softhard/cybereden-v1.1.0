@@ -794,28 +794,83 @@ export const events: Event[] = [
     type: "ТУРНИРЫ",
     date: "02.06.2026 - 21.06.2026",
     location: "Кельн, Германия",
-    description: `Первый мейджор по Counter Strike 2 в 2026 году. 32 коллектива разыгрывают призовой фонд $1,25 млн.
-
-Этап 1 (16 команд — швейцарская система):
-8 сильнейших проходят на Этап 2, 8 выбывают.
-
-Этап 2 (16 команд — швейцарская система):
-8 сильнейших проходят на Этап 3, 8 выбывают.
-
-Этап 3 (16 команд — швейцарская система):
-8 сильнейших проходят в Плей-офф, 8 выбывают.
-
-Плей-офф (single-elimination):
-• четвертьфиналы и полуфиналы — best-of-3
-• гранд-финал — best-of-5`,
+    description: `Первый мейджор по Counter Strike 2 в 2026 году. 32 коллектива разыгрывают призовой фонд $1,25 млн.`,
     streamUrl: "https://www.twitch.tv/cs2_paragon_ru"
   },
-  { id: "e13", title: "КиберХак 2027", type: "ХАКАТОНЫ", date: "20.08.2027", image: cyberhack, location: "Эрарта · Санкт-Петербург", description: "Главный хакатон киберсистемы nazrOS. 48 часов непрерывного кодинга, менторство и призовой фонд." },
-  { id: "e14", title: "назрОС РазрабКонф 2027", type: "ХАКАТОНЫ", date: "08.09.2027", location: "ЦДП · Москва", description: "Конференция разработчиков киберсистемы nazrOS. Доклады, открытые мастерские, нетворкинг." },
-  { id: "e15", title: "ПИКСЕЛИ", type: "ХАКАТОНЫ", date: "02.06.2027", location: "Иннополис · Казань", description: "12-часовой геймджем для инди-разработчиков. Тема объявляется в момент старта." },
-  { id: "e16", title: "TWS: Плесетск", type: "ХАКАТОНЫ", date: "06.04.2027 – 12.04.2027", location: "Плесетск · Архангельская область", description: "The Week Space — цифровое космическое событие в рамках Российской недели космоса." },
-  { id: "e17", title: "АРКТИЧЕСКИЙ ПРОТОКОЛ", type: "ХАКАТОНЫ", date: "17.09.2027", location: "Кластер Северного Дизайна · Мурманск", description: "Креативная резиденция для дизайнеров, медиахудожников и цифровых креаторов." },
-  { id: "e18", title: "СИНТЕЗ: ЦИФРОВОЙ СЕЗОН", type: "ХАКАТОНЫ", date: "24.09.2027", location: "IT-парк Цифровая Арктика · Архангельск", description: "Биотехнологическое инженерное мероприятие для Крайнего Севера." },
+  {
+    id: "e13",
+    title: "КиберХак 2027",
+    type: "ХАКАТОНЫ",
+    date: "20.08.2027",
+    location: "Эрарта · Санкт-Петербург",
+    description: `<div style="font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+      <div style="margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid #333;">
+        <img src="${cyberhack}" alt="КиберХак 2027" style="width:100%;height:auto;display:block;" />
+      </div>
+      <p>Главный хакатон киберсистемы nazrOS. 48 часов непрерывного кодинга, менторство и призовой фонд.</p>
+    </div>`,
+  },
+  {
+    id: "e14",
+    title: "назрОС РазрабКонф 2027",
+    type: "ХАКАТОНЫ",
+    date: "08.09.2027",
+    location: "ЦДП · Москва",
+    description: `<div style="font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+      <div style="margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid #333;">
+        <img src="${razrabconf}" alt="назрОС РазрабКонф 2027" style="width:100%;height:auto;display:block;" />
+      </div>
+      <p>Конференция разработчиков киберсистемы nazrOS. Доклады, открытые мастерские, нетворкинг.</p>
+    </div>`,
+  },
+  {
+    id: "e15",
+    title: "ПИКСЕЛИ",
+    type: "ХАКАТОНЫ",
+    date: "02.06.2027",
+    location: "Иннополис · Казань",
+    description: `<div style="font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+      <div style="margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid #333;">
+        <img src="${pikseli}" alt="ПИКСЕЛИ" style="width:100%;height:auto;display:block;" />
+      </div>
+      <p>12-часовой геймджем для инди-разработчиков. Тема объявляется в момент старта.</p>
+    </div>`,
+  },
+  {
+    id: "e16",
+    title: "TWS: Плесетск",
+    type: "ХАКАТОНЫ",
+    date: "06.04.2027 – 12.04.2027",
+    location: "Плесетск · Архангельская область",
+    description: "The Week Space — цифровое космическое событие в рамках Российской недели космоса.",
+  },
+  {
+    id: "e17",
+    title: "АРКТИЧЕСКИЙ ПРОТОКОЛ",
+    type: "ХАКАТОНЫ",
+    date: "17.09.2027",
+    location: "Кластер Северного Дизайна · Мурманск",
+    description: `<div style="font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+      <div style="margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid #333;">
+        <img src="${arcticprotocol}" alt="АРКТИЧЕСКИЙ ПРОТОКОЛ" style="width:100%;height:auto;display:block;" />
+      </div>
+      <p>Креативная резиденция для дизайнеров, медиахудожников и цифровых креаторов.</p>
+    </div>`,
+  },
+  {
+    id: "e18",
+    title: "СИНТЕЗ: ЦИФРОВОЙ СЕЗОН",
+    type: "ХАКАТОНЫ",
+    date: "24.09.2027",
+    location: "IT-парк Цифровая Арктика · Архангельск",
+    description: `<div style="font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+      <div style="margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid #333;">
+        <img src="${sintez}" alt="СИНТЕЗ: ЦИФРОВОЙ СЕЗОН" style="width:100%;height:auto;display:block;" />
+      </div>
+      <p>Биотехнологическое инженерное мероприятие для Крайнего Севера.</p>
+    </div>`,
+  },
+  
   { id: "e19", title: "PORTAL", type: "ДЕПЫ", date: "2026", location: "· Москва", description: "Визуальное ядро nazrOS. Интерфейсы, HUD-системы, motion-дизайн и цифровая типографика." },
   { id: "e20", title: "SIGNAL", type: "ДЕПЫ", date: "5 — 7 июня 2026", location: "· Москва", description: "Трансляции, цифровой журнал, медиа-среда и голос экосистемы nazrOS." },
   { id: "e21", title: "PIRATE STATION", type: "ДЕПЫ", date: "31 октября", location: "VK Stadium · Москва", description: `<div style="font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;"><div style="margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid #333;"><img src="${northPoster}" alt="Pirate Station" style="width:100%;height:auto;display:block;" /></div><p>Мир древних северных мифов вновь откроет врата. Тени арктических духов, холод неоновых огней — часть единого цифрового обряда.</p></div>` },
