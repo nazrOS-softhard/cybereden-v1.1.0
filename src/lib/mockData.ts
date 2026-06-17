@@ -824,7 +824,7 @@ export const articles: Article[] = [
   topic: "Хакинг",
   excerpt: "Камеры, роутеры, системы умного дома — почему они становятся точкой входа.",
   readTime: 25,
-  image: technroomN,
+  image: iot.png,
   body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
 <h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">IoT-хакинг: как взламываются умные устройства</h2>
 <p>Интернет вещей (IoT) — самая быстрорастущая поверхность атаки. От видеокамер до холодильников — каждое устройство может стать точкой входа в сеть.</p>
