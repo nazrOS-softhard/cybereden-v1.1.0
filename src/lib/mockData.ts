@@ -37,6 +37,9 @@ import sporN from "@/assets/sporN.png";
 import technroomN from "@/assets/technroomN.png";
 import rusdarknet from "@/assets/rusdarknet.png";
 import iotjur from "@/assets/iotjur.png";
+import socialf from "@/assets/socialF.png";
+
+
 
 // ─── Плейсхолдер для карточек без изображения ────────────────────────────────
 const PLACEHOLDER_STRANNO =
@@ -890,7 +893,7 @@ export const articles: Article[] = [
   topic: "Хакинг",
   excerpt: "Почему публичные эксплойты работают лучше любой социальной инженерии, и как защититься от них.",
   readTime: 20,
-  image: technroomN,
+  image: socialf,
   body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
 <h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Публичные эксплойты: оружие массового поражения в руках каждого</h2>
 <p>Социальная инженерия работает на доверии. Публичные эксплойты работают на <strong>невежестве</strong>.</p>
