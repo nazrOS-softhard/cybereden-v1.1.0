@@ -1074,6 +1074,51 @@ export const articles: Article[] = [
 </div>`,
 },
 
+{
+  id: "a18",
+  title: "The International 2026: Шанхай принимает главный турнир года по Dota 2",
+  topic: "Киберспорт",
+  excerpt: "16 команд, швейцарская система и $1,6 млн призовых — анонс TI, который пройдёт в Китае.",
+  readTime: 9,
+  image: technroomN,
+  body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">The International 2026: Шанхай принимает главный турнир года по Dota 2</h2>
+<p><strong style="color:#a855f7;">The International 2026</strong> официально возвращается. Главный турнир по Dota 2 пройдёт с <strong>13 по 23 августа 2026 года</strong> в <strong>Шанхае, Китай</strong>, на арене <strong>Shanghai Oriental Sports Center</strong>.</p>
+
+<p>Семь команд уже получили прямые приглашения. Остальные места будут разыграны в региональных квалификациях. Основная часть плей-офф состоится с 20 по 23 августа. Призовой фонд турнира стартует с <strong>$1,6 млн</strong>.</p>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Шанхай — это не просто город. Это цифровой центр Азии.»</blockquote>
+
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">Формат турнира</h3>
+<p><strong>Групповой этап:</strong></p>
+<ul>
+<li>16 команд играют по швейцарской системе.</li>
+<li>Все матчи проходят в формате <strong>best-of-3</strong>.</li>
+<li>Три лучшие команды проходят сразу в плей-офф.</li>
+<li>Десять команд попадают в стыковые матчи.</li>
+<li>Остальные покидают турнир.</li>
+</ul>
+
+<p><strong>Стыковые матчи:</strong></p>
+<ul>
+<li>Десять команд из группового этапа.</li>
+<li>Пять лучших проходят в плей-офф.</li>
+</ul>
+
+<p><strong>Плей-офф:</strong></p>
+<ul>
+<li>8 команд.</li>
+<li>Сетка <strong>double-elimination</strong>.</li>
+<li>Все матчи, кроме гранд-финала — <strong>best-of-3</strong>.</li>
+<li>Гранд-финал — <strong>best-of-5</strong>.</li>
+</ul>
+
+<p>Победитель получит заветный <strong>Aegis of Champions</strong> и титул сильнейшей команды мира.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">Когда смотреть?</h3>
+<p>Турнир начнётся <strong>13 августа 2026 года</strong>. Следите за обновлениями в разделе событий КиберэдэН.</p>
+</div>`,
+},
 
 ];
 
