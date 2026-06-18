@@ -947,9 +947,9 @@ export const articles: Article[] = [
 
 {
   id: "a16",
-  title: "Claude Code — агент, который сам пишет код и коммитит",
+  title:"Ии — агент, который сам пишет код и коммитит",
   topic: "Цифровая этика",
-  excerpt: "Разбираемся, как AI-агент от Anthropic видит проект целиком, редактирует файлы и запускает команды. Полный гайд по установке, командам и настройке.",
+  excerpt: "Разбираемся, как цифровая сущность видит проект целиком, редактирует файлы и запускает команды.",
   readTime: 20,
   image: technroomN,
   body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
