@@ -38,6 +38,7 @@ import technroomN from "@/assets/technroomN.png";
 import rusdarknet from "@/assets/rusdarknet.png";
 import iotjur from "@/assets/iotjur.png";
 import socialf from "@/assets/socialF.png";
+import claudecode from "@/aseets/claudecode.png";
 
 
 
@@ -951,7 +952,7 @@ export const articles: Article[] = [
   topic: "Цифровая этика",
   excerpt: "Разбираемся, как цифровая сущность видит проект целиком, редактирует файлы и запускает команды.",
   readTime: 20,
-  image: technroomN,
+  image: claudecode,
   body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
 <h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Claude Code — полный гайд: установка, команды и реальные сценарии</h2>
 <p><strong style="color:#a855f7;">Claude Code</strong> — это AI-агент от компании Anthropic, который живёт в терминале или в редакторе кода и имеет прямой доступ к файлам проекта, системе контроля версий Git и командной строке.</p>
