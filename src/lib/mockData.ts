@@ -38,7 +38,7 @@ import technroomN from "@/assets/technroomN.png";
 import rusdarknet from "@/assets/rusdarknet.png";
 import iotjur from "@/assets/iotjur.png";
 import socialf from "@/assets/socialF.png";
-import claudecode from "@/aseets/claudecode.png";
+import claudecode from "@/assets/claudecode.png";
 
 
 
