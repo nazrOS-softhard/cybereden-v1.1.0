@@ -945,6 +945,83 @@ export const articles: Article[] = [
 </div>`,
 },
 
+{
+  id: "a16",
+  title: "Claude Code — агент, который сам пишет код и коммитит",
+  topic: "Цифровая этика",
+  excerpt: "Разбираемся, как AI-агент от Anthropic видит проект целиком, редактирует файлы и запускает команды. Полный гайд по установке, командам и настройке.",
+  readTime: 20,
+  image: technroomN,
+  body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Claude Code — полный гайд: установка, команды и реальные сценарии</h2>
+<p><strong style="color:#a855f7;">Claude Code</strong> — это AI-агент от компании Anthropic, который живёт в терминале или в редакторе кода и имеет прямой доступ к файлам проекта, системе контроля версий Git и командной строке.</p>
+<p>Обычный Claude в браузере просто отвечает текстом. Claude Code сам действует: открывает файлы, меняет их, запускает программы и проверяет, что получилось.</p>
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Это чат-бот, которому дали руки. Обычный Claude умеет рассуждать и отвечать текстом, но ничего не может сделать у вас на компьютере. Claude Code может.»</blockquote>
+
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">Чем Claude Code отличается от других инструментов</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+<div style="border:1px solid #333;padding:12px;border-radius:4px;"><strong style="color:#a855f7;">Claude в браузере</strong><br>Работает во вкладке браузера. «Видит» только ваше сообщение. Отвечает текстом.</div>
+<div style="border:1px solid #333;padding:12px;border-radius:4px;"><strong style="color:#22d3ee;">GitHub Copilot</strong><br>Работает внутри редактора. «Видит» открытый файл и соседние. Дополняет код построчно.</div>
+<div style="border:1px solid #333;padding:12px;border-radius:4px;"><strong style="color:#a855f7;">Claude Code</strong><br>Работает в терминале или редакторе. «Видит» весь проект целиком. Читает, пишет, запускает, коммитит.</div>
+</div>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">Установка на macOS, Linux и Windows</h3>
+<p><strong>Перед установкой:</strong> требуется платная подписка Claude Pro (от $20/мес) или доступ к API. На бесплатном плане Claude Code недоступен.</p>
+
+<h4 style="color:#22d3ee;">macOS и Linux</h4>
+<p>Откройте терминал и вставьте:</p>
+<pre style="background:#111122;padding:12px;border-radius:6px;color:#94a3b8;">curl -fsSL https://claude.ai/install.sh | bash</pre>
+<p>Если пользуетесь Homebrew:</p>
+<pre style="background:#111122;padding:12px;border-radius:6px;color:#94a3b8;">brew install --cask claude-code</pre>
+
+<h4 style="color:#22d3ee;">Windows</h4>
+<p>Откройте PowerShell и вставьте:</p>
+<pre style="background:#111122;padding:12px;border-radius:6px;color:#94a3b8;">irm https://claude.ai/install.ps1 | iex</pre>
+
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">Основные команды Claude Code</h3>
+<h4 style="color:#22d3ee;">Управление сессией</h4>
+<ul>
+<li><code>/help</code> — показать все доступные команды</li>
+<li><code>/clear</code> — очистить историю разговора</li>
+<li><code>/compact</code> — сжать контекст и сэкономить токены</li>
+<li><code>/exit</code> — выйти из Claude Code</li>
+</ul>
+
+<h4 style="color:#22d3ee;">Контекст и токены</h4>
+<ul>
+<li><code>/context</code> — показать, чем занят контекст</li>
+<li><code>/cost</code> — статистика расхода токенов за сессию</li>
+<li><code>/add-dir</code> — добавить ещё одну рабочую папку</li>
+</ul>
+
+<h4 style="color:#22d3ee;">Git и код-ревью</h4>
+<ul>
+<li><code>/review</code> — запросить ревью кода</li>
+<li><code>/security-review</code> — проверить изменения на безопасность</li>
+<li><code>/pr-comments</code> — посмотреть комментарии к пул-реквесту</li>
+</ul>
+
+<h4 style="color:#22d3ee;">Настройки</h4>
+<ul>
+<li><code>/model</code> — выбрать или сменить модель</li>
+<li><code>/memory</code> — отредактировать CLAUDE.md</li>
+<li><code>/mcp</code> — управлять MCP-серверами</li>
+<li><code>/resume</code> — вернуться к предыдущей сессии</li>
+</ul>
+
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">Настройка CLAUDE.md и MCP</h3>
+<p><strong>CLAUDE.md</strong> — это файл в корне проекта, который агент читает при каждом запуске. В нём вы описываете стек, правила кодирования, команды запуска. Создаётся командой <code>/init</code>.</p>
+<p><strong>MCP (Model Context Protocol)</strong> — стандарт для подключения внешних инструментов: базы данных, API, Slack. Управляется командой <code>/mcp</code>.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">Как работать грамотно и экономно</h3>
+<ul>
+<li><strong>Планируйте.</strong> Не бросайтесь сразу с запросом «напиши мне фичу». Сначала опишите задачу и добавьте «Давай сначала обсудим идею». Нажмите <code>Shift+Tab</code> — это включит Plan Mode, где агент распишет план действий.</li>
+<li><strong>Экономьте токены.</strong> Начинайте новую сессию под каждую задачу. Если сессия затянулась — сожмите её командой <code>/compact</code>.</li>
+<li><strong>Безопасность.</strong> Используйте изолированные окружения и ветки только для чтения. Генерированный код нужно проверять так же внимательно, как написанный человеком.</li>
+</ul>
+</div>`,
+},
+
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
