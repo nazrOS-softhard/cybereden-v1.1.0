@@ -948,9 +948,9 @@ export const articles: Article[] = [
 
 {
   id: "a16",
-  title:"Ии — агент, который сам пишет код и коммитит",
+  title:"ИИ — агент, который сам пишет код и коммитит",
   topic: "Цифровая этика",
-  excerpt: "Разбираемся, как цифровая сущность видит проект целиком, редактирует файлы и запускает команды.",
+  excerpt: "Разбираемся как цифровая сущность видит проект целиком, редактирует файлы и запускает команды.",
   readTime: 20,
   image: claudecode,
   body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
