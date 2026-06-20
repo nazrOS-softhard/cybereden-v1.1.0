@@ -1483,7 +1483,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
 id: "a32",
 title: "Фаза 0: создание фундамента",
-topic: Цифровая этика",
+topic: "Цифровая этика",
 excerpt: "Любая сложная система начинается с проектирования базовых принципов и спецификаций.",
 readTime: 4,
 image: technroomN,
@@ -1513,6 +1513,25 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 <li>Интерпретатор ранних версий</li>
 <li>Интеграция с LLVM</li>
 </ul><p>Именно на этих фазах Союз впервые становится рабочим инструментом для написания программ.</p>
+</div>`,
+},
+
+{
+id: "a34",
+title: "Фазы 4–5: создание nazrOS Core",
+topic: "Дорожная карта",
+excerpt: "После появления языка начинается формирование системного ядра будущей платформы.",
+readTime: 5,
+image: technroomN,
+body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;">Фазы 4–5: создание nazrOS Core</h2><p>После формирования языка Союз начинается работа над системным уровнем платформы.</p><p>На этом этапе появляется nazrOS Core — центральный компонент экосистемы, отвечающий за взаимодействие программ, сервисов и оборудования.</p><h3 style="color:#a855f7;">Основные задачи</h3>
+<ul>
+<li>Создание системных сервисов</li>
+<li>Формирование архитектуры ядра</li>
+<li>Интеграция языка Союз</li>
+<li>Подготовка платформенных API</li>
+</ul><p>Именно здесь проект переходит от языка программирования к полноценной операционной платформе.</p>
 </div>`,
 },
 
