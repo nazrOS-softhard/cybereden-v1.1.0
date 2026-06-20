@@ -1324,7 +1324,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
 id: "a23",
 title: "НИМБ как процессорно-инструкционный уровень",
-topic: Цифровая этика",
+topic: "Цифровая этика",
 excerpt: "Процессор исполняет инструкции, а НИМБ определяет их организацию и место в общей системе.",
 readTime: 4,
 image: technroomN,
