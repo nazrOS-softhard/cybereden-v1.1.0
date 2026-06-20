@@ -1669,7 +1669,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 },
 
 {
-  id: "a38",
+  id: "a44",
   title: "клоН против Flipper Zero: почему устройство nazrOS выбрало путь игры",
   topic: "Хакинг",
   excerpt: "Сравниваем философию Flipper Zero и клоН — устройства nazrOS, где изучение техники превращается в развитие цифрового существа.",
