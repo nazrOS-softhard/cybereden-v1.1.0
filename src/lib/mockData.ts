@@ -1284,7 +1284,7 @@ export const articles: Article[] = [
 {
 id: "a21",
 title: "Что такое НИМБ и зачем он нужен",
-topic: "Архитектура",
+topic: Цифровая этика",
 excerpt: "НИМБ определяет процессорно-инструкционный уровень экосистемы nazrOS и связывает аппаратную и программную части проекта.",
 readTime: 4,
 image: technroomN,
@@ -1303,7 +1303,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
 id: "a22",
 title: "Главная вертикаль архитектуры nazrOS",
-topic: "Архитектура",
+topic: "Цифровая этика",
 excerpt: "Вольты, железо, НИМБ, двоичный код, Союз и софт образуют единую технологическую цепочку.",
 readTime: 5,
 image: technroomN,
@@ -1324,7 +1324,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
 id: "a23",
 title: "НИМБ как процессорно-инструкционный уровень",
-topic: "Архитектура",
+topic: Цифровая этика",
 excerpt: "Процессор исполняет инструкции, а НИМБ определяет их организацию и место в общей системе.",
 readTime: 4,
 image: technroomN,
