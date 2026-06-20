@@ -1342,7 +1342,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
 id: "a24",
 title: "Почему nazrOS начинается не с интерфейса",
-topic: "Архитектура",
+topic: "Цифровая этика",
 excerpt: "Большинство систем строятся сверху вниз, nazrOS развивается в противоположном направлении.",
 readTime: 4,
 image: technroomN,
@@ -1360,7 +1360,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
 id: "a25",
 title: "Словарь терминов nazrOS",
-topic: "Документация",
+topic: "Цифровая этика",
 excerpt: "Единый понятийный аппарат позволяет избежать разночтений при развитии проекта.",
 readTime: 3,
 image: technroomN,
@@ -1378,7 +1378,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
 id: "a26",
 title: "Язык Союз: философия проектирования",
-topic: "Союз",
+topic: "Цифровая этика",
 excerpt: "Союз создаётся как язык описания намерений, действий и контекста.",
 readTime: 5,
 image: technroomN,
@@ -1394,9 +1394,9 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 },
 
 {
-id: "a26",
+id: "a27",
 title: "Конструкция ЧТО → ГДЕ → КОГДА",
-topic: "Союз",
+topic: "Цифровая этика",
 excerpt: "Базовая модель Союза строится вокруг действия, контекста и времени выполнения.",
 readTime: 4,
 image: technroomN,
@@ -1407,6 +1407,112 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 <li>ГДЕ это должно произойти</li>
 <li>КОГДА действие должно быть выполнено</li>
 </ul><p>Такой подход позволяет описывать процессы ближе к человеческому мышлению и уменьшает количество промежуточных абстракций.</p><p>В будущем эта конструкция станет одной из узнаваемых особенностей языка.</p>
+</div>`,
+},
+
+{
+id: "a28",
+title: "Почему Союз не похож на Python и C++",
+topic: "Цифровая этика",
+excerpt: "Союз не пытается заменить существующие языки, а предлагает иной взгляд на описание вычислений.",
+readTime: 5,
+image: technroomN,
+body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;">Почему Союз не похож на Python и C++</h2><p>Python и C++ решают широкий спектр задач и имеют десятилетия развития за спиной.</p><p>Союз создаётся с другой целью — стать частью единой архитектурной экосистемы nazrOS.</p><h3 style="color:#a855f7;">Ключевые отличия</h3><ul>
+<li>Ориентация на намерения</li>
+<li>Интеграция с архитектурой НИМБ</li>
+<li>Единая терминология платформы</li>
+<li>Подготовка к долгосрочному развитию nazrOS Core</li>
+</ul><p>Поэтому Союз следует рассматривать не как альтернативу существующим языкам, а как специализированный инструмент для собственной вычислительной среды.</p>
+</div>`,
+},
+
+{
+id: "a29",
+title: "Союз как язык управления действиями",
+topic: "Цифровая этика",
+excerpt: "Главная задача Союза — описывать действия, а не набор низкоуровневых инструкций.",
+readTime: 4,
+image: technroomN,
+body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;">Союз как язык управления действиями</h2><p>Большинство языков программирования требуют описывать последовательность операций, через которые необходимо пройти компьютеру.</p><p>Союз делает акцент на конечном действии и намерении пользователя.</p><h3 style="color:#a855f7;">Основная идея</h3><ul>
+<li>Описание результата вместо технических шагов</li>
+<li>Понятная структура команд</li>
+<li>Связь с контекстом выполнения</li>
+<li>Подготовка к взаимодействию с ИИ-системами</li>
+</ul><p>Подобный подход делает программы ближе к человеческому способу постановки задач.</p>
+</div>`,
+},
+{
+id: "a30",
+title: "Будущее компилятора Союз",
+topic: "Цифровая этика",
+excerpt: "Компилятор станет мостом между языком Союз, nazrOS Core и вычислительными платформами будущего.",
+readTime: 5,
+image: technroomN,
+body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;">Будущее компилятора Союз</h2><p>Компилятор является одним из ключевых элементов всей архитектуры nazrOS.</p><p>Именно он преобразует высокоуровневые конструкции Союза в инструкции, пригодные для исполнения вычислительной системой.</p><h3 style="color:#a855f7;">Основные этапы развития</h3><ul>
+<li>Интерпретатор для ранних версий языка</li>
+<li>Собственный фронтенд</li>
+<li>Интеграция с LLVM</li>
+<li>Подготовка к собственному ISA</li>
+</ul><p>В долгосрочной перспективе компилятор станет частью независимой технологической цепочки nazrOS.</p>
+</div>`,
+},
+{
+id: "a31",
+title: "Дорожная карта nazrOS: общий обзор",
+topic: "Цифровая этика",
+excerpt: "Развитие nazrOS разбито на последовательные этапы от языка программирования до собственной вычислительной платформы.",
+readTime: 5,
+image: technroomN,
+body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;">Дорожная карта nazrOS: общий обзор</h2><p>Проект развивается поэтапно. Каждый следующий уровень опирается на результаты предыдущего.</p><h3 style="color:#a855f7;">Ключевые направления</h3><ul>
+<li>Создание языка Союз</li>
+<li>Разработка nazrOS Core</li>
+<li>Интеграция с оборудованием</li>
+<li>Формирование экосистемы</li>
+<li>Исследование собственного ISA</li>
+</ul><p>Такая стратегия позволяет постепенно двигаться от концепции к полноценной вычислительной платформе.</p>
+</div>`,
+},
+{
+id: "a32",
+title: "Фаза 0: создание фундамента",
+topic: Цифровая этика",
+excerpt: "Любая сложная система начинается с проектирования базовых принципов и спецификаций.",
+readTime: 4,
+image: technroomN,
+body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;">Фаза 0: создание фундамента</h2><p>На нулевом этапе определяется архитектура будущей платформы.</p><h3 style="color:#a855f7;">Основные задачи</h3><ul>
+<li>Формирование спецификации Союза</li>
+<li>Определение архитектурных принципов</li>
+<li>Выбор инструментов разработки</li>
+<li>Подготовка документации</li>
+</ul><p>Эта фаза практически не видна пользователям, но именно она определяет устойчивость всей дальнейшей разработки.</p>
+</div>`,
+},
+
+{
+id: "a33",
+title: "Фазы 1–3: рождение языка Союз",
+topic: "Цифровая этика",
+excerpt: "Первые практические этапы посвящены появлению рабочего языка программирования.",
+readTime: 5,
+image: technroomN,
+body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;">Фазы 1–3: рождение языка Союз</h2><p>После завершения фундаментальных работ начинается создание первых рабочих компонентов языка.</p><h3 style="color:#a855f7;">Что входит в этап</h3><ul>
+<li>Разработка синтаксиса</li>
+<li>Создание фронтенда</li>
+<li>Интерпретатор ранних версий</li>
+<li>Интеграция с LLVM</li>
+</ul><p>Именно на этих фазах Союз впервые становится рабочим инструментом для написания программ.</p>
 </div>`,
 },
 
