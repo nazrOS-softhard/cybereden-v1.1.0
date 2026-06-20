@@ -1300,7 +1300,26 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 </div>`,
 },
 
+{
+id: "a22",
+title: "Главная вертикаль архитектуры nazrOS",
+topic: "Архитектура",
+excerpt: "Вольты, железо, НИМБ, двоичный код, Союз и софт образуют единую технологическую цепочку.",
+readTime: 5,
+image: technroomN,
+body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
 
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;">Главная вертикаль архитектуры nazrOS</h2><p>Архитектура nazrOS описывается последовательностью уровней:</p><ul>
+<li>Вольты</li>
+<li>Железо</li>
+<li>НИМБ</li>
+<li>Двоичный код</li>
+<li>Союз</li>
+<li>Софт</li>
+<li>Исход / Действие</li>
+</ul><p>Каждый уровень зависит от предыдущего и предоставляет возможности следующему.</p><h3 style="color:#a855f7;">Почему это важно</h3><p>Подобная модель позволяет проектировать платформу как единую систему, а не как набор разрозненных компонентов.</p><p>В дальнейшем эта вертикаль станет основой всей документации nazrOS.</p>
+</div>`,
+},
 
 ];
 
