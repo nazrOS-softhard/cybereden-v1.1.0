@@ -1958,7 +1958,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
 <h2 style="font-size:28px;color:#f97316;border-left:4px solid #f97316;padding-left:16px;margin-top:0;">страННо как игровой движок: манифест разработчика</h2>
-<p>Если вы когда-нибудь делали игру, вы знаете этот путь: модель в Blender, текстуры в Substance Painter, анимация в Maya, звук в Pro Tools, сборка в Unreal. Каждый шаг — это экспорт, импорт, конвертация, потеря данных.</p>
+<p>Если вы когда-нибудь делали игру, вы знаете этот путь: модель в Blender, текстуры в Substance Painter, анимация в Maya, звук в Ableton, сборка в Unreal. Каждый шаг — это экспорт, импорт, конвертация, потеря данных.</p>
 <p>Мы решили этот путь <strong style="color:#fb923c;">сократить до нуля</strong>.</p>
 <blockquote style="border-left:4px solid #f97316;padding-left:16px;margin:20px 0;font-style:italic;color:#a1a1aa;">«страННо — это не просто редактор. Это игровая экосистема, в которой все этапы разработки происходят в одном пространстве.»</blockquote>
 <h3 style="font-size:22px;color:#fb923c;margin-top:32px;">От идеи до игрового процесса — без экспорта</h3>
@@ -1969,8 +1969,8 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 <p>страННо даёт разработчику <strong>единое пространство</strong>, в котором всё связано. Квесты пишутся в «Поле», частицы рождаются в «Глюке», уровни генерируются в «Колодце».</p>
 <blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#a1a1aa;">«В страННо нет экспорта. Есть только продолжение.»</blockquote>
 <h3 style="font-size:22px;color:#fb923c;margin-top:32px;">Что мы расскажем дальше</h3>
-<p>В этой серии статей мы разберём каждый модуль страННо через призму <strong>геймдева</strong>: как лепить персонажей в «Руках», как настраивать AI в «Поле», как делать взрывы в «Глюке» и как генерировать бесконечные миры в «Колодце».</p>
-<p>страННо — это не следующий Blender. Это <strong>новый способ думать о разработке игр</strong>.</p>
+<p>В этой серии обзоров мы разберём каждый модуль страННо через призму <strong>геймдева</strong>: как лепить персонажей в «Руках», как настраивать AI в «Поле», как делать взрывы в «Глюке» и как генерировать бесконечные миры в «Колодце».</p>
+<p>страННо — это не просто игровой движок. Это <strong>новый способ думать о разработке игр и создании киновселенных</strong>.</p>
 </div>`
 }, 
 
