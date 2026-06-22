@@ -39,7 +39,7 @@ function SalaryPage() {
                 <tr className="border-b border-border">
                   <th className="text-left py-2 font-mono text-xs text-muted-foreground">Устройство</th>
                   <th className="text-left py-2 font-mono text-xs text-muted-foreground">Внутренняя стоимость</th>
-                  <th className="text-left py-2 font-mono text-xs text-muted-foreground">Единица оклада</th>
+                  <th className="text-left py-2 font-mono text-xs text-muted-foreground">Единица клада</th>
                 </tr>
               </thead>
               <tbody>
@@ -94,14 +94,14 @@ function SalaryPage() {
               <ul className="list-disc pl-4 space-y-1 text-muted-foreground text-xs">
                 <li>Отсутствует устаревшая система транзакций</li>
                 <li>Замкнутый цикл производства</li>
-                <li>Стимулирует мотивацию</li>
+                <li>Геймификация</li>
               </ul>
             </div>
           </div>
         </div>
 
         <div className="hud-corners p-6 border border-border bg-surface/30 backdrop-blur-sm">
-          <h3 className="font-display text-lg neon-text-violet mb-3">Таблица вакансий</h3>
+          <h3 className="font-display text-lg neon-text-violet mb-3">Таблица вакантов</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -309,12 +309,12 @@ function SalaryPage() {
         </div>
 
         <div className="hud-corners p-6 border border-border bg-surface/30 backdrop-blur-sm">
-          <h3 className="font-display text-lg neon-text-violet mb-3">Формулировка для вакансий</h3>
+          <h3 className="font-display text-lg neon-text-violet mb-3">Формулировка для вакантов</h3>
           <div className="p-4 border border-neon-cyan/20 rounded text-sm text-muted-foreground">
             <p className="italic">
-              «Вознаграждение выплачивается натуральными устройствами nazrOS (cloN, blaN, biohN, rostN, piN, visioN). 
+              «Вознаграждение выплачивается оригинальными устройствами nazrOS (cloN, blaN, biohN, rostN, piN, visioN). 
               Все программные продукты страННо, кефирННо и ядро nazrOS доступны без подписок и платных дополнений. 
-              Разработчик получает устройства на руки и становится их собственником.»
+              Кибер получает устройства на руки и становится их собственником.»
             </p>
           </div>
         </div>
