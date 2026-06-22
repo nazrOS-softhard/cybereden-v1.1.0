@@ -329,7 +329,7 @@ function JournalPage() {
   const active = articles.find(a => a.id === openId) ?? null;
 
   const filtered = useMemo(
-    () => (topic === "Все" ? articles : articles.filter(a => a.topic === topic)),
+    () => (topic === "Все" ? articles : articles.filter(a => a.topic === topic)).slice().reverse(),
     [topic],
   );
 
@@ -377,3 +377,4 @@ function JournalPage() {
     </PageShell>
   );
 }
+
