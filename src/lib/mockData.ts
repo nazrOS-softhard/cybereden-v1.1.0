@@ -1972,7 +1972,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 <p>В этой серии статей мы разберём каждый модуль страННо через призму <strong>геймдева</strong>: как лепить персонажей в «Руках», как настраивать AI в «Поле», как делать взрывы в «Глюке» и как генерировать бесконечные миры в «Колодце».</p>
 <p>страННо — это не следующий Blender. Это <strong>новый способ думать о разработке игр</strong>.</p>
 </div>`
-}
+}, 
 
 {
   "id": "a47",
@@ -2024,7 +2024,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 
 <p>В следующей статье мы разберём модуль <strong style="color:#fb923c;">«Руки»</strong> как основной инструмент создания игровых ассетов.</p>
 </div>`
-}
+}, 
 
 {
   "id": "a48",
@@ -2082,7 +2082,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 
 <p>В следующих статьях мы покажем, как модель из «Рук» превращается в анимированного персонажа через <strong style="color:#fb923c;">«Мульт»</strong>, а затем — в полноценного NPC через <strong style="color:#fb923c;">«Поле»</strong>.</p>
 </div>`
-}
+}, 
 
 {
   "id": "a49",
@@ -2137,7 +2137,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 
 <p>В следующей статье мы разберём, как «Мульт» и «Поле» работают вместе, чтобы оживить NPC.</p>
 </div>`
-}
+}, 
 
 {
   "id": "a50",
@@ -2194,7 +2194,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 
 <p>В следующей статье мы перейдём к физике. Модуль <strong style="color:#fb923c;">«Яблочко»</strong> — то, что делает мир осязаемым.</p>
 </div>`
-}
+}, 
 
 {
   "id": "a51",
