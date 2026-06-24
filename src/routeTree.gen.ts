@@ -10,16 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StreamsRouteImport } from './routes/streams'
+import { Route as SalaryRouteImport } from './routes/salary'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as MarketRouteImport } from './routes/market'
+import { Route as LabRouteImport } from './routes/lab'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AuthCallbackRouteImport } from './routes/auth-callback'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProfileUserIdRouteImport } from './routes/profile.$userId'
+import { Route as JobsSlugRouteImport } from './routes/jobs.$slug'
 
 const StreamsRoute = StreamsRouteImport.update({
   id: '/streams',
   path: '/streams',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SalaryRoute = SalaryRouteImport.update({
+  id: '/salary',
+  path: '/salary',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -27,9 +38,19 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MarketRoute = MarketRouteImport.update({
   id: '/market',
   path: '/market',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LabRoute = LabRouteImport.update({
+  id: '/lab',
+  path: '/lab',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JournalRoute = JournalRouteImport.update({
@@ -47,78 +68,134 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthCallbackRoute = AuthCallbackRouteImport.update({
+  id: '/auth-callback',
+  path: '/auth-callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileUserIdRoute = ProfileUserIdRouteImport.update({
+  id: '/$userId',
+  path: '/$userId',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const JobsSlugRoute = JobsSlugRouteImport.update({
+  id: '/jobs/$slug',
+  path: '/jobs/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth-callback': typeof AuthCallbackRoute
   '/dashboard': typeof DashboardRoute
   '/events': typeof EventsRoute
   '/journal': typeof JournalRoute
+  '/lab': typeof LabRoute
   '/market': typeof MarketRoute
-  '/profile': typeof ProfileRoute
+  '/privacy': typeof PrivacyRoute
+  '/profile': typeof ProfileRouteWithChildren
+  '/salary': typeof SalaryRoute
   '/streams': typeof StreamsRoute
+  '/jobs/$slug': typeof JobsSlugRoute
+  '/profile/$userId': typeof ProfileUserIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth-callback': typeof AuthCallbackRoute
   '/dashboard': typeof DashboardRoute
   '/events': typeof EventsRoute
   '/journal': typeof JournalRoute
+  '/lab': typeof LabRoute
   '/market': typeof MarketRoute
-  '/profile': typeof ProfileRoute
+  '/privacy': typeof PrivacyRoute
+  '/profile': typeof ProfileRouteWithChildren
+  '/salary': typeof SalaryRoute
   '/streams': typeof StreamsRoute
+  '/jobs/$slug': typeof JobsSlugRoute
+  '/profile/$userId': typeof ProfileUserIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth-callback': typeof AuthCallbackRoute
   '/dashboard': typeof DashboardRoute
   '/events': typeof EventsRoute
   '/journal': typeof JournalRoute
+  '/lab': typeof LabRoute
   '/market': typeof MarketRoute
-  '/profile': typeof ProfileRoute
+  '/privacy': typeof PrivacyRoute
+  '/profile': typeof ProfileRouteWithChildren
+  '/salary': typeof SalaryRoute
   '/streams': typeof StreamsRoute
+  '/jobs/$slug': typeof JobsSlugRoute
+  '/profile/$userId': typeof ProfileUserIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth-callback'
     | '/dashboard'
     | '/events'
     | '/journal'
+    | '/lab'
     | '/market'
+    | '/privacy'
     | '/profile'
+    | '/salary'
     | '/streams'
+    | '/jobs/$slug'
+    | '/profile/$userId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth-callback'
     | '/dashboard'
     | '/events'
     | '/journal'
+    | '/lab'
     | '/market'
+    | '/privacy'
     | '/profile'
+    | '/salary'
     | '/streams'
+    | '/jobs/$slug'
+    | '/profile/$userId'
   id:
     | '__root__'
     | '/'
+    | '/auth-callback'
     | '/dashboard'
     | '/events'
     | '/journal'
+    | '/lab'
     | '/market'
+    | '/privacy'
     | '/profile'
+    | '/salary'
     | '/streams'
+    | '/jobs/$slug'
+    | '/profile/$userId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthCallbackRoute: typeof AuthCallbackRoute
   DashboardRoute: typeof DashboardRoute
   EventsRoute: typeof EventsRoute
   JournalRoute: typeof JournalRoute
+  LabRoute: typeof LabRoute
   MarketRoute: typeof MarketRoute
-  ProfileRoute: typeof ProfileRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ProfileRoute: typeof ProfileRouteWithChildren
+  SalaryRoute: typeof SalaryRoute
   StreamsRoute: typeof StreamsRoute
+  JobsSlugRoute: typeof JobsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -130,6 +207,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StreamsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/salary': {
+      id: '/salary'
+      path: '/salary'
+      fullPath: '/salary'
+      preLoaderRoute: typeof SalaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
@@ -137,11 +221,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/market': {
       id: '/market'
       path: '/market'
       fullPath: '/market'
       preLoaderRoute: typeof MarketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lab': {
+      id: '/lab'
+      path: '/lab'
+      fullPath: '/lab'
+      preLoaderRoute: typeof LabRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/journal': {
@@ -165,6 +263,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth-callback': {
+      id: '/auth-callback'
+      path: '/auth-callback'
+      fullPath: '/auth-callback'
+      preLoaderRoute: typeof AuthCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -172,17 +277,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile/$userId': {
+      id: '/profile/$userId'
+      path: '/$userId'
+      fullPath: '/profile/$userId'
+      preLoaderRoute: typeof ProfileUserIdRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/jobs/$slug': {
+      id: '/jobs/$slug'
+      path: '/jobs/$slug'
+      fullPath: '/jobs/$slug'
+      preLoaderRoute: typeof JobsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface ProfileRouteChildren {
+  ProfileUserIdRoute: typeof ProfileUserIdRoute
+}
+
+const ProfileRouteChildren: ProfileRouteChildren = {
+  ProfileUserIdRoute: ProfileUserIdRoute,
+}
+
+const ProfileRouteWithChildren =
+  ProfileRoute._addFileChildren(ProfileRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthCallbackRoute: AuthCallbackRoute,
   DashboardRoute: DashboardRoute,
   EventsRoute: EventsRoute,
   JournalRoute: JournalRoute,
+  LabRoute: LabRoute,
   MarketRoute: MarketRoute,
-  ProfileRoute: ProfileRoute,
+  PrivacyRoute: PrivacyRoute,
+  ProfileRoute: ProfileRouteWithChildren,
+  SalaryRoute: SalaryRoute,
   StreamsRoute: StreamsRoute,
+  JobsSlugRoute: JobsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
