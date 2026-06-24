@@ -13,6 +13,9 @@ import { InventoryModal }     from "@/components/InventoryModal";
 import { useAuth, startOAuth, apiPost, apiPatch, apiGet } from "@/lib/auth";
 
 export const Route = createFileRoute("/profile")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    uid: typeof search.uid === "string" ? search.uid : undefined,
+  }),
   head: () => ({ meta: [{ title: "Кибла кибера · nazrOS" }] }),
   component: ProfilePage,
 });
@@ -140,11 +143,132 @@ function LinkAccountBanner({ user }: { user: any }) {
   );
 }
 
+// ── Публичный профиль (только просмотр) ──────────────────────────────────────
+function PublicProfileView({ profileUser }: { profileUser: any }) {
+  const joined = new Date(profileUser.created_at).toLocaleDateString("ru-RU", {
+    day: "2-digit", month: "2-digit", year: "numeric",
+  });
+  const rank = (() => {
+    const l = profileUser.level || 0;
+    if (l >= 50) return "ГЛАВНЫЙ РАЗРАБОТЧИК";
+    if (l >= 30) return "АРХИТЕКТОР ЯДРА";
+    if (l >= 10) return "ОПЕРАТОР";
+    return "НАБЛЮДАТЕЛЬ";
+  })();
+
+  return (
+    <motion.main initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+      className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 pt-24 pb-24">
+      <Link to="/dashboard"
+        className="inline-flex items-center gap-2 font-mono text-xs text-muted-foreground hover:neon-text-cyan transition mb-6">
+        ← Дашборд
+      </Link>
+      <div className="grid md:grid-cols-[300px_1fr] gap-8">
+        {/* Левая колонка */}
+        <div className="space-y-4">
+          <div className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur text-center">
+            <div className="relative inline-block mb-4">
+              <div className="w-24 h-24 border-2 border-neon-violet rounded-full overflow-hidden bg-background mx-auto"
+                style={{ boxShadow: "0 0 20px rgba(168,85,247,0.4)" }}>
+                {profileUser.avatar_url
+                  ? <img src={profileUser.avatar_url} alt="" className="w-full h-full object-cover" />
+                  : <div className="w-full h-full flex items-center justify-center font-display text-3xl neon-text-violet">
+                      {(profileUser.display_name || "?")[0].toUpperCase()}
+                    </div>
+                }
+              </div>
+              {profileUser.is_online && (
+                <div className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full bg-neon-acid border-2 border-background" />
+              )}
+            </div>
+            <div className="font-display text-xl neon-text-violet mb-1">@{profileUser.display_name}</div>
+            <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-2">{rank}</div>
+            {profileUser.is_online
+              ? <span className="font-mono text-[10px] neon-text-acid">● Онлайн</span>
+              : <span className="font-mono text-[10px] text-muted-foreground">○ Оффлайн</span>
+            }
+          </div>
+          <div className="hud-corners p-4 border border-border bg-surface/40 backdrop-blur space-y-2">
+            {[
+              { label: "ПХ",      value: (profileUser.xp || 0).toLocaleString("ru-RU") },
+              { label: "Уровень", value: profileUser.level || 0 },
+              { label: "Rank",    value: rank },
+              { label: "Joined",  value: joined },
+            ].map(row => (
+              <div key={row.label} className="flex justify-between items-center border-b border-border/30 pb-2 last:border-0 last:pb-0">
+                <span className="font-mono text-xs text-muted-foreground">{row.label}</span>
+                <span className="font-mono text-xs neon-text-cyan">{String(row.value)}</span>
+              </div>
+            ))}
+          </div>
+          <div className="hud-corners border border-border bg-surface/40 backdrop-blur overflow-hidden">
+            {[
+              { name: "GitHub",  handle: profileUser.github_username ? `@${profileUser.github_username}` : "—", href: profileUser.github_username ? `https://github.com/${profileUser.github_username}` : null },
+              { name: "Twitch",  handle: profileUser.twitch_username ? `@${profileUser.twitch_username}` : "—", href: profileUser.twitch_username ? `https://twitch.tv/${profileUser.twitch_username}` : null },
+            ].map(acc => (
+              <div key={acc.name} className="flex items-center justify-between px-4 py-3 border-b border-border/40 last:border-0">
+                <span className="font-mono text-xs text-muted-foreground">{acc.name}</span>
+                {acc.href
+                  ? <a href={acc.href} target="_blank" rel="noreferrer" className="font-mono text-xs neon-text-acid hover:underline">{acc.handle}</a>
+                  : <span className="font-mono text-xs text-muted-foreground/40">{acc.handle}</span>
+                }
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Правая колонка */}
+        <div className="space-y-4">
+          <div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.4em] neon-text-cyan mb-2">// КИБЛА КИБЕРА</div>
+            <h1 className="font-display text-4xl neon-text-violet">@{profileUser.display_name}</h1>
+          </div>
+          {profileUser.is_investor && (
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-yellow-500/40 bg-yellow-500/10 font-mono text-xs neon-text-acid">
+              ◆ КВАЛИФИЦИРОВАННЫЙ ИНВЕСТОР nazrOS
+            </div>
+          )}
+        </div>
+      </div>
+    </motion.main>
+  );
+}
+
 // ── Основная страница ─────────────────────────────────────────────────────────
 function ProfilePage() {
   const { t }    = useI18n();
   const navigate = useNavigate();
   const { user, loading, logout, refreshUser } = useAuth();
+  const { uid }  = Route.useSearch();
+
+  // Если uid передан и это не мой профиль — грузим чужой
+  const [publicUser,    setPublicUser]    = useState<any>(null);
+  const [publicLoading, setPublicLoading] = useState(false);
+
+  useEffect(() => {
+    if (!uid || uid === user?.id) { setPublicUser(null); return; }
+    setPublicLoading(true);
+    fetch(`${API}/api/users/${uid}`)
+      .then(r => r.ok ? r.json() : null)
+      .then(d => setPublicUser(d?.user ?? null))
+      .catch(() => setPublicUser(null))
+      .finally(() => setPublicLoading(false));
+  }, [uid, user?.id]);
+
+  // Показываем публичный профиль если uid чужой
+  if (uid && uid !== user?.id) {
+    if (publicLoading) return (
+      <div className="relative z-10 flex min-h-screen items-center justify-center">
+        <div className="font-mono text-xs uppercase tracking-[0.4em] neon-text-cyan animate-pulse">Загрузка кибера...</div>
+      </div>
+    );
+    if (!publicUser) return (
+      <div className="relative z-10 flex min-h-screen items-center justify-center flex-col gap-4">
+        <div className="font-display text-2xl neon-text-violet">Кибер не найден</div>
+        <Link to="/dashboard" className="font-mono text-xs neon-text-cyan hover:underline">← Дашборд</Link>
+      </div>
+    );
+    return <PublicProfileView profileUser={publicUser} />;
+  }
 
   const [displayName,    setDisplayName]    = useState("");
   const [avatarPreview,  setAvatarPreview]  = useState<string | null>(null);

@@ -165,7 +165,7 @@ function DashboardPage() {
               const rank = rankFromLevel(c.level);
               const isMe = me?.id === c.id;
               return (
-                <Link key={c.id} to="/profile/$userId" params={{ userId: c.id }}
+                <Link key={c.id} to="/profile" search={{ uid: c.id }}
                   className={`grid grid-cols-[40px_44px_1fr_140px_100px_90px] items-center px-5 py-3 text-sm transition-colors cursor-pointer group hover:bg-primary/5 ${
                     isMe ? "bg-primary/5 border-l-2 border-neon-cyan" : ""
                   }`}>
