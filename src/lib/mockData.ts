@@ -280,15 +280,7 @@ export const items: Item[] = [
 // СТАТЬИ ЖУРНАЛА
 // ══════════════════════════════════════════════════════════════════════════════
 
-export type Article = {
-  id: string;
-  title: string;
-  topic: "Кибербезопасность" | "Геймдев" | "Киберспорт" | "Хакинг" | "Цифровая этика";
-  excerpt: string;
-  body: string;
-  readTime: number;
-  image?: string;
-};
+export type { Article } from "@/lib/articles"; // тип живёт в articles.ts
 
 // Публикации журнала — в отдельном файле для удобства редактирования
 export { articles } from "@/lib/articles";
