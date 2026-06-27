@@ -5,17 +5,17 @@
 // Доступные топики:
 // "Кибербезопасность" | "Геймдев" | "Киберспорт" | "Хакинг" | "Цифровая этика"
 
-// Тип вынесен сюда чтобы избежать кругового импорта с mockData.ts
-export type Article = {
-  id: string;
-  title: string;
-  topic: "Кибербезопасность" | "Геймдев" | "Киберспорт" | "Хакинг" | "Цифровая этика";
-  excerpt: string;
-  body: string;
-  readTime: number;
-  image?: string;
-};
-
+import type { Article } from "@/lib/mockData";
+import claudecode from "@/assets/claudecode.png";
+import clonfull from "@/assets/clonfull.png";
+import enginedayN from "@/assets/enginedayN.png";
+import freshN from "@/assets/freshN.png";
+import iotjur from "@/assets/iotjur.png";
+import modeN from "@/assets/modeN.png";
+import rusdarknet from "@/assets/rusdarknet.png";
+import socialf from "@/assets/socialF.png";
+import sporN from "@/assets/sporN.png";
+import technroomN from "@/assets/technroomN.png";
 
 export const articles: Article[] = [
   {
