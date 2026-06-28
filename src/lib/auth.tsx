@@ -7,7 +7,8 @@ export const TOKEN_KEY = 'auth_token';
 const API   = (import.meta.env.VITE_API_URL          || 'https://cybereden-v1-1-0.vercel.app').replace(/\/$/, '');
 const GH_ID =  import.meta.env.VITE_GITHUB_CLIENT_ID || '';
 const TW_ID =  import.meta.env.VITE_TWITCH_CLIENT_ID || '';
-const TIMEOUT_MS = 12_000;
+const TIMEOUT_MS        = 12_000;
+const TIMEOUT_UPLOAD_MS = 60_000;  // 60 сек для загрузки файлов
 
 // ── Fetch с таймаутом ─────────────────────────────────────────────────────────
 async function timedFetch(input: RequestInfo, init?: RequestInit): Promise<Response> {
@@ -75,6 +76,26 @@ export async function apiPost(path: string, body?: FormData | Record<string, unk
     headers: authHeaders(isForm ? {} : { 'Content-Type': 'application/json' }),
     body: isForm ? body : JSON.stringify(body),
   });
+}
+
+// Отдельная функция для загрузки файлов — таймаут 60 сек
+export async function apiUpload(path: string, form: FormData) {
+  const ctrl  = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), TIMEOUT_UPLOAD_MS);
+  try {
+    const res = await fetch(`${API}${path}`, {
+      method:  'POST',
+      headers: authHeaders(),   // без Content-Type — браузер сам ставит boundary для FormData
+      body:    form,
+      signal:  ctrl.signal,
+    });
+    clearTimeout(timer);
+    return res;
+  } catch (err: any) {
+    clearTimeout(timer);
+    if (err.name === 'AbortError') throw new Error('Превышено время загрузки. Проверь соединение.');
+    throw err;
+  }
 }
 
 /** PATCH — обновление профиля, настроек и т.д. */
