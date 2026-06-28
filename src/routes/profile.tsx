@@ -10,7 +10,7 @@ import { DatacenterModal }    from "@/components/DatacenterModal";
 import { KnowledgeModal }     from "@/components/KnowledgeModal";
 import { AchievementsModal }  from "@/components/AchievementsModal";
 import { InventoryModal }     from "@/components/InventoryModal";
-import { useAuth, startOAuth, apiPost, apiPatch, apiGet } from "@/lib/auth";
+import { useAuth, startOAuth, apiPost, apiPatch, apiGet, apiUpload } from "@/lib/auth";
 
 export const Route = createFileRoute("/profile")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -310,7 +310,7 @@ function ProfilePage() {
     if (file.size > 4.5 * 1024 * 1024) { alert("Файл > 4.5 МБ"); return; }
     const form = new FormData(); form.append("avatar", file);
     try {
-      const res = await apiPost("/api/upload/avatar", form);
+      const res = await apiUpload("/api/upload/avatar", form);
       const d   = await res.json();
       if (res.ok) { setAvatarPreview(d.avatarUrl); refreshUser(); }
       else alert(`Ошибка: ${d.error}`);
@@ -322,7 +322,7 @@ function ProfilePage() {
     if (!file) return;
     const form = new FormData(); form.append("file", file);
     try {
-      const res = await apiPost("/api/upload/asset", form);
+      const res = await apiUpload("/api/upload/asset", form);
       const d   = await res.json();
       if (res.ok) { setAssets(prev => [d.asset, ...prev]); }
       else alert(`Ошибка: ${d.error}`);
