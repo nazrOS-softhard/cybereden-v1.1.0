@@ -2335,7 +2335,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "c1",
   "title": "КефирННо: единый чат, который сам раскладывает мысли",
-  "topic": "КефирННо",
+  "topic": "Цифровая этика",
   "excerpt": "Почему мы перестали создавать отдельные чаты и сделали одного ИИ-агента, который сам распределяет всё по проектам.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2389,7 +2389,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "c2",
   "title": "Аджна: как ИИ-агент понимает, о чём ты говоришь",
-  "topic": "КефирННо",
+  "topic": "Цифровая этика",
   "excerpt": "Знакомство с Аджной — ИИ-агентом, который живёт внутри КефирННо и понимает твой язык лучше, чем ты сам.",
   "readTime": 7,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2433,7 +2433,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
  {
   "id": "c3",
   "title": "Поток: куда попадает всё, что ты сказал",
-  "topic": "КефирННо",
+  "topic": "Цифровая этика",
   "excerpt": "Визуальная лента, где ты видишь, как твои мысли, диалоги и файлы складываются в единую картину.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2488,7 +2488,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
  {
   "id": "c4",
   "title": "Проекты: как диалоги превращаются в структуру",
-  "topic": "КефирННо",
+  "topic": "Цифровая этика",
   "excerpt": "Из хаоса переписок рождаются проекты — автоматически, без твоего участия.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2539,7 +2539,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "c5",
   "title": "Память: граф знаний и связи между людьми",
-  "topic": "КефирННо",
+  "topic": "Цифровая этика",
   "excerpt": "Как Аджна связывает твой разговор про DeepSeek с конкретным человеком и строит сеть твоих отношений.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2597,7 +2597,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "c6",
   "title": "Артефакты: генерации и результаты работы",
-  "topic": "КефирННо",
+  "topic": "Цифровая этика",
   "excerpt": "Код, письма, тексты, документы — всё, что ты создал с помощью Аджны, хранится не в чате, а в разделе «Артефакты».",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2641,7 +2641,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
  {
   "id": "c7",
   "title": "Карта мыслей: визуализация твоего мышления",
-  "topic": "КефирННо",
+  "topic": "Цифровая этика",
   "excerpt": "Интерактивная карта, где ты видишь, как связаны твои проекты, люди и артефакты.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2697,7 +2697,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "c8",
   "title": "Семантический поиск: почему искать по смыслу лучше, чем по словам",
-  "topic": "КефирННо",
+  "topic": "Цифровая этика",
   "excerpt": "Как КефирННо находит то, что ты забыл — даже если ты не помнишь точных слов.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2738,7 +2738,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "c9",
   "title": "Как это работает: технический разбор КефирННо",
-  "topic": "КефирННо",
+  "topic": "Цифровая этика",
   "excerpt": "От мессенджеров до графа знаний: как устроен пайплайн обработки данных и RAG.",
   "readTime": 7,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2784,7 +2784,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "c10",
   "title": "Итог: почему КефирННо — это не просто чат",
-  "topic": "КефирННо",
+  "topic": "Цифровая этика",
   "excerpt": "КефирННо — это не очередной ИИ-чат. Это новый способ структурировать свои мысли и проекты без лишних усилий.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2837,7 +2837,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
   {
   "id": "d1",
   "title": "КиберэдэН: не игра, а симуляция взрослой жизни",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Почему мы перестали называть «КиберэдэН» игрой и начали называть её тренажёром взрослой жизни — и что это меняет.",
   "readTime": 7,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2886,7 +2886,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
  {
   "id": "d2",
   "title": "Персонаж Кибер: от создания до первых шагов",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Как в «КиберэдэН: Эра Синтеза» рождается твой цифровой аватар — от выбора имени до первого входа в систему.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2929,7 +2929,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "d3",
   "title": "Потребности и настроение: как работает симуляция жизни",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Сон, еда, гигиена, туалет и настроение — как в «КиберэдэН: Эра Синтеза» устроена симуляция базовых потребностей и почему это влияет на всё.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -2971,7 +2971,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "d4",
   "title": "Квесты из реальной жизни: от SIM-карты до загранпаспорта",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Почему в «КиберэдэН: Эра Синтеза» квесты — это не убийство драконов, а получение SIM-карты и регистрация на Госуслугах.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -3006,7 +3006,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "d5",
   "title": "Цифровое производство: 3D-модель и сборка устройства",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Как в «КиберэдэН: Эра Синтеза» ты создаёшь 3D-модель в Blender, заказываешь плату и собираешь рабочее устройство.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -3049,7 +3049,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "d6",
   "title": "Новелла «Тайланд — зов цифрового рая»",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Первое заграничное путешествие в «КиберэдэН: Эра Синтеза» — виза по прибытии, коворкинг и встреча с местным цифровым сообществом.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -3080,7 +3080,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "d7",
   "title": "Даркнет и Бангкокская подземка",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Встреча с Нунни, взлом камер, освобождение Ванн — центральная сюжетная арка «КиберэдэН: Эра Синтеза».",
   "readTime": 7,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -3116,7 +3116,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "d8",
   "title": "Побег через Турцию: информатор и новый путь",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Освободив Ванн, герои отправляются в Турцию на встречу с информатором, чтобы раскрыть, кто стоит за похищением.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -3153,7 +3153,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "d9",
   "title": "Возвращение в Арктику",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Герои возвращаются в Арктическую Республику, где их ждёт цифровой ритуал и завершение первой главы.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -3188,7 +3188,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "d10",
   "title": "Цифровой ритуал: создание алтаря",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Финальный обряд первой главы «КиберэдэН: Эра Синтеза» — создание персонального цифрового алтаря.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -3231,7 +3231,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "d11",
   "title": "Экономика и GRAM: как зарабатывать и тратить",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "GRAM — внутренняя валюта «КиберэдэН: Эра Синтеза», которая связывает игру с экосистемой nazrOS.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -3281,7 +3281,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
   {
   "id": "d12",
   "title": "Статус района: как твои платежи влияют на мир",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "В «КиберэдэН: Эра Синтеза» твой Кибер не просто живёт в городе — он влияет на его развитие. Платишь за интернет и жильё? Район процветает. Пропускаешь платежи? Статус падает, а NPC становятся враждебнее.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -3340,7 +3340,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "d13",
   "title": "Сборка устройств и 3D-печать в игре",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Как в «КиберэдэН: Эра Синтеза» работает инженерная механика — от 3D-модели до готового устройства.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -3385,7 +3385,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
  {
   "id": "d14",
   "title": "Локации и города: Москва, Архангельск, Казань, Новосибирск",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Четыре стартовых города «КиберэдэН: Эра Синтеза» — как они устроены и что дают игроку.",
   "readTime": 6,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
@@ -3418,7 +3418,7 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 {
   "id": "d15",
   "title": "Итог: почему КиберэдэН меняет жанр симуляций",
-  "topic": "КиберэдэН",
+  "topic": "Геймдев",
   "excerpt": "Что мы построили за 14 публикаций и почему «КиберэдэН: Эра Синтеза» — это не просто игра, а новый жанр.",
   "readTime": 7,
   "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
