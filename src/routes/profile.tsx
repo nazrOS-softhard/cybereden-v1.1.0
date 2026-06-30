@@ -1,4 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { rankFromXp } from "@/lib/ranks";
 import { motion } from "framer-motion";
 import {
   Github, Twitch, Globe, Upload, LogOut,
@@ -148,13 +149,7 @@ function PublicProfileView({ profileUser }: { profileUser: any }) {
   const joined = new Date(profileUser.created_at).toLocaleDateString("ru-RU", {
     day: "2-digit", month: "2-digit", year: "numeric",
   });
-  const rank = (() => {
-    const l = profileUser.level || 0;
-    if (l >= 50) return "ГЛАВНЫЙ РАЗРАБОТЧИК";
-    if (l >= 30) return "АРХИТЕКТОР ЯДРА";
-    if (l >= 10) return "ОПЕРАТОР";
-    return "НАБЛЮДАТЕЛЬ";
-  })();
+  const rank = rankFromXp(profileUser.xp || 0);
 
   return (
     <motion.main initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
@@ -400,7 +395,7 @@ function ProfilePage() {
 
           <div className="mt-4 space-y-1.5 text-sm font-mono">
             <div className="flex justify-between"><span className="text-muted-foreground">ПХ</span><span className="neon-text-cyan">{user.xp.toLocaleString("ru-RU")}</span></div>
-            <div className="flex justify-between"><span className="text-muted-foreground">Rank</span><span className="neon-text-violet">Оператор</span></div>
+            <div className="flex justify-between"><span className="text-muted-foreground">Rank</span><span className="neon-text-violet">{rankFromXp(user?.xp || 0)}</span></div>
             <div className="flex justify-between"><span className="text-muted-foreground">Joined</span><span>{joinedDate}</span></div>
 
             {/* NX код инвестора */}

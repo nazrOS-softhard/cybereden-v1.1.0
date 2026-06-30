@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { rankFromXp } from "@/lib/ranks";
 import { Github, Twitch, Globe, ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useAuth } from "@/lib/auth";
@@ -22,13 +22,6 @@ function LevelBadge({ level }: { level: number }) {
         style={{ textShadow: "0 0 8px rgba(139,92,246,0.9)" }}>{level}</span>
     </div>
   );
-}
-
-function rankFromLevel(level: number): string {
-  if (level >= 50) return "ГЛАВНЫЙ РАЗРАБОТЧИК";
-  if (level >= 30) return "АРХИТЕКТОР ЯДРА";
-  if (level >= 10) return "ОПЕРАТОР";
-  return "НАБЛЮДАТЕЛЬ";
 }
 
 function PublicProfilePage() {
@@ -70,7 +63,7 @@ function PublicProfilePage() {
     </div>
   );
 
-  const rank      = rankFromLevel(profileUser.level || 0);
+  const rank      = rankFromXp(profileUser.xp || 0);
   const joined    = new Date(profileUser.created_at).toLocaleDateString("ru-RU", {
     day: "2-digit", month: "2-digit", year: "numeric",
   });

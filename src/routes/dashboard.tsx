@@ -16,14 +16,11 @@ export const Route = createFileRoute("/dashboard")({
 });
 
 const API = (import.meta.env.VITE_API_URL || "https://cybereden-v1-1-0.vercel.app").replace(/\/$/, "");
+import { rankFromXp } from "@/lib/ranks";
+
 const RANKS = ["ВСЕ", "НАБЛЮДАТЕЛЬ", "ОПЕРАТОР", "АРХИТЕКТОР ЯДРА", "ГЛАВНЫЙ РАЗРАБОТЧИК"] as const;
 
-function rankFromLevel(level: number): string {
-  if (level >= 50) return "ГЛАВНЫЙ РАЗРАБОТЧИК";
-  if (level >= 30) return "АРХИТЕКТОР ЯДРА";
-  if (level >= 10) return "ОПЕРАТОР";
-  return "НАБЛЮДАТЕЛЬ";
-}
+// rankFromXp imported from @/lib/ranks
 
 interface CyberRow {
   id: string;
@@ -81,7 +78,7 @@ function DashboardPage() {
   const filtered = (() => {
     const lc = search.toLowerCase();
     return users
-      .filter(u => filter === "ВСЕ" || rankFromLevel(u.level) === filter)
+      .filter(u => filter === "ВСЕ" || rankFromXp(u.xp) === filter)
       .filter(u => !lc ||
         u.display_name.toLowerCase().includes(lc) ||
         (u.github_username ?? "").toLowerCase().includes(lc) ||
@@ -162,7 +159,7 @@ function DashboardPage() {
         ) : (
           <div className="divide-y divide-border">
             {filtered.map((c, i) => {
-              const rank = rankFromLevel(c.level);
+              const rank = rankFromXp(c.xp);
               const isMe = me?.id === c.id;
               return (
                 <Link key={c.id} to="/profile" search={{ uid: c.id }}
