@@ -1,11 +1,20 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@supabase/supabase-js";
 
-// Supabase клиент (используй уже существующий из lib/supabase.ts если есть)
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY,
-);
+// Используем единый клиент из lib/supabase.ts, если он существует
+// Если нет — создаём локально
+const supabase = (() => {
+  try {
+    // Пытаемся импортировать из lib
+    return require("@/lib/supabase").supabase;
+  } catch {
+    // Если нет — создаём локально
+    return createClient(
+      import.meta.env.VITE_SUPABASE_URL,
+      import.meta.env.VITE_SUPABASE_ANON_KEY,
+    );
+  }
+})();
 
 // Бесплатные STUN серверы Google
 const ICE_SERVERS: RTCIceServer[] = [
