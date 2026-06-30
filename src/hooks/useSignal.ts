@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "@/lib/supabase";
 
 // Supabase клиент (используй уже существующий из lib/supabase.ts если есть)
 const supabase = createClient(
