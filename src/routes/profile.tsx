@@ -12,6 +12,7 @@ import { KnowledgeModal }     from "@/components/KnowledgeModal";
 import { AchievementsModal }  from "@/components/AchievementsModal";
 import { InventoryModal }     from "@/components/InventoryModal";
 import { useAuth, startOAuth, apiPost, apiPatch, apiGet, apiUpload } from "@/lib/auth";
+import { SignalChannel } from "@/components/SignalChannel";
 
 export const Route = createFileRoute("/profile")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -292,7 +293,7 @@ function ProfilePage() {
       apiGet("/api/knowledge/progress").then(r => r.ok ? r.json() : { items: [] }).then(d => setKnowledgeItems(d.items || [])),
       apiGet("/api/achievements").then(r => r.ok ? r.json() : { achievements: [] }).then(d => setAchieveCount((d.achievements || []).length)),
       apiGet("/api/inventory").then(r => r.ok ? r.json() : { items: [] }).then(d => setInventoryCount((d.items || []).length)),
-      // NX код если инвестор
+      // NX код если инвестпул
       (user as any).is_investor
         ? apiGet("/api/profile/nx-code").then(r => r.ok ? r.json() : {}).then(d => setNxCode(d.nx_code || null))
         : Promise.resolve(),
@@ -459,6 +460,13 @@ function ProfilePage() {
               </div>
             </section>
           </div>
+          
+          {/* ── СИГНАЛ — голосовой канал ────────────────────────── */}
+<SignalChannel
+  profileUserId={profileUser.id}          // id кибера чей профиль
+  profileUserName={profileUser.display_name}
+  isOwnProfile={me?.id === profileUser.id} // true если смотришь свой профиль
+/>
 
           {/* АКТИВЫ — инлайн список последних 3 файлов */}
           <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
