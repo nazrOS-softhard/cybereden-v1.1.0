@@ -460,13 +460,15 @@ function ProfilePage() {
               </div>
             </section>
           </div>
-          
-          {/* ── СИГНАЛ — голосовой канал ────────────────────────── */}
-<SignalChannel
-  profileUserId={profileUser.id}          // id кибера чей профиль
-  profileUserName={profileUser.display_name}
-  isOwnProfile={me?.id === profileUser.id} // true если смотришь свой профиль
-/>
+
+          {/* ── СИГНАЛ — голосовой канал (только для своего профиля) ── */}
+          {user && (
+            <SignalChannel
+              profileUserId={user.id}
+              profileUserName={user.display_name}
+              isOwnProfile={true}
+            />
+          )}
 
           {/* АКТИВЫ — инлайн список последних 3 файлов */}
           <section className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur">
