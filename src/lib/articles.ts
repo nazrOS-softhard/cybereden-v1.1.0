@@ -3462,7 +3462,645 @@ body: `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-hei
 
 <p>А зеркала не разбиваются. Они просто показывают глубже.</p>
 </div>`
+},
+
+  {
+  "id": "t1",
+  "title": "Настройки Windows для киберспорта: отключение синхронного импульса мыши и базовые оптимизации",
+  "topic": "Киберспорт",
+  "excerpt": "Первое, что делает профессиональный игрок перед турниром — не запускает игру, а открывает настройки Windows. Разбираем, что отключить и почему.",
+  "readTime": 6,
+  "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Настройки Windows для киберспорта: отключение синхронного импульса мыши и базовые оптимизации</h2>
+
+<p>Перед тем как зайти в CS2, Valorant или Dota 2, профессиональный игрок всегда выполняет ритуал: он не открывает игру, он открывает <strong>настройки Windows</strong>.</p>
+
+<p>В этой публикации мы разберём, какие настройки системы нужно изменить, чтобы мышь и клавиатура работали с минимальным откликом, без задержек и помех.</p>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Победа начинается не на сервере, а за 15 минут до запуска игры.»</blockquote>
+
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">1. Отключение синхронного импульса мыши (Mouse Synchronous Pulse)</h3>
+<p>Это одна из самых спорных и важных настроек. Синхронный импульс (или <strong>Sync Pulse</strong>) — это технология, которая синхронизирует частоту опроса мыши с частотой обновления экрана.</p>
+
+<p>Теоретически это должно уменьшать разрывы (tearing). На практике — <strong>увеличивает задержку ввода</strong> на 2–5 мс, что критично для быстрых игр.</p>
+
+<p><strong>Как отключить:</strong></p>
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Открой <strong>Настройки Windows</strong> → <strong>Система</strong> → <strong>Дисплей</strong>.</li>
+<li>Прокрути вниз до раздела <strong>Графика</strong>.</li>
+<li>Нажми на <strong>Дополнительные параметры графики</strong>.</li>
+<li>Найди настройку <strong>«Синхронный импульс мыши»</strong> (или <strong>Mouse Synchronous Pulse</strong>) и выключи её.</li>
+<li>Перезагрузи компьютер, чтобы изменения вступили в силу.</li>
+</ol>
+
+<blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Отключение синхронного импульса — первый шаг к чистой задержке.»</blockquote>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">2. Отключение фоновых служб и процессов</h3>
+<p>Windows по умолчанию запускает множество служб, которые не нужны для игр: Cortana, Xbox Game Bar, поисковые индексаторы, телеметрия.</p>
+
+<p><strong>Что отключить:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Xbox Game Bar:</strong> Настройки → Игры → Xbox Game Bar → Выключить.</li>
+<li><strong>Фоновые приложения:</strong> Настройки → Конфиденциальность → Фоновые приложения → Отключить для ненужных программ.</li>
+<li><strong>Поисковый индексатор:</strong> Службы (services.msc) → Windows Search → Отключить (временно).</li>
+</ul>
+
+<p>Эти действия освободят процессор и оперативную память для самой игры.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">3. Настройка режима питания</h3>
+<p>Игры требуют максимальной производительности. Режим питания должен быть выставлен на <strong>Максимальная производительность</strong>.</p>
+
+<p><strong>Как сделать:</strong></p>
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Настройки → Система → Питание и аккумулятор.</li>
+<li>В разделе <strong>Режим питания</strong> выбери <strong>Максимальная производительность</strong>.</li>
+<li>Если этого пункта нет — перейди в <strong>Дополнительные параметры питания</strong> (панель управления) и создай собственный план.</li>
+</ol>
+
+<p>Это гарантирует, что процессор и видеокарта будут работать на полной частоте без троттлинга.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">4. Отключение полосы пропускания (для снижения задержки)</h3>
+<p>Windows резервирует 20% пропускной способности сети для системных служб. В играх это может вызывать микро-лаги.</p>
+
+<p><strong>Как отключить:</strong></p>
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Нажми <code>Win + R</code>, введи <code>gpedit.msc</code>.</li>
+<li>Перейди: <strong>Конфигурация компьютера</strong> → <strong>Административные шаблоны</strong> → <strong>Сеть</strong> → <strong>Планировщик пакетов QoS</strong>.</li>
+<li>Открой <strong>«Ограничить резервируемую пропускную способность»</strong>.</li>
+<li>Выбери <strong>Включено</strong> и установи <strong>Ограничение пропускной способности: 0%</strong>.</li>
+<li>Нажми <strong>Применить</strong> и перезагрузи компьютер.</li>
+</ol>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Каждая миллисекунда задержки — это потерянный фраг. Каждый отключённый процесс — это стабильный FPS.»</blockquote>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">5. Отключение вертикальной синхронизации (в драйвере)</h3>
+<p>Вертикальная синхронизация (V-Sync) — враг реактивных игр. Она фиксирует FPS на частоте экрана и добавляет задержку.</p>
+
+<p><strong>В настройках NVIDIA:</strong></p>
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Открой <strong>Панель управления NVIDIA</strong>.</li>
+<li>Перейди в <strong>Управление параметрами 3D</strong>.</li>
+<li>Найди <strong>Вертикальная синхронизация</strong> → выбери <strong>Выключить</strong>.</li>
+</ol>
+
+<p><strong>В настройках AMD:</strong></p>
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Открой <strong>AMD Software: Adrenalin Edition</strong>.</li>
+<li>Перейди в <strong>Игры</strong> → <strong>Глобальные настройки</strong>.</li>
+<li>Найди <strong>Вертикальная синхронизация</strong> → выбери <strong>Выключить</strong>.</li>
+</ol>
+
+<p>Без V-Sync задержка ввода снижается на 5–10 мс.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">6. Финальный шаг: перезагрузка</h3>
+<p>После всех изменений — <strong>обязательно перезагрузи компьютер</strong>. Некоторые настройки вступают в силу только после перезагрузки.</p>
+
+<p>В следующей публикации мы разберём <strong style="color:#a855f7;">настройки мыши</strong>: DPI, частота опроса, синхронный импульс на уровне устройства.</p>
+</div>`
+},
+
+  {
+  "id": "t2",
+  "title": "Оптимизация мыши: DPI, частота опроса и почему синхронный импульс — не всегда зло",
+  "topic": "Киберспорт",
+  "excerpt": "Разбираем параметры мыши, которые влияют на точность и отклик — от DPI до частоты опроса. И да, синхронный импульс может быть полезен.",
+  "readTime": 6,
+  "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Оптимизация мыши: DPI, частота опроса и почему синхронный импульс — не всегда зло</h2>
+
+<p>Мышь — это продолжение руки. От её настроек зависит больше, чем от частоты обновления монитора или количества ядер процессора.</p>
+
+<p>В этой публикации мы разберём три ключевых параметра: <strong>DPI</strong>, <strong>частоту опроса (Polling Rate)</strong> и <strong>синхронный импульс (Sync Pulse)</strong>. А также развенчаем миф о том, что синхронный импульс нужно всегда отключать.</p>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Не важно, сколько у тебя DPI. Важно, как ты его чувствуешь.»</blockquote>
+
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">1. DPI (Точность перемещения)</h3>
+<p>DPI (Dots Per Inch) — количество пикселей, которые курсор проходит за один дюйм движения мыши. Чем выше DPI, тем быстрее двигается курсор.</p>
+
+<p><strong>Оптимальный DPI для киберспорта:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>CS2 / Valorant:</strong> 400–800 DPI (низкая чувствительность, больше контроля).</li>
+<li><strong>Dota 2 / League of Legends:</strong> 800–1600 DPI (баланс скорости и точности).</li>
+<li><strong>Apex Legends / Overwatch:</strong> 1600–3200 DPI (высокая подвижность).</li>
+</ul>
+
+<p>Важно не только число DPI, но и сочетание с чувствительностью в игре. Профессиональные игроки чаще используют <strong>низкий DPI (400–800)</strong> и регулируют точность через настройки внутри игры.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">2. Частота опроса (Polling Rate)</h3>
+<p>Частота опроса определяет, как часто мышь отправляет данные в компьютер. Измеряется в Гц.</p>
+
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>1000 Гц (1 мс):</strong> Стандарт для большинства игровых мышей. Оптимально для киберспорта.</li>
+<li><strong>2000–4000 Гц (0.5–0.25 мс):</strong> Для топовых мышей и мониторов с 240+ Гц.</li>
+<li><strong>8000 Гц (0.125 мс):</strong> Экстремально. Требует мощного процессора.</li>
+</ul>
+
+<p>Для большинства игр <strong>1000 Гц — золотой стандарт</strong>. Более высокая частота даёт минимальный прирост, но может нагружать CPU.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">3. Синхронный импульс: когда он полезен</h3>
+<p>В предыдущей публикации мы рекомендовали отключить синхронный импульс в Windows. Но на уровне мыши он может быть <strong>полезен</strong>.</p>
+
+<p><strong>Что такое синхронный импульс (Sync Pulse):</strong></p>
+<p>Это механизм, который синхронизирует отчёт мыши с вертикальной развёрткой монитора. В идеале это снижает разрывы кадров. Но если частота опроса мыши не кратна частоте монитора, возникает микро-дёрганье.</p>
+
+<p><strong>Когда оставить включённым:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Если у тебя монитор с частотой 144 Гц и мышь с 1000 Гц — синхронный импульс может <strong>улучшить плавность</strong>.</li>
+<li>Если ты играешь в игры, где важна плавность картинки (например, Dota 2), а не мгновенный отклик.</li>
+</ul>
+
+<p><strong>Когда отключить:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Если ты играешь в шутеры (CS2, Valorant).</li>
+<li>Если частота опроса мыши не совпадает с частотой монитора (например, 8000 Гц на 144 Гц).</li>
+</ul>
+
+<blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Синхронный импульс — это не всегда враг. Но в шутерах он чаще мешает, чем помогает.»</blockquote>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">4. Как настроить мышь через ПО производителя</h3>
+<p>Большинство современных мышей имеют собственное ПО для настройки:</p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Logitech G HUB</strong> — для мышей Logitech.</li>
+<li><strong>Razer Synapse</strong> — для мышей Razer.</li>
+<li><strong>SteelSeries GG</strong> — для мышей SteelSeries.</li>
+</ul>
+
+<p><strong>Основные настройки:</strong></p>
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>DPI:</strong> установи базовое значение (например, 800).</li>
+<li><strong>Частота опроса:</strong> выбери 1000 Гц (или 2000, если есть).</li>
+<li><strong>Синхронный импульс:</strong> отключи для шутеров, оставь для MOBA/стратегий.</li>
+<li><strong>Калибровка поверхности:</strong> если есть — проведи калибровку на своём коврике.</li>
+</ol>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Настроить мышь под себя — это как настроить инструмент под свою руку.»</blockquote>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">5. Лучший DPI для разных жанров</h3>
+<p><strong>CS2 / Valorant:</strong> 400–800 DPI (точность и контроль).</p>
+<p><strong>Dota 2 / League of Legends:</strong> 800–1600 DPI (баланс скорости и точности).</p>
+<p><strong>Apex Legends / Overwatch:</strong> 1600–3200 DPI (высокая подвижность).</p>
+<p><strong>Starcraft 2 / стратегии:</strong> 1600–3200 DPI (много движений по карте).</p>
+
+<p>Главное правило — <strong>не меняй DPI во время игры</strong>. Лучше подобрать один раз и привыкнуть.</p>
+
+<p>В следующей публикации мы перейдём к <strong style="color:#a855f7;">настройкам монитора</strong>: частота обновления, отклик и G-Sync/FreeSync.</p>
+</div>`
+},
+
+{
+  "id": "t3",
+  "title": "Настройки монитора: частота обновления, время отклика и что такое G-Sync/FreeSync",
+  "topic": "Киберспорт",
+  "excerpt": "Монитор — это окно в игру. Разбираем, как частота обновления, время отклика и синхронизация влияют на восприятие и результат.",
+  "readTime": 6,
+  "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Настройки монитора: частота обновления, время отклика и что такое G-Sync/FreeSync</h2>
+
+<p>Мышь и Windows мы настроили. Теперь пора разобраться с самым важным окном в игру — монитором.</p>
+
+<p>В этой публикации мы разберём, как частота обновления (Hz), время отклика (ms) и технологии синхронизации (G-Sync / FreeSync) влияют на твой результат в киберспортивных играх.</p>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Монитор — это не просто экран. Это твой интерфейс с игрой.»</blockquote>
+
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">1. Частота обновления (Hz)</h3>
+<p>Частота обновления — это количество кадров, которое монитор может показать за одну секунду. Измеряется в герцах (Hz).</p>
+
+<p><strong>Стандартные значения для киберспорта:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>60 Hz:</strong> Офисный стандарт. Не подходит для соревновательных игр.</li>
+<li><strong>144 Hz:</strong> Минимальный стандарт для киберспорта. Заметный прирост плавности.</li>
+<li><strong>240 Hz:</strong> Оптимальный выбор для CS2, Valorant, Apex Legends.</li>
+<li><strong>360+ Hz:</strong> Профессиональный сегмент. Требует мощного ПК.</li>
+</ul>
+
+<p>Для большинства игроков <strong>144–240 Hz — идеальный диапазон</strong>. Разница между 60 и 144 Hz ощущается сразу. Между 144 и 240 — уже менее заметна, но даёт преимущество на дистанции.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">2. Время отклика (GtG / MPRT)</h3>
+<p>Время отклика — это скорость, с которой пиксель меняет цвет. Измеряется в миллисекундах (ms).</p>
+
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>1–2 ms (GtG):</strong> Отличный показатель для IPS-матриц.</li>
+<li><strong>< 1 ms (MPRT):</strong> Для TN-панелей и топовых IPS/OLED.</li>
+<li><strong>> 5 ms:</strong> Не подходит для быстрых игр (остаётся шлейф).</li>
+</ul>
+
+<p>При выборе монитора важно смотреть не только на заявленное время отклика, но и на тип матрицы:</p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>TN:</strong> Самый быстрый, но плохие углы обзора и цвета.</li>
+<li><strong>IPS:</strong> Лучшие цвета и углы, но чуть медленнее (у современных уже < 2 мс).</li>
+<li><strong>VA:</strong> Компромисс, часто с хорошей контрастностью.</li>
+<li><strong>OLED:</strong> Практически мгновенный отклик (< 0.1 мс), идеален для игр, но дороже и есть риск выгорания.</li>
+</ul>
+
+<blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Время отклика важнее, чем количество мегапикселей.»</blockquote>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">3. G-Sync / FreeSync: включать или нет</h3>
+<p>Технологии G-Sync (NVIDIA) и FreeSync (AMD) синхронизируют частоту обновления монитора с количеством кадров, выдаваемых видеокартой. Это устраняет разрывы изображения (tearing) и делает картинку плавной.</p>
+
+<p><strong>Когда включать:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>В играх, где FPS плавает (например, в открытых мирах).</li>
+<li>Если ты играешь в Dota 2 или League of Legends — плавность важнее миллисекунд.</li>
+</ul>
+
+<p><strong>Когда отключать:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>В соревновательных шутерах (CS2, Valorant). G-Sync добавляет задержку до 3–5 мс.</li>
+<li>Если у тебя FPS стабильно держится выше частоты обновления (например, 400+ FPS на 240 Гц).</li>
+</ul>
+
+<p><strong>Формула для киберспорта:</strong>  
+<em>G-Sync/FreeSync отключены, V-Sync отключена, FPS — максимальный.</em></p>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«В шутерах синхронизация — враг. В стратегиях — друг.»</blockquote>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">4. Как настроить монитор</h3>
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Частота обновления:</strong> Настройки Windows → Дисплей → Дополнительные параметры → Частота обновления → выбери максимальную.</li>
+<li><strong>Время отклика (Overdrive):</strong> В меню монитора найди «Overdrive» или «Response Time» и выставь <strong>Normal</strong> или <strong>Fast</strong> (не Extreme — будет инверсный шлейф).</li>
+<li><strong>G-Sync / FreeSync:</strong> В настройках монитора и драйвера видеокарты — отключи для шутеров, включи для остальных.</li>
+<li><strong>Яркость и контраст:</strong> 80–90% яркости, 50–60% контраста — хороший старт.</li>
+</ol>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">5. Чего избегать</h3>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Мониторы с частотой 60 Hz</strong> — уже не актуальны для соревновательных игр.</li>
+<li><strong>Отклик > 5 мс</strong> — будет виден шлейф при быстрых движениях.</li>
+<li><strong>Включение G-Sync при 400+ FPS</strong> — только добавит задержку без пользы.</li>
+<li><strong>Использование «Game Mode» без настройки частоты</strong> — часто он только меняет цвета, но не частоту обновления.</li>
+</ul>
+
+<p>В следующей публикации мы разберём <strong style="color:#a855f7;">драйверы и ПО видеокарты</strong> — как настроить NVIDIA/AMD для стабильного FPS.</p>
+</div>`
+},
+
+  {
+  "id": "t4",
+  "title": "Драйверы и ПО видеокарты: не только «Установить и забыть»",
+  "topic": "Киберспорт",
+  "excerpt": "Настройка Nvidia/AMD для стабильного FPS и минимального инпута — разбираем, что реально даёт прирост, а что только пыль в глаза.",
+  "readTime": 6,
+  "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Драйверы и ПО видеокарты: не только «Установить и забыть»</h2>
+
+<p>Ты настроил Windows, подобрал DPI, выставил частоту монитора. Но есть один слой, который стоит между тобой и игрой — <strong>драйвер видеокарты</strong>.</p>
+
+<p>По умолчанию драйверы Nvidia и AMD настроены на «красивую картинку» и «энергосбережение». Для киберспорта это — медленная смерть.</p>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Не обновляй драйвер ради цифр в таблице. Обновляй его, чтобы убрать лишнюю миллисекунду.»</blockquote>
+
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">1. Выбор версии драйвера</h3>
+<p>Правило киберспортсмена: <strong>не гоняйся за новизной</strong>. Самые свежие драйверы часто выходят под новые ААА-игры и могут ломать оптимизацию в старых (CS2, Dota 2, Valorant).</p>
+
+<p><strong>Что делать:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Используй <strong>стабильные ветки драйверов</strong> (например, <strong>Game Ready</strong> для Nvidia или <strong>Adrenalin</strong> для AMD).</li>
+<li>Перед обновлением зайди на форумы (Reddit, Overclockers) и посмотри, не жалуются ли люди на падение FPS или микро-фризы.</li>
+<li><strong>Золотое правило:</strong> если текущий драйвер стабилен и FPS устраивает — <strong>не трогай его</strong> до выхода критичного патча.</li>
+</ul>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">2. Глобальные настройки NVIDIA (Панель управления)</h3>
+<p>Открой <strong>Панель управления NVIDIA</strong> → <strong>Управление параметрами 3D</strong>.</p>
+<p><strong>Что выключить (для минимальной задержки):</strong></p>
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Вертикальная синхронизация (V-Sync):</strong> Выключить (добавляет задержку).</li>
+<li><strong>Тройная буферизация:</strong> Выключить (используется вместе с V-Sync).</li>
+<li><strong>Сглаживание (FXAA / MSAA):</strong> Выключить или перевести в «Управляется приложением» (нагружает GPU без пользы для отклика).</li>
+<li><strong>Фоновое ускорение (Background Application Max Frame Rate):</strong> Выключить.</li>
+<li><strong>Сглаживание в режиме низкой задержки (Low Latency Mode):</strong> Выбрать <strong>«Ультра»</strong> (Ultra) для максимального снижения задержки ввода (рекомендуется при FPS > 100).</li>
+</ol>
+
+<blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Включение «Ultra Low Latency» даёт ощущение отклика мыши, как в старых добрых играх на CRT-мониторах.»</blockquote>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">3. Глобальные настройки AMD (Adrenalin)</h3>
+<p>Открой <strong>AMD Software: Adrenalin Edition</strong> → <strong>Игры</strong> → <strong>Глобальные настройки</strong>.</p>
+<p><strong>Что выключить:</strong></p>
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Radeon Anti-Lag:</strong> Включить (снижает задержку ввода на 1–2 мс).</li>
+<li><strong>Radeon Chill:</strong> Выключить (ограничивает FPS для снижения нагрева — нам это не нужно).</li>
+<li><strong>Radeon Boost:</strong> Выключить (снижает разрешение при быстрых движениях — для киберспорта это нестабильно).</li>
+<li><strong>Вертикальная синхронизация (Wait for Vertical Refresh):</strong> Выключить (Always Off).</li>
+<li><strong>Enhance Sync:</strong> Выключить.</li>
+</ol>
+
+<p><strong>Важное исключение:</strong> Если у тебя монитор с FreeSync, лучше оставить его включённым, но <strong>отключить V-Sync в игре</strong>. Это даст плавность без разрывов и почти без задержки.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">4. Конфигурация на уровне игры (NVIDIA Reflex / AMD Anti-Lag+)</h3>
+<p>Современные игры (CS2, Valorant, Apex Legends) позволяют включать технологии снижения задержки на уровне движка:</p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>NVIDIA Reflex:</strong> Включи в настройках игры (обычно это <strong>«Включено + Буст»</strong>). Это синхронизирует рендер CPU и GPU, убирая очередь кадров.</li>
+<li><strong>AMD Anti-Lag+:</strong> Аналог Reflex для видеокарт AMD серии RX 6000/7000. Включи его в настройках игры.</li>
+</ul>
+
+<p>Эти технологии <strong>работают только вместе с поддерживающими играми</strong> и дают реальное снижение задержки от 5 до 15 мс.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">5. Чего не стоит трогать</h3>
+<p>Некоторые настройки в панели управления выглядят «круто», но на деле только портят опыт:</p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Фильтрация текстур (Анизотропная):</strong> Оставь «Управляется приложением». В соревновательных играх качество текстур почти не влияет на результат.</li>
+<li><strong>Гамма-коррекция:</strong> Не меняй, если не калибровал монитор под себя.</li>
+<li><strong>Разгон GPU в ПО:</strong> Оверклок через драйвер часто нестабилен. Делай это либо через MSI Afterburner, либо оставь заводские настройки.</li>
+</ul>
+
+<p>В следующей публикации мы зайдём в сами игры и разберём <strong style="color:#a855f7;">внутриигровые настройки</strong> — где реальный прирост, а где маркетинг.</p>
+</div>`
+},
+
+{
+  "id": "t5",
+  "title": "Внутриигровые настройки: что реально важно, а что не важно",
+  "topic": "Киберспорт",
+  "excerpt": "Разбор графических настроек в CS2, Valorant, Dota 2 — что даёт прирост FPS и отклика, а что только иллюзию.",
+  "readTime": 7,
+  "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Внутриигровые настройки: что реально важно, а что не важно</h2>
+
+<p>Ты настроил Windows. Ты настроил мышь. Ты настроил монитор и драйвер. Теперь ты садишься за игру, и тебя встречает меню с десятками ползунков.</p>
+
+<p>В этой публикации мы пройдём по трём главным играм (CS2, Valorant, Dota 2) и разберём, на какие настройки реально стоит обратить внимание, а что можно смело выключить.</p>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«В киберспорте нет места «High». Есть только «Low» и «Disabled».»</blockquote>
+
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">CS2 (Counter-Strike 2)</h3>
+<p>CS2 — это игра, где FPS решает всё. 200 FPS — хорошая база. 400+ FPS — идеал.</p>
+
+<p><strong>Критичные настройки (обязательно выкл или Low):</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Shadow Quality (Тени):</strong> Low или Medium. Тени на High отнимают до 20% FPS и не дают прироста в информации.</li>
+<li><strong>Model / Texture Detail:</strong> Low. В CS2 враги видны на любых настройках, низкие текстуры дают +20–30 FPS.</li>
+<li><strong>Multisampling Anti-Aliasing (MSAA):</strong> Отключить. 2x или 4x съедают FPS и создают размытие.</li>
+<li><strong>Global Shadow Quality:</strong> Low. Тени должны быть, но не детализированные.</li>
+</ul>
+
+<p><strong>Что оставить включённым:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Boost Player Contrast (Контраст игроков):</strong> Включено. Это делает врагов заметнее на фоне.</li>
+<li><strong>Display Mode:</strong> Fullscreen (не Windowed, не Borderless — даёт 1–2 мс меньше задержки).</li>
+<li><strong>V-Sync:</strong> Отключено.</li>
+<li><strong>NVIDIA Reflex:</strong> Включено + Boost.</li>
+</ul>
+
+<p><strong>Лучший баланс FPS / Качество для CS2:</strong> Тени — Low, MSAA — Off, Текстуры — Low, Фильтрация — 4x, FSR (если есть) — Off.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">Valorant</h3>
+<p>Valorant работает на движке Unreal Engine, но он очень хорошо оптимизирован. Здесь FPS не так критичен, как в CS2, но настройки ниже всё равно дают преимущество.</p>
+
+<p><strong>Критичные настройки:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Material Quality:</strong> Low. Это увеличивает FPS без потери видимости врагов.</li>
+<li><strong>Texture Quality:</strong> Low / Medium. Высокие текстуры в Valorant почти не влияют на видимость.</li>
+<li><strong>Detail Quality:</strong> Low. Отключает лишние декорации, которые мешают фокусировке.</li>
+<li><strong>UI Quality:</strong> Low. Не влияет на геймплей, но убирает фоновую нагрузку.</li>
+</ul>
+
+<p><strong>Что оставить включённым:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>V-Sync:</strong> Отключено.</li>
+<li><strong>Limit FPS:</strong> Выключено или ставим выше частоты монитора (например, 0 или 300).</li>
+<li><strong>Anti-Aliasing:</strong> Off или 2x (на 144 Гц и выше MSAA не нужен).</li>
+<li><strong>Anisotropic Filtering:</strong> 4x — это не сильно влияет на FPS.</li>
+</ul>
+
+<blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«В Valorant главное — не качество картинки, а стабильные 240+ FPS и чёткий прицел.»</blockquote>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">Dota 2</h3>
+<p>В Dota 2 ситуация сложнее, чем в шутерах. Здесь больше объектов, больше частиц и больше требований к системе.</p>
+
+<p><strong>Критичные настройки:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Render Quality:</strong> 75–100%. Снижай до 75%, если FPS падает ниже 100.</li>
+<li><strong>Texture Quality:</strong> Medium. High не даёт значимой разницы в игре.</li>
+<li><strong>Effects Quality:</strong> High. Это влияет на видимость ультов (например, Black Hole).</li>
+<li><strong>Shadow Quality:</strong> Off или Low. Тени в Dota 2 не дают геймплейной информации.</li>
+<li><strong>Water Quality:</strong> Off. Дота не про воду.</li>
+</ul>
+
+<p><strong>Что оставить включённым:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>GPUs:</strong> Если у тебя несколько карт — выбери основную.</li>
+<li><strong>V-Sync:</strong> Отключено.</li>
+<li><strong>Advanced Video Settings → FPS Cap:</strong> Выключено или 0.</li>
+<li><strong>World Lighting:</strong> Высокая (она помогает видеть контуры персонажей и предсказывать движения).</li>
+</ul>
+
+<p><strong>Главное в Доте:</strong> Если у тебя FPS падает ниже 60 в тимфайтах — снижай Render Quality и Выключай Тени. В Доте стабильность критичнее, чем в шутерах.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">Общие правила для всех игр</h3>
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Всегда выключай V-Sync</strong> — это враг №1 для задержки.</li>
+<li><strong>Всегда включай Reflex / Anti-Lag+</strong> — если игра поддерживает.</li>
+<li><strong>Снижай качество теней до минимума</strong> — они почти никогда не дают информации, но съедают много ресурсов.</li>
+<li><strong>Текстуры и модельки — ставь Low</strong> (в CS2 это даёт +20% FPS).</li>
+<li><strong>Не играй в оконном режиме (Windowed)</strong> — Fullscreen всегда даёт меньше задержки.</li>
+<li><strong>Не ставь лимит FPS ниже частоты монитора</strong> — если у тебя 144 Гц, ставь лимит хотя бы 200.</li>
+</ol>
+
+<p>В следующей публикации мы разберём <strong style="color:#a855f7;">дополнительный софт</strong>: как с помощью модема и сетевых анализаторов понять, откуда идёт задержка.</p>
+</div>`
+},
+
+ {
+  "id": "t6",
+  "title": "Дополнительный софт и физический комфорт: игра с модемом, сетевыми анализаторами и тактильными улучшениями",
+  "topic": "Киберспорт",
+  "excerpt": "Как понять, что задержка идёт от железа, а не от провайдера. А также — как нарукавники и разогреватели ладоней помогают держать руку в тонусе.",
+  "readTime": 7,
+  "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Дополнительный софт и физический комфорт: от пинга до нарукавников</h2>
+
+<p>Ты настроил всё: Windows, мышь, монитор, драйверы, игру. Но ты всё равно чувствуешь, что что-то не так. Пули не летят туда, куда ты целишься. Реакция запаздывает.</p>
+
+<p>Часто проблема не в твоём ПК, а в <strong>сети</strong> или в <strong>физическом состоянии</strong> твоей руки. В этой публикации мы разберём, как проверить и понять, откуда берётся задержка, а также как улучшить скольжение и разогрев ладоней для максимального контроля.</p>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Сетевой пинг — это не просто число. Это твой разговор с сервером. А рука — это твой разговор с мышью.»</blockquote>
+
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">1. Что такое «пинг» и на что он влияет</h3>
+<p>Пинг (или задержка) — это время, за которое сигнал от твоего компьютера доходит до сервера и возвращается обратно. Измеряется в миллисекундах (мс).</p>
+
+<p><strong>Что считается хорошим пингом:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>0–20 мс:</strong> Идеально (как будто играешь на локальном сервере).</li>
+<li><strong>20–40 мс:</strong> Отлично (не заметно).</li>
+<li><strong>40–60 мс:</strong> Нормально (чувствуется, но играть можно).</li>
+<li><strong>60–100 мс:</strong> Плохо (особенно в шутерах).</li>
+<li><strong>100+ мс:</strong> Играть почти невозможно.</li>
+</ul>
+
+<p>Важно не только среднее значение, но и <strong>стабильность</strong>. Если пинг прыгает от 20 до 80 мс — это хуже, чем стабильные 50 мс.</p>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">2. Встроенные инструменты Windows (CMD)</h3>
+<p>Windows имеет встроенные утилиты для быстрой диагностики.</p>
+
+<p><strong>Ping (проверка связи):</strong></p>
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Открой <strong>Командную строку</strong> (cmd.exe).</li>
+<li>Введи команду: <code>ping google.com</code> — это покажет пинг до серверов Google.</li>
+<li>Если пинг > 50 мс или есть потери пакетов (<strong>Packet Loss</strong>) — проблема у провайдера или в кабеле.</li>
+</ol>
+
+<p><strong>Tracert (трассировка маршрута):</strong></p>
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Введи команду: <code>tracert google.com</code>.</li>
+<li>Посмотри, на каком «хопе» (узле) задержка резко возрастает. Обычно это показывает, где именно тормозит твой пакет.</li>
+<li>Если задержка растёт на первом же узле (твой роутер или модем) — проблема в локальной сети.</li>
+<li>Если задержка растёт на 3–4 узле — проблема на стороне провайдера.</li>
+</ol>
+
+<blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Tracert — это карта пути твоего сигнала. Смотри на неё, чтобы понять, где дорога плохая.»</blockquote>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">3. Специализированные утилиты для игр</h3>
+<p>Стандартные команды CMD дают общую картину. Но для игр есть более точные инструменты.</p>
+
+<p><strong>1. PingPlotter (бесплатная версия):</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Показывает задержку и потерю пакетов на каждом этапе пути.</li>
+<li>Строит графики, чтобы ты мог увидеть, когда пинг скачет.</li>
+<li>Идеально для жалоб провайдеру: ты можешь отправить им скриншот с точкой, где происходит сбой.</li>
+</ul>
+
+<p><strong>2. Leatrix Latency Fix (для TCP/IP):</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Эта утилита изменяет системный реестр, чтобы уменьшить задержку в TCP-соединениях.</li>
+<li>Даёт небольшой (1–2 мс), но стабильный прирост в играх с выделенными серверами.</li>
+<li>Просто скачай и запусти — она сама сделает все изменения.</li>
+</ul>
+
+<p><strong>3. NetLimiter (или аналоги):</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Позволяет увидеть, какие программы используют твой интернет в фоне (например, Steam загружает обновление).</li>
+<li>Если какая-то программа потребляет много трафика — закрой её через диспетчер задач.</li>
+</ul>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">4. Как улучшить сетевую стабильность</h3>
+<p>Если твой пинг стабильно плохой, а жаловаться провайдеру уже надоело — попробуй следующие шаги:</p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Используй проводной интернет (Ethernet).</strong> Wi-Fi всегда добавляет нестабильность (джиттер) из-за помех. Даже если ты в одной комнате с роутером, кабель всегда лучше.</li>
+<li><strong>Обнови прошивку роутера.</strong> Устаревшая прошивка часто содержит баги, из-за которых задержка скачет.</li>
+<li><strong>Отключи VPN.</strong> Если у тебя запущен VPN для доступа к чему-то, выключи его. Он прокладывает твой трафик через дополнительные узлы.</li>
+<li><strong>Проверь DNS.</strong> Медленный DNS может тормозить соединение с игровыми серверами. Попробуй изменить DNS на Google (8.8.8.8) или Cloudflare (1.1.1.1).</li>
+</ul>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">5. Тактильный комфорт: нарукавники и разогреватели</h3>
+<p>Даже если у тебя идеальный пинг и 500 FPS, ты можешь проиграть из-за <strong>механического трения</strong> или <strong>холодных пальцев</strong>. Это мелочи, которые на дистанции решают исход матча.</p>
+
+<p><strong>Нарукавник для мышиной руки:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>Кожа на локте и предплечье имеет свойство прилипать к столу или коврику, особенно если играешь на низком DPI.</li>
+<li>Нарукавник (например, из спандекса или нейлона) создаёт идеально гладкое скольжение. Ты перестаёшь чувствовать сопротивление, и рука двигается плавно, без микро-рывков.</li>
+<li>Особенно актуально для игроков, которые используют всю ковровую поверхность (классические "потные" флики в CS2).</li>
+</ul>
+
+<p><strong>Разогреватели ладоней (мешочки):</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>В прохладных помещениях (или в часы поздней ночной игры) пальцы становятся менее чувствительными. Скорость клика падает, появляется тактильная "ватность".</li>
+<li>Используй специальные разогревающие мешочки для рук (или простые грелки для рук из аптеки). Держи один в мышиной руке между раундами, чтобы разогреть мышцы и связки.</li>
+<li>Тёплая рука = быстрая рука. Это не миф, а физиология: при нагреве увеличивается эластичность сухожилий.</li>
+</ul>
+
+<p><strong>Дополнительно:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Влажные салфетки:</strong> Перед сессией протри руку спиртовой салфеткой (обезжиривание улучшает хват, если у тебя пластиковая мышь).</li>
+<li><strong>Разминка кисти:</strong> Покрути кистями и разомни пальцы перед тем, как зайти в матчмейкинг. Это снижает риск туннельного синдрома и улучшает первичную микро-коррекцию.</li>
+</ul>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Холодные пальцы и липкая рука убивают аим быстрее, чем любой лаг.»</blockquote>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">6. Как диагностировать проблему в игре</h3>
+<p>Многие игры имеют встроенные инструменты для показа сетевой статистики:</p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>CS2:</strong> Введи в консоль <code>net_graph 1</code> (или 2, 3, 4). Ты увидишь пинг, потерю пакетов и джиттер.</li>
+<li><strong>Valorant:</strong> Настройки → Видео → Статистика → Показать сетевые данные.</li>
+<li><strong>Dota 2:</strong> Настройки → Сеть → Показать сетевую информацию.</li>
+</ul>
+
+<p>На что смотреть в игре:</p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Ping:</strong> Среднее значение.</li>
+<li><strong>Loss (Потеря пакетов):</strong> Если не 0% — это катастрофа для геймплея (твои действия просто не доходят до сервера).</li>
+<li><strong>Jitter (Джиттер):</strong> Разброс пинга. Чем он меньше, тем стабильнее игра.</li>
+</ul>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Стабильный пинг в 40 мс лучше, чем прыгающий от 10 до 80.»</blockquote>
+
+<p>В следующей, заключительной публикации цикла мы соберём всё вместе и подведём итог: <strong style="color:#a855f7;">почему победа начинается за 15 минут до первого раунда</strong>.</p>
+</div>`
+},
+
+{
+  "id": "t7",
+  "title": "Итог: база для победы начинается до старта игры",
+  "topic": "Киберспорт",
+  "excerpt": "Философский вывод: победа начинается за 15 минут до первого раунда. Сводим всё в один чек-лист.",
+  "readTime": 6,
+  "body": `<div style="max-width:800px;margin:0 auto;font-family:sans-serif;line-height:1.8;color:#e0e0e0;background:#0a0a14;padding:20px;border-radius:8px;">
+<h2 style="font-size:28px;color:#22d3ee;border-left:4px solid #22d3ee;padding-left:16px;margin-top:0;">Итог: база для победы начинается до старта игры</h2>
+
+<p>Мы прошли через шесть этапов. От синхронного импульса мыши до сетевого пинга. От холодных пальцев до нарукавников. От глобальных настроек драйвера до внутриигровых ползунков.</p>
+
+<p>Теперь всё это нужно собрать в единый ритуал.</p>
+
+<blockquote style="border-left:4px solid #22d3ee;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Победа начинается не на сервере, а за 15 минут до первого раунда.»</blockquote>
+
+<h3 style="font-size:22px;color:#a855f7;margin-top:32px;">Финальный чек-лист «Перед матчем»</h3>
+<p>Проходи по этому списку <strong>каждый раз</strong> перед тем, как зайти в лобби. Это займёт 10–15 минут, но даст тебе стабильный результат.</p>
+
+<ol style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li><strong>Перезагрузи компьютер.</strong> Очисти оперативную память от фонового мусора.</li>
+<li><strong>Проверь драйверы.</strong> Если вчера вышло обновление — подожди. Играй только на проверенной версии.</li>
+<li><strong>Отключи V-Sync в панели управления NVIDIA/AMD.</strong> И в игре, и в панели.</li>
+<li><strong>Включи Reflex / Anti-Lag+</strong> в настройках игры.</li>
+<li><strong>Проверь пинг.</strong> Запусти <code>ping google.com</code> или <code>tracert</code>, если чувствуешь лаги.</li>
+<li><strong>Отключи фоновые загрузки.</strong> Steam, Battle.net, Epic — всё, что качает файлы, должно быть закрыто.</li>
+<li><strong>Настрой нарукавник.</strong> Убедись, что он не сползает и даёт равномерное скольжение по ковру.</li>
+<li><strong>Разогрей руку.</strong> Если в комнате прохладно — используй разогреватель для ладоней. Тёплая рука = быстрая реакция.</li>
+<li><strong>Проверь разрешение.</strong> Убедись, что в игре стоит полноэкранный режим (Fullscreen), а не оконный.</li>
+<li><strong>Сделай лёгкую разминку для кистей.</strong> Покрути ими, разомни пальцы — это снизит риск травмы и улучшит микро-движения.</li>
+</ol>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">Базовые настройки для разных жанров</h3>
+
+<p><strong>CS2 / Valorant:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>DPI: 400–800.</li>
+<li>Тени: Low.</li>
+<li>MSAA (сглаживание): Off.</li>
+<li>NVIDIA Reflex: Включено + Boost.</li>
+<li>Текстуры: Low.</li>
+<li>Fullscreen обязателен.</li>
+</ul>
+
+<p><strong>Dota 2 / League of Legends:</strong></p>
+<ul style="color:#d1d5db;padding-left:20px;margin-bottom:20px;">
+<li>DPI: 800–1600.</li>
+<li>Эффекты: High (видимость ультов).</li>
+<li>Тени: Off / Low.</li>
+<li>Детализация ландшафта: Low.</li>
+<li>V-Sync: Off.</li>
+<li>Лимит FPS: Убрать (0).</li>
+</ul>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">Философия: почему это важно</h3>
+
+<p>Мы не настраиваем компьютер, чтобы «побыстрее играть». Мы настраиваем его, чтобы <strong>убрать всё, что мешает</strong>.</p>
+
+<p>Задержка в 5 мс не заметна в обычной игре. Но в киберспорте эти 5 мс могут стать причиной того, почему ты промахнулся, а твой противник нет.</p>
+
+<p>Разогрев руки, нарукавник, стабильный пинг — это не «баловство». Это снятие переменных. Чем меньше переменных, тем лучше ты понимаешь своё тело и свой инструмент.</p>
+
+<blockquote style="border-left:4px solid #a855f7;padding-left:16px;margin:20px 0;font-style:italic;color:#94a3b8;">«Киберспорт — это не реакция. Киберспорт — это устранение помех.»</blockquote>
+
+<h3 style="font-size:22px;color:#22d3ee;margin-top:32px;">Что дальше</h3>
+
+<p>Этот цикл завершён. Ты знаешь, как настроить Windows, мышь, монитор, драйверы, игру и сеть. Ты знаешь, как подготовить руку и тело.</p>
+
+<p>Дальше — только практика. Настраивай, привыкай и доминируй.</p>
+
+<p><strong>Победа начинается за 15 минут до первого раунда.</strong> И теперь ты знаешь, как провести эти 15 минут.</p>
+
+<p style="margin-top:24px;border-top:1px solid #333;padding-top:16px;color:#94a3b8;font-size:13px;">
+Цикл «Базовые настройки геймера: от Windows до мыши» завершён. Следующий цикл — <strong>«Продвинутая периферия: от коврика до звуковой карты»</strong>.
+</p>
+</div>`
 } 
- 
 
 ];
