@@ -6,13 +6,13 @@ import logo from "@/assets/cybereden-logo.svg";
 import { useI18n } from "@/lib/i18n";
 
 const links = [
-  { to: "/", key: "nav.home" },
-  { to: "/dashboard", key: "nav.dashboard" },
-  { to: "/journal", key: "nav.journal" },
-  { to: "/streams", key: "nav.streams" },
-  { to: "/events", key: "nav.events" },
-  { to: "/market", key: "nav.market" },
-  { to: "/profile", key: "nav.profile" },
+  { to: "/",          key: "nav.home",      search: {} },
+  { to: "/dashboard", key: "nav.dashboard", search: {} },
+  { to: "/journal",   key: "nav.journal",   search: {} },
+  { to: "/streams",   key: "nav.streams",   search: {} },
+  { to: "/events",    key: "nav.events",    search: {} },
+  { to: "/market",    key: "nav.market",    search: {} },
+  { to: "/profile",   key: "nav.profile",   search: {} },  // сбрасываем uid чтобы всегда открывался свой профиль
 ] as const;
 
 export function TopNav() {
@@ -73,6 +73,7 @@ export function TopNav() {
                 <Link
                   key={l.to}
                   to={l.to}
+                  search={l.search}
                   className={`px-3 py-1.5 text-xs font-mono uppercase tracking-widest transition-colors ${
                     active
                       ? "neon-text-cyan border-b border-neon-cyan"
@@ -120,6 +121,7 @@ export function TopNav() {
                   >
                     <Link
                       to={l.to}
+                      search={l.search}
                       onClick={() => setOpen(false)}
                       className={`flex items-center px-6 py-3 font-display text-sm tracking-[0.25em] uppercase border-l-2 transition-all ${
                         active

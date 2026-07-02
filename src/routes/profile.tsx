@@ -152,6 +152,31 @@ function PublicProfileView({ profileUser }: { profileUser: any }) {
   });
   const rank = rankFromXp(profileUser.xp || 0);
 
+  // Публичные данные кибера
+  const [assets,       setAssets]       = useState<any[]>([]);
+  const [knowledge,    setKnowledge]    = useState<any[]>([]);
+  const [achievements, setAchievements] = useState<any[]>([]);
+  const [inventory,    setInventory]    = useState<any[]>([]);
+  const [loadingData,  setLoadingData]  = useState(true);
+
+  // Модалы
+  const [datacenterOpen,   setDatacenterOpen]   = useState(false);
+  const [knowledgeOpen,    setKnowledgeOpen]    = useState(false);
+  const [achievementsOpen, setAchievementsOpen] = useState(false);
+  const [inventoryOpen,    setInventoryOpen]    = useState(false);
+
+  const API_URL = (import.meta.env.VITE_API_URL || "https://cybereden-v1-1-0.vercel.app").replace(/\/$/, "");
+
+  useEffect(() => {
+    // Загружаем публичные данные пользователя
+    Promise.all([
+      fetch(`${API_URL}/api/upload/assets?user_id=${profileUser.id}`).then(r => r.ok ? r.json() : { assets: [] }).then(d => setAssets(d.assets || [])),
+      fetch(`${API_URL}/api/knowledge/progress?user_id=${profileUser.id}`).then(r => r.ok ? r.json() : { items: [] }).then(d => setKnowledge(d.items || [])),
+      fetch(`${API_URL}/api/achievements?user_id=${profileUser.id}`).then(r => r.ok ? r.json() : { achievements: [] }).then(d => setAchievements(d.achievements || [])),
+      fetch(`${API_URL}/api/inventory?user_id=${profileUser.id}`).then(r => r.ok ? r.json() : { items: [] }).then(d => setInventory(d.items || [])),
+    ]).catch(() => {}).finally(() => setLoadingData(false));
+  }, [profileUser.id]);
+
   return (
     <motion.main initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
       className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 pt-24 pb-24">
@@ -159,10 +184,29 @@ function PublicProfileView({ profileUser }: { profileUser: any }) {
         className="inline-flex items-center gap-2 font-mono text-xs text-muted-foreground hover:neon-text-cyan transition mb-6">
         ← Дашборд
       </Link>
-      <div className="grid md:grid-cols-[300px_1fr] gap-8">
+
+      {/* Заголовок */}
+      <header className="mb-6 hud-corners relative p-6 border border-border bg-surface/30 backdrop-blur-sm">
+        <div className="font-mono text-xs uppercase tracking-[0.4em] neon-text-cyan mb-2">// КИБЛА КИБЕРА</div>
+        <div className="flex items-center gap-3 justify-between flex-wrap">
+          <div className="flex items-center gap-3 flex-wrap">
+            <h1 className="font-display text-3xl neon-text-violet">@{profileUser.display_name}</h1>
+            {profileUser.is_investor && (
+              <span className="px-2 py-0.5 border border-yellow-500/40 bg-yellow-500/10 font-mono text-xs neon-text-acid">◆ ИНВЕСТ</span>
+            )}
+          </div>
+          <span className={`font-mono text-xs ${profileUser.is_online ? "neon-text-acid" : "text-muted-foreground"}`}>
+            {profileUser.is_online ? "● ONLINE" : "○ OFFLINE"}
+          </span>
+        </div>
+      </header>
+
+      <div className="grid lg:grid-cols-[280px_1fr] gap-6">
+
         {/* Левая колонка */}
         <div className="space-y-4">
-          <div className="hud-corners p-6 border border-border bg-surface/40 backdrop-blur text-center">
+          {/* Аватар */}
+          <div className="hud-corners p-6 border border-border bg-surface/50 backdrop-blur text-center">
             <div className="relative inline-block mb-4">
               <div className="w-24 h-24 border-2 border-neon-violet rounded-full overflow-hidden bg-background mx-auto"
                 style={{ boxShadow: "0 0 20px rgba(168,85,247,0.4)" }}>
@@ -178,16 +222,13 @@ function PublicProfileView({ profileUser }: { profileUser: any }) {
               )}
             </div>
             <div className="font-display text-xl neon-text-violet mb-1">@{profileUser.display_name}</div>
-            <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-2">{rank}</div>
-            {profileUser.is_online
-              ? <span className="font-mono text-[10px] neon-text-acid">● Онлайн</span>
-              : <span className="font-mono text-[10px] text-muted-foreground">○ Оффлайн</span>
-            }
+            <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{rank}</div>
           </div>
+
+          {/* Статы */}
           <div className="hud-corners p-4 border border-border bg-surface/40 backdrop-blur space-y-2">
             {[
               { label: "ПХ",      value: (profileUser.xp || 0).toLocaleString("ru-RU") },
-              { label: "Уровень", value: profileUser.level || 0 },
               { label: "Rank",    value: rank },
               { label: "Joined",  value: joined },
             ].map(row => (
@@ -197,7 +238,12 @@ function PublicProfileView({ profileUser }: { profileUser: any }) {
               </div>
             ))}
           </div>
+
+          {/* Аккаунты */}
           <div className="hud-corners border border-border bg-surface/40 backdrop-blur overflow-hidden">
+            <div className="px-4 py-2 border-b border-border font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+              Подключённые аккаунты
+            </div>
             {[
               { name: "GitHub",  handle: profileUser.github_username ? `@${profileUser.github_username}` : "—", href: profileUser.github_username ? `https://github.com/${profileUser.github_username}` : null },
               { name: "Twitch",  handle: profileUser.twitch_username ? `@${profileUser.twitch_username}` : "—", href: profileUser.twitch_username ? `https://twitch.tv/${profileUser.twitch_username}` : null },
@@ -211,20 +257,86 @@ function PublicProfileView({ profileUser }: { profileUser: any }) {
               </div>
             ))}
           </div>
+
+          {/* СИГНАЛ */}
+          <SignalChannel
+            profileUserId={profileUser.id}
+            profileUserName={profileUser.display_name}
+            isOwnProfile={false}
+          />
         </div>
+
         {/* Правая колонка */}
         <div className="space-y-4">
-          <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.4em] neon-text-cyan mb-2">// КИБЛА КИБЕРА</div>
-            <h1 className="font-display text-4xl neon-text-violet">@{profileUser.display_name}</h1>
-          </div>
-          {profileUser.is_investor && (
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-yellow-500/40 bg-yellow-500/10 font-mono text-xs neon-text-acid">
-              ◆ КВАЛИФИЦИРОВАННЫЙ ИНВЕСТОР nazrOS
+
+          {/* Инвентарь */}
+          <button onClick={() => setInventoryOpen(true)}
+            className="w-full hud-corners p-4 border border-border bg-surface/40 backdrop-blur text-left hover:neon-border transition">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 font-mono text-xs neon-text-cyan uppercase tracking-widest">
+                <ShoppingBag size={14} /> Инвентарь
+              </div>
+              <span className="font-mono text-xs text-muted-foreground">{inventory.length} предм. →</span>
             </div>
-          )}
+            <div className="mt-1 font-mono text-xs text-muted-foreground">
+              {inventory.length > 0 ? `${inventory.length} устройств nazrOS` : "Инвентарь пуст"}
+            </div>
+          </button>
+
+          {/* Достижения */}
+          <button onClick={() => setAchievementsOpen(true)}
+            className="w-full hud-corners p-4 border border-border bg-surface/40 backdrop-blur text-left hover:neon-border transition">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 font-mono text-xs neon-text-acid uppercase tracking-widest">
+                <Trophy size={14} /> Достижения
+              </div>
+              <span className="font-mono text-xs text-muted-foreground">{achievements.length} →</span>
+            </div>
+            <div className="mt-1 font-mono text-xs text-muted-foreground">
+              {achievements.length > 0 ? `${achievements.length} достижений` : "Нет достижений"}
+            </div>
+          </button>
+
+          {/* Знания */}
+          <button onClick={() => setKnowledgeOpen(true)}
+            className="w-full hud-corners p-4 border border-border bg-surface/40 backdrop-blur text-left hover:neon-border transition">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 font-mono text-xs neon-text-violet uppercase tracking-widest">
+                <BookOpen size={14} /> Знания
+              </div>
+              <span className="font-mono text-xs text-muted-foreground">Все ({knowledge.length}) →</span>
+            </div>
+            <div className="mt-2 space-y-1">
+              {knowledge.slice(0, 3).map((k: any) => (
+                <div key={k.id} className="flex items-center justify-between">
+                  <span className="font-mono text-xs text-muted-foreground truncate max-w-[60%]">{k.title || k.article_id}</span>
+                  <span className="font-mono text-[10px] neon-text-cyan">{Math.round(k.progress || 0)}%</span>
+                </div>
+              ))}
+            </div>
+          </button>
+
+          {/* Датацентр — все файлы этого кибера */}
+          <button onClick={() => setDatacenterOpen(true)}
+            className="w-full hud-corners p-4 border border-border bg-surface/40 backdrop-blur text-left hover:neon-border transition">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground uppercase tracking-widest">
+                <Database size={14} /> Датацентр
+              </div>
+              <span className="font-mono text-xs text-muted-foreground">{assets.length} файлов →</span>
+            </div>
+            <div className="mt-1 font-mono text-xs text-muted-foreground">
+              {assets.length > 0 ? `${assets.length} загруженных файлов` : "Нет файлов"}
+            </div>
+          </button>
         </div>
       </div>
+
+      {/* Модалы (readonly — передаём userId чужого кибера) */}
+      <DatacenterModal  open={datacenterOpen}   onClose={() => setDatacenterOpen(false)}   userId={profileUser.id} readonly />
+      <KnowledgeModal   open={knowledgeOpen}    onClose={() => setKnowledgeOpen(false)}    userId={profileUser.id} readonly />
+      <AchievementsModal open={achievementsOpen} onClose={() => setAchievementsOpen(false)} userId={profileUser.id} readonly />
+      <InventoryModal   open={inventoryOpen}    onClose={() => setInventoryOpen(false)}    userId={profileUser.id} readonly />
     </motion.main>
   );
 }
