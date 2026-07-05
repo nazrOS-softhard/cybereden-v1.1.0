@@ -6,30 +6,19 @@ import logo from "@/assets/cybereden-logo.svg";
 import { useI18n } from "@/lib/i18n";
 
 const links = [
-  { to: "/",          key: "nav.home"      },
-  { to: "/dashboard", key: "nav.dashboard" },
-  { to: "/journal",   key: "nav.journal"   },
-  { to: "/streams",   key: "nav.streams"   },
-  { to: "/events",    key: "nav.events"    },
-  { to: "/market",    key: "nav.market"    },
+  { to: "/",          key: "nav.home",      search: {} },
+  { to: "/dashboard", key: "nav.dashboard", search: {} },
+  { to: "/journal",   key: "nav.journal",   search: {} },
+  { to: "/streams",   key: "nav.streams",   search: {} },
+  { to: "/events",    key: "nav.events",    search: {} },
+  { to: "/market",    key: "nav.market",    search: {} },
+  { to: "/profile",   key: "nav.profile",   search: {} },  // сбрасываем uid чтобы всегда открывался свой профиль
 ] as const;
-
-// Профиль вынесен отдельно — кликает через window.location чтобы гарантированно убрать ?uid=
-const profileLink = { to: "/profile", key: "nav.profile" } as const;
 
 export function TopNav() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const { lang, toggle, t } = useI18n();
-
-  const isProfileActive = location.pathname === "/profile" && !location.search.includes("uid");
-
-  // Жёсткий переход на /profile без каких-либо search params
-  const goToProfile = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setOpen(false);
-    window.location.href = "/profile";
-  };
 
   const LangToggle = ({ className = "" }: { className?: string }) => (
     <button
@@ -50,29 +39,33 @@ export function TopNav() {
       <header className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-background/60 border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 h-14 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group" onClick={() => setOpen(false)}>
-            <motion.img
-              src={logo}
-              alt="CyberEden Logo"
-              width={27}
-              height={27}
-              className="w-7 h-7"
-              style={{ scaleX: -1 }}
-              animate={{ rotate: -360 }}
-              transition={{
-                repeat: Infinity,
-                ease: "linear",
-                duration: 12
-              }}
-              whileHover={{
-                transition: { duration: 1.5, ease: "linear", repeat: Infinity }
-              }}
-            />
+<motion.img
+  src={logo}
+  alt="CyberEden Logo"
+  width={27}
+  height={27}
+  className="w-7 h-7"
+  style={{ scaleX: -1 }}
+  animate={{ rotate: -360 }}
+  transition={{
+    repeat: Infinity,
+    ease: "linear",
+    duration: 12
+  }}
+  whileHover={{
+    transition: { duration: 1.5, ease: "linear", repeat: Infinity }
+  }}
+/>
+
+
+
+
+
             <div className="font-display text-sm tracking-[0.3em] neon-text-violet">
               NAZR<span className="neon-text-cyan">OS</span>
             </div>
           </Link>
 
-          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
             {links.map((l) => {
               const active = location.pathname === l.to;
@@ -80,6 +73,7 @@ export function TopNav() {
                 <Link
                   key={l.to}
                   to={l.to}
+                  search={l.search}
                   className={`px-3 py-1.5 text-xs font-mono uppercase tracking-widest transition-colors ${
                     active
                       ? "neon-text-cyan border-b border-neon-cyan"
@@ -90,18 +84,6 @@ export function TopNav() {
                 </Link>
               );
             })}
-            {/* Профиль — отдельно, без TanStack Router Link */}
-            <a
-              href="/profile"
-              onClick={goToProfile}
-              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-widest transition-colors cursor-pointer ${
-                isProfileActive
-                  ? "neon-text-cyan border-b border-neon-cyan"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t(profileLink.key)}
-            </a>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -139,6 +121,7 @@ export function TopNav() {
                   >
                     <Link
                       to={l.to}
+                      search={l.search}
                       onClick={() => setOpen(false)}
                       className={`flex items-center px-6 py-3 font-display text-sm tracking-[0.25em] uppercase border-l-2 transition-all ${
                         active
@@ -154,28 +137,6 @@ export function TopNav() {
                   </motion.div>
                 );
               })}
-              {/* Профиль — мобайл */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.05 * links.length + 0.1 }}
-              >
-                <a
-                  href="/profile"
-                  onClick={goToProfile}
-                  className={`flex items-center px-6 py-3 font-display text-sm tracking-[0.25em] uppercase border-l-2 transition-all cursor-pointer ${
-                    isProfileActive
-                      ? "border-neon-violet neon-text-violet bg-primary/10"
-                      : "border-transparent text-muted-foreground hover:border-neon-cyan hover:neon-text-cyan"
-                  }`}
-                >
-                  <span className="text-xs text-muted-foreground mr-3 font-mono">
-                    0{links.length + 1}
-                  </span>
-                  {t(profileLink.key)}
-                </a>
-              </motion.div>
-
               <div className="px-6 pt-6">
                 <LangToggle />
               </div>
