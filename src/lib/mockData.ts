@@ -71,6 +71,7 @@ export type Item = {
   sensors: Sensor[];
   sliders: Slider[];
   gallery?: string[];
+ctaHref?: string; 
 };
 
 export const items: Item[] = [
