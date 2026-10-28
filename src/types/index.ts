@@ -171,3 +171,16 @@ export interface UserSettings {
   created_at: string;
   updated_at: string;
 }
+
+// ==================== EVENT ====================
+export interface Event {
+  id: string;
+  title: string;
+  type: "ТРАНСЛЯЦИИ" | "ТУРНИРЫ" | "ХАКАТОНЫ" | "ДЕПЫ";
+  date: string;
+  location: string;
+  description: string;
+  streamUrl?: string;
+  registrationUrl?: string;
+  image?: string;
+}
