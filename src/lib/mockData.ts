@@ -339,11 +339,11 @@ export const events: Event[] = [
   { id: "e1", title: "This is GameDev", type: "ТРАНСЛЯЦИИ", date: "Everyday", location: "Twitch", description: "Тени неонового кода, ритмы компиляции — всё это геймдев. Разбираем архитектуру, создаём HUD-интерфейсы и строим цифровые миры.", streamUrl: "https://www.twitch.tv/lana_lux" },
   {
     id: "e7",
-    title: "IEM Cologne Major 2026",
+    title: "PGL Masters Bucharest 2026",
     type: "ТУРНИРЫ",
-    date: "02.06.2026 - 21.06.2026",
-    location: "Кельн, Германия",
-    description: `Первый мейджор по Counter Strike 2 в 2026 году. 32 коллектива разыгрывают призовой фонд $1,25 млн.`,
+    date: "24.10.2026 - 31.10.2026",
+    location: "Бухарест, Румыния",
+    description: `В PGL Masters Bucharest примут участие 16 команд: 12 пригласят по рейтингу Valve, еще 4 пройдут через региональные отборы. Призовой фонд турнира — $625 тысяч, из которых $200 тысяч заберет победитель.`,
     streamUrl: "https://www.twitch.tv/cs2_paragon_ru"
   },
   {
