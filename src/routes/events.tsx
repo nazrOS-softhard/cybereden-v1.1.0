@@ -86,7 +86,6 @@ function EventsPage() {
             onClick={() => setOpenId(e.id)}
             eyebrow={e.type}
             title={e.title}
-            // ❌ Убрали image={e.image} — фото не будет в свернутой карточке
             meta={`${e.date ? e.date + " · " : ""}${e.location}`}
           >
             {e.description
@@ -106,10 +105,10 @@ function EventsPage() {
         onClose={() => setOpenId(null)}
         eyebrow={active?.type}
         title={active?.title ?? ""}
-        // ✅ Оставляем image здесь — в модалке фото будет
         image={active?.image}
         cta={t("events.cta")}
         streamUrl={safeStreamUrl}
+        ctaHref={active?.registrationUrl} // <-- ДОБАВЛЕНА ЭТА СТРОКА
         meta={
           active
             ? [
