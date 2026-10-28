@@ -354,6 +354,7 @@ export const events: Event[] = [
     image: cyberhack,
     location: "Эрарта · Санкт-Петербург",
     description: "Главный хакатон киберсистемы nazrOS. 48 часов непрерывного кодинга, менторство и призовой фонд.",
+     registrationUrl: "https://leader-id.ru/events/607592",
   },
   {
     id: "e14",
@@ -363,6 +364,7 @@ export const events: Event[] = [
     image: razrabconf,
     location: "ЦДП · Москва",
     description: "Конференция разработчиков киберсистемы nazrOS. Доклады, открытые мастерские, нетворкинг.",
+    registrationUrl: "https://leader-id.ru/events/607589",
   },
   {
     id: "e15",
@@ -372,6 +374,7 @@ export const events: Event[] = [
     image: pikseli,
     location: "Иннополис · Казань",
     description: "12-часовой геймджем для инди-разработчиков. Тема объявляется в момент старта.",
+    registrationUrl: "https://leader-id.ru/events/607588",
   },
   {
     id: "e16",
@@ -379,7 +382,7 @@ export const events: Event[] = [
     type: "ХАКАТОНЫ",
     date: "06.04.2027 – 12.04.2027",
     location: "Плесетск · Архангельская область",
-    description: "The Week Space — цифровое космическое событие в рамках Российской недели космоса.",
+    description: "The Week Space — космическое событие в рамках Российской Недели Космоса.",
   },
   {
     id: "e17",
@@ -389,6 +392,7 @@ export const events: Event[] = [
     image: arcticprotocol,
     location: "Кластер Северного Дизайна · Мурманск",
     description: "Креативная резиденция для дизайнеров, медиахудожников и цифровых креаторов.",
+    registrationUrl: "https://leader-id.ru/events/607587",
   },
   {
     id: "e18",
@@ -398,6 +402,7 @@ export const events: Event[] = [
     image: sintez,
     location: "IT-парк Цифровая Арктика · Архангельск",
     description: "Биотехнологическое инженерное мероприятие для Крайнего Севера.",
+    registrationUrl: "https://leader-id.ru/events/607585",
   },
   
   { id: "e19", title: "PORTAL", type: "ДЕПЫ", date: "2026", location: "· Москва", description: "Визуальное ядро nazrOS. Интерфейсы, HUD-системы, motion-дизайн и цифровая типографика." },
